@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   expressions: ^0.2.4
+  flutter_mobx: ^2.0.6+1
+  mobx: ^2.0.7+5
   pdf: ^3.8.3
   printing: ^5.9.2
   vsc_pdf_template_transformer:
