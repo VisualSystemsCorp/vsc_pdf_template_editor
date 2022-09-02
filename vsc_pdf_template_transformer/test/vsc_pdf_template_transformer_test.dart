@@ -9,7 +9,7 @@ void main() {
       // Additional setup goes here.
     });
 
-    test('First Test', () {
+    test('First Test Demo', () {
       expect(awesome.isAwesome, isTrue);
     });
   });
