@@ -18,6 +18,7 @@ dependencies:
   printing: ^5.9.2
   vsc_pdf_template_transformer:
     path: ../vsc_pdf_template_transformer
+  pdfx: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +30,15 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/pdf/
 
   # To add assets to your package, add an assets section, like this:
   # assets:
@@ -60,3 +70,7 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Helverica
+      fonts:
+        - asset: fonts/Helvetica.ttf
