@@ -6,7 +6,6 @@ import 'text_style.dart';
 part 'text_pdf.g.dart';
 
 @JsonSerializable()
-
 class TextPdf {
       String? text;
       TextStyle? style;
