@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'text_pdf.dart';
-
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
@@ -10,7 +9,7 @@ TextPdf _$TextPdfFromJson(Map<String, dynamic> json) => TextPdf(
       text: json['text'] as String?,
       style: json['style'] == null
           ? null
-          : TextStyle.fromJson(json['style'] as Map<String, dynamic>),
+          : ts.TextStyle.fromJson(json['style'] as Map<String, dynamic>),
       textAlign: json['textAlign'] as String?,
       textDirection: json['textDirection'] as String?,
       softWrap: json['softWrap'] as bool?,
