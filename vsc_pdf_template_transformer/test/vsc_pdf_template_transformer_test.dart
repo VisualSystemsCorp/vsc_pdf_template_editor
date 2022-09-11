@@ -3,14 +3,14 @@ import 'package:test/test.dart';
 
 void main() {
   group('A group of tests', () {
-    final awesome = Awesome();
+    final transformer = Transformer();
 
     setUp(() {
       // Additional setup goes here.
     });
 
     test('First Test Demo', () {
-      expect(awesome.isAwesome, isTrue);
+      expect(transformer.isReady, isTrue);
     });
   });
 }
