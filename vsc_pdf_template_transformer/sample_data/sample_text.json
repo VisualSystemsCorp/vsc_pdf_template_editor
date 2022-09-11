@@ -1,1 +1,1 @@
-{"className":"TextPdf","text":"sample text","style":{"color":"0XFF0000"},"textAlign":"left","textDirection":"ltr","softWrap":true,"tightBounds":true,"textScaleFactor":2,"maxLines":3,"overflow":"span"}
+{"className":"TextPdf","text":"sample text","style":{"color":"FF0000"},"textAlign":"left","textDirection":"ltr","softWrap":true,"tightBounds":true,"textScaleFactor":2,"maxLines":3,"overflow":"span"}

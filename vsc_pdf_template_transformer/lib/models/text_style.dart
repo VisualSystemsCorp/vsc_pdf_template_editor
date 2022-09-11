@@ -92,7 +92,7 @@ class TextStyle {
      */
     //TODO: Think about more - whar fields and how to copoy
     result = result.apply(
-        color: value.color != null ? PdfColor.fromInt(int.parse(value.color!)!) : null);
+        color: value.color != null ? PdfColor.fromHex(value.color!) : null);
     return result;
   }
 }
