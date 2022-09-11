@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-//import 'package:pdf/src/widgets/widget.dart' as wp;
+import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
 import '../utils/widget_builder.dart' as wb;
@@ -40,9 +40,11 @@ class TextPdf implements wb.WidgetBuilder {
 
   @override
   Widget? buildWidget() {
+    print('--- style: ${style} ------');
     var value = Text(
       text ?? '',
-      //style: style,
+      //TODO: find out why color is ignored
+      style:  TextStyle.defaultStyle().copyWith(color: PdfColor.fromHex('FF0000')),//TextStyle(color: PdfColor.fromHex('FF0000')),//ts.TextStyle.to(style),
       textAlign: textAlign != null ? textAlign!.toAlign() : null,
       textDirection: textDirection != null ? textDirection!.toTextDirection() : TextDirection.ltr,
       softWrap: softWrap,
@@ -52,6 +54,7 @@ class TextPdf implements wb.WidgetBuilder {
       overflow: overflow != null ? overflow!.toTextOverflow() : TextOverflow.clip,
     );
 
+    print('--- value style: ${value.text.style!.color!.toHex()} ------');
     return value;
   }
 }
