@@ -1,7 +1,5 @@
-import 'dart:ui';
-
 import 'package:json_annotation/json_annotation.dart';
-import 'package:pdf/src/widgets/widget.dart' as wp;
+//import 'package:pdf/src/widgets/widget.dart' as wp;
 import 'package:pdf/widgets.dart';
 
 import '../utils/widget_builder.dart' as wb;
@@ -12,6 +10,8 @@ part 'text_pdf.g.dart';
 
 @JsonSerializable()
 class TextPdf implements wb.WidgetBuilder {
+
+  String className = 'TextPdf';
   String? text;
   ts.TextStyle? style; // TODO: Write converter for ts.TextStyle <> ui.TextStyle
   String? textAlign;

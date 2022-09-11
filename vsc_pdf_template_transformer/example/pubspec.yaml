@@ -8,6 +8,9 @@ environment:
 
 # dependencies:
 #   path: ^1.8.0
+dependencies:
+  vsc_pdf_template_transformer:
+    path: ../
 
 dev_dependencies:
   lints: ^2.0.0
