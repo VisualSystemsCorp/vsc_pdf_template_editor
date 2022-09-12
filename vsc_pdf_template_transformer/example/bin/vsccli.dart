@@ -6,7 +6,7 @@ import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart' 
 /**
  * This is main entry point for command line tool
  */
-void main(List<String> arguments) {
+void main(List<String> arguments) async {
 
   var widgetsData = Map<String, dynamic>();//read data from arguments[1]
 
@@ -20,9 +20,7 @@ void main(List<String> arguments) {
   
   var document = transformer.Transformer.buildPdf(widgetsTree, widgetsData);
   print('---- obtained document: ${document.document.documentID} ---');
-  Future<Uint8List> bytes = document.save();
+  final bytes = await document.save();
   print('---- obtained bytes: ${bytes} ---');
-  bytes.then((value) => result.writeAsBytesSync(value, mode: FileMode.append)).whenComplete(() => print('complete OK'))
-      .onError((error, stackTrace) => print('complete with error ${error}'));
-
+  result.writeAsBytesSync(bytes, mode: FileMode.write);
 }

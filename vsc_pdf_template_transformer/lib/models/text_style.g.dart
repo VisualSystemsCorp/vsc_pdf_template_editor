@@ -6,7 +6,7 @@ part of 'text_style.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-TextStyle _$TextStyleFromJson(Map<String, dynamic> json) => TextStyle(
+TplTextStyle _$TplTextStyleFromJson(Map<String, dynamic> json) => TplTextStyle(
       color: json['color'] as String?,
       backgroundColor: json['backgroundColor'] as String?,
       fontSize: (json['fontSize'] as num?)?.toDouble(),
@@ -25,7 +25,7 @@ TextStyle _$TextStyleFromJson(Map<String, dynamic> json) => TextStyle(
       overflow: json['overflow'] as String?,
     );
 
-Map<String, dynamic> _$TextStyleToJson(TextStyle instance) => <String, dynamic>{
+Map<String, dynamic> _$TplTextStyleToJson(TplTextStyle instance) => <String, dynamic>{
       'color': instance.color,
       'backgroundColor': instance.backgroundColor,
       'fontSize': instance.fontSize,

@@ -9,10 +9,10 @@ environment:
 # dependencies:
 #   path: ^1.8.0
 dependencies:
+  pdf: ^3.8.3
   vsc_pdf_template_transformer:
     path: ../
 
 dev_dependencies:
   lints: ^2.0.0
   test: ^1.16.0
-  pdf: ^3.8.3

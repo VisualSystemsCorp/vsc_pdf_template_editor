@@ -19,7 +19,7 @@ class Transformer {
           var className = valueMap['className'];
           print('---- root element is of a type ${className} ---');
           WidgetBuilder? proxy =
-              getWidgetBuilder(valueMap); //TextPdf.fromJson(valueMap);
+              getWidgetBuilder(valueMap); //TplText.fromJson(valueMap);
           return pw.Center(
             child: proxy != null
                 ? proxy!.buildWidget()
@@ -32,17 +32,16 @@ class Transformer {
   //TODO: Extend with more types. Mirrors package not available in Flutter project so we can't create an instance of a class by name via reflection
   static WidgetBuilder? getWidgetBuilder(Map<String, dynamic> valueMap) {
     WidgetBuilder? result;
-    switch (valueMap['className']) {
-      case 'TextPdf':
-        {
-          result = TextPdf.fromJson(valueMap);
-          break;
-        }
-      default:
-        {
-          result = null;
-        }
-    }
+
+    const widgetClassFromJson = {
+      'TplText': TplText.fromJson,
+    };
+
+    final fromJson = widgetClassFromJson[valueMap['className']];
+
+    if (fromJson == null) throw Exception("No className or unknown clasName");
+    result = fromJson(valueMap);
+
     print('------- generated widget ${result} -----');
     return result;
   }

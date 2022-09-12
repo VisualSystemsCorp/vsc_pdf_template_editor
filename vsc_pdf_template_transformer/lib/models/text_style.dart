@@ -5,7 +5,7 @@ import "package:pdf/widgets.dart" as ws;
 part 'text_style.g.dart';
 
 @JsonSerializable()
-class TextStyle {
+class TplTextStyle {
   String? color;
   String? backgroundColor;
   double? fontSize;
@@ -23,7 +23,7 @@ class TextStyle {
   String? package = 'vcs_pdf_template_transformer';
   String? overflow;
 
-  TextStyle(
+  TplTextStyle(
       {this.color,
       this.backgroundColor,
       this.fontSize,
@@ -41,17 +41,17 @@ class TextStyle {
       this.package,
       this.overflow});
 
-  factory TextStyle.fromJson(Map<String, dynamic> json) =>
-      _$TextStyleFromJson(json);
+  factory TplTextStyle.fromJson(Map<String, dynamic> json) =>
+      _$TplTextStyleFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TextStyleToJson(this);
+  Map<String, dynamic> toJson() => _$TplTextStyleToJson(this);
 
-  static TextStyle? from(ws.TextStyle value) {
+  static TplTextStyle? from(ws.TextStyle value) {
     if(value == null) return null;
 
-    TextStyle result = TextStyle();
+    TplTextStyle result = TplTextStyle();
     result.color = value.color.toString();
-    result.backgroundColor = value.background != null ? value.background!.color.toString() : null;
+    result.backgroundColor = value.background?.color.toString();
     result.fontSize = value.fontSize;
     result.fontWeight = value.fontWeight.toString();
     result.fontStyle = value.fontStyle.toString();
@@ -64,13 +64,13 @@ class TextStyle {
 
     //result.foreground = value.decoration.foregtround;
     result.background = value.background.toString();
-    result.fontFamily = value.font != null ? value.font!.fontName.toString() : null;
+    result.fontFamily = value.font?.fontName.toString();
     //result.overflow = value.overflow;;
 
     return result;
   }
 
-  static ws.TextStyle to(TextStyle? value) {
+  static ws.TextStyle to(TplTextStyle? value) {
     ws.TextStyle result = ws.TextStyle();
     if(value == null) return result;
     /*
