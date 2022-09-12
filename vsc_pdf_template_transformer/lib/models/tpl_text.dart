@@ -3,11 +3,16 @@ import 'package:pdf/widgets.dart';
 
 import '../utils/widget_builder.dart' as wb;
 import '../utils/extensions.dart';
-import 'text_style.dart';
+import 'tpl_text_style.dart';
 
-part 'text_pdf.g.dart';
+part 'tpl_text.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(
+  checked: true,  // Extra type checking
+  disallowUnrecognizedKeys: false, // Allow unrecognized keys (e.g., "className") in JSON
+  explicitToJson: true, // Allows deserialization of nested JSON objects.  (e.g., TplTextStyle)
+)
+
 class TplText implements wb.WidgetBuilder {
   String className = 'TplText';
   String text;
@@ -28,15 +33,15 @@ class TplText implements wb.WidgetBuilder {
   String overflow;
 
   TplText(
-      {required this.text,
+      { this.text = '',
       this.style,
-      required this.textAlign,
-      required this.textDirection,
-      required this.softWrap,
-      required this.tightBounds,
-      required this.textScaleFactor,
-      required this.maxLines,
-      required this.overflow});
+      this.textAlign = "left",
+      this.textDirection = "lrt",
+      this.softWrap = true,
+      this.tightBounds = false,
+      this.textScaleFactor = 1.0,
+      this.maxLines = 1,
+      this.overflow = "clip"});
 
   factory TplText.fromJson(Map<String, dynamic> json) =>
       _$TplTextFromJson(json);
@@ -47,7 +52,7 @@ class TplText implements wb.WidgetBuilder {
   Widget? buildWidget() {
     print('--- style: ${style} ------');
     var value = Text(
-      text ?? '',
+      text,
       style: TplTextStyle.to(style),
       textAlign: textAlign.toAlign(),
       textDirection: textDirection.toTextDirection(),

@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/pdf.dart';
 import "package:pdf/widgets.dart" as ws;
 
-part 'text_style.g.dart';
+part 'tpl_text_style.g.dart';
 
 @JsonSerializable()
 class TplTextStyle {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'text_style.dart';
+part of 'tpl_text_style.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -25,7 +25,8 @@ TplTextStyle _$TplTextStyleFromJson(Map<String, dynamic> json) => TplTextStyle(
       overflow: json['overflow'] as String?,
     );
 
-Map<String, dynamic> _$TplTextStyleToJson(TplTextStyle instance) => <String, dynamic>{
+Map<String, dynamic> _$TplTextStyleToJson(TplTextStyle instance) =>
+    <String, dynamic>{
       'color': instance.color,
       'backgroundColor': instance.backgroundColor,
       'fontSize': instance.fontSize,

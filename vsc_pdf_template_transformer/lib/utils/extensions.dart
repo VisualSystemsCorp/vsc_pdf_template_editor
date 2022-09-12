@@ -27,7 +27,7 @@ extension TextDirectionExtensions on String {
   }
 }
 
-extension TexOverflowExtensions on String {
+extension TextOverflowExtensions on String {
   toTextOverflow() {
     if (this.contains("clip")) {
       return TextOverflow.clip;
