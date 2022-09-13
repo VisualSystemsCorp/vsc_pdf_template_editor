@@ -25,6 +25,6 @@ class _EditorAppState extends State<EditorApp> {
             appBar: AppBar(
               title: const Text('VSC: PDF Editor Example'),
             ),
-            body: EditorWidget()));
+            body: const EditorWidget()));
   }
 }
