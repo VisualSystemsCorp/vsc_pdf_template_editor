@@ -18,6 +18,7 @@ dependencies:
   printing: ^5.9.2
   vsc_pdf_template_transformer:
     path: ../vsc_pdf_template_transformer
+  flutter_treeview: ^1.0.7+1
 
 dev_dependencies:
   flutter_test:

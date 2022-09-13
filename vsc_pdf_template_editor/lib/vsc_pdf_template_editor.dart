@@ -1,7 +1,3 @@
 library vsc_pdf_template_editor;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/widgets/editor_widget.dart' show EditorWidget;
