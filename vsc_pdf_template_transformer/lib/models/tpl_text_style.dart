@@ -4,7 +4,14 @@ import "package:pdf/widgets.dart" as ws;
 
 part 'tpl_text_style.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(
+  checked: true,
+  // Extra type checking
+  disallowUnrecognizedKeys: false,
+  // Allow unrecognized keys (e.g., "className") in JSON
+  explicitToJson:
+      true, // Allows deserialization of nested JSON objects.  (e.g., TplTextStyle)
+)
 class TplTextStyle {
   String? color;
   String? backgroundColor;
@@ -47,7 +54,7 @@ class TplTextStyle {
   Map<String, dynamic> toJson() => _$TplTextStyleToJson(this);
 
   static TplTextStyle? from(ws.TextStyle value) {
-    if(value == null) return null;
+    if (value == null) return null;
 
     TplTextStyle result = TplTextStyle();
     result.color = value.color.toString();
@@ -72,7 +79,7 @@ class TplTextStyle {
 
   static ws.TextStyle to(TplTextStyle? value) {
     ws.TextStyle result = ws.TextStyle();
-    if(value == null) return result;
+    if (value == null) return result;
     /*
     PdfColor? color,
     Font? font,

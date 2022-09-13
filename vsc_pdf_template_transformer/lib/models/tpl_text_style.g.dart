@@ -6,23 +6,35 @@ part of 'tpl_text_style.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-TplTextStyle _$TplTextStyleFromJson(Map<String, dynamic> json) => TplTextStyle(
-      color: json['color'] as String?,
-      backgroundColor: json['backgroundColor'] as String?,
-      fontSize: (json['fontSize'] as num?)?.toDouble(),
-      fontWeight: json['fontWeight'] as String?,
-      fontStyle: json['fontStyle'] as String?,
-      letterSpacing: (json['letterSpacing'] as num?)?.toDouble(),
-      wordSpacing: (json['wordSpacing'] as num?)?.toDouble(),
-      textBaseline: json['textBaseline'] as String?,
-      height: (json['height'] as num?)?.toDouble(),
-      leadingDistribution: json['leadingDistribution'] as String?,
-      locale: json['locale'] as String?,
-      foreground: json['foreground'] as String?,
-      background: json['background'] as String?,
-      fontFamily: json['fontFamily'] as String?,
-      package: json['package'] as String?,
-      overflow: json['overflow'] as String?,
+TplTextStyle _$TplTextStyleFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'TplTextStyle',
+      json,
+      ($checkedConvert) {
+        final val = TplTextStyle(
+          color: $checkedConvert('color', (v) => v as String?),
+          backgroundColor:
+              $checkedConvert('backgroundColor', (v) => v as String?),
+          fontSize: $checkedConvert('fontSize', (v) => (v as num?)?.toDouble()),
+          fontWeight: $checkedConvert('fontWeight', (v) => v as String?),
+          fontStyle: $checkedConvert('fontStyle', (v) => v as String?),
+          letterSpacing:
+              $checkedConvert('letterSpacing', (v) => (v as num?)?.toDouble()),
+          wordSpacing:
+              $checkedConvert('wordSpacing', (v) => (v as num?)?.toDouble()),
+          textBaseline: $checkedConvert('textBaseline', (v) => v as String?),
+          height: $checkedConvert('height', (v) => (v as num?)?.toDouble()),
+          leadingDistribution:
+              $checkedConvert('leadingDistribution', (v) => v as String?),
+          locale: $checkedConvert('locale', (v) => v as String?),
+          foreground: $checkedConvert('foreground', (v) => v as String?),
+          background: $checkedConvert('background', (v) => v as String?),
+          fontFamily: $checkedConvert('fontFamily', (v) => v as String?),
+          package: $checkedConvert('package', (v) => v as String?),
+          overflow: $checkedConvert('overflow', (v) => v as String?),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$TplTextStyleToJson(TplTextStyle instance) =>

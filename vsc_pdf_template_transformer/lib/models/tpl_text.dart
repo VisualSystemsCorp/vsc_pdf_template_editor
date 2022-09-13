@@ -16,32 +16,33 @@ part 'tpl_text.g.dart';
 class TplText implements wb.WidgetBuilder {
   String className = 'TplText';
   String text;
+  @JsonKey(defaultValue: null)
   TplTextStyle? style;
-  @JsonKey(defaultValue: "left")
-  String textAlign;
-  @JsonKey(defaultValue: "lrt")
-  String textDirection;
+  @JsonKey(defaultValue: TextAlign.left)
+  TextAlign textAlign;
+  @JsonKey(defaultValue: TextDirection.ltr)
+  TextDirection textDirection;
   @JsonKey(defaultValue: true)
   bool softWrap;
   @JsonKey(defaultValue: false)
   bool tightBounds = false;
   @JsonKey(defaultValue: 1.0)
-  double textScaleFactor = 1.0;
+  double textScaleFactor;
   @JsonKey(defaultValue: 1)
   int maxLines;
-  @JsonKey(defaultValue: "clip")
-  String overflow;
+  @JsonKey(defaultValue: TextOverflow.clip)
+  TextOverflow overflow;
 
   TplText(
       { this.text = '',
       this.style,
-      this.textAlign = "left",
-      this.textDirection = "lrt",
+      this.textAlign = TextAlign.left,
+      this.textDirection = TextDirection.ltr,
       this.softWrap = true,
       this.tightBounds = false,
       this.textScaleFactor = 1.0,
       this.maxLines = 1,
-      this.overflow = "clip"});
+      this.overflow = TextOverflow.clip});
 
   factory TplText.fromJson(Map<String, dynamic> json) =>
       _$TplTextFromJson(json);
@@ -54,13 +55,13 @@ class TplText implements wb.WidgetBuilder {
     var value = Text(
       text,
       style: TplTextStyle.to(style),
-      textAlign: textAlign.toAlign(),
-      textDirection: textDirection.toTextDirection(),
+      textAlign: textAlign,
+      textDirection: textDirection,
       softWrap: softWrap,
       tightBounds: tightBounds,
       textScaleFactor: textScaleFactor,
       maxLines: maxLines,
-      overflow: overflow.toTextOverflow(),
+      overflow: overflow,
     );
 
     print('--- value style: ${value.text.style!.color!.toHex()} ------');
