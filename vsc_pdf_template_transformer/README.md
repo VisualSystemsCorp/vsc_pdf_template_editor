@@ -11,6 +11,10 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
+project uses json_serializable with build_runner to generate models. To get [model_name].g.dart generated use command
+```dart run build_runner build ```
+
+
 TODO: Put a short description of the package here that helps potential users
 know whether this package might be useful for them.
 
