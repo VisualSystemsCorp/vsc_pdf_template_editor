@@ -4,7 +4,7 @@ import 'package:flutter_treeview/flutter_treeview.dart';
 import 'package:mobx/mobx.dart';
 
 import '../models/store.dart';
-import '../tree_store.dart';
+import '../stores/tree_store.dart';
 
 class TreeViewWidget extends StatefulWidget {
   const TreeViewWidget({Key? key}) : super(key: key);
@@ -15,20 +15,18 @@ class TreeViewWidget extends StatefulWidget {
 
 class _TreeViewWidgetState extends State<TreeViewWidget> {
 
-  @observable
   late VSCStore _store; // MobX tree container
 
-  @computed
   VSCStore get store => _store;
 
   TreeViewController? _treeViewController;
   String? _selectedNode;
-  final treeStore = TreeStore().buildSampleData();
+  final treeStore = TreeStore();
 
 
   @override
   void initState() {
-    _store = VSCStore(tree: treeStore);
+    _store = VSCStore(tree: treeStore.buildSampleData());
     _treeViewController =
         TreeViewController(children: store.tree, selectedKey: _selectedNode);
     super.initState();
@@ -47,10 +45,11 @@ class _TreeViewWidgetState extends State<TreeViewWidget> {
               width: _width * 0.25,
               height: _height - 50, //TODO add smart resolving
               child: Observer(
-                  builder: (_) => TreeView(
+                  builder: (context) => TreeView(
                     controller: _treeViewController!,
                     onNodeTap: (key) => setState(() {
                       print('*** Selected: $key');
+
                       _selectedNode = key;
                       _treeViewController = _treeViewController!.copyWith(selectedKey: key);
                     }),
