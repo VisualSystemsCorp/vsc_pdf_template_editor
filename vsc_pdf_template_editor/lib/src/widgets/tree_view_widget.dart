@@ -49,9 +49,9 @@ class _TreeViewWidgetState extends State<TreeViewWidget> {
                     controller: _treeViewController!,
                     onNodeTap: (key) => setState(() {
                       print('*** Selected: $key');
-
                       _selectedNode = key;
                       _treeViewController = _treeViewController!.copyWith(selectedKey: key);
+                      treeStore.getWidgetProps(_treeViewController?.selectedNode?.data);
                     }),
                   )),
             ),

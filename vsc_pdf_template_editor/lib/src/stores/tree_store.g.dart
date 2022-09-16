@@ -24,8 +24,51 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
+  late final _$widgetPropsAtom =
+      Atom(name: '_TreeStore.widgetProps', context: context);
+
+  @override
+  Map<String, dynamic> get widgetProps {
+    _$widgetPropsAtom.reportRead();
+    return super.widgetProps;
+  }
+
+  @override
+  set widgetProps(Map<String, dynamic> value) {
+    _$widgetPropsAtom.reportWrite(value, super.widgetProps, () {
+      super.widgetProps = value;
+    });
+  }
+
+  late final _$isLoadedAtom =
+      Atom(name: '_TreeStore.isLoaded', context: context);
+
+  @override
+  bool get isLoaded {
+    _$isLoadedAtom.reportRead();
+    return super.isLoaded;
+  }
+
+  @override
+  set isLoaded(bool value) {
+    _$isLoadedAtom.reportWrite(value, super.isLoaded, () {
+      super.isLoaded = value;
+    });
+  }
+
   late final _$_TreeStoreActionController =
       ActionController(name: '_TreeStore', context: context);
+
+  @override
+  Map<String, dynamic> getWidgetProps(Map<String, dynamic> props) {
+    final _$actionInfo = _$_TreeStoreActionController.startAction(
+        name: '_TreeStore.getWidgetProps');
+    try {
+      return super.getWidgetProps(props);
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   List<Node<dynamic>> buildSampleData() {
@@ -41,7 +84,9 @@ mixin _$TreeStore on _TreeStore, Store {
   @override
   String toString() {
     return '''
-result: ${result}
+result: ${result},
+widgetProps: ${widgetProps},
+isLoaded: ${isLoaded}
     ''';
   }
 }

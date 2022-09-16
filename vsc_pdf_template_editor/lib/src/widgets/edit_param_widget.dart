@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../api_service.dart';
+import '../stores/tree_store.dart';
 
 class EditParamWidget extends StatefulWidget {
   const EditParamWidget({Key? key}) : super(key: key);
@@ -10,12 +11,9 @@ class EditParamWidget extends StatefulWidget {
 }
 
 class _EditParamWidgetState extends State<EditParamWidget> {
-  final _service = ApiService();
-  Map<String, dynamic> widgetProps = <String, dynamic>{};
-
+  final treeStore = TreeStore();
   @override
   void initState() {
-    _service.getDataWidget().then((value) => widgetProps = value);
     super.initState();
   }
 
@@ -30,12 +28,19 @@ class _EditParamWidgetState extends State<EditParamWidget> {
           child: SizedBox(
             width: _width * 0.25,
             height: _height - 50, //TODO add smart resolving
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: _widgetsParam(widgetProps),
-              ),
+            child: Observer(
+              builder: (context) {
+                return
+                  treeStore.widgetProps.isEmpty
+                ? const Center(child: CircularProgressIndicator(),)
+                : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: _widgetsProps( treeStore.widgetProps),
+                  ),
+                );
+              }
             ),
           ),
         );
@@ -43,7 +48,9 @@ class _EditParamWidgetState extends State<EditParamWidget> {
     );
   }
 
-  List<Widget> _widgetsParam(Map<String, dynamic> elements) {
+  List<Widget> _widgetsProps(Map<String, dynamic> elements) {
+    elements.forEach((key, value) => print('*** elements  $key : $value'));
+
     List<Widget> result = [];
     result.add(
       const Text(

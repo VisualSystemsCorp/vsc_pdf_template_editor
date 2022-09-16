@@ -10,17 +10,28 @@ class TreeStore = _TreeStore with _$TreeStore;
 
 abstract class _TreeStore with Store {
   final _service = ApiService();
-  Map<String, dynamic> widgetProps = <String, dynamic>{};
 
   @observable
   List<Node> result = [];
 
-  @action
+  @observable
+  Map<String, dynamic> widgetProps = <String, dynamic>{};
+
+  @observable
+  bool isLoaded = false;
+
+ @action
+  Map<String, dynamic> getWidgetProps(Map<String, dynamic> props) {
+
+    widgetProps = props;
+    return widgetProps;
+ }
+
+ @action
   List<Node> buildSampleData()  {
 
-    _service.getDataWidget().then((value) => widgetProps = value);
 
-    List<Node> _nodes = [
+   List<Node> result = [
                   Node(key: '101',
                      label: 'Document',
                   children: [
@@ -35,12 +46,15 @@ abstract class _TreeStore with Store {
                               )],
                              )]),];
 
-    result = _nodes;
+    isLoaded = true;
     return result;
   }
 
-  void getWidgets() {
-    buildSampleData();
+  void setWidgetProps() {
+    Map<String, dynamic> _widgetProps = <String, dynamic>{};
+   _service.getDataWidget().then((value) => _widgetProps = value);
+    _widgetProps.forEach((key, value) => print ('*** $key : $value'));
+   getWidgetProps(_widgetProps);
   }
 
 }
