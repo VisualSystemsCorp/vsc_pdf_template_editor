@@ -54,8 +54,6 @@ class TplTextStyle {
   Map<String, dynamic> toJson() => _$TplTextStyleToJson(this);
 
   static TplTextStyle? from(ws.TextStyle value) {
-    if (value == null) return null;
-
     TplTextStyle result = TplTextStyle();
     result.color = value.color.toString();
     result.backgroundColor = value.background?.color.toString();
@@ -97,7 +95,7 @@ class TplTextStyle {
     double heightDelta = 0.0,
     TextDecoration decoration = TextDecoration.none,
      */
-    //TODO: Think about more - whar fields and how to copoy
+    //TODO: Think about more - what fields and how to copy
     result = result.apply(
         color: value.color != null ? PdfColor.fromHex(value.color!) : null);
     return result;

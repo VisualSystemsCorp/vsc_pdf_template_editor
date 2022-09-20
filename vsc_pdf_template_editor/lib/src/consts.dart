@@ -10,9 +10,7 @@ const List<Map<String, dynamic>> widgets = [
         'key': '102',
         'label': 'Page',
         'children': [
-          {'key': '103',
-            'label': 'Widget',
-            'data': 'simple text'}
+          {'key': '103', 'label': 'Widget', 'data': 'simple text'}
         ]
       }
     ]

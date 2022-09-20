@@ -2,7 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 
 import '../utils/widget_builder.dart' as wb;
-import '../utils/extensions.dart';
 import 'tpl_text_style.dart';
 
 part 'tpl_text.g.dart';

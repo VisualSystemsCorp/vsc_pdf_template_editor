@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'edit_param_widget.dart';
 import 'pdf_view_widget.dart';
 import 'tree_view_widget.dart';
@@ -9,8 +8,6 @@ class EditorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: const <Widget>[

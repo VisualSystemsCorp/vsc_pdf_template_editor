@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-
-
 import '../models/tpl_text.dart';
 import '../utils/node.dart';
 import '../utils/widget_builder.dart';
@@ -23,7 +21,7 @@ class Transformer {
               getWidgetBuilder(valueMap); //TplText.fromJson(valueMap);
           return pw.Center(
             child: proxy != null
-                ? proxy!.buildWidget()
+                ? proxy.buildWidget()
                 : pw.Text('Unsupported Component: ${className}'),
           ); // Center
         }));
@@ -40,7 +38,7 @@ class Transformer {
 
     final fromJson = widgetClassFromJson[valueMap['className']];
 
-    if (fromJson == null) throw Exception("No className or unknown clasName");
+    if (fromJson == null) throw Exception("No className or unknown className");
     result = fromJson(valueMap);
 
     print('------- generated widget ${result} -----');
