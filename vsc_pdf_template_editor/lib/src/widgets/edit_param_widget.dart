@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 import '../stores/tree_store.dart';
 
 class EditParamWidget extends StatefulWidget {
@@ -33,7 +34,7 @@ class _EditParamWidgetState extends State<EditParamWidget> {
             child: Observer(builder: (context) {
               return treeStore.widgetProps.isEmpty
                   ? const Center(
-                      child: CircularProgressIndicator(),
+                      child: Text(AppStrings.chooseWidget),
                     )
                   : Padding(
                       padding: const EdgeInsets.symmetric(
@@ -41,7 +42,7 @@ class _EditParamWidgetState extends State<EditParamWidget> {
                       child: Column(
                         children: [
                           const Text(
-                            'Widget Properties',
+                            AppStrings.widgetProperties,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           _Items(

@@ -34,7 +34,7 @@ abstract class _TreeStore with Store {
           children: [
             Node(
               key: '103',
-              label: 'Widget',
+              label: 'Text',
               data: widgetProps,
             )
           ],

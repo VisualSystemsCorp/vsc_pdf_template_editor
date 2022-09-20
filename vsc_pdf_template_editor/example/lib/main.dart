@@ -13,17 +13,15 @@ class EditorApp extends StatefulWidget {
 }
 
 class _EditorAppState extends State<EditorApp> {
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'VSC: PDF Editor',
+        title: AppStrings.appName,
         theme: ThemeData(colorSchemeSeed: const Color(0xFF6200EE)),
         home: Scaffold(
             appBar: AppBar(
-              title: const Text('VSC: PDF Editor Example'),
+              title: const Text(AppStrings.testAppName),
             ),
             body: const EditorWidget()));
   }
