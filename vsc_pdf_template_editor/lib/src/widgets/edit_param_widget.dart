@@ -3,22 +3,13 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 import '../stores/tree_store.dart';
 
-class EditParamWidget extends StatefulWidget {
-  const EditParamWidget({Key? key}) : super(key: key);
+class EditParamWidget extends StatelessWidget {
+  const EditParamWidget({
+    Key? key,
+    required this.viewModel,
+  }) : super(key: key);
 
-  @override
-  State<EditParamWidget> createState() => _EditParamWidgetState();
-}
-
-class _EditParamWidgetState extends State<EditParamWidget> {
-  final treeStore = TreeStore();
-  final List<TextEditingController> _controllers = [];
-
-  @override
-  void initState() {
-    _initControllers();
-    super.initState();
-  }
+  final TreeStore viewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +23,7 @@ class _EditParamWidgetState extends State<EditParamWidget> {
             width: width * 0.25,
             height: height - 50, //TODO add smart resolving
             child: Observer(builder: (context) {
-              return treeStore.widgetProps.isEmpty
+              return viewModel.widgetProps.isEmpty
                   ? const Center(
                       child: Text(AppStrings.chooseWidget),
                     )
@@ -46,8 +37,8 @@ class _EditParamWidgetState extends State<EditParamWidget> {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           _Items(
-                            treeStore.widgetProps.keys.toList(),
-                            _controllers,
+                            viewModel.widgetProps.keys.toList(),
+                            viewModel.controllers,
                           )
                         ],
                       ),
@@ -57,11 +48,6 @@ class _EditParamWidgetState extends State<EditParamWidget> {
         );
       },
     );
-  }
-
-  _initControllers() {
-    treeStore.widgetProps
-        .forEach((key, value) => _controllers.add(TextEditingController()));
   }
 }
 

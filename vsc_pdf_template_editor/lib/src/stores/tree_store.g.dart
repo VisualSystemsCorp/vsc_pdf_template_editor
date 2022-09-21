@@ -9,6 +9,22 @@ part of 'tree_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$TreeStore on _TreeStore, Store {
+  late final _$selectedNodeAtom =
+      Atom(name: '_TreeStore.selectedNode', context: context);
+
+  @override
+  String? get selectedNode {
+    _$selectedNodeAtom.reportRead();
+    return super.selectedNode;
+  }
+
+  @override
+  set selectedNode(String? value) {
+    _$selectedNodeAtom.reportWrite(value, super.selectedNode, () {
+      super.selectedNode = value;
+    });
+  }
+
   late final _$resultAtom = Atom(name: '_TreeStore.result', context: context);
 
   @override
@@ -82,8 +98,20 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
+  dynamic onNodeTap(String key) {
+    final _$actionInfo =
+        _$_TreeStoreActionController.startAction(name: '_TreeStore.onNodeTap');
+    try {
+      return super.onNodeTap(key);
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+selectedNode: ${selectedNode},
 result: ${result},
 widgetProps: ${widgetProps},
 isLoaded: ${isLoaded}

@@ -23,6 +23,6 @@ class _EditorAppState extends State<EditorApp> {
             appBar: AppBar(
               title: const Text(AppStrings.testAppName),
             ),
-            body: const EditorWidget()));
+            body: EditorWidget()));
   }
 }
