@@ -19,6 +19,7 @@ dependencies:
   vsc_pdf_template_transformer:
     path: ../vsc_pdf_template_transformer
   flutter_treeview: ^1.0.7+1
+  easy_debounce: ^2.0.2+1
 
 dev_dependencies:
   flutter_test:

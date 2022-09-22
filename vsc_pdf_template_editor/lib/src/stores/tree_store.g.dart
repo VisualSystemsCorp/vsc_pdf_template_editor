@@ -72,6 +72,24 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
+  late final _$_pdfBytesAtom =
+      Atom(name: '_TreeStore._pdfBytes', context: context);
+
+  Uint8List get pdfBytes {
+    _$_pdfBytesAtom.reportRead();
+    return super._pdfBytes;
+  }
+
+  @override
+  Uint8List get _pdfBytes => pdfBytes;
+
+  @override
+  set _pdfBytes(Uint8List value) {
+    _$_pdfBytesAtom.reportWrite(value, super._pdfBytes, () {
+      super._pdfBytes = value;
+    });
+  }
+
   late final _$_TreeStoreActionController =
       ActionController(name: '_TreeStore', context: context);
 

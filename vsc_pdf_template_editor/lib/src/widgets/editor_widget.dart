@@ -50,8 +50,10 @@ class EditorWidget extends StatelessWidget {
                 ),
                 const VerticalDivider(thickness: 1, width: 1),
                 // This is the main content.
-                const Expanded(
-                  child: PdfViewWidget(),
+                Expanded(
+                  child: PdfViewWidget(
+                    viewModel: viewModel,
+                  ),
                 ),
                 const VerticalDivider(thickness: 1, width: 1),
                 // This is the main content.
