@@ -28,7 +28,7 @@ class Transformer {
     return pdf;
   }
 
-  static pw.Document buildPdfFromJson(
+  static pw.Document buildPdfFromJson(Map<String, dynamic> treeRoot,
       String data) {
     final pdf = pw.Document();
     pdf.addPage(pw.Page(

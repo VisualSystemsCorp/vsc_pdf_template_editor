@@ -107,8 +107,10 @@ abstract class _TreeStore with Store {
   }
 
   buildPdf(String text) async {
+    final map = treeViewController.asMap;
     widgetProps['text'] = text;
-    doc = transformer.Transformer.buildPdfFromJson(jsonEncode(widgetProps));
+    doc = transformer.Transformer.buildPdfFromJson(
+        map[0], jsonEncode(widgetProps));
     await _savePdf();
   }
 }
