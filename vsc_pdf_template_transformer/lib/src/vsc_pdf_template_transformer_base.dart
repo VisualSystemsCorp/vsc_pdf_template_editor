@@ -28,6 +28,26 @@ class Transformer {
     return pdf;
   }
 
+  static pw.Document buildPdfFromJson(
+      String treeRoot, Map<String, dynamic> data) {
+    final pdf = pw.Document();
+    pdf.addPage(pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (pw.Context context) {
+          var valueMap = json.decode(treeRoot);
+          var className = valueMap['className'];
+          print('---- root element is of a type ${className} ---');
+          WidgetBuilder? proxy =
+          getWidgetBuilder(valueMap); //TplText.fromJson(valueMap);
+          return pw.Center(
+            child: proxy != null
+                ? proxy.buildWidget()
+                : pw.Text('Unsupported Component: ${className}'),
+          ); // Center
+        }));
+    return pdf;
+  }
+
   //TODO: Extend with more types. Mirrors package not available in Flutter project so we can't create an instance of a class by name via reflection
   static WidgetBuilder? getWidgetBuilder(Map<String, dynamic> valueMap) {
     WidgetBuilder? result;

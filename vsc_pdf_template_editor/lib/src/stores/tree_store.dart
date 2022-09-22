@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
@@ -6,7 +7,6 @@ import 'package:flutter_treeview/flutter_treeview.dart';
 import 'package:mobx/mobx.dart';
 import '../api_service.dart';
 import '../models/store.dart';
-import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 part 'tree_store.g.dart';
@@ -93,7 +93,7 @@ abstract class _TreeStore with Store {
   void setWidgetProps() async {
     widgetProps = await _service.getDataWidget();
     _initWidgetControllers();
-    addPage();
+    buildPdf('');
   }
 
   _initWidgetControllers() {
@@ -102,19 +102,13 @@ abstract class _TreeStore with Store {
         controllers.add(TextEditingController(text: value.toString())));
   }
 
-  addPage() async {
-    doc = pw.Document();
-    doc.addPage(
-        pw.Page(
-            pageFormat: PdfPageFormat.a4,
-            build: (pw.Context context) {
-              return pw.Text(controllers[1].text);
-            }),
-        index: 0);
-    await _savePdf();
-  }
-
   _savePdf() async {
     setPdfBytes = await doc.save();
+  }
+
+  buildPdf(String text) async {
+    widgetProps['text'] = text;
+    doc = transformer.Transformer.buildPdfFromJson(jsonEncode(widgetProps), {});
+    await _savePdf();
   }
 }
