@@ -108,7 +108,7 @@ abstract class _TreeStore with Store {
 
   buildPdf(String text) async {
     widgetProps['text'] = text;
-    doc = transformer.Transformer.buildPdfFromJson(jsonEncode(widgetProps), {});
+    doc = transformer.Transformer.buildPdfFromJson(jsonEncode(widgetProps));
     await _savePdf();
   }
 }

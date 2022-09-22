@@ -29,12 +29,12 @@ class Transformer {
   }
 
   static pw.Document buildPdfFromJson(
-      String treeRoot, Map<String, dynamic> data) {
+      String data) {
     final pdf = pw.Document();
     pdf.addPage(pw.Page(
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
-          var valueMap = json.decode(treeRoot);
+          var valueMap = json.decode(data);
           var className = valueMap['className'];
           print('---- root element is of a type ${className} ---');
           WidgetBuilder? proxy =
