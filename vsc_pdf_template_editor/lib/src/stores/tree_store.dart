@@ -34,8 +34,7 @@ abstract class _TreeStore with Store {
     store = VSCStore(tree: buildSampleData());
     treeViewController =
         TreeViewController(children: store.tree, selectedKey: selectedNode);
-    widgetProps
-        .forEach((key, value) => controllers.add(TextEditingController()));
+    _initWidgetControllers();
   }
 
   @action
@@ -71,13 +70,17 @@ abstract class _TreeStore with Store {
     print('*** Selected: $key');
     selectedNode = key;
     treeViewController = treeViewController.copyWith(selectedKey: key);
-    getWidgetProps(treeViewController.selectedNode?.data);
+    setWidgetProps();
   }
 
-  void setWidgetProps() {
-    Map<String, dynamic> widgetProps = <String, dynamic>{};
-    _service.getDataWidget().then((value) => widgetProps = value);
-    widgetProps.forEach((key, value) => print('*** $key : $value'));
-    getWidgetProps(widgetProps);
+  void setWidgetProps() async {
+    widgetProps = await _service.getDataWidget();
+    _initWidgetControllers();
+  }
+
+  _initWidgetControllers() {
+    controllers.clear();
+    widgetProps
+        .forEach((key, value) => controllers.add(TextEditingController()));
   }
 }
