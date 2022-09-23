@@ -18,11 +18,15 @@ dependencies:
   printing: ^5.9.2
   vsc_pdf_template_transformer:
     path: ../vsc_pdf_template_transformer
+  flutter_treeview: ^1.0.7+1
+  easy_debounce: ^2.0.2+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
+  build_runner: ^2.2.0
+  mobx_codegen: ^2.0.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
