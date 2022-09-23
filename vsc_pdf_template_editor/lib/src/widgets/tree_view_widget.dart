@@ -14,23 +14,13 @@ class TreeViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-    return LayoutBuilder(
-      builder: (context, constraint) {
-        return SingleChildScrollView(
-          child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraint.maxHeight),
-              child: SizedBox(
-                width: width * 0.25,
-                height: height - 50, //TODO add smart resolving
-                child: Observer(
-                  builder: (c) => TreeView(
-                      controller: viewModel.treeViewController,
-                      onNodeTap: (key) => viewModel.onNodeTap(key)),
-                ),
-              )),
-        );
-      },
+    return SizedBox(
+      width: width * 0.25,
+      child: Observer(
+        builder: (c) => TreeView(
+            controller: viewModel.treeViewController,
+            onNodeTap: (key) => viewModel.onNodeTap(key)),
+      ),
     );
   }
 }
