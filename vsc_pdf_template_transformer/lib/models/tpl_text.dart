@@ -55,7 +55,7 @@ class TplText implements wb.WidgetBuilder {
   Widget? buildWidget() {
     print('--- style: ${style} ------');
     var value = Text(
-      text.value,
+      text.expression ?? text.value,
       style: TplTextStyle.to(style),
       textAlign: textAlign,
       textDirection: textDirection,

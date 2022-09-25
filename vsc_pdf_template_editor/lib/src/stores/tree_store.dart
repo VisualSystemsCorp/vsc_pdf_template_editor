@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:flutter/material.dart';
@@ -108,7 +109,7 @@ abstract class _TreeStore with Store {
 
   buildPdf(String text) async {
     final map = treeViewController.asMap;
-    widgetProps['text'] = text;
+    widgetProps['text'] = TplString(value: text);
     doc = transformer.Transformer.buildPdfFromJson(
         map[0], jsonEncode(widgetProps));
     await _savePdf();
