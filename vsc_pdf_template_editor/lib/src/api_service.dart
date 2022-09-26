@@ -1,12 +1,13 @@
 import 'dart:core';
 import 'dart:convert';
-import 'consts.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 class ApiService {
-
   Future<Map<String, dynamic>> getDataWidget() async {
-    final result = Map<String, dynamic>.from(json.decode(widgetJson));
+    final res = await rootBundle.loadString(
+        'packages/vsc_pdf_template_editor/assets/test/sample_text.json');
+    print(res);
+    final result = Map<String, dynamic>.from(json.decode(res));
     return result;
   }
-
 }
