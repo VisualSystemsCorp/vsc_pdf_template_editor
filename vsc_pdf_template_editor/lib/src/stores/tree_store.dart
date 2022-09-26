@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:expressions/expressions.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
@@ -20,6 +21,7 @@ abstract class _TreeStore with Store {
   }
 
   final _service = ApiService();
+  final evaluator = const ExpressionEvaluator();
   final List<TextEditingController> controllers = [];
   late VSCStore store; // MobX tree container
   late TreeViewController treeViewController;
@@ -94,7 +96,7 @@ abstract class _TreeStore with Store {
   void setWidgetProps() async {
     widgetProps = await _service.getDataWidget();
     _initWidgetControllers();
-    buildPdf('');
+    evaluateInput('');
   }
 
   _initWidgetControllers() {
@@ -107,11 +109,22 @@ abstract class _TreeStore with Store {
     setPdfBytes = await doc.save();
   }
 
-  buildPdf(String text) async {
+  evaluateInput(String text) {
+    dynamic res;
+    try {
+      res = evaluator.eval(Expression.parse(text), {});
+    } catch (e, s) {
+      print(e);
+      print(s);
+    }
     final map = treeViewController.asMap;
-    widgetProps['text'] = TplString(value: text);
+    widgetProps['text'] = TplString(value: text, expression: res?.toString());
+    _buildPdf(map[0]);
+  }
+
+  _buildPdf(Map<String, dynamic> treeRoot) async {
     doc = transformer.Transformer.buildPdfFromJson(
-        map[0], jsonEncode(widgetProps));
+        treeRoot, jsonEncode(widgetProps));
     await _savePdf();
   }
 }

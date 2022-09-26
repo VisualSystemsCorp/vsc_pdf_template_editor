@@ -91,7 +91,7 @@ class _Items extends StatelessWidget {
                               onChanged: (val) => EasyDebounce.debounce(
                                   '',
                                   const Duration(milliseconds: 500),
-                                  () => viewModel.buildPdf(
+                                  () => viewModel.evaluateInput(
                                       viewModel.controllers[index].text)),
                               style: const TextStyle(fontSize: 12),
                             ),
