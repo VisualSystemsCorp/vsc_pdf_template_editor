@@ -123,8 +123,7 @@ abstract class _TreeStore with Store {
   }
 
   _buildPdf(Map<String, dynamic> treeRoot) async {
-    doc = transformer.Transformer.buildPdfFromJson(
-        treeRoot, jsonEncode(widgetProps));
+    doc = transformer.Transformer.buildPdf(widgetProps, {});
     await _savePdf();
   }
 }
