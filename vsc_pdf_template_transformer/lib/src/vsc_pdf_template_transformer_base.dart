@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import '../models/tpl_text.dart';
@@ -43,5 +44,15 @@ class Transformer {
     return result;
   }
 
-  static _evaluateExpression() {}
+  static _evaluateInput(String text, Map<String, dynamic> data) {
+    final evaluator = const ExpressionEvaluator();
+    dynamic res;
+    final context = data;
+    try {
+      res = evaluator.eval(Expression.parse(text), data);
+    } catch (e, s) {
+      print(e);
+      print(s);
+    }
+  }
 }

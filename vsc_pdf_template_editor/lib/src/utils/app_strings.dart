@@ -9,4 +9,5 @@ class AppStrings {
   static const removeWidget = 'Remove Widget';
   static const undo = 'Undo';
   static const redo = 'Redo';
+  static const useExpression = 'Use an expression';
 }

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:typed_data';
 import 'package:expressions/expressions.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
@@ -38,6 +37,9 @@ abstract class _TreeStore with Store {
 
   @observable
   bool isLoaded = false;
+
+  @observable
+  bool isExpressionOn = false;
 
   @readonly
   Uint8List _pdfBytes = Uint8List(0);
@@ -91,6 +93,11 @@ abstract class _TreeStore with Store {
       treeViewController = treeViewController.copyWith(selectedKey: key);
       setWidgetProps();
     }
+  }
+
+  @action
+  void toggleExpressionSwitch(bool val) {
+    isExpressionOn = val;
   }
 
   void setWidgetProps() async {

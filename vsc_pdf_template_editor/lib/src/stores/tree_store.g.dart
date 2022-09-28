@@ -72,6 +72,22 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
+  late final _$isExpressionOnAtom =
+      Atom(name: '_TreeStore.isExpressionOn', context: context);
+
+  @override
+  bool get isExpressionOn {
+    _$isExpressionOnAtom.reportRead();
+    return super.isExpressionOn;
+  }
+
+  @override
+  set isExpressionOn(bool value) {
+    _$isExpressionOnAtom.reportWrite(value, super.isExpressionOn, () {
+      super.isExpressionOn = value;
+    });
+  }
+
   late final _$_pdfBytesAtom =
       Atom(name: '_TreeStore._pdfBytes', context: context);
 
@@ -127,12 +143,24 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
+  void toggleExpressionSwitch(bool val) {
+    final _$actionInfo = _$_TreeStoreActionController.startAction(
+        name: '_TreeStore.toggleExpressionSwitch');
+    try {
+      return super.toggleExpressionSwitch(val);
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 selectedNode: ${selectedNode},
 result: ${result},
 widgetProps: ${widgetProps},
-isLoaded: ${isLoaded}
+isLoaded: ${isLoaded},
+isExpressionOn: ${isExpressionOn}
     ''';
   }
 }

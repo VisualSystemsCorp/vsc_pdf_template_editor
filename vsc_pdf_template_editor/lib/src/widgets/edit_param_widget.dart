@@ -28,19 +28,32 @@ class EditParamWidget extends StatelessWidget {
                   ? const Center(
                       child: Text(AppStrings.chooseWidget),
                     )
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 40),
-                      child: Column(
-                        children: [
-                          const Text(
-                            AppStrings.widgetProperties,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          _Items(
-                            viewModel,
-                          )
-                        ],
+                  : SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 40),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                const Text(
+                                  AppStrings.useExpression,
+                                ),
+                                Switch(
+                                    value: viewModel.isExpressionOn,
+                                    onChanged: (val) =>
+                                        viewModel.toggleExpressionSwitch(val))
+                              ],
+                            ),
+                            const Text(
+                              AppStrings.widgetProperties,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            _Items(
+                              viewModel,
+                            )
+                          ],
+                        ),
                       ),
                     );
             }),
