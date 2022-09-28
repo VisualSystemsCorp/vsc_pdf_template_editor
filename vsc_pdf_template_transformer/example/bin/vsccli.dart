@@ -19,7 +19,7 @@ void main(List<String> arguments) async {
   widgetsData = Map<String, dynamic>.from(
       json.decode(data.readAsStringSync()) as Map<dynamic, dynamic>);
 
-  var document = transformer.Transformer.buildPdf({}, widgetsData);
+  var document = transformer.Transformer.buildPdf({});
   print('---- obtained document: ${document.document.documentID} ---');
   final bytes = await document.save();
   print('---- obtained bytes: ${bytes} ---');

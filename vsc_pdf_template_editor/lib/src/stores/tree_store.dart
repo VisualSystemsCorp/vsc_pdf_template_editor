@@ -36,6 +36,9 @@ abstract class _TreeStore with Store {
   Map<String, dynamic> widgetProps = <String, dynamic>{};
 
   @observable
+  Map<String, dynamic> expressionContext = <String, dynamic>{};
+
+  @observable
   bool isLoaded = false;
 
   @observable
@@ -102,8 +105,9 @@ abstract class _TreeStore with Store {
 
   void setWidgetProps() async {
     widgetProps = await _service.getDataWidget();
+    expressionContext = await _service.getSampleExpressionContext();
     _initWidgetControllers();
-    evaluateInput('');
+    onInputChanged('');
   }
 
   _initWidgetControllers() {
@@ -116,21 +120,18 @@ abstract class _TreeStore with Store {
     setPdfBytes = await doc.save();
   }
 
-  evaluateInput(String text) {
-    dynamic res;
-    try {
-      res = evaluator.eval(Expression.parse(text), {});
-    } catch (e, s) {
-      print(e);
-      print(s);
+  onInputChanged(String text) {
+    String? res;
+    if (isExpressionOn) {
+      res = transformer.Transformer.evaluateInput(text, expressionContext);
     }
     final map = treeViewController.asMap;
-    widgetProps['text'] = TplString(value: text, expression: res?.toString());
+    widgetProps['text'] = TplString(value: text, expression: res);
     _buildPdf(map[0]);
   }
 
   _buildPdf(Map<String, dynamic> treeRoot) async {
-    doc = transformer.Transformer.buildPdf(widgetProps, {});
+    doc = transformer.Transformer.buildPdf(widgetProps);
     await _savePdf();
   }
 }

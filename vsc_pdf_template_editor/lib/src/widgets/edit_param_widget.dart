@@ -104,7 +104,7 @@ class _Items extends StatelessWidget {
                               onChanged: (val) => EasyDebounce.debounce(
                                   '',
                                   const Duration(milliseconds: 500),
-                                  () => viewModel.evaluateInput(
+                                  () => viewModel.onInputChanged(
                                       viewModel.controllers[index].text)),
                               style: const TextStyle(fontSize: 12),
                             ),

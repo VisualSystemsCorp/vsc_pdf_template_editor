@@ -8,9 +8,7 @@ import '../utils/widget_builder.dart';
 class Transformer {
   get isReady => true;
 
-  static pw.Document buildPdf(
-      Map<String, dynamic> template, Map<String, dynamic> data) {
-    print(template);
+  static pw.Document buildPdf(Map<String, dynamic> template) {
     final pdf = pw.Document();
     pdf.addPage(pw.Page(
         pageFormat: PdfPageFormat.a4,
@@ -44,15 +42,12 @@ class Transformer {
     return result;
   }
 
-  static _evaluateInput(String text, Map<String, dynamic> data) {
+  static String? evaluateInput(String text, Map<String, dynamic> data) {
     final evaluator = const ExpressionEvaluator();
     dynamic res;
     final context = data;
-    try {
-      res = evaluator.eval(Expression.parse(text), data);
-    } catch (e, s) {
-      print(e);
-      print(s);
-    }
+
+    res = evaluator.eval(Expression.parse(text), context);
+    return res?.toString();
   }
 }

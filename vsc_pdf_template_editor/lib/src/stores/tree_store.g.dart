@@ -56,6 +56,22 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
+  late final _$expressionContextAtom =
+      Atom(name: '_TreeStore.expressionContext', context: context);
+
+  @override
+  Map<String, dynamic> get expressionContext {
+    _$expressionContextAtom.reportRead();
+    return super.expressionContext;
+  }
+
+  @override
+  set expressionContext(Map<String, dynamic> value) {
+    _$expressionContextAtom.reportWrite(value, super.expressionContext, () {
+      super.expressionContext = value;
+    });
+  }
+
   late final _$isLoadedAtom =
       Atom(name: '_TreeStore.isLoaded', context: context);
 
@@ -159,6 +175,7 @@ mixin _$TreeStore on _TreeStore, Store {
 selectedNode: ${selectedNode},
 result: ${result},
 widgetProps: ${widgetProps},
+expressionContext: ${expressionContext},
 isLoaded: ${isLoaded},
 isExpressionOn: ${isExpressionOn}
     ''';
