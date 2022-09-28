@@ -22,9 +22,10 @@ class EditParamWidget extends StatelessWidget {
           constraints: BoxConstraints(minHeight: constraint.maxHeight),
           child: SizedBox(
             width: width * 0.25,
-            height: height - 50, //TODO add smart resolving
+            height: height - 50,
             child: Observer(builder: (context) {
-              return viewModel.widgetProps.isEmpty
+              return viewModel.widgetProps.isEmpty ||
+                      viewModel.selectedNode == null
                   ? const Center(
                       child: Text(AppStrings.chooseWidget),
                     )
@@ -79,7 +80,6 @@ class _Items extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: Container(
                     height: 50,
-                    //width: 160,
                     decoration: BoxDecoration(
                         color: Colors.grey,
                         border: Border(

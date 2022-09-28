@@ -170,6 +170,17 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
+  dynamic onInputChanged(String text) {
+    final _$actionInfo = _$_TreeStoreActionController.startAction(
+        name: '_TreeStore.onInputChanged');
+    try {
+      return super.onInputChanged(text);
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 selectedNode: ${selectedNode},

@@ -7,9 +7,20 @@ import 'pdf_view_widget.dart';
 import 'tree_view_widget.dart';
 
 class EditorWidget extends StatelessWidget {
-  EditorWidget({Key? key}) : super(key: key);
+  EditorWidget({
+    super.key,
+    required this.sampleData,
+    required this.sampleContext,
+  }) {
+    viewModel = TreeStore(
+      widgetProps: sampleData,
+      expressionContext: sampleContext,
+    );
+  }
 
-  final viewModel = TreeStore();
+  final Map<String, dynamic> sampleData;
+  final Map<String, dynamic> sampleContext;
+  late final TreeStore viewModel;
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:vsc_pdf_template_editor/vsc_pdf_template_editor.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 void main() {
   runApp(const EditorApp());
@@ -23,6 +26,34 @@ class _EditorAppState extends State<EditorApp> {
             appBar: AppBar(
               title: const Text(AppStrings.testAppName),
             ),
-            body: EditorWidget()));
+            body: FutureBuilder<List<Map<String, dynamic>>>(
+                future: _loadData(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData && snapshot.data != null) {
+                    return EditorWidget(
+                      sampleData: snapshot.data![0],
+                      sampleContext: snapshot.data![1],
+                    );
+                  }
+                  return const Center(child: CircularProgressIndicator());
+                })));
+  }
+
+  Future<List<Map<String, dynamic>>> _loadData() async {
+    final sampleData = await _getSampleData();
+    final sampleContext = await _getSampleExpressionContext();
+    return [sampleData, sampleContext];
+  }
+
+  Future<Map<String, dynamic>> _getSampleData() async {
+    final res = await rootBundle.loadString('assets/test/sample_text.json');
+    final result = Map<String, dynamic>.from(json.decode(res));
+    return result;
+  }
+
+  Future<Map<String, dynamic>> _getSampleExpressionContext() async {
+    final res = await rootBundle.loadString('assets/test/simple_contact.json');
+    final result = Map<String, dynamic>.from(json.decode(res));
+    return result;
   }
 }

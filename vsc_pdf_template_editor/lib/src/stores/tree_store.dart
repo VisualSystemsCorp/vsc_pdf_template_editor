@@ -6,7 +6,6 @@ import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_treeview/flutter_treeview.dart';
 import 'package:mobx/mobx.dart';
-import '../api_service.dart';
 import '../models/store.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -15,11 +14,13 @@ part 'tree_store.g.dart';
 class TreeStore = _TreeStore with _$TreeStore;
 
 abstract class _TreeStore with Store {
-  _TreeStore() {
+  _TreeStore({
+    required this.widgetProps,
+    required this.expressionContext,
+  }) {
     init();
   }
 
-  final _service = ApiService();
   final evaluator = const ExpressionEvaluator();
   final List<TextEditingController> controllers = [];
   late VSCStore store; // MobX tree container
@@ -33,10 +34,10 @@ abstract class _TreeStore with Store {
   List<Node> result = [];
 
   @observable
-  Map<String, dynamic> widgetProps = <String, dynamic>{};
+  Map<String, dynamic> widgetProps;
 
   @observable
-  Map<String, dynamic> expressionContext = <String, dynamic>{};
+  Map<String, dynamic> expressionContext;
 
   @observable
   bool isLoaded = false;
@@ -103,11 +104,20 @@ abstract class _TreeStore with Store {
     isExpressionOn = val;
   }
 
+  @action
+  onInputChanged(String text) {
+    String? res;
+    if (isExpressionOn) {
+      res = transformer.Transformer.evaluateInput(text, expressionContext);
+    }
+    final map = treeViewController.asMap;
+    widgetProps['text'] = TplString(value: text, expression: res);
+    _buildPdf(map[0]);
+  }
+
   void setWidgetProps() async {
-    widgetProps = await _service.getDataWidget();
-    expressionContext = await _service.getSampleExpressionContext();
     _initWidgetControllers();
-    onInputChanged('');
+    onInputChanged(widgetProps['text']);
   }
 
   _initWidgetControllers() {
@@ -118,16 +128,6 @@ abstract class _TreeStore with Store {
 
   _savePdf() async {
     setPdfBytes = await doc.save();
-  }
-
-  onInputChanged(String text) {
-    String? res;
-    if (isExpressionOn) {
-      res = transformer.Transformer.evaluateInput(text, expressionContext);
-    }
-    final map = treeViewController.asMap;
-    widgetProps['text'] = TplString(value: text, expression: res);
-    _buildPdf(map[0]);
   }
 
   _buildPdf(Map<String, dynamic> treeRoot) async {
