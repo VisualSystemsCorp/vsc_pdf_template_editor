@@ -13,8 +13,8 @@ class EditorWidget extends StatelessWidget {
     required this.sampleContext,
   }) {
     viewModel = TreeStore(
-      widgetProps: sampleData,
-      expressionContext: sampleContext,
+      sampleData,
+      sampleContext,
     );
   }
 

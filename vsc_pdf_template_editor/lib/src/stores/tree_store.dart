@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'package:expressions/expressions.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
@@ -14,39 +13,38 @@ part 'tree_store.g.dart';
 class TreeStore = _TreeStore with _$TreeStore;
 
 abstract class _TreeStore with Store {
-  _TreeStore({
-    required this.widgetProps,
-    required this.expressionContext,
-  }) {
+  _TreeStore(
+    this._widgetProps,
+    this._expressionContext,
+  ) {
     init();
   }
 
-  final evaluator = const ExpressionEvaluator();
-  final List<TextEditingController> controllers = [];
-  late VSCStore store; // MobX tree container
-  late TreeViewController treeViewController;
-  pw.Document doc = pw.Document();
+  final Map<String, dynamic> _expressionContext;
+  final List<TextEditingController> _controllers = [];
+  late VSCStore _store;
+  late TreeViewController _treeViewController;
+  pw.Document _doc = pw.Document();
 
-  @observable
-  String? selectedNode;
+  @readonly
+  String? _selectedNode;
 
-  @observable
-  List<Node> result = [];
-
-  @observable
-  Map<String, dynamic> widgetProps;
-
-  @observable
-  Map<String, dynamic> expressionContext;
-
-  @observable
-  bool isLoaded = false;
+  @readonly
+  Map<String, dynamic> _widgetProps;
 
   @observable
   bool isExpressionOn = false;
 
   @readonly
   Uint8List _pdfBytes = Uint8List(0);
+
+  TreeViewController get treeViewController => _treeViewController;
+
+  List<TextEditingController> get controllers => _controllers;
+
+  String? get selectedNode => _selectedNode;
+
+  Map<String, dynamic> get widgetProps => _widgetProps;
 
   Uint8List get pdfBytes => _pdfBytes;
 
@@ -55,16 +53,16 @@ abstract class _TreeStore with Store {
   }
 
   void init() {
-    store = VSCStore(tree: buildSampleData());
-    treeViewController =
-        TreeViewController(children: store.tree, selectedKey: selectedNode);
+    _store = VSCStore(tree: buildSampleData());
+    _treeViewController =
+        TreeViewController(children: _store.tree, selectedKey: _selectedNode);
     _initWidgetControllers();
   }
 
   @action
   Map<String, dynamic> getWidgetProps(Map<String, dynamic> props) {
-    widgetProps = props;
-    return widgetProps;
+    _widgetProps = props;
+    return _widgetProps;
   }
 
   @action
@@ -78,23 +76,20 @@ abstract class _TreeStore with Store {
             Node(
               key: '103',
               label: 'Text',
-              data: widgetProps,
+              data: _widgetProps,
             )
           ],
         )
       ]),
     ];
-
-    isLoaded = true;
     return result;
   }
 
   @action
   onNodeTap(String key) {
-    if (key != selectedNode) {
-      print('*** Selected: $key');
-      selectedNode = key;
-      treeViewController = treeViewController.copyWith(selectedKey: key);
+    if (key != _selectedNode) {
+      _selectedNode = key;
+      _treeViewController = _treeViewController.copyWith(selectedKey: key);
       setWidgetProps();
     }
   }
@@ -108,30 +103,30 @@ abstract class _TreeStore with Store {
   onInputChanged(String text) {
     String? res;
     if (isExpressionOn) {
-      res = transformer.Transformer.evaluateInput(text, expressionContext);
+      res = transformer.Transformer.evaluateInput(text, _expressionContext);
     }
-    final map = treeViewController.asMap;
-    widgetProps['text'] = TplString(value: text, expression: res);
+    final map = _treeViewController.asMap;
+    _widgetProps['text'] = TplString(value: text, expression: res);
     _buildPdf(map[0]);
   }
 
   void setWidgetProps() async {
     _initWidgetControllers();
-    onInputChanged(widgetProps['text']);
+    onInputChanged(_widgetProps['text']);
   }
 
   _initWidgetControllers() {
-    controllers.clear();
-    widgetProps.forEach((key, value) =>
-        controllers.add(TextEditingController(text: value.toString())));
+    _controllers.clear();
+    _widgetProps.forEach((key, value) =>
+        _controllers.add(TextEditingController(text: value.toString())));
   }
 
   _savePdf() async {
-    setPdfBytes = await doc.save();
+    setPdfBytes = await _doc.save();
   }
 
   _buildPdf(Map<String, dynamic> treeRoot) async {
-    doc = transformer.Transformer.buildPdf(widgetProps);
+    _doc = transformer.Transformer.buildPdf(_widgetProps);
     await _savePdf();
   }
 }

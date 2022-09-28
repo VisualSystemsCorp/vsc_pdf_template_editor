@@ -9,82 +9,39 @@ part of 'tree_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$TreeStore on _TreeStore, Store {
-  late final _$selectedNodeAtom =
-      Atom(name: '_TreeStore.selectedNode', context: context);
+  late final _$_selectedNodeAtom =
+      Atom(name: '_TreeStore._selectedNode', context: context);
 
-  @override
   String? get selectedNode {
-    _$selectedNodeAtom.reportRead();
-    return super.selectedNode;
+    _$_selectedNodeAtom.reportRead();
+    return super._selectedNode;
   }
 
   @override
-  set selectedNode(String? value) {
-    _$selectedNodeAtom.reportWrite(value, super.selectedNode, () {
-      super.selectedNode = value;
+  String? get _selectedNode => selectedNode;
+
+  @override
+  set _selectedNode(String? value) {
+    _$_selectedNodeAtom.reportWrite(value, super._selectedNode, () {
+      super._selectedNode = value;
     });
   }
 
-  late final _$resultAtom = Atom(name: '_TreeStore.result', context: context);
+  late final _$_widgetPropsAtom =
+      Atom(name: '_TreeStore._widgetProps', context: context);
 
-  @override
-  List<Node<dynamic>> get result {
-    _$resultAtom.reportRead();
-    return super.result;
-  }
-
-  @override
-  set result(List<Node<dynamic>> value) {
-    _$resultAtom.reportWrite(value, super.result, () {
-      super.result = value;
-    });
-  }
-
-  late final _$widgetPropsAtom =
-      Atom(name: '_TreeStore.widgetProps', context: context);
-
-  @override
   Map<String, dynamic> get widgetProps {
-    _$widgetPropsAtom.reportRead();
-    return super.widgetProps;
+    _$_widgetPropsAtom.reportRead();
+    return super._widgetProps;
   }
 
   @override
-  set widgetProps(Map<String, dynamic> value) {
-    _$widgetPropsAtom.reportWrite(value, super.widgetProps, () {
-      super.widgetProps = value;
-    });
-  }
-
-  late final _$expressionContextAtom =
-      Atom(name: '_TreeStore.expressionContext', context: context);
+  Map<String, dynamic> get _widgetProps => widgetProps;
 
   @override
-  Map<String, dynamic> get expressionContext {
-    _$expressionContextAtom.reportRead();
-    return super.expressionContext;
-  }
-
-  @override
-  set expressionContext(Map<String, dynamic> value) {
-    _$expressionContextAtom.reportWrite(value, super.expressionContext, () {
-      super.expressionContext = value;
-    });
-  }
-
-  late final _$isLoadedAtom =
-      Atom(name: '_TreeStore.isLoaded', context: context);
-
-  @override
-  bool get isLoaded {
-    _$isLoadedAtom.reportRead();
-    return super.isLoaded;
-  }
-
-  @override
-  set isLoaded(bool value) {
-    _$isLoadedAtom.reportWrite(value, super.isLoaded, () {
-      super.isLoaded = value;
+  set _widgetProps(Map<String, dynamic> value) {
+    _$_widgetPropsAtom.reportWrite(value, super._widgetProps, () {
+      super._widgetProps = value;
     });
   }
 
@@ -183,11 +140,6 @@ mixin _$TreeStore on _TreeStore, Store {
   @override
   String toString() {
     return '''
-selectedNode: ${selectedNode},
-result: ${result},
-widgetProps: ${widgetProps},
-expressionContext: ${expressionContext},
-isLoaded: ${isLoaded},
 isExpressionOn: ${isExpressionOn}
     ''';
   }
