@@ -13,7 +13,7 @@ void main(List<String> arguments) async {
   final data = File(arguments[1]);
   final result = File(arguments[2]);
 
-  var widgetsTree = new transformer.Node<String>(tree.readAsStringSync(),
+  var template = new transformer.Node<String>(tree.readAsStringSync(),
       []); //read here tree from arguments[0] - for now single node
 
   widgetsData = Map<String, dynamic>.from(

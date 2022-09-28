@@ -20,17 +20,4 @@ class TplString {
       _$TplStringFromJson(json);
 
   Map<String, dynamic> toJson() => _$TplStringToJson(this);
-
-  static TplString? from(TplString value) {
-    TplString result = TplString();
-    result.value = value.value;
-    result.expression = value.expression;
-    return result;
-  }
-
-  static TplString to(TplString? value) {
-    TplString result = TplString();
-    if (value == null) return result;
-    return result;
-  }
 }
