@@ -1,7 +1,7 @@
+import 'package:expressions/expressions.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
-
 import '../utils/widget_builder.dart' as wb;
 import 'tpl_text_style.dart';
 
@@ -52,10 +52,10 @@ class TplText implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplTextToJson(this);
 
   @override
-  Widget? buildWidget() {
+  Widget? buildWidget(Map<String, dynamic> data) {
     print('--- style: ${style} ------');
     var value = Text(
-      text.expression ?? text.value,
+      _evaluateInput(text.expression, data) ?? text.value,
       style: TplTextStyle.to(style),
       textAlign: textAlign,
       textDirection: textDirection,
@@ -68,5 +68,17 @@ class TplText implements wb.WidgetBuilder {
 
     print('--- value style: ${value.text.style!.color!.toHex()} ------');
     return value;
+  }
+
+  String? _evaluateInput(String? text, Map<String, dynamic> data) {
+    if (text != null) {
+      final evaluator = const ExpressionEvaluator();
+      dynamic res;
+      final context = data;
+
+      res = evaluator.eval(Expression.parse(text), context);
+      return res?.toString();
+    }
+    return null;
   }
 }

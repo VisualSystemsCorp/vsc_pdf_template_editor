@@ -27,7 +27,7 @@ class TplSizedBox implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplSizedBoxToJson(this);
 
   @override
-  Widget? buildWidget() {
+  Widget? buildWidget(Map<String, dynamic> data) {
     var value = SizedBox(
       width: width,
       height: height,

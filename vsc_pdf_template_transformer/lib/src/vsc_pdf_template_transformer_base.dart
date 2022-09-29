@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import '../models/tpl_text.dart';
@@ -20,7 +19,7 @@ class Transformer {
               data); //TplText.fromJson(valueMap);
           return pw.Center(
             child: proxy != null
-                ? proxy.buildWidget()
+                ? proxy.buildWidget(data)
                 : pw.Text('Unsupported Component: ${className}'),
           ); // Center
         }));
@@ -30,10 +29,6 @@ class Transformer {
   //TODO: Extend with more types. Mirrors package not available in Flutter project so we can't create an instance of a class by name via reflection
   static WidgetBuilder? getWidgetBuilder(
       Map<String, dynamic> valueMap, Map<String, dynamic> data) {
-    if (valueMap['text']['expression'] != null) {
-      final exp = _evaluateInput(valueMap['text']['expression'], data);
-      valueMap['text']['expression'] = exp;
-    }
     WidgetBuilder? result;
 
     const widgetClassFromJson = {
@@ -47,14 +42,5 @@ class Transformer {
 
     print('------- generated widget ${result} -----');
     return result;
-  }
-
-  static String? _evaluateInput(String text, Map<String, dynamic> data) {
-    final evaluator = const ExpressionEvaluator();
-    dynamic res;
-    final context = data;
-
-    res = evaluator.eval(Expression.parse(text), context);
-    return res?.toString();
   }
 }
