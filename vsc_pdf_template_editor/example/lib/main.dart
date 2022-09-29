@@ -32,7 +32,7 @@ class _EditorAppState extends State<EditorApp> {
                   if (snapshot.hasData && snapshot.data != null) {
                     return EditorWidget(
                       template: snapshot.data![0],
-                      sampleContext: snapshot.data![1],
+                      data: snapshot.data![1],
                     );
                   }
                   return const Center(child: CircularProgressIndicator());

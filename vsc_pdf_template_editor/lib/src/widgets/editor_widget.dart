@@ -10,16 +10,16 @@ class EditorWidget extends StatelessWidget {
   EditorWidget({
     super.key,
     required this.template,
-    required this.sampleContext,
+    required this.data,
   }) {
     viewModel = TreeStore(
       template,
-      sampleContext,
+      data,
     );
   }
 
   final Map<String, dynamic> template;
-  final Map<String, dynamic> sampleContext;
+  final Map<String, dynamic> data;
   late final TreeStore viewModel;
 
   @override

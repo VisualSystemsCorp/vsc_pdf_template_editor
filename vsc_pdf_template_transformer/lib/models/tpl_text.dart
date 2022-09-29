@@ -72,11 +72,17 @@ class TplText implements wb.WidgetBuilder {
 
   String? _evaluateInput(String? text, Map<String, dynamic> data) {
     if (text != null) {
-      final evaluator = const ExpressionEvaluator();
+      print(text);
+      final evaluator = ExpressionEvaluator(memberAccessors: [
+        MemberAccessor.mapAccessor,
+      ]);
       dynamic res;
-      final context = data;
+      final context = {
+        'data': data,
+      };
 
-      res = evaluator.eval(Expression.parse(text), context);
+      res = evaluator.eval(
+          Expression.parse(text), Map<String, dynamic>.from(context));
       return res?.toString();
     }
     return null;
