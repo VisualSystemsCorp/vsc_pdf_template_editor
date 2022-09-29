@@ -1,0 +1,24 @@
+{
+  "first_name": "John",
+  "last_name": "Smith",
+  "street_address_1": "123 Anywhere St",
+  "street_address_2": null,
+  "city": "Minneapolis",
+  "state": "MN",
+  "postal_code": "55337",
+  "country": "US",
+  "tags": [
+    "customer",
+    "personal"
+  ],
+  "phone_numbers": [
+    {
+      "phone": "+1 612 123 4567",
+      "type": "Home"
+    },
+    {
+      "phone": "+1 320 999 8888",
+      "type": "Work"
+    }
+  ]
+}
