@@ -8,14 +8,16 @@ import '../utils/widget_builder.dart';
 class Transformer {
   get isReady => true;
 
-  static pw.Document buildPdf(Map<String, dynamic> template) {
+  static pw.Document buildPdf(
+      Map<String, dynamic> template, Map<String, dynamic> data) {
     final pdf = pw.Document();
     pdf.addPage(pw.Page(
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
           var className = template['className'];
           WidgetBuilder? proxy = getWidgetBuilder(
-              jsonDecode(jsonEncode(template))); //TplText.fromJson(valueMap);
+              jsonDecode(jsonEncode(template)),
+              data); //TplText.fromJson(valueMap);
           return pw.Center(
             child: proxy != null
                 ? proxy.buildWidget()
@@ -26,7 +28,12 @@ class Transformer {
   }
 
   //TODO: Extend with more types. Mirrors package not available in Flutter project so we can't create an instance of a class by name via reflection
-  static WidgetBuilder? getWidgetBuilder(Map<String, dynamic> valueMap) {
+  static WidgetBuilder? getWidgetBuilder(
+      Map<String, dynamic> valueMap, Map<String, dynamic> data) {
+    if (valueMap['text']['expression'] != null) {
+      final exp = _evaluateInput(valueMap['text']['expression'], data);
+      valueMap['text']['expression'] = exp;
+    }
     WidgetBuilder? result;
 
     const widgetClassFromJson = {
@@ -42,7 +49,7 @@ class Transformer {
     return result;
   }
 
-  static String? evaluateInput(String text, Map<String, dynamic> data) {
+  static String? _evaluateInput(String text, Map<String, dynamic> data) {
     final evaluator = const ExpressionEvaluator();
     dynamic res;
     final context = data;

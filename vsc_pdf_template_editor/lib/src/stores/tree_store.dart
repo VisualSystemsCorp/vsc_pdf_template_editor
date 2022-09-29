@@ -101,13 +101,9 @@ abstract class _TreeStore with Store {
 
   @action
   onInputChanged(String text) {
-    String? res;
-    if (isExpressionOn) {
-      res = transformer.Transformer.evaluateInput(text, _expressionContext);
-    }
-    final map = _treeViewController.asMap;
-    _widgetProps['text'] = TplString(value: text, expression: res);
-    _buildPdf(map[0]);
+    _widgetProps['text'] =
+        TplString(value: text, expression: isExpressionOn ? text : null);
+    _buildPdf(_expressionContext);
   }
 
   void setWidgetProps() async {
@@ -125,8 +121,8 @@ abstract class _TreeStore with Store {
     setPdfBytes = await _doc.save();
   }
 
-  _buildPdf(Map<String, dynamic> treeRoot) async {
-    _doc = transformer.Transformer.buildPdf(_widgetProps);
+  _buildPdf(Map<String, dynamic> data) async {
+    _doc = transformer.Transformer.buildPdf(_widgetProps, data);
     await _savePdf();
   }
 }
