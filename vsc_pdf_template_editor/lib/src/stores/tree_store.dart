@@ -32,8 +32,8 @@ abstract class _TreeStore with Store {
   @readonly
   Map<String, dynamic> _widgetProps;
 
-  @observable
-  bool isExpressionOn = false;
+  @readonly
+  ObservableList<bool>? _isExpressionOn;
 
   @readonly
   Uint8List _pdfBytes = Uint8List(0);
@@ -41,6 +41,8 @@ abstract class _TreeStore with Store {
   TreeViewController get treeViewController => _treeViewController;
 
   List<TextEditingController> get controllers => _controllers;
+
+  List<bool>? get isExpressionOn => _isExpressionOn;
 
   String? get selectedNode => _selectedNode;
 
@@ -56,7 +58,6 @@ abstract class _TreeStore with Store {
     _store = VSCStore(tree: buildSampleData());
     _treeViewController =
         TreeViewController(children: _store.tree, selectedKey: _selectedNode);
-    _initWidgetControllers();
   }
 
   @action
@@ -95,26 +96,39 @@ abstract class _TreeStore with Store {
   }
 
   @action
-  void toggleExpressionSwitch(bool val) {
-    isExpressionOn = val;
+  void toggleExpressionSwitch(int index, bool val) {
+    _isExpressionOn![index] = val;
   }
 
   @action
-  onInputChanged(String text) {
-    _widgetProps['text'] =
-        TplString(value: text, expression: isExpressionOn ? text : null);
+  onInputChanged(String text, int? index) {
+    _widgetProps['text'] = TplString(
+        value: text,
+        expression: index != null
+            ? _isExpressionOn![index]
+                ? text
+                : null
+            : null);
     _buildPdf(_expressionContext);
   }
 
   void setWidgetProps() async {
     _initWidgetControllers();
-    onInputChanged(_widgetProps['text']);
+    _initExpressions();
+    onInputChanged(_widgetProps['text'], null);
   }
 
   _initWidgetControllers() {
     _controllers.clear();
     _widgetProps.forEach((key, value) =>
         _controllers.add(TextEditingController(text: value.toString())));
+  }
+
+  _initExpressions() {
+    _isExpressionOn = ObservableList<bool>();
+    for (var e in controllers) {
+      _isExpressionOn?.add(false);
+    }
   }
 
   _savePdf() async {

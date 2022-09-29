@@ -45,19 +45,21 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
-  late final _$isExpressionOnAtom =
-      Atom(name: '_TreeStore.isExpressionOn', context: context);
+  late final _$_isExpressionOnAtom =
+      Atom(name: '_TreeStore._isExpressionOn', context: context);
 
-  @override
-  bool get isExpressionOn {
-    _$isExpressionOnAtom.reportRead();
-    return super.isExpressionOn;
+  ObservableList<bool>? get isExpressionOn {
+    _$_isExpressionOnAtom.reportRead();
+    return super._isExpressionOn;
   }
 
   @override
-  set isExpressionOn(bool value) {
-    _$isExpressionOnAtom.reportWrite(value, super.isExpressionOn, () {
-      super.isExpressionOn = value;
+  ObservableList<bool>? get _isExpressionOn => isExpressionOn;
+
+  @override
+  set _isExpressionOn(ObservableList<bool>? value) {
+    _$_isExpressionOnAtom.reportWrite(value, super._isExpressionOn, () {
+      super._isExpressionOn = value;
     });
   }
 
@@ -116,22 +118,22 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
-  void toggleExpressionSwitch(bool val) {
+  void toggleExpressionSwitch(int index, bool val) {
     final _$actionInfo = _$_TreeStoreActionController.startAction(
         name: '_TreeStore.toggleExpressionSwitch');
     try {
-      return super.toggleExpressionSwitch(val);
+      return super.toggleExpressionSwitch(index, val);
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic onInputChanged(String text) {
+  dynamic onInputChanged(String text, int? index) {
     final _$actionInfo = _$_TreeStoreActionController.startAction(
         name: '_TreeStore.onInputChanged');
     try {
-      return super.onInputChanged(text);
+      return super.onInputChanged(text, index);
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }
@@ -140,7 +142,7 @@ mixin _$TreeStore on _TreeStore, Store {
   @override
   String toString() {
     return '''
-isExpressionOn: ${isExpressionOn}
+
     ''';
   }
 }

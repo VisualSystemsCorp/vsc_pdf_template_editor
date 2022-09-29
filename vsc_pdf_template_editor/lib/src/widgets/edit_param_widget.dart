@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
-import 'package:easy_debounce/easy_debounce.dart';
+import 'package:vsc_pdf_template_editor/src/widgets/list_item_widget_param.dart';
 import '../stores/tree_store.dart';
 
 class EditParamWidget extends StatelessWidget {
@@ -36,23 +36,30 @@ class EditParamWidget extends StatelessWidget {
                         child: Column(
                           children: [
                             Row(
-                              children: [
-                                const Text(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: const [
+                                Text(
+                                  AppStrings.widgetProperties,
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(
                                   AppStrings.useExpression,
                                 ),
-                                Switch(
-                                    value: viewModel.isExpressionOn,
-                                    onChanged: (val) =>
-                                        viewModel.toggleExpressionSwitch(val))
                               ],
                             ),
-                            const Text(
-                              AppStrings.widgetProperties,
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                            const SizedBox(
+                              height: 20,
                             ),
-                            _Items(
-                              viewModel,
-                            )
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: List.generate(
+                                    viewModel.widgetProps.keys.toList().length,
+                                    (index) => Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 10),
+                                        child: WidgetParam(index, viewModel,
+                                            width))) //_widgetsProps(treeStore.widgetProps),
+                                )
                           ],
                         ),
                       ),
@@ -62,56 +69,5 @@ class EditParamWidget extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class _Items extends StatelessWidget {
-  const _Items(this.viewModel);
-
-  final TreeStore viewModel;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(
-            viewModel.widgetProps.keys.toList().length,
-            (index) => Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: Colors.grey,
-                        border: Border(
-                            bottom: BorderSide(
-                          color: Colors.purple.shade500,
-                        ))),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 5),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              viewModel.widgetProps.keys.toList()[index],
-                              style: const TextStyle(fontSize: 12),
-                            ),
-                            TextField(
-                              decoration: const InputDecoration(
-                                  border: InputBorder.none, isDense: true),
-                              controller: viewModel.controllers[index],
-                              onChanged: (val) => EasyDebounce.debounce(
-                                  '',
-                                  const Duration(milliseconds: 500),
-                                  () => viewModel.onInputChanged(
-                                      viewModel.controllers[index].text)),
-                              style: const TextStyle(fontSize: 12),
-                            ),
-                          ]),
-                    ),
-                  ),
-                )) //_widgetsProps(treeStore.widgetProps),
-        );
   }
 }
