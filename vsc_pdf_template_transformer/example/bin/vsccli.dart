@@ -7,17 +7,17 @@ import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
  * This is main entry point for command line tool
  */
 void main(List<String> arguments) async {
-  var widgetsData = Map<String, dynamic>(); //read data from arguments[1]
+  var data = Map<String, dynamic>(); //read data from arguments[1]
 
   final tree = File(arguments[0]);
-  final data = File(arguments[1]);
+  final dataFile = File(arguments[1]);
   final result = File(arguments[2]);
 
   var template = new transformer.Node<String>(tree.readAsStringSync(),
       []); //read here tree from arguments[0] - for now single node
 
-  widgetsData = Map<String, dynamic>.from(
-      json.decode(data.readAsStringSync()) as Map<dynamic, dynamic>);
+  data = Map<String, dynamic>.from(
+      json.decode(dataFile.readAsStringSync()) as Map<dynamic, dynamic>);
 
   var document = transformer.Transformer.buildPdf({}, {});
   print('---- obtained document: ${document.document.documentID} ---');

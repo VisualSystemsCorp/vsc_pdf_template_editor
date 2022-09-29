@@ -9,16 +9,16 @@ import 'tree_view_widget.dart';
 class EditorWidget extends StatelessWidget {
   EditorWidget({
     super.key,
-    required this.sampleData,
+    required this.template,
     required this.sampleContext,
   }) {
     viewModel = TreeStore(
-      sampleData,
+      template,
       sampleContext,
     );
   }
 
-  final Map<String, dynamic> sampleData;
+  final Map<String, dynamic> template;
   final Map<String, dynamic> sampleContext;
   late final TreeStore viewModel;
 

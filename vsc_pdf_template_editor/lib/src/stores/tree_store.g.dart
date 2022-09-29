@@ -27,21 +27,21 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
-  late final _$_widgetPropsAtom =
-      Atom(name: '_TreeStore._widgetProps', context: context);
+  late final _$_templateAtom =
+      Atom(name: '_TreeStore._template', context: context);
 
-  Map<String, dynamic> get widgetProps {
-    _$_widgetPropsAtom.reportRead();
-    return super._widgetProps;
+  Map<String, dynamic> get template {
+    _$_templateAtom.reportRead();
+    return super._template;
   }
 
   @override
-  Map<String, dynamic> get _widgetProps => widgetProps;
+  Map<String, dynamic> get _template => template;
 
   @override
-  set _widgetProps(Map<String, dynamic> value) {
-    _$_widgetPropsAtom.reportWrite(value, super._widgetProps, () {
-      super._widgetProps = value;
+  set _template(Map<String, dynamic> value) {
+    _$_templateAtom.reportWrite(value, super._template, () {
+      super._template = value;
     });
   }
 

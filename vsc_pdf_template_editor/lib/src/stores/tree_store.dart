@@ -14,13 +14,13 @@ class TreeStore = _TreeStore with _$TreeStore;
 
 abstract class _TreeStore with Store {
   _TreeStore(
-    this._widgetProps,
-    this._expressionContext,
+    this._template,
+    this._data,
   ) {
     init();
   }
 
-  final Map<String, dynamic> _expressionContext;
+  final Map<String, dynamic> _data;
   final List<TextEditingController> _controllers = [];
   late VSCStore _store;
   late TreeViewController _treeViewController;
@@ -30,7 +30,7 @@ abstract class _TreeStore with Store {
   String? _selectedNode;
 
   @readonly
-  Map<String, dynamic> _widgetProps;
+  Map<String, dynamic> _template;
 
   @readonly
   ObservableList<bool>? _isExpressionOn;
@@ -46,7 +46,7 @@ abstract class _TreeStore with Store {
 
   String? get selectedNode => _selectedNode;
 
-  Map<String, dynamic> get widgetProps => _widgetProps;
+  Map<String, dynamic> get widgetProps => _template;
 
   Uint8List get pdfBytes => _pdfBytes;
 
@@ -62,8 +62,8 @@ abstract class _TreeStore with Store {
 
   @action
   Map<String, dynamic> getWidgetProps(Map<String, dynamic> props) {
-    _widgetProps = props;
-    return _widgetProps;
+    _template = props;
+    return _template;
   }
 
   @action
@@ -77,7 +77,7 @@ abstract class _TreeStore with Store {
             Node(
               key: '103',
               label: 'Text',
-              data: _widgetProps,
+              data: _template,
             )
           ],
         )
@@ -102,25 +102,25 @@ abstract class _TreeStore with Store {
 
   @action
   onInputChanged(String text, int? index) {
-    _widgetProps['text'] = TplString(
+    _template['text'] = TplString(
         value: text,
         expression: index != null
             ? _isExpressionOn![index]
                 ? text
                 : null
             : null);
-    _buildPdf(_expressionContext);
+    _buildPdf(_data);
   }
 
   void setWidgetProps() async {
     _initWidgetControllers();
     _initExpressions();
-    onInputChanged(_widgetProps['text'], null);
+    onInputChanged(_template['text'], null);
   }
 
   _initWidgetControllers() {
     _controllers.clear();
-    _widgetProps.forEach((key, value) =>
+    _template.forEach((key, value) =>
         _controllers.add(TextEditingController(text: value.toString())));
   }
 
@@ -136,7 +136,7 @@ abstract class _TreeStore with Store {
   }
 
   _buildPdf(Map<String, dynamic> data) async {
-    _doc = transformer.Transformer.buildPdf(_widgetProps, data);
+    _doc = transformer.Transformer.buildPdf(_template, data);
     await _savePdf();
   }
 }

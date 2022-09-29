@@ -31,7 +31,7 @@ class _EditorAppState extends State<EditorApp> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData && snapshot.data != null) {
                     return EditorWidget(
-                      sampleData: snapshot.data![0],
+                      template: snapshot.data![0],
                       sampleContext: snapshot.data![1],
                     );
                   }
@@ -40,18 +40,18 @@ class _EditorAppState extends State<EditorApp> {
   }
 
   Future<List<Map<String, dynamic>>> _loadData() async {
-    final sampleData = await _getSampleData();
-    final sampleContext = await _getSampleExpressionContext();
+    final sampleData = await _getSampleTemplate();
+    final sampleContext = await _getData();
     return [sampleData, sampleContext];
   }
 
-  Future<Map<String, dynamic>> _getSampleData() async {
+  Future<Map<String, dynamic>> _getSampleTemplate() async {
     final res = await rootBundle.loadString('assets/test/sample_text.json');
     final result = Map<String, dynamic>.from(json.decode(res));
     return result;
   }
 
-  Future<Map<String, dynamic>> _getSampleExpressionContext() async {
+  Future<Map<String, dynamic>> _getData() async {
     final res = await rootBundle.loadString('assets/test/simple_contact.json');
     final result = Map<String, dynamic>.from(json.decode(res));
     return result;
