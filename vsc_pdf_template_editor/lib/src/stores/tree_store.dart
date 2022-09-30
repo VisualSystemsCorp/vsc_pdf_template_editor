@@ -20,6 +20,7 @@ abstract class _TreeStore with Store {
     init();
   }
 
+  final _supportedWidgets = ['Text', 'Sized Box'];
   final Map<String, dynamic> _data;
   final List<TextEditingController> _controllers = [];
   late VSCStore _store;
@@ -49,6 +50,8 @@ abstract class _TreeStore with Store {
   Map<String, dynamic> get widgetProps => _template;
 
   Uint8List get pdfBytes => _pdfBytes;
+
+  List<String> get supportedWidgets => _supportedWidgets;
 
   set setPdfBytes(Uint8List value) {
     _pdfBytes = value;
