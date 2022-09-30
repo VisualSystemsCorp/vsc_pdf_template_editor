@@ -1,5 +1,7 @@
 import 'dart:typed_data';
+import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:flutter/material.dart';
@@ -23,8 +25,12 @@ abstract class _TreeStore with Store {
   final _supportedWidgets = ['Text', 'Sized Box'];
   final Map<String, dynamic> _data;
   final List<TextEditingController> _controllers = [];
-  late VSCStore _store;
-  late TreeViewController _treeViewController;
+
+  @readonly
+  VSCStore? _store;
+
+  @readonly
+  TreeViewController? _treeViewController;
   pw.Document _doc = pw.Document();
 
   @readonly
@@ -39,15 +45,13 @@ abstract class _TreeStore with Store {
   @readonly
   Uint8List _pdfBytes = Uint8List(0);
 
-  TreeViewController get treeViewController => _treeViewController;
+  TreeViewController? get treeViewController => _treeViewController;
 
   List<TextEditingController> get controllers => _controllers;
 
   List<bool>? get isExpressionOn => _isExpressionOn;
 
   String? get selectedNode => _selectedNode;
-
-  Map<String, dynamic> get widgetProps => _template;
 
   Uint8List get pdfBytes => _pdfBytes;
 
@@ -60,7 +64,7 @@ abstract class _TreeStore with Store {
   void init() {
     _store = VSCStore(tree: buildSampleData());
     _treeViewController =
-        TreeViewController(children: _store.tree, selectedKey: _selectedNode);
+        TreeViewController(children: _store!.tree, selectedKey: _selectedNode);
   }
 
   @action
@@ -71,18 +75,27 @@ abstract class _TreeStore with Store {
 
   @action
   List<Node> buildSampleData() {
+    Node node =
+        Node(key: '103', label: _template['className'], data: _template);
+    if (_template.containsKey('child')) {
+      node = Node(
+          key: '103',
+          label: _template['className'],
+          data: _template,
+          children: [
+            Node(
+              key: '104',
+              label: _template['child']['className'],
+              data: _template['child'],
+            )
+          ]);
+    }
     List<Node> result = [
       Node(key: '101', label: 'Document', children: [
         Node(
           key: '102',
           label: 'Page',
-          children: [
-            Node(
-              key: '103',
-              label: 'Text',
-              data: _template,
-            )
-          ],
+          children: [node],
         )
       ]),
     ];
@@ -93,7 +106,7 @@ abstract class _TreeStore with Store {
   onNodeTap(String key) {
     if (key != _selectedNode) {
       _selectedNode = key;
-      _treeViewController = _treeViewController.copyWith(selectedKey: key);
+      _treeViewController = _treeViewController?.copyWith(selectedKey: key);
       setWidgetProps();
     }
   }
@@ -112,18 +125,47 @@ abstract class _TreeStore with Store {
                 ? text
                 : null
             : null);
-    _buildPdf(_data);
+    _buildPdf();
+  }
+
+  @action
+  addWidget(int index) {
+    switch (index) {
+      case 0:
+        final map = TplText(text: TplString(value: 'a new text')).toJson();
+        _rebuildTemplate(map);
+        break;
+      case 1:
+        final map = TplSizedBox(
+                child: TplText(
+                    text: TplString(value: 'a new text in a sized box')))
+            .toJson();
+        _rebuildTemplate(map);
+        break;
+    }
+  }
+
+  _rebuildTemplate(Map<String, dynamic> data) {
+    _template.clear();
+    _template.addAll(data);
+    init();
   }
 
   void setWidgetProps() async {
     _initWidgetControllers();
     _initExpressions();
-    onInputChanged(_template['text'], null);
+    if (_template.containsKey('text')) {
+      if (_template['text'] is String) {
+        onInputChanged(_template['text'], null);
+      } else {
+        onInputChanged(_template['text']['value'], null);
+      }
+    }
   }
 
   _initWidgetControllers() {
     _controllers.clear();
-    _template.forEach((key, value) =>
+    _treeViewController!.selectedNode!.data.forEach((key, value) =>
         _controllers.add(TextEditingController(text: value.toString())));
   }
 
@@ -138,8 +180,8 @@ abstract class _TreeStore with Store {
     setPdfBytes = await _doc.save();
   }
 
-  _buildPdf(Map<String, dynamic> data) async {
-    _doc = transformer.Transformer.buildPdf(_template, data);
+  _buildPdf() async {
+    _doc = transformer.Transformer.buildPdf(_template, _data);
     await _savePdf();
   }
 }

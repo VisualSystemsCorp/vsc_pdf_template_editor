@@ -15,8 +15,7 @@ class Transformer {
         build: (pw.Context context) {
           var className = template['className'];
           WidgetBuilder? proxy = getWidgetBuilder(
-              jsonDecode(jsonEncode(template)),
-              data); //TplText.fromJson(valueMap);
+              jsonDecode(jsonEncode(template)));
           return pw.Center(
             child: proxy != null
                 ? proxy.buildWidget(data)
@@ -28,7 +27,7 @@ class Transformer {
 
   //TODO: Extend with more types. Mirrors package not available in Flutter project so we can't create an instance of a class by name via reflection
   static WidgetBuilder? getWidgetBuilder(
-      Map<String, dynamic> valueMap, Map<String, dynamic> data) {
+      Map<String, dynamic> valueMap) {
     WidgetBuilder? result;
 
     const widgetClassFromJson = {

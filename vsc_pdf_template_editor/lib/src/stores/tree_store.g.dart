@@ -9,6 +9,41 @@ part of 'tree_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$TreeStore on _TreeStore, Store {
+  late final _$_storeAtom = Atom(name: '_TreeStore._store', context: context);
+
+  VSCStore? get store {
+    _$_storeAtom.reportRead();
+    return super._store;
+  }
+
+  @override
+  VSCStore? get _store => store;
+
+  @override
+  set _store(VSCStore? value) {
+    _$_storeAtom.reportWrite(value, super._store, () {
+      super._store = value;
+    });
+  }
+
+  late final _$_treeViewControllerAtom =
+      Atom(name: '_TreeStore._treeViewController', context: context);
+
+  TreeViewController? get treeViewController {
+    _$_treeViewControllerAtom.reportRead();
+    return super._treeViewController;
+  }
+
+  @override
+  TreeViewController? get _treeViewController => treeViewController;
+
+  @override
+  set _treeViewController(TreeViewController? value) {
+    _$_treeViewControllerAtom.reportWrite(value, super._treeViewController, () {
+      super._treeViewController = value;
+    });
+  }
+
   late final _$_selectedNodeAtom =
       Atom(name: '_TreeStore._selectedNode', context: context);
 
@@ -134,6 +169,17 @@ mixin _$TreeStore on _TreeStore, Store {
         name: '_TreeStore.onInputChanged');
     try {
       return super.onInputChanged(text, index);
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addWidget(int index) {
+    final _$actionInfo =
+        _$_TreeStoreActionController.startAction(name: '_TreeStore.addWidget');
+    try {
+      return super.addWidget(index);
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }

@@ -53,7 +53,6 @@ class TplText implements wb.WidgetBuilder {
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    print('--- style: ${style} ------');
     var value = Text(
       _evaluateInput(text.expression, data) ?? text.value,
       style: TplTextStyle.to(style),
@@ -65,8 +64,6 @@ class TplText implements wb.WidgetBuilder {
       maxLines: maxLines,
       overflow: overflow,
     );
-
-    print('--- value style: ${value.text.style!.color!.toHex()} ------');
     return value;
   }
 

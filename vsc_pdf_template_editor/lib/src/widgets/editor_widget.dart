@@ -36,6 +36,9 @@ class EditorWidget extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () async {
                       final res = await _onAddWidgetPressed(context);
+                      if (res != null) {
+                        viewModel.addWidget(res);
+                      }
                     },
                     child: const Text(AppStrings.addWidget)),
                 const SizedBox(

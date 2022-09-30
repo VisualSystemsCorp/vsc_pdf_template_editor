@@ -24,7 +24,7 @@ class EditParamWidget extends StatelessWidget {
             width: width * 0.25,
             height: height - 50,
             child: Observer(builder: (context) {
-              return viewModel.widgetProps.isEmpty ||
+              return viewModel.template.isEmpty ||
                       viewModel.selectedNode == null
                   ? const Center(
                       child: Text(AppStrings.chooseWidget),
@@ -53,13 +53,14 @@ class EditParamWidget extends StatelessWidget {
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: List.generate(
-                                    viewModel.widgetProps.keys.toList().length,
+                                    viewModel.treeViewController!.selectedNode!
+                                        .data.keys.length,
+                                    //viewModel.widgetProps.keys.toList().length,
                                     (index) => Padding(
                                         padding:
                                             const EdgeInsets.only(bottom: 10),
-                                        child: WidgetParam(index, viewModel,
-                                            width))) //_widgetsProps(treeStore.widgetProps),
-                                )
+                                        child: WidgetParam(
+                                            index, viewModel, width))))
                           ],
                         ),
                       ),
