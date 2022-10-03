@@ -45,7 +45,7 @@ class EditorWidget extends StatelessWidget {
                   width: 10,
                 ),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: viewModel.removeWidget,
                     child: const Text(AppStrings.removeWidget)),
                 const Spacer(),
                 ElevatedButton(

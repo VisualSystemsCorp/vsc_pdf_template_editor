@@ -101,16 +101,16 @@ mixin _$TreeStore on _TreeStore, Store {
   late final _$_pdfBytesAtom =
       Atom(name: '_TreeStore._pdfBytes', context: context);
 
-  Uint8List get pdfBytes {
+  Uint8List? get pdfBytes {
     _$_pdfBytesAtom.reportRead();
     return super._pdfBytes;
   }
 
   @override
-  Uint8List get _pdfBytes => pdfBytes;
+  Uint8List? get _pdfBytes => pdfBytes;
 
   @override
-  set _pdfBytes(Uint8List value) {
+  set _pdfBytes(Uint8List? value) {
     _$_pdfBytesAtom.reportWrite(value, super._pdfBytes, () {
       super._pdfBytes = value;
     });
@@ -180,6 +180,17 @@ mixin _$TreeStore on _TreeStore, Store {
         _$_TreeStoreActionController.startAction(name: '_TreeStore.addWidget');
     try {
       return super.addWidget(index);
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic removeWidget() {
+    final _$actionInfo = _$_TreeStoreActionController.startAction(
+        name: '_TreeStore.removeWidget');
+    try {
+      return super.removeWidget();
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }

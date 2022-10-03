@@ -43,7 +43,7 @@ abstract class _TreeStore with Store {
   ObservableList<bool>? _isExpressionOn;
 
   @readonly
-  Uint8List _pdfBytes = Uint8List(0);
+  Uint8List? _pdfBytes = Uint8List(0);
 
   TreeViewController? get treeViewController => _treeViewController;
 
@@ -53,11 +53,11 @@ abstract class _TreeStore with Store {
 
   String? get selectedNode => _selectedNode;
 
-  Uint8List get pdfBytes => _pdfBytes;
+  Uint8List? get pdfBytes => _pdfBytes;
 
   List<String> get supportedWidgets => _supportedWidgets;
 
-  set setPdfBytes(Uint8List value) {
+  set setPdfBytes(Uint8List? value) {
     _pdfBytes = value;
   }
 
@@ -76,28 +76,30 @@ abstract class _TreeStore with Store {
 
   @action
   List<Node> buildSampleData() {
-    Node node =
-        Node(key: '103', label: _template['className'], data: _template);
-    if (_template.containsKey('child')) {
-      node = Node(
-          key: '103',
-          label: _template['className'],
-          data: _template,
-          children: [
-            Node(
-              selectedIconColor: Colors.amber,
-              key: '104',
-              label: _template['child']['className'],
-              data: _template['child'],
-            )
-          ]);
+    Node? node;
+    if (_template.isNotEmpty) {
+      node = Node(key: '103', label: _template['className'], data: _template);
+      if (_template.containsKey('child')) {
+        node = Node(
+            key: '103',
+            label: _template['className'],
+            data: _template,
+            children: [
+              Node(
+                selectedIconColor: Colors.amber,
+                key: '104',
+                label: _template['child']['className'],
+                data: _template['child'],
+              )
+            ]);
+      }
     }
     List<Node> result = [
       Node(key: '101', label: 'Document', children: [
         Node(
           key: '102',
           label: 'Page',
-          children: [node],
+          children: node == null ? [] : [node],
         )
       ]),
     ];
@@ -149,6 +151,12 @@ abstract class _TreeStore with Store {
     }
   }
 
+  @action
+  removeWidget() {
+    _rebuildTemplate({});
+    _resetPdf();
+  }
+
   _rebuildTemplate(Map<String, dynamic> data) {
     _template.clear();
     _template.addAll(data);
@@ -189,5 +197,9 @@ abstract class _TreeStore with Store {
   _buildPdf() async {
     _doc = transformer.Transformer.buildPdf(_template, _data);
     await _savePdf();
+  }
+
+  _resetPdf() {
+    setPdfBytes = null;
   }
 }
