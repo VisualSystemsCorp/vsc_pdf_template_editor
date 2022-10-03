@@ -122,13 +122,16 @@ abstract class _TreeStore with Store {
 
   @action
   onInputChanged(String text, int? index) {
-    _template['text'] = TplString(
-        value: text,
-        expression: index != null
-            ? _isExpressionOn![index]
-                ? text
-                : null
-            : null);
+    _treeViewController?.selectedNode?.data.update(
+        'text',
+        (value) => TplString(
+            value: text,
+            expression: index != null
+                ? _isExpressionOn![index]
+                    ? text
+                    : null
+                : null));
+
     _buildPdf();
   }
 
@@ -136,14 +139,11 @@ abstract class _TreeStore with Store {
   addWidget(int index) {
     switch (index) {
       case 0:
-        final map = TplText(text: TplString(value: 'a new text')).toJson();
+        final map = TplText(text: TplString(value: '')).toJson();
         _rebuildTemplate(map);
         break;
       case 1:
-        final map = TplSizedBox(
-                child: TplText(
-                    text: TplString(value: 'a new text in a sized box')))
-            .toJson();
+        final map = TplSizedBox().toJson();
         _rebuildTemplate(map);
         break;
     }
@@ -164,6 +164,8 @@ abstract class _TreeStore with Store {
       } else {
         onInputChanged(_template['text']['value'], null);
       }
+    } else {
+      _buildPdf();
     }
   }
 

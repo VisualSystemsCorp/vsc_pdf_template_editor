@@ -14,11 +14,6 @@ TplSizedBox _$TplSizedBoxFromJson(Map<String, dynamic> json) => $checkedCreate(
           width: $checkedConvert('width', (v) => (v as num?)?.toDouble() ?? 0),
           height:
               $checkedConvert('height', (v) => (v as num?)?.toDouble() ?? 0),
-          child: $checkedConvert(
-              'child',
-              (v) => v == null
-                  ? null
-                  : TplText.fromJson(v as Map<String, dynamic>)),
         );
         $checkedConvert('className', (v) => val.className = v as String);
         return val;
@@ -30,5 +25,4 @@ Map<String, dynamic> _$TplSizedBoxToJson(TplSizedBox instance) =>
       'className': instance.className,
       'width': instance.width,
       'height': instance.height,
-      'child': instance.child?.toJson(),
     };
