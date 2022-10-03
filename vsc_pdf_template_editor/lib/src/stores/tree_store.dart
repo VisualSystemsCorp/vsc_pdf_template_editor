@@ -65,6 +65,7 @@ abstract class _TreeStore with Store {
     _store = VSCStore(tree: buildSampleData());
     _treeViewController =
         TreeViewController(children: _store!.tree, selectedKey: _selectedNode);
+    onNodeTap('101');
   }
 
   @action
