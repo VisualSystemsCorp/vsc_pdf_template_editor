@@ -18,6 +18,7 @@ class TreeViewWidget extends StatelessWidget {
       width: width * 0.25,
       child: Observer(
         builder: (c) => TreeView(
+            allowParentSelect: true,
             controller: viewModel.treeViewController!,
             onNodeTap: (key) => viewModel.onNodeTap(key)),
       ),

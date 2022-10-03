@@ -24,8 +24,8 @@ class EditParamWidget extends StatelessWidget {
             width: width * 0.25,
             height: height - 50,
             child: Observer(builder: (context) {
-              return viewModel.template.isEmpty ||
-                      viewModel.selectedNode == null
+              return viewModel.selectedNode == null ||
+                      !viewModel.treeViewController!.selectedNode!.hasData
                   ? const Center(
                       child: Text(AppStrings.chooseWidget),
                     )
@@ -55,7 +55,6 @@ class EditParamWidget extends StatelessWidget {
                                 children: List.generate(
                                     viewModel.treeViewController!.selectedNode!
                                         .data.keys.length,
-                                    //viewModel.widgetProps.keys.toList().length,
                                     (index) => Padding(
                                         padding:
                                             const EdgeInsets.only(bottom: 10),

@@ -84,6 +84,7 @@ abstract class _TreeStore with Store {
           data: _template,
           children: [
             Node(
+              selectedIconColor: Colors.amber,
               key: '104',
               label: _template['child']['className'],
               data: _template['child'],
@@ -107,7 +108,9 @@ abstract class _TreeStore with Store {
     if (key != _selectedNode) {
       _selectedNode = key;
       _treeViewController = _treeViewController?.copyWith(selectedKey: key);
-      setWidgetProps();
+      if (_treeViewController!.selectedNode!.hasData) {
+        setWidgetProps();
+      }
     }
   }
 
