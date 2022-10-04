@@ -13,9 +13,9 @@ part 'tpl_sized_box.g.dart';
 class TplSizedBox implements wb.WidgetBuilder {
   String className = 'TplSizedBox';
   @JsonKey()
-  double? width;
+  String? width;
   @JsonKey()
-  double? height;
+  String? height;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
 
@@ -32,8 +32,10 @@ class TplSizedBox implements wb.WidgetBuilder {
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    var value =
-        SizedBox(width: width, height: height, child: child?.buildWidget({}));
+    var value = SizedBox(
+        width: width != null ? double.parse(width!) : null,
+        height: height != null ? double.parse(height!) : null,
+        child: child?.buildWidget({}));
     return value;
   }
 }

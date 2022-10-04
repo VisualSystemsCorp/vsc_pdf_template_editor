@@ -13,9 +13,9 @@ part 'tpl_container.g.dart';
 class TplContainer implements wb.WidgetBuilder {
   String className = 'TplContainer';
   @JsonKey()
-  double? width;
+  String? width;
   @JsonKey()
-  double? height;
+  String? height;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
 
@@ -32,8 +32,11 @@ class TplContainer implements wb.WidgetBuilder {
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    var value =
-        Container(width: width, height: height, child: child?.buildWidget({}));
+    var value = Container(
+      width: width != null ? double.parse(width!) : null,
+      height: height != null ? double.parse(height!) : null,
+      child: child?.buildWidget({}),
+    );
     return value;
   }
 }

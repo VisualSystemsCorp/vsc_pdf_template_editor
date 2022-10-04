@@ -133,16 +133,16 @@ abstract class _TreeStore with Store {
   }
 
   @action
-  onInputChanged(String text, int? index) {
-    _treeViewController?.selectedNode?.data.update(
-        'text',
-        (value) => TplString(
-            value: text,
-            expression: index != null
-                ? _isExpressionOn![index]
-                    ? text
-                    : null
-                : null));
+  onInputChanged(String text, int index) {
+    if (selectedNodeProps[index] != 'text') {
+      treeViewController?.selectedNode?.data
+          .update(selectedNodeProps[index], (value) => text);
+    } else {
+      treeViewController?.selectedNode?.data.update(
+          selectedNodeProps[index],
+          (value) => TplString(
+              value: text, expression: _isExpressionOn![index] ? text : null));
+    }
 
     _buildPdf();
   }
@@ -196,9 +196,9 @@ abstract class _TreeStore with Store {
     _setSelectedNodeProps();
     if (_template.containsKey('text')) {
       if (_template['text'] is String) {
-        onInputChanged(_template['text'], null);
+        onInputChanged(_template['text'], 0);
       } else {
-        onInputChanged(_template['text']['value'], null);
+        onInputChanged(_template['text']['value'], 0);
       }
     } else {
       _buildPdf();

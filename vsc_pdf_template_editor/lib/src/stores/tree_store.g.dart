@@ -182,7 +182,7 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
-  dynamic onInputChanged(String text, int? index) {
+  dynamic onInputChanged(String text, int index) {
     final _$actionInfo = _$_TreeStoreActionController.startAction(
         name: '_TreeStore.onInputChanged');
     try {
