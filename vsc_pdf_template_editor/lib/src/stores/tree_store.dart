@@ -50,6 +50,9 @@ abstract class _TreeStore with Store {
   @readonly
   Uint8List? _pdfBytes = Uint8List(0);
 
+  @readonly
+  List<String> _selectedNodeProps = [];
+
   TreeViewController? get treeViewController => _treeViewController;
 
   List<TextEditingController> get controllers => _controllers;
@@ -61,6 +64,8 @@ abstract class _TreeStore with Store {
   Uint8List? get pdfBytes => _pdfBytes;
 
   List<String> get supportedWidgets => _supportedWidgets;
+
+  List<String> get selectedNodeProps => _selectedNodeProps;
 
   set setPdfBytes(Uint8List? value) {
     _pdfBytes = value;
@@ -150,17 +155,11 @@ abstract class _TreeStore with Store {
         _rebuildTemplate(map);
         break;
       case 1:
-        final map = TplSizedBox(
-                child: TplText(
-                    text: TplString(value: 'a new text in a sized box')))
-            .toJson();
+        final map = TplSizedBox().toJson();
         _rebuildTemplate(map);
         break;
       case 2:
-        final map = TplContainer(
-                child: TplText(
-                    text: TplString(value: 'a new text in a container')))
-            .toJson();
+        final map = TplContainer().toJson();
         _rebuildTemplate(map);
         break;
     }
@@ -168,8 +167,21 @@ abstract class _TreeStore with Store {
 
   @action
   removeWidget() {
-    _rebuildTemplate({});
-    _resetPdf();
+    if (selectedNode != null) {
+      _rebuildTemplate({});
+      _resetPdf();
+    }
+  }
+
+  @action
+  _setSelectedNodeProps() {
+    _selectedNodeProps.clear();
+    final list = _treeViewController!.selectedNode!.data.keys.toList();
+    for (int i = 0; i < list.length; i++) {
+      if (list[i] != 'className' && list[i] != 'child') {
+        _selectedNodeProps.add(list[i]);
+      }
+    }
   }
 
   _rebuildTemplate(Map<String, dynamic> data) {
@@ -181,6 +193,7 @@ abstract class _TreeStore with Store {
   void setWidgetProps() async {
     _initWidgetControllers();
     _initExpressions();
+    _setSelectedNodeProps();
     if (_template.containsKey('text')) {
       if (_template['text'] is String) {
         onInputChanged(_template['text'], null);
@@ -194,8 +207,11 @@ abstract class _TreeStore with Store {
 
   _initWidgetControllers() {
     _controllers.clear();
-    _treeViewController!.selectedNode!.data.forEach((key, value) =>
-        _controllers.add(TextEditingController(text: value.toString())));
+    _treeViewController!.selectedNode!.data.forEach((key, value) {
+      if (key != 'className' && key != 'child') {
+        _controllers.add(TextEditingController(text: value.toString()));
+      }
+    });
   }
 
   _initExpressions() {

@@ -53,8 +53,7 @@ class EditParamWidget extends StatelessWidget {
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: List.generate(
-                                    viewModel.treeViewController!.selectedNode!
-                                        .data.keys.length,
+                                    viewModel.controllers.length,
                                     (index) => Padding(
                                         padding:
                                             const EdgeInsets.only(bottom: 10),

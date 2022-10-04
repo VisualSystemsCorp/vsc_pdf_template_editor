@@ -116,6 +116,24 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
+  late final _$_selectedNodePropsAtom =
+      Atom(name: '_TreeStore._selectedNodeProps', context: context);
+
+  List<String> get selectedNodeProps {
+    _$_selectedNodePropsAtom.reportRead();
+    return super._selectedNodeProps;
+  }
+
+  @override
+  List<String> get _selectedNodeProps => selectedNodeProps;
+
+  @override
+  set _selectedNodeProps(List<String> value) {
+    _$_selectedNodePropsAtom.reportWrite(value, super._selectedNodeProps, () {
+      super._selectedNodeProps = value;
+    });
+  }
+
   late final _$_TreeStoreActionController =
       ActionController(name: '_TreeStore', context: context);
 
@@ -191,6 +209,17 @@ mixin _$TreeStore on _TreeStore, Store {
         name: '_TreeStore.removeWidget');
     try {
       return super.removeWidget();
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic _setSelectedNodeProps() {
+    final _$actionInfo = _$_TreeStoreActionController.startAction(
+        name: '_TreeStore._setSelectedNodeProps');
+    try {
+      return super._setSelectedNodeProps();
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }

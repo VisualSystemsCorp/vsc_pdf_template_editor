@@ -30,9 +30,7 @@ class WidgetParam extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      viewModel
-                          .treeViewController!.selectedNode!.data.keys
-                          .toList()[index],
+                      viewModel.selectedNodeProps[index],
                       style: const TextStyle(fontSize: 12),
                     ),
                     SizedBox(
