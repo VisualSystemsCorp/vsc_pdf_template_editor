@@ -79,7 +79,7 @@ abstract class _TreeStore with Store {
     Node? node;
     if (_template.isNotEmpty) {
       node = Node(key: '103', label: _template['className'], data: _template);
-      if (_template.containsKey('child')) {
+      if (_template.containsKey('child') && _template['child'] != null) {
         node = Node(
             key: '103',
             label: _template['className'],
@@ -146,7 +146,8 @@ abstract class _TreeStore with Store {
         break;
       case 1:
         final map = TplSizedBox(
-                child: TplText(text: TplString(value: 'text in a sized box')))
+                child: TplText(
+                    text: TplString(value: 'a new text in a sized box')))
             .toJson();
         _rebuildTemplate(map);
         break;
