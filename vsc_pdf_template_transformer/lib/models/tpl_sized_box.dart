@@ -7,11 +7,8 @@ part 'tpl_sized_box.g.dart';
 
 @JsonSerializable(
   checked: true,
-  // Extra type checking
   disallowUnrecognizedKeys: false,
-  // Allow unrecognized keys (e.g., "className") in JSON
-  explicitToJson:
-      true, // Allows deserialization of nested JSON objects.  (e.g., TplTextStyle)
+  explicitToJson: true,
 )
 class TplSizedBox implements wb.WidgetBuilder {
   String className = 'TplSizedBox';

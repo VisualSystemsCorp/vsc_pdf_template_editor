@@ -1,16 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
+import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 import '../utils/widget_builder.dart' as wb;
 
 part 'tpl_container.g.dart';
 
 @JsonSerializable(
   checked: true,
-  // Extra type checking
   disallowUnrecognizedKeys: false,
-  // Allow unrecognized keys (e.g., "className") in JSON
-  explicitToJson:
-      true, // Allows deserialization of nested JSON objects.  (e.g., TplTextStyle)
+  explicitToJson: true,
 )
 class TplContainer implements wb.WidgetBuilder {
   String className = 'TplContainer';
@@ -18,10 +16,13 @@ class TplContainer implements wb.WidgetBuilder {
   double? width;
   @JsonKey()
   double? height;
+  @WidgetJsonConverter()
+  wb.WidgetBuilder? child;
 
   TplContainer({
     this.width,
     this.height,
+    this.child,
   });
 
   factory TplContainer.fromJson(Map<String, dynamic> json) =>
@@ -31,10 +32,8 @@ class TplContainer implements wb.WidgetBuilder {
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    var value = Container(
-      width: width,
-      height: height,
-    );
+    var value =
+        Container(width: width, height: height, child: child?.buildWidget({}));
     return value;
   }
 }

@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:flutter/material.dart';
@@ -22,7 +23,11 @@ abstract class _TreeStore with Store {
     init();
   }
 
-  final _supportedWidgets = ['Text', 'Sized Box'];
+  final _supportedWidgets = [
+    'Text',
+    'Sized Box',
+    'Container',
+  ];
   final Map<String, dynamic> _data;
   final List<TextEditingController> _controllers = [];
 
@@ -148,6 +153,13 @@ abstract class _TreeStore with Store {
         final map = TplSizedBox(
                 child: TplText(
                     text: TplString(value: 'a new text in a sized box')))
+            .toJson();
+        _rebuildTemplate(map);
+        break;
+      case 2:
+        final map = TplContainer(
+                child: TplText(
+                    text: TplString(value: 'a new text in a container')))
             .toJson();
         _rebuildTemplate(map);
         break;
