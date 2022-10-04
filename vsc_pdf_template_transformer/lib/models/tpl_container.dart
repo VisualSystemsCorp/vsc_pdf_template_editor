@@ -1,9 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
 import '../utils/widget_builder.dart' as wb;
 
-part 'tpl_sized_box.g.dart';
+part 'tpl_container.g.dart';
 
 @JsonSerializable(
   checked: true,
@@ -13,32 +12,29 @@ part 'tpl_sized_box.g.dart';
   explicitToJson:
       true, // Allows deserialization of nested JSON objects.  (e.g., TplTextStyle)
 )
-class TplSizedBox implements wb.WidgetBuilder {
-  String className = 'TplSizedBox';
+class TplContainer implements wb.WidgetBuilder {
+  String className = 'TplContainer';
   @JsonKey()
   double? width;
   @JsonKey()
   double? height;
-  @JsonKey()
-  TplText? child;
 
-  TplSizedBox({
+  TplContainer({
     this.width,
     this.height,
-    this.child,
   });
 
-  factory TplSizedBox.fromJson(Map<String, dynamic> json) =>
-      _$TplSizedBoxFromJson(json);
+  factory TplContainer.fromJson(Map<String, dynamic> json) =>
+      _$TplContainerFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TplSizedBoxToJson(this);
+  Map<String, dynamic> toJson() => _$TplContainerToJson(this);
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    var value = SizedBox(
-        width: width,
-        height: height,
-        child: child != null ? Text(child!.text.value) : null);
+    var value = Container(
+      width: width,
+      height: height,
+    );
     return value;
   }
 }

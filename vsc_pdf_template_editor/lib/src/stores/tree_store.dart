@@ -145,7 +145,9 @@ abstract class _TreeStore with Store {
         _rebuildTemplate(map);
         break;
       case 1:
-        final map = TplSizedBox().toJson();
+        final map = TplSizedBox(
+                child: TplText(text: TplString(value: 'text in a sized box')))
+            .toJson();
         _rebuildTemplate(map);
         break;
     }
