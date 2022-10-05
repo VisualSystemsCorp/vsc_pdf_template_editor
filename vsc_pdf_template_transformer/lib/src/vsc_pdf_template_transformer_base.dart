@@ -29,7 +29,6 @@ class Transformer {
 
   //TODO: Extend with more types. Mirrors package not available in Flutter project so we can't create an instance of a class by name via reflection
   static WidgetBuilder? getWidgetBuilder(Map<String, dynamic> valueMap) {
-    print(valueMap);
     WidgetBuilder? result;
     final className = valueMap['className'];
     Function? f;

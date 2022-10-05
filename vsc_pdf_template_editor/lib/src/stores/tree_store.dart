@@ -10,6 +10,7 @@ import 'package:flutter_treeview/flutter_treeview.dart';
 import 'package:mobx/mobx.dart';
 import '../models/store.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:uuid/uuid.dart';
 
 part 'tree_store.g.dart';
 
@@ -30,6 +31,7 @@ abstract class _TreeStore with Store {
   ];
   final Map<String, dynamic> _data;
   final List<TextEditingController> _controllers = [];
+  final uuid = const Uuid();
 
   @readonly
   VSCStore? _store;
@@ -75,7 +77,7 @@ abstract class _TreeStore with Store {
     _store = VSCStore(tree: buildSampleData());
     _treeViewController =
         TreeViewController(children: _store!.tree, selectedKey: _selectedNode);
-    onNodeTap('101');
+    onNodeTap(_selectedNode!);
   }
 
   @action
@@ -88,26 +90,28 @@ abstract class _TreeStore with Store {
   List<Node> buildSampleData() {
     Node? node;
     if (_template.isNotEmpty) {
-      node = Node(key: '103', label: _template['className'], data: _template);
+      node =
+          Node(key: uuid.v1(), label: _template['className'], data: _template);
       if (_template.containsKey('child') && _template['child'] != null) {
         node = Node(
-            key: '103',
+            key: uuid.v1(),
             label: _template['className'],
             data: _template,
             children: [
               Node(
                 selectedIconColor: Colors.amber,
-                key: '104',
+                key: uuid.v1(),
                 label: _template['child']['className'],
                 data: _template['child'],
               )
             ]);
       }
     }
+    _selectedNode = uuid.v1();
     List<Node> result = [
-      Node(key: '101', label: 'Document', children: [
+      Node(key: _selectedNode!, label: 'Document', children: [
         Node(
-          key: '102',
+          key: uuid.v1(),
           label: 'Page',
           children: node == null ? [] : [node],
         )
@@ -168,7 +172,16 @@ abstract class _TreeStore with Store {
   @action
   removeWidget() {
     if (selectedNode != null) {
-      _rebuildTemplate({});
+      if (_treeViewController?.selectedNode?.data != null) {
+        if (_treeViewController?.selectedNode?.data.containsKey('child')) {
+          final map = _treeViewController?.selectedNode?.data['child'];
+          _template.clear();
+          _template.addAll(map);
+        } else {
+          _template.clear();
+        }
+      }
+      _rebuildTemplate(_template);
       _resetPdf();
     }
   }
@@ -185,8 +198,13 @@ abstract class _TreeStore with Store {
   }
 
   _rebuildTemplate(Map<String, dynamic> data) {
-    _template.clear();
-    _template.addAll(data);
+    if (_treeViewController!.selectedNode!.data != null &&
+        _treeViewController!.selectedNode!.data.containsKey('child')) {
+      _template['child'] = data;
+    } else if (_treeViewController!.selectedNode!.label == 'Page') {
+      _template.clear();
+      _template.addAll(data);
+    }
     init();
   }
 
