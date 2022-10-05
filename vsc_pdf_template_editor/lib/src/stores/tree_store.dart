@@ -91,27 +91,27 @@ abstract class _TreeStore with Store {
     Node? node;
     if (_template.isNotEmpty) {
       node =
-          Node(key: uuid.v1(), label: _template['className'], data: _template);
+          Node(key: uuid.v4(), label: _template['className'], data: _template);
       if (_template.containsKey('child') && _template['child'] != null) {
         node = Node(
-            key: uuid.v1(),
+            key: uuid.v4(),
             label: _template['className'],
             data: _template,
             children: [
               Node(
                 selectedIconColor: Colors.amber,
-                key: uuid.v1(),
+                key: uuid.v4(),
                 label: _template['child']['className'],
                 data: _template['child'],
               )
             ]);
       }
     }
-    _selectedNode = uuid.v1();
+    _selectedNode = uuid.v4();
     List<Node> result = [
       Node(key: _selectedNode!, label: 'Document', children: [
         Node(
-          key: uuid.v1(),
+          key: uuid.v4(),
           label: 'Page',
           children: node == null ? [] : [node],
         )
@@ -173,16 +173,29 @@ abstract class _TreeStore with Store {
   removeWidget() {
     if (selectedNode != null) {
       if (_treeViewController?.selectedNode?.data != null) {
-        if (_treeViewController?.selectedNode?.data.containsKey('child')) {
+        if (_treeViewController?.selectedNode?.data.containsKey('child') &&
+            _treeViewController?.selectedNode?.data['child'] != null) {
           final map = _treeViewController?.selectedNode?.data['child'];
           _template.clear();
           _template.addAll(map);
+          _rebuildTemplate(_template);
         } else {
-          _template.clear();
+          final newTree = _treeViewController?.deleteNode(selectedNode!);
+          final List<Map<String, dynamic>> newList =
+              newTree![0].asMap['children'][0]['children'];
+          if (newList.isNotEmpty) {
+            if (newList[0]['data'] != null) {
+              newList[0]['data'].update('child', (value) => null);
+            }
+            final newMap = newList[0]['data'];
+            _rebuildTemplate(newMap);
+          } else {
+            _template.clear();
+            _rebuildTemplate(_template);
+            _resetPdf();
+          }
         }
       }
-      _rebuildTemplate(_template);
-      _resetPdf();
     }
   }
 
