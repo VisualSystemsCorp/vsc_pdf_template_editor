@@ -7,8 +7,8 @@ import 'edit_param_widget.dart';
 import 'pdf_view_widget.dart';
 import 'tree_view_widget.dart';
 
-class EditorWidget extends StatelessWidget {
-  EditorWidget({
+class VscPdfTemplateEditor extends StatelessWidget {
+  VscPdfTemplateEditor({
     super.key,
     required this.template,
     required this.data,

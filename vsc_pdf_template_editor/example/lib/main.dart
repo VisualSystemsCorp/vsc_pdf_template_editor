@@ -30,7 +30,7 @@ class _EditorAppState extends State<EditorApp> {
                 future: _loadData(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData && snapshot.data != null) {
-                    return EditorWidget(
+                    return VscPdfTemplateEditor(
                       template: snapshot.data![0],
                       data: snapshot.data![1],
                     );

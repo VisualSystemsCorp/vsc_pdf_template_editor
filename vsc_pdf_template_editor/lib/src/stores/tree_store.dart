@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
@@ -11,7 +12,6 @@ import 'package:flutter_treeview/flutter_treeview.dart';
 import 'package:mobx/mobx.dart';
 import '../models/store.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:uuid/uuid.dart';
 
 part 'tree_store.g.dart';
 
@@ -32,7 +32,6 @@ abstract class _TreeStore with Store {
   ];
   final Map<String, dynamic> _data;
   final List<TextEditingController> _controllers = [];
-  final uuid = const Uuid();
 
   @readonly
   VSCStore? _store;
@@ -56,6 +55,8 @@ abstract class _TreeStore with Store {
   @readonly
   List<String> _selectedNodeProps = [];
 
+  final _random = Random();
+
   TreeViewController? get treeViewController => _treeViewController;
 
   List<TextEditingController> get controllers => _controllers;
@@ -75,38 +76,38 @@ abstract class _TreeStore with Store {
   }
 
   void init() {
-    _store = VSCStore(tree: buildSampleData());
+    _store = VSCStore(tree: buildSampleTemplate());
     _treeViewController =
         TreeViewController(children: _store!.tree, selectedKey: _selectedNode);
     onNodeTap(_selectedNode!);
   }
 
   @action
-  List<Node> buildSampleData() {
+  List<Node> buildSampleTemplate() {
     Node? node;
     if (_template.isNotEmpty) {
-      node =
-          Node(key: uuid.v4(), label: _template['className'], data: _template);
+      node = Node(
+          key: _generateId(), label: _template['className'], data: _template);
       if (_template.containsKey('child') && _template['child'] != null) {
         node = Node(
-            key: uuid.v4(),
+            key: _generateId(),
             label: _template['className'],
             data: _template,
             children: [
               Node(
                 selectedIconColor: Colors.amber,
-                key: uuid.v4(),
+                key: _generateId(),
                 label: _template['child']['className'],
                 data: _template['child'],
               )
             ]);
       }
     }
-    _selectedNode = uuid.v4();
+    _selectedNode = _generateId();
     List<Node> result = [
       Node(key: _selectedNode!, label: 'Document', children: [
         Node(
-          key: uuid.v4(),
+          key: _generateId(),
           label: 'Page',
           children: node == null ? [] : [node],
         )
@@ -192,6 +193,7 @@ abstract class _TreeStore with Store {
         }
       }
     }
+    _buildPdf();
   }
 
   @action
@@ -214,6 +216,7 @@ abstract class _TreeStore with Store {
       _template.addAll(data);
     }
     init();
+    _buildPdf();
   }
 
   void setWidgetProps() async {
@@ -264,5 +267,9 @@ abstract class _TreeStore with Store {
 
   _resetPdf() {
     setPdfBytes = null;
+  }
+
+  String _generateId() {
+    return _random.nextInt(4294967296).toString();
   }
 }

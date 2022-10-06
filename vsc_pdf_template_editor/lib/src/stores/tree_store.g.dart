@@ -138,11 +138,11 @@ mixin _$TreeStore on _TreeStore, Store {
       ActionController(name: '_TreeStore', context: context);
 
   @override
-  List<Node<dynamic>> buildSampleData() {
+  List<Node<dynamic>> buildSampleTemplate() {
     final _$actionInfo = _$_TreeStoreActionController.startAction(
-        name: '_TreeStore.buildSampleData');
+        name: '_TreeStore.buildSampleTemplate');
     try {
-      return super.buildSampleData();
+      return super.buildSampleTemplate();
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }
