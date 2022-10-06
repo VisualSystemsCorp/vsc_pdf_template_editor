@@ -149,19 +149,21 @@ abstract class _TreeStore with Store {
 
   @action
   addWidget(int index) {
-    switch (index) {
-      case 0:
-        final map = TplText(text: TplString(value: '')).toJson();
-        _rebuildTemplate(map);
-        break;
-      case 1:
-        final map = TplSizedBox().toJson();
-        _rebuildTemplate(map);
-        break;
-      case 2:
-        final map = TplContainer().toJson();
-        _rebuildTemplate(map);
-        break;
+    if (_treeViewController!.selectedNode!.children.isEmpty) {
+      switch (index) {
+        case 0:
+          final map = TplText(text: TplString(value: '')).toJson();
+          _rebuildTemplate(map);
+          break;
+        case 1:
+          final map = TplSizedBox().toJson();
+          _rebuildTemplate(map);
+          break;
+        case 2:
+          final map = TplContainer().toJson();
+          _rebuildTemplate(map);
+          break;
+      }
     }
   }
 
