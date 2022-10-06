@@ -138,17 +138,6 @@ mixin _$TreeStore on _TreeStore, Store {
       ActionController(name: '_TreeStore', context: context);
 
   @override
-  Map<String, dynamic> getWidgetProps(Map<String, dynamic> props) {
-    final _$actionInfo = _$_TreeStoreActionController.startAction(
-        name: '_TreeStore.getWidgetProps');
-    try {
-      return super.getWidgetProps(props);
-    } finally {
-      _$_TreeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   List<Node<dynamic>> buildSampleData() {
     final _$actionInfo = _$_TreeStoreActionController.startAction(
         name: '_TreeStore.buildSampleData');

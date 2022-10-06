@@ -36,7 +36,7 @@ class TplSizedBox implements wb.WidgetBuilder {
     var value = SizedBox(
         width: _evaluateInput(width, data),
         height: _evaluateInput(height, data),
-        child: child?.buildWidget({}));
+        child: child?.buildWidget(data));
     return value;
   }
 

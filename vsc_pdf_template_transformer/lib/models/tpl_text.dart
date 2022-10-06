@@ -54,7 +54,7 @@ class TplText implements wb.WidgetBuilder {
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
     var value = Text(
-      _evaluateInput(text.expression, data) ?? text.value,
+      _evaluateInput(text, data),
       style: TplTextStyle.to(style),
       textAlign: textAlign,
       textDirection: textDirection,
@@ -67,8 +67,8 @@ class TplText implements wb.WidgetBuilder {
     return value;
   }
 
-  String? _evaluateInput(String? text, Map<String, dynamic> data) {
-    if (text != null) {
+  String _evaluateInput(TplString text, Map<String, dynamic> data) {
+    if (text.expression != null) {
       final evaluator = ExpressionEvaluator(memberAccessors: [
         MemberAccessor.mapAccessor,
       ]);
@@ -76,11 +76,12 @@ class TplText implements wb.WidgetBuilder {
       final context = {
         'data': data,
       };
-
-      res = evaluator.eval(
-          Expression.parse(text), Map<String, dynamic>.from(context));
-      return res?.toString();
+      res = evaluator.eval(Expression.parse(text.expression!),
+          Map<String, dynamic>.from(context));
+      return res?.toString() ?? '';
+    } else {
+      return text.value;
     }
-    return null;
+    ;
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
@@ -78,12 +79,6 @@ abstract class _TreeStore with Store {
     _treeViewController =
         TreeViewController(children: _store!.tree, selectedKey: _selectedNode);
     onNodeTap(_selectedNode!);
-  }
-
-  @action
-  Map<String, dynamic> getWidgetProps(Map<String, dynamic> props) {
-    _template = props;
-    return _template;
   }
 
   @action
@@ -225,21 +220,27 @@ abstract class _TreeStore with Store {
     _initWidgetControllers();
     _initExpressions();
     _setSelectedNodeProps();
-    if (_template.containsKey('text')) {
-      if (_template['text'] is String) {
-        onInputChanged(_template['text'], 0);
-      } else {
-        onInputChanged(_template['text']['value'], 0);
-      }
-    } else {
-      _buildPdf();
+    if (_selectedNodeProps.contains('text')) {
+      onInputChanged(_controllers[0].text, 0);
     }
   }
 
   _initWidgetControllers() {
     _controllers.clear();
     _treeViewController!.selectedNode!.data.forEach((key, value) {
-      if (key != 'className' && key != 'child') {
+      if (key == 'text') {
+        final val = jsonDecode(jsonEncode(value));
+        if (val is Map<String, dynamic> &&
+            val.containsKey('value') &&
+            val.containsKey('expression')) {
+          _controllers.add(TextEditingController(
+              text: val['expression'] != null && val['expression'].isNotEmpty
+                  ? val['expression']
+                  : val['value']));
+        } else {
+          _controllers.add(TextEditingController(text: value.toString()));
+        }
+      } else if (key != 'className' && key != 'child') {
         _controllers.add(TextEditingController(text: value.toString()));
       }
     });
