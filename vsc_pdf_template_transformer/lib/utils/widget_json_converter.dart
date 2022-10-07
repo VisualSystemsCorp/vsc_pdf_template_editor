@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
+import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart';
 import '../utils/widget_builder.dart' as wb;
 
 class WidgetJsonConverter
@@ -10,17 +9,13 @@ class WidgetJsonConverter
   @override
   wb.WidgetBuilder? fromJson(Map<String, dynamic>? json) {
     if (json != null) {
-      final res = TplText.fromJson(json);
-      return res;
+      return Transformer.getWidgetBuilder(json);
     }
     return null;
   }
 
   @override
   Map<String, dynamic>? toJson(wb.WidgetBuilder? object) {
-    if (object != null && object is TplText) {
-      return TplText(text: TplString(value: object.text.value)).toJson();
-    }
-    return null;
+    return object?.toJson();
   }
 }

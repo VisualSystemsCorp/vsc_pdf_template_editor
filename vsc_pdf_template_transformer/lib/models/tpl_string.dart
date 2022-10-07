@@ -3,9 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'tpl_string.g.dart';
 
 @JsonSerializable(
-  checked: true, // Extra type checking
-  disallowUnrecognizedKeys:
-      false, // Allow unrecognized keys (e.g., "className") in JSON
+  checked: true,
+  disallowUnrecognizedKeys: false,
 )
 class TplString {
   TplString({
