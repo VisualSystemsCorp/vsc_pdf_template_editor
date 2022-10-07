@@ -124,8 +124,8 @@ abstract class _TreeStore with Store {
 
   @action
   onInputChanged(String text, int index) {
-    treeViewController?.selectedNode?.data
-        .update(selectedNodeProps[index], (value) => TplString(value: text));
+    treeViewController?.selectedNode?.data.update(
+        selectedNodeProps[index], (value) => TplString(expression: text));
 
     _buildPdf();
   }
@@ -135,7 +135,7 @@ abstract class _TreeStore with Store {
     if (_treeViewController!.selectedNode!.children.isEmpty) {
       switch (index) {
         case 0:
-          final map = TplText(text: TplString(value: '')).toJson();
+          final map = TplText(text: TplString(expression: '')).toJson();
           _rebuildTemplate(map);
           break;
         case 1:
@@ -215,15 +215,13 @@ abstract class _TreeStore with Store {
   _initWidgetControllers() {
     _controllers.clear();
     _treeViewController!.selectedNode!.data.forEach((key, value) {
-      if (key == 'text') {
+      if (key != 'className' && key != 'child') {
         final val = jsonDecode(jsonEncode(value));
-        if (val is Map<String, dynamic> && val.containsKey('value')) {
-          _controllers.add(TextEditingController(text: val['value']));
+        if (val is Map<String, dynamic> && val.containsKey('expression')) {
+          _controllers.add(TextEditingController(text: val['expression']));
         } else {
           _controllers.add(TextEditingController(text: value.toString()));
         }
-      } else if (key != 'className' && key != 'child') {
-        _controllers.add(TextEditingController(text: value.toString()));
       }
     });
   }

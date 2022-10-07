@@ -1,4 +1,3 @@
-import 'package:expressions/expressions.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
@@ -54,7 +53,7 @@ class TplText implements wb.WidgetBuilder {
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
     var value = Text(
-      _evaluateInput(text, data),
+      text.evaluateString(text, data),
       style: TplTextStyle.to(style),
       textAlign: textAlign,
       textDirection: textDirection,
@@ -65,27 +64,5 @@ class TplText implements wb.WidgetBuilder {
       overflow: overflow,
     );
     return value;
-  }
-
-  String _evaluateInput(TplString text, Map<String, dynamic> data) {
-    if (text.value != null) {
-      final evaluator = ExpressionEvaluator(memberAccessors: [
-        MemberAccessor.mapAccessor,
-      ]);
-      dynamic res;
-      final context = {
-        'data': data,
-      };
-      try {
-        res = evaluator.eval(
-            Expression.parse(text.value!), Map<String, dynamic>.from(context));
-      } catch (e) {
-        return text.value!;
-      }
-
-      return res != null ? res!.toString() : text.value!;
-    } else {
-      return '';
-    }
   }
 }
