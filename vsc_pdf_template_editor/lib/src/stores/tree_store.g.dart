@@ -80,24 +80,6 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
-  late final _$_isExpressionOnAtom =
-      Atom(name: '_TreeStore._isExpressionOn', context: context);
-
-  ObservableList<bool>? get isExpressionOn {
-    _$_isExpressionOnAtom.reportRead();
-    return super._isExpressionOn;
-  }
-
-  @override
-  ObservableList<bool>? get _isExpressionOn => isExpressionOn;
-
-  @override
-  set _isExpressionOn(ObservableList<bool>? value) {
-    _$_isExpressionOnAtom.reportWrite(value, super._isExpressionOn, () {
-      super._isExpressionOn = value;
-    });
-  }
-
   late final _$_pdfBytesAtom =
       Atom(name: '_TreeStore._pdfBytes', context: context);
 
@@ -154,17 +136,6 @@ mixin _$TreeStore on _TreeStore, Store {
         _$_TreeStoreActionController.startAction(name: '_TreeStore.onNodeTap');
     try {
       return super.onNodeTap(key);
-    } finally {
-      _$_TreeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void toggleExpressionSwitch(int index, bool val) {
-    final _$actionInfo = _$_TreeStoreActionController.startAction(
-        name: '_TreeStore.toggleExpressionSwitch');
-    try {
-      return super.toggleExpressionSwitch(index, val);
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }

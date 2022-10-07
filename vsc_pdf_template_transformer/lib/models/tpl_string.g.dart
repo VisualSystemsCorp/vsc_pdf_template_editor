@@ -12,7 +12,6 @@ TplString _$TplStringFromJson(Map<String, dynamic> json) => $checkedCreate(
       ($checkedConvert) {
         final val = TplString(
           value: $checkedConvert('value', (v) => v as String? ?? ''),
-          expression: $checkedConvert('expression', (v) => v as String?),
         );
         return val;
       },
@@ -20,5 +19,4 @@ TplString _$TplStringFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplStringToJson(TplString instance) => <String, dynamic>{
       'value': instance.value,
-      'expression': instance.expression,
     };

@@ -9,11 +9,9 @@ part 'tpl_string.g.dart';
 class TplString {
   TplString({
     this.value = '',
-    this.expression,
   });
 
-  String value;
-  String? expression;
+  String? value;
 
   factory TplString.fromJson(Map<String, dynamic> json) =>
       _$TplStringFromJson(json);

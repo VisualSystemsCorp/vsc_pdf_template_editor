@@ -35,17 +35,9 @@ class EditParamWidget extends StatelessWidget {
                             horizontal: 20, vertical: 40),
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text(
-                                  AppStrings.widgetProperties,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  AppStrings.useExpression,
-                                ),
-                              ],
+                            const Text(
+                              AppStrings.widgetProperties,
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(
                               height: 20,

@@ -22,39 +22,27 @@ class WidgetParam extends StatelessWidget {
               color: Colors.purple.shade500,
             ))),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: Row(
-            children: [
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      viewModel.selectedNodeProps[index],
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                    SizedBox(
-                      width: width * 0.15,
-                      child: TextField(
-                        decoration: const InputDecoration(
-                            border: InputBorder.none, isDense: true),
-                        controller: viewModel.controllers[index],
-                        onChanged: (val) => EasyDebounce.debounce(
-                            '',
-                            const Duration(milliseconds: 500),
-                            () => viewModel.onInputChanged(
-                                viewModel.controllers[index].text, index)),
-                        style: const TextStyle(fontSize: 12),
-                      ),
-                    ),
-                  ]),
-              Switch(
-                  value: viewModel.isExpressionOn![index],
-                  onChanged: (val) =>
-                      viewModel.toggleExpressionSwitch(index, val)),
-            ],
-          ),
-        ),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    viewModel.selectedNodeProps[index],
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  TextField(
+                    decoration: const InputDecoration(
+                        border: InputBorder.none, isDense: true),
+                    controller: viewModel.controllers[index],
+                    onChanged: (val) => EasyDebounce.debounce(
+                        '',
+                        const Duration(milliseconds: 500),
+                        () => viewModel.onInputChanged(
+                            viewModel.controllers[index].text, index)),
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ])),
       );
     });
   }

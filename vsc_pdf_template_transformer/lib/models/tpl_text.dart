@@ -68,7 +68,7 @@ class TplText implements wb.WidgetBuilder {
   }
 
   String _evaluateInput(TplString text, Map<String, dynamic> data) {
-    if (text.expression != null) {
+    if (text.value != null) {
       final evaluator = ExpressionEvaluator(memberAccessors: [
         MemberAccessor.mapAccessor,
       ]);
@@ -76,12 +76,16 @@ class TplText implements wb.WidgetBuilder {
       final context = {
         'data': data,
       };
-      res = evaluator.eval(Expression.parse(text.expression!),
-          Map<String, dynamic>.from(context));
-      return res?.toString() ?? '';
+      try {
+        res = evaluator.eval(
+            Expression.parse(text.value!), Map<String, dynamic>.from(context));
+      } catch (e) {
+        return text.value!;
+      }
+
+      return res != null ? res!.toString() : text.value!;
     } else {
-      return text.value;
+      return '';
     }
-    ;
   }
 }

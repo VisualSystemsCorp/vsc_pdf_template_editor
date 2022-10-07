@@ -47,9 +47,6 @@ abstract class _TreeStore with Store {
   Map<String, dynamic> _template;
 
   @readonly
-  ObservableList<bool>? _isExpressionOn;
-
-  @readonly
   Uint8List? _pdfBytes = Uint8List(0);
 
   @readonly
@@ -60,8 +57,6 @@ abstract class _TreeStore with Store {
   TreeViewController? get treeViewController => _treeViewController;
 
   List<TextEditingController> get controllers => _controllers;
-
-  List<bool>? get isExpressionOn => _isExpressionOn;
 
   String? get selectedNode => _selectedNode;
 
@@ -128,21 +123,9 @@ abstract class _TreeStore with Store {
   }
 
   @action
-  void toggleExpressionSwitch(int index, bool val) {
-    _isExpressionOn![index] = val;
-  }
-
-  @action
   onInputChanged(String text, int index) {
-    if (selectedNodeProps[index] != 'text') {
-      treeViewController?.selectedNode?.data
-          .update(selectedNodeProps[index], (value) => text);
-    } else {
-      treeViewController?.selectedNode?.data.update(
-          selectedNodeProps[index],
-          (value) => TplString(
-              value: text, expression: _isExpressionOn![index] ? text : null));
-    }
+    treeViewController?.selectedNode?.data
+        .update(selectedNodeProps[index], (value) => TplString(value: text));
 
     _buildPdf();
   }
@@ -223,7 +206,6 @@ abstract class _TreeStore with Store {
 
   void setWidgetProps() async {
     _initWidgetControllers();
-    _initExpressions();
     _setSelectedNodeProps();
     if (_selectedNodeProps.contains('text')) {
       onInputChanged(_controllers[0].text, 0);
@@ -235,13 +217,8 @@ abstract class _TreeStore with Store {
     _treeViewController!.selectedNode!.data.forEach((key, value) {
       if (key == 'text') {
         final val = jsonDecode(jsonEncode(value));
-        if (val is Map<String, dynamic> &&
-            val.containsKey('value') &&
-            val.containsKey('expression')) {
-          _controllers.add(TextEditingController(
-              text: val['expression'] != null && val['expression'].isNotEmpty
-                  ? val['expression']
-                  : val['value']));
+        if (val is Map<String, dynamic> && val.containsKey('value')) {
+          _controllers.add(TextEditingController(text: val['value']));
         } else {
           _controllers.add(TextEditingController(text: value.toString()));
         }
@@ -249,13 +226,6 @@ abstract class _TreeStore with Store {
         _controllers.add(TextEditingController(text: value.toString()));
       }
     });
-  }
-
-  _initExpressions() {
-    _isExpressionOn = ObservableList<bool>();
-    for (var e in controllers) {
-      _isExpressionOn?.add(false);
-    }
   }
 
   _savePdf() async {

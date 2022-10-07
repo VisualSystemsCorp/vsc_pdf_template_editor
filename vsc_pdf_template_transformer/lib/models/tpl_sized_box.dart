@@ -1,6 +1,7 @@
 import 'package:expressions/expressions.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 import '../utils/widget_builder.dart' as wb;
 
@@ -14,9 +15,9 @@ part 'tpl_sized_box.g.dart';
 class TplSizedBox implements wb.WidgetBuilder {
   String className = 'TplSizedBox';
   @JsonKey()
-  String? width;
+  TplString? width;
   @JsonKey()
-  String? height;
+  TplString? height;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
 
@@ -34,8 +35,8 @@ class TplSizedBox implements wb.WidgetBuilder {
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
     var value = SizedBox(
-        width: _evaluateInput(width, data),
-        height: _evaluateInput(height, data),
+        width: _evaluateInput(width?.value, data),
+        height: _evaluateInput(height?.value, data),
         child: child?.buildWidget(data));
     return value;
   }
@@ -50,11 +51,15 @@ class TplSizedBox implements wb.WidgetBuilder {
         'data': data,
       };
 
-      res = evaluator.eval(
-          Expression.parse(input), Map<String, dynamic>.from(context));
-      double? parsedRes;
-      parsedRes = res != null ? double.parse(res!.toString()) : null;
-      return parsedRes;
+      try {
+        res = evaluator.eval(
+            Expression.parse(input), Map<String, dynamic>.from(context));
+        double? parsedRes;
+        parsedRes = res != null ? double.parse(res!.toString()) : null;
+        return parsedRes;
+      } catch (e) {
+        return double.tryParse(input);
+      }
     } else
       return input != null ? double.parse(input) : null;
   }
