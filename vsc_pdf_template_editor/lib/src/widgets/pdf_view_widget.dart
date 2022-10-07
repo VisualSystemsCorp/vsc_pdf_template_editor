@@ -16,14 +16,14 @@ class PdfViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (c) {
-      if (viewModel.pdfBytes.isEmpty) {
+      if (viewModel.pdfBytes == null || viewModel.pdfBytes!.isEmpty) {
         return const Center(
           child: Text(AppStrings.addWidget),
         );
       } else {
         return PdfPreview(
           build: (PdfPageFormat format) {
-            return viewModel.pdfBytes;
+            return viewModel.pdfBytes!;
           },
         );
       }

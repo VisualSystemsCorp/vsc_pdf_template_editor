@@ -1,4 +1,3 @@
-import 'package:expressions/expressions.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
@@ -53,9 +52,8 @@ class TplText implements wb.WidgetBuilder {
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    print('--- style: ${style} ------');
     var value = Text(
-      _evaluateInput(text.expression, data) ?? text.value,
+      text.evaluateString(text, data),
       style: TplTextStyle.to(style),
       textAlign: textAlign,
       textDirection: textDirection,
@@ -65,26 +63,6 @@ class TplText implements wb.WidgetBuilder {
       maxLines: maxLines,
       overflow: overflow,
     );
-
-    print('--- value style: ${value.text.style!.color!.toHex()} ------');
     return value;
-  }
-
-  String? _evaluateInput(String? text, Map<String, dynamic> data) {
-    if (text != null) {
-      print(text);
-      final evaluator = ExpressionEvaluator(memberAccessors: [
-        MemberAccessor.mapAccessor,
-      ]);
-      dynamic res;
-      final context = {
-        'data': data,
-      };
-
-      res = evaluator.eval(
-          Expression.parse(text), Map<String, dynamic>.from(context));
-      return res?.toString();
-    }
-    return null;
   }
 }

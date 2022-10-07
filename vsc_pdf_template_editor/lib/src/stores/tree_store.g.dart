@@ -9,6 +9,41 @@ part of 'tree_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$TreeStore on _TreeStore, Store {
+  late final _$_storeAtom = Atom(name: '_TreeStore._store', context: context);
+
+  VSCStore? get store {
+    _$_storeAtom.reportRead();
+    return super._store;
+  }
+
+  @override
+  VSCStore? get _store => store;
+
+  @override
+  set _store(VSCStore? value) {
+    _$_storeAtom.reportWrite(value, super._store, () {
+      super._store = value;
+    });
+  }
+
+  late final _$_treeViewControllerAtom =
+      Atom(name: '_TreeStore._treeViewController', context: context);
+
+  TreeViewController? get treeViewController {
+    _$_treeViewControllerAtom.reportRead();
+    return super._treeViewController;
+  }
+
+  @override
+  TreeViewController? get _treeViewController => treeViewController;
+
+  @override
+  set _treeViewController(TreeViewController? value) {
+    _$_treeViewControllerAtom.reportWrite(value, super._treeViewController, () {
+      super._treeViewController = value;
+    });
+  }
+
   late final _$_selectedNodeAtom =
       Atom(name: '_TreeStore._selectedNode', context: context);
 
@@ -45,39 +80,39 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
-  late final _$_isExpressionOnAtom =
-      Atom(name: '_TreeStore._isExpressionOn', context: context);
-
-  ObservableList<bool>? get isExpressionOn {
-    _$_isExpressionOnAtom.reportRead();
-    return super._isExpressionOn;
-  }
-
-  @override
-  ObservableList<bool>? get _isExpressionOn => isExpressionOn;
-
-  @override
-  set _isExpressionOn(ObservableList<bool>? value) {
-    _$_isExpressionOnAtom.reportWrite(value, super._isExpressionOn, () {
-      super._isExpressionOn = value;
-    });
-  }
-
   late final _$_pdfBytesAtom =
       Atom(name: '_TreeStore._pdfBytes', context: context);
 
-  Uint8List get pdfBytes {
+  Uint8List? get pdfBytes {
     _$_pdfBytesAtom.reportRead();
     return super._pdfBytes;
   }
 
   @override
-  Uint8List get _pdfBytes => pdfBytes;
+  Uint8List? get _pdfBytes => pdfBytes;
 
   @override
-  set _pdfBytes(Uint8List value) {
+  set _pdfBytes(Uint8List? value) {
     _$_pdfBytesAtom.reportWrite(value, super._pdfBytes, () {
       super._pdfBytes = value;
+    });
+  }
+
+  late final _$_selectedNodePropsAtom =
+      Atom(name: '_TreeStore._selectedNodeProps', context: context);
+
+  List<String> get selectedNodeProps {
+    _$_selectedNodePropsAtom.reportRead();
+    return super._selectedNodeProps;
+  }
+
+  @override
+  List<String> get _selectedNodeProps => selectedNodeProps;
+
+  @override
+  set _selectedNodeProps(List<String> value) {
+    _$_selectedNodePropsAtom.reportWrite(value, super._selectedNodeProps, () {
+      super._selectedNodeProps = value;
     });
   }
 
@@ -85,22 +120,11 @@ mixin _$TreeStore on _TreeStore, Store {
       ActionController(name: '_TreeStore', context: context);
 
   @override
-  Map<String, dynamic> getWidgetProps(Map<String, dynamic> props) {
+  List<Node<dynamic>> buildSampleTemplate() {
     final _$actionInfo = _$_TreeStoreActionController.startAction(
-        name: '_TreeStore.getWidgetProps');
+        name: '_TreeStore.buildSampleTemplate');
     try {
-      return super.getWidgetProps(props);
-    } finally {
-      _$_TreeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  List<Node<dynamic>> buildSampleData() {
-    final _$actionInfo = _$_TreeStoreActionController.startAction(
-        name: '_TreeStore.buildSampleData');
-    try {
-      return super.buildSampleData();
+      return super.buildSampleTemplate();
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }
@@ -118,22 +142,44 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
-  void toggleExpressionSwitch(int index, bool val) {
+  dynamic onInputChanged(String text, int index) {
     final _$actionInfo = _$_TreeStoreActionController.startAction(
-        name: '_TreeStore.toggleExpressionSwitch');
+        name: '_TreeStore.onInputChanged');
     try {
-      return super.toggleExpressionSwitch(index, val);
+      return super.onInputChanged(text, index);
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic onInputChanged(String text, int? index) {
-    final _$actionInfo = _$_TreeStoreActionController.startAction(
-        name: '_TreeStore.onInputChanged');
+  dynamic addWidget(int index) {
+    final _$actionInfo =
+        _$_TreeStoreActionController.startAction(name: '_TreeStore.addWidget');
     try {
-      return super.onInputChanged(text, index);
+      return super.addWidget(index);
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic removeWidget() {
+    final _$actionInfo = _$_TreeStoreActionController.startAction(
+        name: '_TreeStore.removeWidget');
+    try {
+      return super.removeWidget();
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic _setSelectedNodeProps() {
+    final _$actionInfo = _$_TreeStoreActionController.startAction(
+        name: '_TreeStore._setSelectedNodeProps');
+    try {
+      return super._setSelectedNodeProps();
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }

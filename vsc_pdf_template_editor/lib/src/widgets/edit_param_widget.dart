@@ -24,8 +24,8 @@ class EditParamWidget extends StatelessWidget {
             width: width * 0.25,
             height: height - 50,
             child: Observer(builder: (context) {
-              return viewModel.widgetProps.isEmpty ||
-                      viewModel.selectedNode == null
+              return viewModel.selectedNode == null ||
+                      !viewModel.treeViewController!.selectedNode!.hasData
                   ? const Center(
                       child: Text(AppStrings.chooseWidget),
                     )
@@ -35,17 +35,9 @@ class EditParamWidget extends StatelessWidget {
                             horizontal: 20, vertical: 40),
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text(
-                                  AppStrings.widgetProperties,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  AppStrings.useExpression,
-                                ),
-                              ],
+                            const Text(
+                              AppStrings.widgetProperties,
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(
                               height: 20,
@@ -53,13 +45,12 @@ class EditParamWidget extends StatelessWidget {
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: List.generate(
-                                    viewModel.widgetProps.keys.toList().length,
+                                    viewModel.controllers.length,
                                     (index) => Padding(
                                         padding:
                                             const EdgeInsets.only(bottom: 10),
-                                        child: WidgetParam(index, viewModel,
-                                            width))) //_widgetsProps(treeStore.widgetProps),
-                                )
+                                        child: WidgetParam(
+                                            index, viewModel, width))))
                           ],
                         ),
                       ),

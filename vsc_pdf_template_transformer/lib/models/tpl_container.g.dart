@@ -1,16 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tpl_sized_box.dart';
+part of 'tpl_container.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TplSizedBox _$TplSizedBoxFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'TplSizedBox',
+TplContainer _$TplContainerFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'TplContainer',
       json,
       ($checkedConvert) {
-        final val = TplSizedBox(
+        final val = TplContainer(
           width: $checkedConvert(
               'width',
               (v) => v == null
@@ -31,7 +32,7 @@ TplSizedBox _$TplSizedBoxFromJson(Map<String, dynamic> json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$TplSizedBoxToJson(TplSizedBox instance) =>
+Map<String, dynamic> _$TplContainerToJson(TplContainer instance) =>
     <String, dynamic>{
       'className': instance.className,
       'width': instance.width?.toJson(),

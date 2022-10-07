@@ -4,15 +4,15 @@ import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 import '../utils/widget_builder.dart' as wb;
 
-part 'tpl_sized_box.g.dart';
+part 'tpl_container.g.dart';
 
 @JsonSerializable(
   checked: true,
   disallowUnrecognizedKeys: false,
   explicitToJson: true,
 )
-class TplSizedBox implements wb.WidgetBuilder {
-  String className = 'TplSizedBox';
+class TplContainer implements wb.WidgetBuilder {
+  String className = 'TplContainer';
   @JsonKey()
   TplString? width;
   @JsonKey()
@@ -20,20 +20,20 @@ class TplSizedBox implements wb.WidgetBuilder {
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
 
-  TplSizedBox({
+  TplContainer({
     this.width,
     this.height,
     this.child,
   });
 
-  factory TplSizedBox.fromJson(Map<String, dynamic> json) =>
-      _$TplSizedBoxFromJson(json);
+  factory TplContainer.fromJson(Map<String, dynamic> json) =>
+      _$TplContainerFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TplSizedBoxToJson(this);
+  Map<String, dynamic> toJson() => _$TplContainerToJson(this);
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    var value = SizedBox(
+    var value = Container(
         width: width?.evaluateDouble(width?.expression, data),
         height: height?.evaluateDouble(height?.expression, data),
         child: child?.buildWidget(data));

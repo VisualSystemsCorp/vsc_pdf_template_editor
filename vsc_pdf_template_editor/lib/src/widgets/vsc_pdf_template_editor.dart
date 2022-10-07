@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
+import 'add_widget_dialog.dart';
 import 'edit_param_widget.dart';
 import 'pdf_view_widget.dart';
 import 'tree_view_widget.dart';
 
-class EditorWidget extends StatelessWidget {
-  EditorWidget({
+class VscPdfTemplateEditor extends StatelessWidget {
+  VscPdfTemplateEditor({
     super.key,
     required this.template,
     required this.data,
@@ -33,12 +34,18 @@ class EditorWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
-                    onPressed: () {}, child: const Text(AppStrings.addWidget)),
+                    onPressed: () async {
+                      final res = await _onAddWidgetPressed(context);
+                      if (res != null) {
+                        viewModel.addWidget(res);
+                      }
+                    },
+                    child: const Text(AppStrings.addWidget)),
                 const SizedBox(
                   width: 10,
                 ),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: viewModel.removeWidget,
                     child: const Text(AppStrings.removeWidget)),
                 const Spacer(),
                 ElevatedButton(
@@ -78,4 +85,19 @@ class EditorWidget extends StatelessWidget {
       );
     });
   }
+
+  _onAddWidgetPressed(BuildContext context) => showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (c) => AlertDialog(
+            title: const Center(child: Text(AppStrings.addWidget)),
+            contentPadding: const EdgeInsets.symmetric(vertical: 20),
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.3,
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: AddWidgetDialog(
+                supportedWidgets: viewModel.supportedWidgets,
+              ),
+            ),
+          ));
 }
