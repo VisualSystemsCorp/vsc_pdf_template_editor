@@ -12,6 +12,7 @@ TplContainer _$TplContainerFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplContainer(
+          id: $checkedConvert('id', (v) => v as String),
           width: $checkedConvert(
               'width',
               (v) => v == null
@@ -35,6 +36,7 @@ TplContainer _$TplContainerFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TplContainerToJson(TplContainer instance) =>
     <String, dynamic>{
       'className': instance.className,
+      'id': instance.id,
       'width': instance.width?.toJson(),
       'height': instance.height?.toJson(),
       'child': const WidgetJsonConverter().toJson(instance.child),

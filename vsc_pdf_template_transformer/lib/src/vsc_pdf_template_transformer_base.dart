@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
@@ -35,6 +37,8 @@ class Transformer {
       'TplText': TplText.fromJson,
       'TplSizedBox': TplSizedBox.fromJson,
       'TplContainer': TplContainer.fromJson,
+      'TplColumn': TplColumn.fromJson,
+      'TplRow': TplRow.fromJson,
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];

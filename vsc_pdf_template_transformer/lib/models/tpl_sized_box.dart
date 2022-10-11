@@ -14,6 +14,8 @@ part 'tpl_sized_box.g.dart';
 class TplSizedBox implements wb.WidgetBuilder {
   String className = 'TplSizedBox';
   @JsonKey()
+  String id;
+  @JsonKey()
   TplString? width;
   @JsonKey()
   TplString? height;
@@ -21,6 +23,7 @@ class TplSizedBox implements wb.WidgetBuilder {
   wb.WidgetBuilder? child;
 
   TplSizedBox({
+    required this.id,
     this.width,
     this.height,
     this.child,

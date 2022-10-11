@@ -11,6 +11,7 @@ TplSizedBox _$TplSizedBoxFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplSizedBox(
+          id: $checkedConvert('id', (v) => v as String),
           width: $checkedConvert(
               'width',
               (v) => v == null
@@ -34,6 +35,7 @@ TplSizedBox _$TplSizedBoxFromJson(Map<String, dynamic> json) => $checkedCreate(
 Map<String, dynamic> _$TplSizedBoxToJson(TplSizedBox instance) =>
     <String, dynamic>{
       'className': instance.className,
+      'id': instance.id,
       'width': instance.width?.toJson(),
       'height': instance.height?.toJson(),
       'child': const WidgetJsonConverter().toJson(instance.child),

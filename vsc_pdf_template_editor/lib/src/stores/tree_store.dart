@@ -5,6 +5,8 @@ import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:flutter/material.dart';
@@ -29,6 +31,8 @@ abstract class _TreeStore with Store {
     'Text',
     'Sized Box',
     'Container',
+    'Column',
+    'Row',
   ];
   final Map<String, dynamic> _data;
   final List<TextEditingController> _controllers = [];
@@ -96,6 +100,22 @@ abstract class _TreeStore with Store {
                 data: _template['child'],
               )
             ]);
+      } else if (_template.containsKey('children') &&
+          _template['children'] != null) {
+        List<Node> children = [];
+        for (int i = 0; i < _template['children'].length; i++) {
+          children.add(Node(
+            selectedIconColor: Colors.amber,
+            key: _generateId(),
+            label: _template['children'][i]['className'],
+            data: _template['children'][i],
+          ));
+        }
+        node = Node(
+            key: _generateId(),
+            label: _template['className'],
+            data: _template,
+            children: children);
       }
     }
     _selectedNode = _generateId();
@@ -132,21 +152,28 @@ abstract class _TreeStore with Store {
 
   @action
   addWidget(int index) {
-    if (_treeViewController!.selectedNode!.children.isEmpty) {
-      switch (index) {
-        case 0:
-          final map = TplText(text: TplString(expression: '')).toJson();
-          _rebuildTemplate(map);
-          break;
-        case 1:
-          final map = TplSizedBox().toJson();
-          _rebuildTemplate(map);
-          break;
-        case 2:
-          final map = TplContainer().toJson();
-          _rebuildTemplate(map);
-          break;
-      }
+    switch (index) {
+      case 0:
+        final map = TplText(id: _generateId(), text: TplString(expression: ''))
+            .toJson();
+        _rebuildTemplate(map);
+        break;
+      case 1:
+        final map = TplSizedBox(id: _generateId()).toJson();
+        _rebuildTemplate(map);
+        break;
+      case 2:
+        final map = TplContainer(id: _generateId()).toJson();
+        _rebuildTemplate(map);
+        break;
+      case 3:
+        final map = TplColumn(id: _generateId()).toJson();
+        _rebuildTemplate(map);
+        break;
+      case 4:
+        final map = TplRow(id: _generateId()).toJson();
+        _rebuildTemplate(map);
+        break;
     }
   }
 
@@ -160,13 +187,29 @@ abstract class _TreeStore with Store {
           _template.clear();
           _template.addAll(map);
           _rebuildTemplate(_template);
+        } else if (_treeViewController?.selectedNode?.data
+            .containsKey('children')) {
+          if (_treeViewController?.selectedNode?.data['children'].isEmpty) {
+            _template.clear();
+            _rebuildTemplate(_template);
+            _resetPdf();
+          }
         } else {
+          final deletedNode = _treeViewController?.getNode(selectedNode!);
           final newTree = _treeViewController?.deleteNode(selectedNode!);
           final List<Map<String, dynamic>> newList =
               newTree![0].asMap['children'][0]['children'];
           if (newList.isNotEmpty) {
-            if (newList[0]['data'] != null) {
+            if (newList[0]['data'] != null &&
+                newList[0]['data'].containsKey('child')) {
               newList[0]['data'].update('child', (value) => null);
+            } else if (newList[0]['data'] != null &&
+                newList[0]['data'].containsKey('children')) {
+              if (newList[0]['data']['children'] != null &&
+                  newList[0]['data']['children'].isNotEmpty) {
+                newList[0]['data']['children']
+                    .removeWhere((e) => e['id'] == deletedNode?.data['id']);
+              }
             }
             final newMap = newList[0]['data'];
             _rebuildTemplate(newMap);
@@ -186,7 +229,10 @@ abstract class _TreeStore with Store {
     _selectedNodeProps.clear();
     final list = _treeViewController!.selectedNode!.data.keys.toList();
     for (int i = 0; i < list.length; i++) {
-      if (list[i] != 'className' && list[i] != 'child') {
+      if (list[i] != 'className' &&
+          list[i] != 'child' &&
+          list[i] != 'children' &&
+          list[i] != 'id') {
         _selectedNodeProps.add(list[i]);
       }
     }
@@ -196,6 +242,13 @@ abstract class _TreeStore with Store {
     if (_treeViewController!.selectedNode!.data != null &&
         _treeViewController!.selectedNode!.data.containsKey('child')) {
       _template['child'] = data;
+    } else if (_treeViewController!.selectedNode!.data != null &&
+        _treeViewController!.selectedNode!.data.containsKey('children')) {
+      if (_template['children'] == null) {
+        _template['children'] = [data];
+      } else {
+        _template['children'].add(data);
+      }
     } else if (_treeViewController!.selectedNode!.label == 'Page') {
       _template.clear();
       _template.addAll(data);
@@ -215,7 +268,10 @@ abstract class _TreeStore with Store {
   _initWidgetControllers() {
     _controllers.clear();
     _treeViewController!.selectedNode!.data.forEach((key, value) {
-      if (key != 'className' && key != 'child') {
+      if (key != 'className' &&
+          key != 'child' &&
+          key != 'children' &&
+          key != 'id') {
         final val = jsonDecode(jsonEncode(value));
         if (val is Map<String, dynamic> && val.containsKey('expression')) {
           _controllers.add(TextEditingController(text: val['expression']));

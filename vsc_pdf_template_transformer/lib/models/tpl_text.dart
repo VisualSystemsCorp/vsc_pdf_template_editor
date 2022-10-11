@@ -16,6 +16,8 @@ part 'tpl_text.g.dart';
 )
 class TplText implements wb.WidgetBuilder {
   String className = 'TplText';
+  @JsonKey()
+  String id;
   TplString text;
   @JsonKey(defaultValue: null)
   TplTextStyle? style;
@@ -35,7 +37,8 @@ class TplText implements wb.WidgetBuilder {
   TextOverflow overflow;
 
   TplText(
-      {required this.text,
+      {required this.id,
+      required this.text,
       this.style,
       this.textAlign = TextAlign.left,
       this.textDirection = TextDirection.ltr,

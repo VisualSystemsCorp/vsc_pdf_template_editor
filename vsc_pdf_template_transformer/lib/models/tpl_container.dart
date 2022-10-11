@@ -14,6 +14,8 @@ part 'tpl_container.g.dart';
 class TplContainer implements wb.WidgetBuilder {
   String className = 'TplContainer';
   @JsonKey()
+  String id;
+  @JsonKey()
   TplString? width;
   @JsonKey()
   TplString? height;
@@ -21,6 +23,7 @@ class TplContainer implements wb.WidgetBuilder {
   wb.WidgetBuilder? child;
 
   TplContainer({
+    required this.id,
     this.width,
     this.height,
     this.child,
