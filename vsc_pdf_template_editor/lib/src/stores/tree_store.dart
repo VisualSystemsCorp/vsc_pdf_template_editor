@@ -152,28 +152,34 @@ abstract class _TreeStore with Store {
 
   @action
   addWidget(int index) {
-    switch (index) {
-      case 0:
-        final map = TplText(id: _generateId(), text: TplString(expression: ''))
-            .toJson();
-        _rebuildTemplate(map);
-        break;
-      case 1:
-        final map = TplSizedBox(id: _generateId()).toJson();
-        _rebuildTemplate(map);
-        break;
-      case 2:
-        final map = TplContainer(id: _generateId()).toJson();
-        _rebuildTemplate(map);
-        break;
-      case 3:
-        final map = TplColumn(id: _generateId()).toJson();
-        _rebuildTemplate(map);
-        break;
-      case 4:
-        final map = TplRow(id: _generateId()).toJson();
-        _rebuildTemplate(map);
-        break;
+    bool isNotAddingAllowed =
+        treeViewController?.selectedNode?.label == 'Page' &&
+            treeViewController!.selectedNode!.children.isNotEmpty;
+    if (!isNotAddingAllowed) {
+      switch (index) {
+        case 0:
+          final map =
+              TplText(id: _generateId(), text: TplString(expression: ''))
+                  .toJson();
+          _rebuildTemplate(map);
+          break;
+        case 1:
+          final map = TplSizedBox(id: _generateId()).toJson();
+          _rebuildTemplate(map);
+          break;
+        case 2:
+          final map = TplContainer(id: _generateId()).toJson();
+          _rebuildTemplate(map);
+          break;
+        case 3:
+          final map = TplColumn(id: _generateId()).toJson();
+          _rebuildTemplate(map);
+          break;
+        case 4:
+          final map = TplRow(id: _generateId()).toJson();
+          _rebuildTemplate(map);
+          break;
+      }
     }
   }
 
@@ -189,7 +195,8 @@ abstract class _TreeStore with Store {
           _rebuildTemplate(_template);
         } else if (_treeViewController?.selectedNode?.data
             .containsKey('children')) {
-          if (_treeViewController?.selectedNode?.data['children'].isEmpty) {
+          if (_treeViewController?.selectedNode?.data['children'] == null ||
+              _treeViewController?.selectedNode?.data['children'].isEmpty) {
             _template.clear();
             _rebuildTemplate(_template);
             _resetPdf();
