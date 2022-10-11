@@ -36,7 +36,7 @@ class TplSizedBox implements wb.WidgetBuilder {
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    var value = SizedBox(
+    final value = SizedBox(
         width: width?.evaluateDouble(width?.expression, data),
         height: height?.evaluateDouble(height?.expression, data),
         child: child?.buildWidget(data));

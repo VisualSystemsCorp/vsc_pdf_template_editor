@@ -36,7 +36,7 @@ class TplContainer implements wb.WidgetBuilder {
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    var value = Container(
+    final value = Container(
         width: width?.evaluateDouble(width?.expression, data),
         height: height?.evaluateDouble(height?.expression, data),
         child: child?.buildWidget(data));

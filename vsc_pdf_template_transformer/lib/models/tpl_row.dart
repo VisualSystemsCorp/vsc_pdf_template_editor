@@ -14,11 +14,23 @@ class TplRow implements wb.WidgetBuilder {
   String className = 'TplRow';
   @JsonKey()
   String id;
+  @JsonKey(defaultValue: MainAxisAlignment.start)
+  MainAxisAlignment mainAxisAlignment;
+  @JsonKey(defaultValue: MainAxisSize.max)
+  MainAxisSize mainAxisSize;
+  @JsonKey(defaultValue: CrossAxisAlignment.center)
+  CrossAxisAlignment crossAxisAlignment;
+  @JsonKey(defaultValue: VerticalDirection.down)
+  VerticalDirection verticalDirection;
   @WidgetJsonConverter()
   List<wb.WidgetBuilder?>? children;
 
   TplRow({
     required this.id,
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.mainAxisSize = MainAxisSize.max,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.verticalDirection = VerticalDirection.down,
     this.children,
   });
 
@@ -28,7 +40,11 @@ class TplRow implements wb.WidgetBuilder {
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    var value = Row(
+    final value = Row(
+        mainAxisAlignment: mainAxisAlignment,
+        mainAxisSize: mainAxisSize,
+        crossAxisAlignment: crossAxisAlignment,
+        verticalDirection: verticalDirection,
         children: children != null && children!.isNotEmpty
             ? List.generate(children!.length,
                 (index) => children![index]!.buildWidget(data)!)

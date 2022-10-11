@@ -55,7 +55,7 @@ class TplText implements wb.WidgetBuilder {
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    var value = Text(
+    final value = Text(
       text.evaluateString(text, data),
       style: TplTextStyle.to(style),
       textAlign: textAlign,
