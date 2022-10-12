@@ -245,6 +245,11 @@ abstract class _TreeStore with Store {
     }
   }
 
+  @action
+  updateTreeView(List<Node> updated) {
+    _treeViewController = _treeViewController!.copyWith(children: updated);
+  }
+
   _rebuildTemplate(Map<String, dynamic> data) {
     if (_treeViewController!.selectedNode!.data != null &&
         _treeViewController!.selectedNode!.data.containsKey('child')) {

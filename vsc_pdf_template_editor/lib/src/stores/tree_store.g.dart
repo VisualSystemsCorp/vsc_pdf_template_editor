@@ -186,6 +186,17 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
+  dynamic updateTreeView(List<Node<dynamic>> updated) {
+    final _$actionInfo = _$_TreeStoreActionController.startAction(
+        name: '_TreeStore.updateTreeView');
+    try {
+      return super.updateTreeView(updated);
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 

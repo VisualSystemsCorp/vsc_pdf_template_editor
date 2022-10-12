@@ -19,6 +19,13 @@ class TreeViewWidget extends StatelessWidget {
       child: Observer(
         builder: (c) => TreeView(
             allowParentSelect: true,
+            onExpansionChanged: (key, state) {
+              final node = viewModel.treeViewController!.getNode(key);
+
+              List<Node> updated = viewModel.treeViewController!
+                  .updateNode(key, node!.copyWith(expanded: true));
+              viewModel.updateTreeView(updated);
+            },
             controller: viewModel.treeViewController!,
             onNodeTap: (key) => viewModel.onNodeTap(key)),
       ),
