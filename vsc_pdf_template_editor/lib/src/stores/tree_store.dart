@@ -85,12 +85,30 @@ abstract class _TreeStore with Store {
   List<Node> buildSampleTemplate() {
     Node? node;
     if (_template.isNotEmpty) {
+      final key = _generateId();
       node = Node(
           expanded: true,
-          key: _generateId(),
+          key: key,
           label: _template['className'],
           data: _template);
+      if (_template.containsKey('id')) {
+        _template.update('id', (value) => key);
+      } else {
+        _template.addAll({'id': key});
+      }
       if (_template.containsKey('child') && _template['child'] != null) {
+        final key = _generateId();
+        final key2 = _generateId();
+        if (_template.containsKey('id')) {
+          _template.update('id', (value) => key);
+        } else {
+          _template.addAll({'id': key});
+        }
+        if (_template['child'].containsKey('id')) {
+          _template['child'].update('id', (value) => key2);
+        } else {
+          _template['child'].addAll({'id': key});
+        }
         node = Node(
             expanded: true,
             key: _generateId(),
@@ -107,19 +125,31 @@ abstract class _TreeStore with Store {
             ]);
       } else if (_template.containsKey('children') &&
           _template['children'] != null) {
+        final key = _generateId();
         List<Node> children = [];
+        if (_template.containsKey('id')) {
+          _template.update('id', (value) => key);
+        } else {
+          _template.addAll({'id': key});
+        }
         for (int i = 0; i < _template['children'].length; i++) {
+          final key = _generateId();
           children.add(Node(
             expanded: true,
             selectedIconColor: Colors.amber,
-            key: _generateId(),
+            key: key,
             label: _template['children'][i]['className'],
             data: _template['children'][i],
           ));
+          if (_template['children'][i].containsKey('id')) {
+            _template['children'][i].update('id', (value) => key);
+          } else {
+            _template['children'][i].addAll({'id': key});
+          }
         }
         node = Node(
             expanded: true,
-            key: _generateId(),
+            key: key,
             label: _template['className'],
             data: _template,
             children: children);
