@@ -86,14 +86,19 @@ abstract class _TreeStore with Store {
     Node? node;
     if (_template.isNotEmpty) {
       node = Node(
-          key: _generateId(), label: _template['className'], data: _template);
+          expanded: true,
+          key: _generateId(),
+          label: _template['className'],
+          data: _template);
       if (_template.containsKey('child') && _template['child'] != null) {
         node = Node(
+            expanded: true,
             key: _generateId(),
             label: _template['className'],
             data: _template,
             children: [
               Node(
+                expanded: true,
                 selectedIconColor: Colors.amber,
                 key: _generateId(),
                 label: _template['child']['className'],
@@ -105,6 +110,7 @@ abstract class _TreeStore with Store {
         List<Node> children = [];
         for (int i = 0; i < _template['children'].length; i++) {
           children.add(Node(
+            expanded: true,
             selectedIconColor: Colors.amber,
             key: _generateId(),
             label: _template['children'][i]['className'],
@@ -112,6 +118,7 @@ abstract class _TreeStore with Store {
           ));
         }
         node = Node(
+            expanded: true,
             key: _generateId(),
             label: _template['className'],
             data: _template,
@@ -120,8 +127,9 @@ abstract class _TreeStore with Store {
     }
     _selectedNode = _generateId();
     List<Node> result = [
-      Node(key: _selectedNode!, label: 'Document', children: [
+      Node(expanded: true, key: _selectedNode!, label: 'Document', children: [
         Node(
+          expanded: true,
           key: _generateId(),
           label: 'Page',
           children: node == null ? [] : [node],
