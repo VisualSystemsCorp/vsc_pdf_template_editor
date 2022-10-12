@@ -11,7 +11,7 @@ TplColumn _$TplColumnFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplColumn(
-          id: $checkedConvert('id', (v) => v as String),
+          id: $checkedConvert('id', (v) => v as String?),
           mainAxisAlignment: $checkedConvert(
               'mainAxisAlignment',
               (v) =>

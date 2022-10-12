@@ -11,7 +11,7 @@ TplText _$TplTextFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplText(
-          id: $checkedConvert('id', (v) => v as String),
+          id: $checkedConvert('id', (v) => v as String?),
           text: $checkedConvert(
               'text', (v) => TplString.fromJson(v as Map<String, dynamic>)),
           style: $checkedConvert(

@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
@@ -13,7 +14,7 @@ part 'tpl_row.g.dart';
 class TplRow implements wb.WidgetBuilder {
   String className = 'TplRow';
   @JsonKey()
-  String id;
+  String? id;
   @JsonKey(defaultValue: MainAxisAlignment.start)
   MainAxisAlignment mainAxisAlignment;
   @JsonKey(defaultValue: MainAxisSize.max)
@@ -26,13 +27,17 @@ class TplRow implements wb.WidgetBuilder {
   List<wb.WidgetBuilder?>? children;
 
   TplRow({
-    required this.id,
+    this.id,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.max,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.verticalDirection = VerticalDirection.down,
     this.children,
-  });
+  }) {
+    if (id == null) {
+      id = _generateId();
+    }
+  }
 
   factory TplRow.fromJson(Map<String, dynamic> json) => _$TplRowFromJson(json);
 
@@ -50,5 +55,9 @@ class TplRow implements wb.WidgetBuilder {
                 (index) => children![index]!.buildWidget(data)!)
             : []);
     return value;
+  }
+
+  String _generateId() {
+    return Random().nextInt(4294967296).toString();
   }
 }

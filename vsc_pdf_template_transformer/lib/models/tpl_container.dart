@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
@@ -14,7 +15,7 @@ part 'tpl_container.g.dart';
 class TplContainer implements wb.WidgetBuilder {
   String className = 'TplContainer';
   @JsonKey()
-  String id;
+  String? id;
   @JsonKey()
   TplString? width;
   @JsonKey()
@@ -23,11 +24,15 @@ class TplContainer implements wb.WidgetBuilder {
   wb.WidgetBuilder? child;
 
   TplContainer({
-    required this.id,
+    this.id,
     this.width,
     this.height,
     this.child,
-  });
+  }) {
+    if (id == null) {
+      id = _generateId();
+    }
+  }
 
   factory TplContainer.fromJson(Map<String, dynamic> json) =>
       _$TplContainerFromJson(json);
@@ -41,5 +46,9 @@ class TplContainer implements wb.WidgetBuilder {
         height: height?.evaluateDouble(height?.expression, data),
         child: child?.buildWidget(data));
     return value;
+  }
+
+  String _generateId() {
+    return Random().nextInt(4294967296).toString();
   }
 }

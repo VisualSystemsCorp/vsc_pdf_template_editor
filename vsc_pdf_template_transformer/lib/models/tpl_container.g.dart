@@ -12,7 +12,7 @@ TplContainer _$TplContainerFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplContainer(
-          id: $checkedConvert('id', (v) => v as String),
+          id: $checkedConvert('id', (v) => v as String?),
           width: $checkedConvert(
               'width',
               (v) => v == null

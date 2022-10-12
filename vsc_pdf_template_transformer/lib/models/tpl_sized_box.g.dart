@@ -11,7 +11,7 @@ TplSizedBox _$TplSizedBoxFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplSizedBox(
-          id: $checkedConvert('id', (v) => v as String),
+          id: $checkedConvert('id', (v) => v as String?),
           width: $checkedConvert(
               'width',
               (v) => v == null
