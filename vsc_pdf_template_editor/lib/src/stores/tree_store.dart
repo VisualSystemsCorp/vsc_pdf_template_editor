@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
+import 'package:vsc_pdf_template_editor/src/utils/map_utils.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
@@ -24,7 +25,7 @@ abstract class _TreeStore with Store {
     this._template,
     this._data,
   ) {
-    init();
+    init(buildSampleTemplate());
   }
 
   final _supportedWidgets = [
@@ -36,6 +37,8 @@ abstract class _TreeStore with Store {
   ];
   final Map<String, dynamic> _data;
   final List<TextEditingController> _controllers = [];
+  String _pathToMap = '';
+  String? _rootKey = '';
 
   @readonly
   VSCStore? _store;
@@ -74,8 +77,12 @@ abstract class _TreeStore with Store {
     _pdfBytes = value;
   }
 
-  void init() {
-    _store = VSCStore(tree: buildSampleTemplate());
+  set pathToMap(String value) {
+    _pathToMap = value;
+  }
+
+  void init(List<Node> data) {
+    _store = VSCStore(tree: data);
     _treeViewController =
         TreeViewController(children: _store!.tree, selectedKey: _selectedNode);
     onNodeTap(_selectedNode!);
@@ -156,6 +163,7 @@ abstract class _TreeStore with Store {
       }
     }
     _selectedNode = _generateId();
+    _rootKey = _selectedNode;
     List<Node> result = [
       Node(expanded: true, key: _selectedNode!, label: 'Document', children: [
         Node(
@@ -189,82 +197,99 @@ abstract class _TreeStore with Store {
   }
 
   @action
-  addWidget(int index) {
-    bool isNotAddingAllowed =
-        treeViewController?.selectedNode?.label == 'Page' &&
-            treeViewController!.selectedNode!.children.isNotEmpty;
-    if (!isNotAddingAllowed) {
+  onWidgetSelected(int index) {
+    bool isAddingAllowed = treeViewController?.selectedNode?.label == 'Page' &&
+            treeViewController!.selectedNode!.children.isEmpty ||
+        _treeViewController!.selectedNode!.data != null &&
+            _treeViewController!.selectedNode!.data.containsKey('child') &&
+            _treeViewController!.selectedNode!.data['child'] == null ||
+        _treeViewController!.selectedNode!.data != null &&
+            _treeViewController!.selectedNode!.data.containsKey('child') &&
+            _treeViewController!.selectedNode!.data['child'].isEmpty ||
+        _treeViewController!.selectedNode!.data.containsKey('children') &&
+            _treeViewController!.selectedNode!.data['children'] == null ||
+        _treeViewController!.selectedNode!.data != null &&
+            _treeViewController!.selectedNode!.data.containsKey('children') &&
+            _treeViewController!.selectedNode!.data['children'].isEmpty;
+    if (isAddingAllowed) {
+      Map<String, dynamic> map = {};
       switch (index) {
         case 0:
-          final map =
-              TplText(id: _generateId(), text: TplString(expression: ''))
-                  .toJson();
-          _rebuildTemplate(map);
+          map = TplText(id: _generateId(), text: TplString(expression: ''))
+              .toJson();
           break;
         case 1:
-          final map = TplSizedBox(id: _generateId()).toJson();
-          _rebuildTemplate(map);
+          map = TplSizedBox(id: _generateId()).toJson();
           break;
         case 2:
-          final map = TplContainer(id: _generateId()).toJson();
-          _rebuildTemplate(map);
+          map = TplContainer(id: _generateId()).toJson();
           break;
         case 3:
-          final map = TplColumn(id: _generateId()).toJson();
-          _rebuildTemplate(map);
+          map = TplColumn(id: _generateId()).toJson();
           break;
         case 4:
-          final map = TplRow(id: _generateId()).toJson();
-          _rebuildTemplate(map);
+          map = TplRow(id: _generateId()).toJson();
           break;
       }
+      addWidget(map);
     }
+  }
+
+  @action
+  addWidget(Map<String, dynamic> map) {
+    if (treeViewController?.selectedNode?.label == 'Page') {
+      _template.addAll(map);
+      final newTree = _treeViewController?.addNode(
+          _selectedNode!,
+          Node(
+              expanded: true,
+              key: _template['id'],
+              label: _template['className'],
+              data: _template));
+      init(newTree!);
+    } else {
+      _pathToMap = '';
+      String searchedId = '';
+      for (;;) {
+        final map = getMap(_template, _pathToMap, _template);
+        searchedId = _searchMap(map!);
+        if (searchedId == _selectedNode) break;
+      }
+
+      _template = setMap(_template, _pathToMap, map);
+
+      final newTree = _treeViewController?.addNode(
+          _selectedNode!,
+          Node(
+              expanded: true,
+              key: map['id'],
+              label: map['className'],
+              data: map));
+      init(newTree!);
+    }
+    _buildPdf();
   }
 
   @action
   removeWidget() {
     if (selectedNode != null) {
-      if (_treeViewController?.selectedNode?.data != null) {
-        if (_treeViewController?.selectedNode?.data.containsKey('child') &&
-            _treeViewController?.selectedNode?.data['child'] != null) {
-          final map = _treeViewController?.selectedNode?.data['child'];
-          _template.clear();
-          _template.addAll(map);
-          _rebuildTemplate(_template);
-        } else if (_treeViewController?.selectedNode?.data
-            .containsKey('children')) {
-          if (_treeViewController?.selectedNode?.data['children'] == null ||
-              _treeViewController?.selectedNode?.data['children'].isEmpty) {
-            _template.clear();
-            _rebuildTemplate(_template);
-            _resetPdf();
-          }
-        } else {
-          final deletedNode = _treeViewController?.getNode(selectedNode!);
-          final newTree = _treeViewController?.deleteNode(selectedNode!);
-          final List<Map<String, dynamic>> newList =
-              newTree![0].asMap['children'][0]['children'];
-          if (newList.isNotEmpty) {
-            if (newList[0]['data'] != null &&
-                newList[0]['data'].containsKey('child')) {
-              newList[0]['data'].update('child', (value) => null);
-            } else if (newList[0]['data'] != null &&
-                newList[0]['data'].containsKey('children')) {
-              if (newList[0]['data']['children'] != null &&
-                  newList[0]['data']['children'].isNotEmpty) {
-                newList[0]['data']['children']
-                    .removeWhere((e) => e['id'] == deletedNode?.data['id']);
-              }
-            }
-            final newMap = newList[0]['data'];
-            _rebuildTemplate(newMap);
-          } else {
-            _template.clear();
-            _rebuildTemplate(_template);
-            _resetPdf();
-          }
-        }
+      _pathToMap = '';
+      String searchedId = '';
+      for (;;) {
+        final map = getMap(_template, _pathToMap, _template);
+        searchedId = _searchMap(map!);
+        if (searchedId == _selectedNode) break;
       }
+
+      if (_pathToMap.isNotEmpty) {
+        _template = setMap(_template, _pathToMap, null);
+      } else {
+        _template.clear();
+        _resetPdf();
+      }
+      final newTree = _treeViewController?.deleteNode(selectedNode!);
+      _selectedNode = _rootKey;
+      init(newTree!);
     }
     _buildPdf();
   }
@@ -288,23 +313,8 @@ abstract class _TreeStore with Store {
     _treeViewController = _treeViewController!.copyWith(children: updated);
   }
 
-  _rebuildTemplate(Map<String, dynamic> data) {
-    if (_treeViewController!.selectedNode!.data != null &&
-        _treeViewController!.selectedNode!.data.containsKey('child')) {
-      _template['child'] = data;
-    } else if (_treeViewController!.selectedNode!.data != null &&
-        _treeViewController!.selectedNode!.data.containsKey('children')) {
-      if (_template['children'] == null) {
-        _template['children'] = [data];
-      } else {
-        _template['children'].add(data);
-      }
-    } else if (_treeViewController!.selectedNode!.label == 'Page') {
-      _template.clear();
-      _template.addAll(data);
-    }
-    init();
-    _buildPdf();
+  _resetPdf() {
+    setPdfBytes = null;
   }
 
   void setWidgetProps() async {
@@ -341,11 +351,17 @@ abstract class _TreeStore with Store {
     await _savePdf();
   }
 
-  _resetPdf() {
-    setPdfBytes = null;
-  }
-
   String _generateId() {
     return _random.nextInt(4294967296).toString();
+  }
+
+  String _searchMap(Map<String, dynamic> map) {
+    map.forEach((key, value) {
+      if (key == 'child' || key == 'children') {
+        pathToMap = _pathToMap.isEmpty ? key : '$_pathToMap.$key';
+      }
+    });
+    print(_pathToMap);
+    return map['id'];
   }
 }

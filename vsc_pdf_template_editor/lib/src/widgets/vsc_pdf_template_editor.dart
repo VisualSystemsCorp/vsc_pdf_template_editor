@@ -37,7 +37,7 @@ class VscPdfTemplateEditor extends StatelessWidget {
                     onPressed: () async {
                       final res = await _onAddWidgetPressed(context);
                       if (res != null) {
-                        viewModel.addWidget(res);
+                        viewModel.onWidgetSelected(res);
                       }
                     },
                     child: const Text(AppStrings.addWidget)),
