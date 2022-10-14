@@ -23,6 +23,11 @@ TplContainer _$TplContainerFromJson(Map<String, dynamic> json) =>
               (v) => v == null
                   ? null
                   : TplString.fromJson(v as Map<String, dynamic>)),
+          decoration: $checkedConvert(
+              'decoration',
+              (v) => v == null
+                  ? null
+                  : TplBoxDecoration.fromJson(v as Map<String, dynamic>)),
           child: $checkedConvert(
               'child',
               (v) => const WidgetJsonConverter()
@@ -39,5 +44,6 @@ Map<String, dynamic> _$TplContainerToJson(TplContainer instance) =>
       'id': instance.id,
       'width': instance.width?.toJson(),
       'height': instance.height?.toJson(),
+      'decoration': instance.decoration?.toJson(),
       'child': const WidgetJsonConverter().toJson(instance.child),
     };

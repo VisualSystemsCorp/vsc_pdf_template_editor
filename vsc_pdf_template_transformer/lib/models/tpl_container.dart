@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_box_decoration.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 import '../utils/widget_builder.dart' as wb;
@@ -20,6 +21,8 @@ class TplContainer implements wb.WidgetBuilder {
   TplString? width;
   @JsonKey()
   TplString? height;
+  @JsonKey(defaultValue: null)
+  TplBoxDecoration? decoration;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
 
@@ -27,6 +30,7 @@ class TplContainer implements wb.WidgetBuilder {
     this.id,
     this.width,
     this.height,
+    this.decoration,
     this.child,
   }) {
     if (id == null) {
@@ -44,6 +48,7 @@ class TplContainer implements wb.WidgetBuilder {
     final value = Container(
         width: width?.evaluateDouble(width?.expression, data),
         height: height?.evaluateDouble(height?.expression, data),
+        decoration: TplBoxDecoration.to(decoration),
         child: child?.buildWidget(data));
     return value;
   }
