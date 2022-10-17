@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
@@ -9,17 +8,13 @@ part 'tpl_text.g.dart';
 
 @JsonSerializable(
   checked: true,
-  // Extra type checking
   disallowUnrecognizedKeys: false,
-  // Allow unrecognized keys (e.g., "className") in JSON
-  explicitToJson:
-      true, // Allows deserialization of nested JSON objects.  (e.g., TplTextStyle)
+  explicitToJson: true,
 )
 class TplText implements wb.WidgetBuilder {
   String className = 'TplText';
   @JsonKey()
-  String? id;
-  TplString text;
+  String text;
   @JsonKey(defaultValue: null)
   TplTextStyle? style;
   @JsonKey(defaultValue: TextAlign.left)
@@ -38,8 +33,7 @@ class TplText implements wb.WidgetBuilder {
   TextOverflow overflow;
 
   TplText(
-      {this.id,
-      required this.text,
+      {required this.text,
       this.style,
       this.textAlign = TextAlign.left,
       this.textDirection = TextDirection.ltr,
@@ -47,11 +41,7 @@ class TplText implements wb.WidgetBuilder {
       this.tightBounds = false,
       this.textScaleFactor = 1.0,
       this.maxLines = 1,
-      this.overflow = TextOverflow.clip}) {
-    if (id == null) {
-      id = _generateId();
-    }
-  }
+      this.overflow = TextOverflow.clip});
 
   factory TplText.fromJson(Map<String, dynamic> json) =>
       _$TplTextFromJson(json);
@@ -61,7 +51,7 @@ class TplText implements wb.WidgetBuilder {
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
     final value = Text(
-      text.evaluateString(text, data),
+      TplString.evaluateString(text, data),
       style: TplTextStyle.to(style),
       textAlign: textAlign,
       textDirection: textDirection,
@@ -72,9 +62,5 @@ class TplText implements wb.WidgetBuilder {
       overflow: overflow,
     );
     return value;
-  }
-
-  String _generateId() {
-    return Random().nextInt(4294967296).toString();
   }
 }

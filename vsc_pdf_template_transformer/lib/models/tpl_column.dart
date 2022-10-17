@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
@@ -13,8 +12,6 @@ part 'tpl_column.g.dart';
 )
 class TplColumn implements wb.WidgetBuilder {
   String className = 'TplColumn';
-  @JsonKey()
-  String? id;
   @JsonKey(defaultValue: MainAxisAlignment.start)
   MainAxisAlignment mainAxisAlignment;
   @JsonKey(defaultValue: MainAxisSize.max)
@@ -27,17 +24,12 @@ class TplColumn implements wb.WidgetBuilder {
   List<wb.WidgetBuilder?>? children;
 
   TplColumn({
-    this.id,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.max,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.verticalDirection = VerticalDirection.down,
     this.children,
-  }) {
-    if (id == null) {
-      id = _generateId();
-    }
-  }
+  });
 
   factory TplColumn.fromJson(Map<String, dynamic> json) =>
       _$TplColumnFromJson(json);
@@ -56,9 +48,5 @@ class TplColumn implements wb.WidgetBuilder {
                 (index) => children![index]!.buildWidget(data)!)
             : []);
     return value;
-  }
-
-  String _generateId() {
-    return Random().nextInt(4294967296).toString();
   }
 }

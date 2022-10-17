@@ -11,9 +11,7 @@ TplText _$TplTextFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplText(
-          id: $checkedConvert('id', (v) => v as String?),
-          text: $checkedConvert(
-              'text', (v) => TplString.fromJson(v as Map<String, dynamic>)),
+          text: $checkedConvert('text', (v) => v as String),
           style: $checkedConvert(
               'style',
               (v) => v == null
@@ -47,8 +45,7 @@ TplText _$TplTextFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplTextToJson(TplText instance) => <String, dynamic>{
       'className': instance.className,
-      'id': instance.id,
-      'text': instance.text.toJson(),
+      'text': instance.text,
       'style': instance.style?.toJson(),
       'textAlign': _$TextAlignEnumMap[instance.textAlign]!,
       'textDirection': _$TextDirectionEnumMap[instance.textDirection]!,

@@ -11,7 +11,6 @@ TplRow _$TplRowFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplRow(
-          id: $checkedConvert('id', (v) => v as String?),
           mainAxisAlignment: $checkedConvert(
               'mainAxisAlignment',
               (v) =>
@@ -40,6 +39,7 @@ TplRow _$TplRowFromJson(Map<String, dynamic> json) => $checkedCreate(
                   .toList()),
         );
         $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('id', (v) => val.id = v as String?);
         return val;
       },
     );

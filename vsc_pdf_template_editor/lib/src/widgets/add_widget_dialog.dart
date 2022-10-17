@@ -27,11 +27,14 @@ class _AddWidgetDialogState extends State<AddWidgetDialog> {
                       color: _selected == i
                           ? Theme.of(context).primaryColor
                           : Colors.transparent,
-                      child: ListTile(
-                        title: Text(widget.supportedWidgets[i]),
-                        selected: _selected == i,
-                        selectedColor: Colors.white,
-                        onTap: () => _select(i),
+                      child: GestureDetector(
+                        onDoubleTap: () => Navigator.of(context).pop(i),
+                        child: ListTile(
+                          title: Text(widget.supportedWidgets[i]),
+                          selected: _selected == i,
+                          selectedColor: Colors.white,
+                          onTap: () => _select(i),
+                        ),
                       ),
                     ))),
         Row(

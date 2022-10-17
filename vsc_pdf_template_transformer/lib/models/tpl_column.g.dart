@@ -11,7 +11,6 @@ TplColumn _$TplColumnFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplColumn(
-          id: $checkedConvert('id', (v) => v as String?),
           mainAxisAlignment: $checkedConvert(
               'mainAxisAlignment',
               (v) =>
@@ -46,7 +45,6 @@ TplColumn _$TplColumnFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplColumnToJson(TplColumn instance) => <String, dynamic>{
       'className': instance.className,
-      'id': instance.id,
       'mainAxisAlignment':
           _$MainAxisAlignmentEnumMap[instance.mainAxisAlignment]!,
       'mainAxisSize': _$MainAxisSizeEnumMap[instance.mainAxisSize]!,

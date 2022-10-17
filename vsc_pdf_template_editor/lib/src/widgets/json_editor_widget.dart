@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 
 class JsonEditorWidget extends StatefulWidget {
   const JsonEditorWidget({
@@ -49,6 +50,10 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
                   autofocus: true,
                   maxLines: null,
                   decoration: const InputDecoration.collapsed(hintText: ''),
+                  onChanged: (val) => EasyDebounce.debounce(
+                      '',
+                      const Duration(milliseconds: 500),
+                      () => widget.viewModel.onInputChanged()),
                 ),
               ),
               Container(
