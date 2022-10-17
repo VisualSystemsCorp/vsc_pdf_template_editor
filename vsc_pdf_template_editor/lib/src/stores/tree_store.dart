@@ -87,14 +87,21 @@ abstract class _TreeStore with Store {
     final cursorPos = _templateController.selection.base.offset;
     final newMap = StringUtils.addCharAtPosition(
         _templateController.text, jsonEncode(map), cursorPos);
-    print(newMap);
     _template = jsonDecode(newMap);
     _initTemplateController();
     _buildPdf();
   }
 
   @action
-  reformat() {}
+  reformat() {
+    const JsonDecoder decoder = JsonDecoder();
+    const JsonEncoder encoder = JsonEncoder.withIndent('  ');
+    final dynamic object = decoder.convert(_templateController.text);
+    final dynamic prettyString = encoder.convert(object);
+    final sb = StringBuffer();
+    prettyString.split('\n').forEach((dynamic element) => sb.write('\n$element'));
+    _templateController.text = sb.toString();
+  }
 
   _initTemplateController() {
     _templateController.text = jsonEncode(_template);
