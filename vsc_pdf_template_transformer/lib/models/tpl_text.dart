@@ -8,15 +8,13 @@ part 'tpl_text.g.dart';
 
 @JsonSerializable(
   checked: true,
-  // Extra type checking
   disallowUnrecognizedKeys: false,
-  // Allow unrecognized keys (e.g., "className") in JSON
-  explicitToJson:
-      true, // Allows deserialization of nested JSON objects.  (e.g., TplTextStyle)
+  explicitToJson: true,
 )
 class TplText implements wb.WidgetBuilder {
   String className = 'TplText';
-  TplString text;
+  @JsonKey()
+  String text;
   @JsonKey(defaultValue: null)
   TplTextStyle? style;
   @JsonKey(defaultValue: TextAlign.left)
@@ -52,8 +50,8 @@ class TplText implements wb.WidgetBuilder {
 
   @override
   Widget? buildWidget(Map<String, dynamic> data) {
-    var value = Text(
-      text.evaluateString(text, data),
+    final value = Text(
+      TplString.evaluateString(text, data),
       style: TplTextStyle.to(style),
       textAlign: textAlign,
       textDirection: textDirection,

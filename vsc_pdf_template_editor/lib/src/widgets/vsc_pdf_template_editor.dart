@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
+import 'package:vsc_pdf_template_editor/src/widgets/json_editor_widget.dart';
 import 'add_widget_dialog.dart';
-import 'edit_param_widget.dart';
 import 'pdf_view_widget.dart';
-import 'tree_view_widget.dart';
 
 class VscPdfTemplateEditor extends StatelessWidget {
   VscPdfTemplateEditor({
@@ -31,40 +30,34 @@ class VscPdfTemplateEditor extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
                     onPressed: () async {
                       final res = await _onAddWidgetPressed(context);
                       if (res != null) {
-                        viewModel.addWidget(res);
+                        viewModel.onWidgetSelected(res);
                       }
                     },
                     child: const Text(AppStrings.addWidget)),
                 const SizedBox(
-                  width: 10,
+                  width: 50,
                 ),
                 ElevatedButton(
-                    onPressed: viewModel.removeWidget,
-                    child: const Text(AppStrings.removeWidget)),
-                const Spacer(),
-                ElevatedButton(
-                    onPressed: () {}, child: const Text(AppStrings.undo)),
-                const SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
-                    onPressed: () {}, child: const Text(AppStrings.redo)),
+                    onPressed: viewModel.reformat,
+                    child: const Text(AppStrings.reformat)),
               ],
             ),
           ),
           const Divider(),
           Expanded(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                TreeViewWidget(
-                  viewModel: viewModel,
+                Expanded(
+                  child: JsonEditorWidget(
+                    viewModel: viewModel,
+                    data: data.toString(),
+                  ),
                 ),
                 const VerticalDivider(thickness: 1, width: 1),
                 // This is the main content.
@@ -72,11 +65,6 @@ class VscPdfTemplateEditor extends StatelessWidget {
                   child: PdfViewWidget(
                     viewModel: viewModel,
                   ),
-                ),
-                const VerticalDivider(thickness: 1, width: 1),
-                // This is the main content.
-                EditParamWidget(
-                  viewModel: viewModel,
                 ),
               ],
             ),

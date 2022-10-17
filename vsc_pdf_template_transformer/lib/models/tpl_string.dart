@@ -1,26 +1,8 @@
 import 'package:expressions/expressions.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'tpl_string.g.dart';
-
-@JsonSerializable(
-  checked: true,
-  disallowUnrecognizedKeys: false,
-)
 class TplString {
-  TplString({
-    this.expression = '',
-  });
-
-  String? expression;
-
-  factory TplString.fromJson(Map<String, dynamic> json) =>
-      _$TplStringFromJson(json);
-
-  Map<String, dynamic> toJson() => _$TplStringToJson(this);
-
-  String evaluateString(TplString text, Map<String, dynamic> data) {
-    if (text.expression != null) {
+  static String evaluateString(String? expression, Map<String, dynamic> data) {
+    if (expression != null) {
       final evaluator = ExpressionEvaluator(memberAccessors: [
         MemberAccessor.mapAccessor,
       ]);
@@ -29,19 +11,19 @@ class TplString {
         'data': data,
       };
       try {
-        res = evaluator.eval(Expression.parse(text.expression!),
-            Map<String, dynamic>.from(context));
+        res = evaluator.eval(
+            Expression.parse(expression!), Map<String, dynamic>.from(context));
       } catch (e) {
-        return text.expression!;
+        return expression!;
       }
 
-      return res != null ? res!.toString() : text.expression!;
+      return res != null ? res!.toString() : expression!;
     } else {
       return '';
     }
   }
 
-  double? evaluateDouble(String? input, Map<String, dynamic> data) {
+  static double? evaluateDouble(String? input, Map<String, dynamic> data) {
     if (input != null && data.isNotEmpty) {
       final evaluator = ExpressionEvaluator(memberAccessors: [
         MemberAccessor.mapAccessor,

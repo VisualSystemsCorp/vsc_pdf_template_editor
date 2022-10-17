@@ -6,10 +6,14 @@ class AppStrings {
   static const widgetProperties = 'Widget Properties';
 
   static const addWidget = 'Add a Widget';
+  static const reformat = 'Reformat';
   static const removeWidget = 'Remove Widget';
   static const undo = 'Undo';
   static const redo = 'Redo';
 
   static const cancel = 'Cancel';
   static const ok = 'Ok';
+
+  static const template = 'Template';
+  static const data = 'Data';
 }
