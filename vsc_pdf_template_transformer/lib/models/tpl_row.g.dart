@@ -39,14 +39,12 @@ TplRow _$TplRowFromJson(Map<String, dynamic> json) => $checkedCreate(
                   .toList()),
         );
         $checkedConvert('className', (v) => val.className = v as String);
-        $checkedConvert('id', (v) => val.id = v as String?);
         return val;
       },
     );
 
 Map<String, dynamic> _$TplRowToJson(TplRow instance) => <String, dynamic>{
       'className': instance.className,
-      'id': instance.id,
       'mainAxisAlignment':
           _$MainAxisAlignmentEnumMap[instance.mainAxisAlignment]!,
       'mainAxisSize': _$MainAxisSizeEnumMap[instance.mainAxisSize]!,

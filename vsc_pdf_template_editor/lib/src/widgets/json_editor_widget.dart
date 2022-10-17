@@ -19,30 +19,63 @@ class JsonEditorWidget extends StatefulWidget {
 }
 
 class _JsonEditorWidgetState extends State<JsonEditorWidget>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: 2);
+    _tabController.addListener(() {
+      if (_tabController.indexIsChanging) {
+        widget.viewModel.activeTab = _tabController.index;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
-      return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              title: TabBar(
-                  indicatorColor: Theme.of(context).primaryColor,
-                  tabs: const [
-                    TextButton(
-                        onPressed: null, child: Text(AppStrings.template)),
-                    TextButton(onPressed: null, child: Text(AppStrings.data))
-                  ])),
-          body: TabBarView(
-            children: [
-              Container(
+      return Scaffold(
+        appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: TabBar(
+                controller: _tabController,
+                indicatorColor: Theme.of(context).primaryColor,
+                tabs: const [
+                  TextButton(onPressed: null, child: Text(AppStrings.template)),
+                  TextButton(onPressed: null, child: Text(AppStrings.data))
+                ])),
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            Container(
+              color: Colors.amber.withOpacity(0.1),
+              padding: const EdgeInsets.all(20),
+              child: TextField(
+                controller: widget.viewModel.templateController,
+                autocorrect: false,
+                enableSuggestions: false,
+                keyboardType: TextInputType.multiline,
+                textInputAction: TextInputAction.newline,
+                autofocus: true,
+                maxLines: null,
+                decoration: const InputDecoration.collapsed(hintText: ''),
+                onChanged: (val) => EasyDebounce.debounce(
+                    '',
+                    const Duration(milliseconds: 500),
+                    () => widget.viewModel.onInputChanged()),
+              ),
+            ),
+            Container(
+              color: Colors.amber.withOpacity(0.1),
+              padding: const EdgeInsets.all(20),
+              child: Container(
                 color: Colors.amber.withOpacity(0.1),
                 padding: const EdgeInsets.all(20),
                 child: TextField(
-                  controller: widget.viewModel.templateController,
+                  controller: widget.viewModel.dataController,
                   autocorrect: false,
                   enableSuggestions: false,
                   keyboardType: TextInputType.multiline,
@@ -53,18 +86,19 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
                   onChanged: (val) => EasyDebounce.debounce(
                       '',
                       const Duration(milliseconds: 500),
-                      () => widget.viewModel.onInputChanged()),
+                      () => widget.viewModel.onDataChanged()),
                 ),
               ),
-              Container(
-                color: Colors.amber.withOpacity(0.1),
-                padding: const EdgeInsets.all(20),
-                child: Text(widget.data),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       );
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
   }
 }

@@ -22,6 +22,7 @@ abstract class _TreeStore with Store {
     this._data,
   ) {
     _initTemplateController();
+    _initDataController();
     _buildPdf();
   }
 
@@ -32,13 +33,19 @@ abstract class _TreeStore with Store {
     'Column',
     'Row',
   ];
-  final Map<String, dynamic> _data;
   final _templateController = TextEditingController();
+  final _dataController = TextEditingController();
 
   pw.Document _doc = pw.Document();
 
+  @observable
+  int activeTab = 0;
+
   @readonly
   Map<String, dynamic> _template;
+
+  @readonly
+  Map<String, dynamic> _data;
 
   @readonly
   Uint8List? _pdfBytes = Uint8List(0);
@@ -49,6 +56,8 @@ abstract class _TreeStore with Store {
 
   TextEditingController get templateController => _templateController;
 
+  TextEditingController get dataController => _dataController;
+
   set setPdfBytes(Uint8List? value) {
     _pdfBytes = value;
   }
@@ -56,6 +65,12 @@ abstract class _TreeStore with Store {
   @action
   onInputChanged() {
     _template = jsonDecode(_templateController.text);
+    _buildPdf();
+  }
+
+  @action
+  onDataChanged() {
+    _data = jsonDecode(_dataController.text);
     _buildPdf();
   }
 
@@ -93,18 +108,24 @@ abstract class _TreeStore with Store {
   }
 
   @action
-  reformat() {
+  reformat(TextEditingController controller) {
     const JsonDecoder decoder = JsonDecoder();
     const JsonEncoder encoder = JsonEncoder.withIndent('  ');
-    final dynamic object = decoder.convert(_templateController.text);
+    final dynamic object = decoder.convert(controller.text);
     final dynamic prettyString = encoder.convert(object);
     final sb = StringBuffer();
-    prettyString.split('\n').forEach((dynamic element) => sb.write('\n$element'));
-    _templateController.text = sb.toString();
+    prettyString
+        .split('\n')
+        .forEach((dynamic element) => sb.write('\n$element'));
+    controller.text = sb.toString();
   }
 
   _initTemplateController() {
     _templateController.text = jsonEncode(_template);
+  }
+
+  _initDataController() {
+    _dataController.text = jsonEncode(_data);
   }
 
   _savePdf() async {

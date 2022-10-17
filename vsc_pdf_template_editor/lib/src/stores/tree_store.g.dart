@@ -9,6 +9,22 @@ part of 'tree_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$TreeStore on _TreeStore, Store {
+  late final _$activeTabAtom =
+      Atom(name: '_TreeStore.activeTab', context: context);
+
+  @override
+  int get activeTab {
+    _$activeTabAtom.reportRead();
+    return super.activeTab;
+  }
+
+  @override
+  set activeTab(int value) {
+    _$activeTabAtom.reportWrite(value, super.activeTab, () {
+      super.activeTab = value;
+    });
+  }
+
   late final _$_templateAtom =
       Atom(name: '_TreeStore._template', context: context);
 
@@ -24,6 +40,23 @@ mixin _$TreeStore on _TreeStore, Store {
   set _template(Map<String, dynamic> value) {
     _$_templateAtom.reportWrite(value, super._template, () {
       super._template = value;
+    });
+  }
+
+  late final _$_dataAtom = Atom(name: '_TreeStore._data', context: context);
+
+  Map<String, dynamic> get data {
+    _$_dataAtom.reportRead();
+    return super._data;
+  }
+
+  @override
+  Map<String, dynamic> get _data => data;
+
+  @override
+  set _data(Map<String, dynamic> value) {
+    _$_dataAtom.reportWrite(value, super._data, () {
+      super._data = value;
     });
   }
 
@@ -60,6 +93,17 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
+  dynamic onDataChanged() {
+    final _$actionInfo = _$_TreeStoreActionController.startAction(
+        name: '_TreeStore.onDataChanged');
+    try {
+      return super.onDataChanged();
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic onWidgetSelected(int index) {
     final _$actionInfo = _$_TreeStoreActionController.startAction(
         name: '_TreeStore.onWidgetSelected');
@@ -82,11 +126,11 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
-  dynamic reformat() {
+  dynamic reformat(TextEditingController controller) {
     final _$actionInfo =
         _$_TreeStoreActionController.startAction(name: '_TreeStore.reformat');
     try {
-      return super.reformat();
+      return super.reformat(controller);
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }
@@ -95,7 +139,7 @@ mixin _$TreeStore on _TreeStore, Store {
   @override
   String toString() {
     return '''
-
+activeTab: ${activeTab}
     ''';
   }
 }
