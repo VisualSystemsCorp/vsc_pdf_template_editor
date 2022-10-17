@@ -271,10 +271,8 @@ abstract class _TreeStore with Store {
         if (searchedId == _selectedNode) break;
       }
 
-      print('path is ${_pathToMap}');
       if (_pathToMap.endsWith('children')) {
         final list = getMap(_template, _pathToMap, _template);
-        print('list is ${list}');
         if (list == null || list.isEmpty) {
           _template = setMap(_template, _pathToMap, [map]);
         } else {
@@ -293,7 +291,6 @@ abstract class _TreeStore with Store {
               data: map));
       init(newTree!);
     }
-    print(_template);
     _buildPdf();
   }
 
