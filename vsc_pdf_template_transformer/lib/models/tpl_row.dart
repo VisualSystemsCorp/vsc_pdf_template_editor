@@ -12,8 +12,6 @@ part 'tpl_row.g.dart';
 )
 class TplRow implements wb.WidgetBuilder {
   String className = 'TplRow';
-  @JsonKey()
-  String? id;
   @JsonKey(defaultValue: MainAxisAlignment.start)
   MainAxisAlignment mainAxisAlignment;
   @JsonKey(defaultValue: MainAxisSize.max)

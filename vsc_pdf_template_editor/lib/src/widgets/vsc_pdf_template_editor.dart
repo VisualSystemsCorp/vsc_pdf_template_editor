@@ -43,7 +43,10 @@ class VscPdfTemplateEditor extends StatelessWidget {
                   width: 50,
                 ),
                 ElevatedButton(
-                    onPressed: viewModel.reformat,
+                    onPressed: () {
+                      viewModel.reformat(viewModel.templateController);
+                      viewModel.reformat(viewModel.dataController);
+                    },
                     child: const Text(AppStrings.reformat)),
               ],
             ),

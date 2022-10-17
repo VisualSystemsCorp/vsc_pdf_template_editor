@@ -59,7 +59,24 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
               Container(
                 color: Colors.amber.withOpacity(0.1),
                 padding: const EdgeInsets.all(20),
-                child: Text(widget.data),
+                child: Container(
+                  color: Colors.amber.withOpacity(0.1),
+                  padding: const EdgeInsets.all(20),
+                  child: TextField(
+                    controller: widget.viewModel.dataController,
+                    autocorrect: false,
+                    enableSuggestions: false,
+                    keyboardType: TextInputType.multiline,
+                    textInputAction: TextInputAction.newline,
+                    autofocus: true,
+                    maxLines: null,
+                    decoration: const InputDecoration.collapsed(hintText: ''),
+                    onChanged: (val) => EasyDebounce.debounce(
+                        '',
+                        const Duration(milliseconds: 500),
+                        () => widget.viewModel.onDataChanged()),
+                  ),
+                ),
               ),
             ],
           ),

@@ -27,6 +27,23 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
+  late final _$_dataAtom = Atom(name: '_TreeStore._data', context: context);
+
+  Map<String, dynamic> get data {
+    _$_dataAtom.reportRead();
+    return super._data;
+  }
+
+  @override
+  Map<String, dynamic> get _data => data;
+
+  @override
+  set _data(Map<String, dynamic> value) {
+    _$_dataAtom.reportWrite(value, super._data, () {
+      super._data = value;
+    });
+  }
+
   late final _$_pdfBytesAtom =
       Atom(name: '_TreeStore._pdfBytes', context: context);
 
@@ -60,6 +77,17 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
+  dynamic onDataChanged() {
+    final _$actionInfo = _$_TreeStoreActionController.startAction(
+        name: '_TreeStore.onDataChanged');
+    try {
+      return super.onDataChanged();
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic onWidgetSelected(int index) {
     final _$actionInfo = _$_TreeStoreActionController.startAction(
         name: '_TreeStore.onWidgetSelected');
@@ -82,11 +110,11 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
-  dynamic reformat() {
+  dynamic reformat(TextEditingController controller) {
     final _$actionInfo =
         _$_TreeStoreActionController.startAction(name: '_TreeStore.reformat');
     try {
-      return super.reformat();
+      return super.reformat(controller);
     } finally {
       _$_TreeStoreActionController.endAction(_$actionInfo);
     }
