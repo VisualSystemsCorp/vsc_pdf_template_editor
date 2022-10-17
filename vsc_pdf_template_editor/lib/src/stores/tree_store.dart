@@ -38,6 +38,9 @@ abstract class _TreeStore with Store {
 
   pw.Document _doc = pw.Document();
 
+  @observable
+  int activeTab = 0;
+
   @readonly
   Map<String, dynamic> _template;
 
