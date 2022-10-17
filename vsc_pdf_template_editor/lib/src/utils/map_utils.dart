@@ -1,4 +1,4 @@
-T? getMap<T>(Map map, String path, T defaultValue) {
+getMap<T>(Map map, String path, T defaultValue) {
   List<String> keys = path.split('.');
   String key = keys[0];
 
@@ -7,9 +7,15 @@ T? getMap<T>(Map map, String path, T defaultValue) {
   }
 
   if (keys.length == 1) {
+    final res = map[key];
+    if (res is List) {
+      return res;
+    } else if (res == null) {
+      return res;
+    }
     return map[key] as T;
   }
-
+  
   return getMap(map[keys.removeAt(0)], keys.join('.'), defaultValue);
 }
 

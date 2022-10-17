@@ -251,12 +251,38 @@ abstract class _TreeStore with Store {
       _pathToMap = '';
       String searchedId = '';
       for (;;) {
-        final map = getMap(_template, _pathToMap, _template);
-        searchedId = _searchMap(map!);
+        final nested = getMap(_template, _pathToMap, _template);
+        if (nested is Map) {
+          searchedId = _searchMap(nested as Map<String, dynamic>);
+        } else {
+          for (int i = 0; i < nested.length; i++) {
+            final map = nested[i];
+            searchedId = map['id'];
+            if (searchedId == _selectedNode) {
+              if (map.containsKey('child')) {
+                pathToMap = '$_pathToMap.[$i].child';
+              } else {
+                pathToMap = '$_pathToMap.[$i].children';
+              }
+              break;
+            }
+          }
+        }
         if (searchedId == _selectedNode) break;
       }
 
-      _template = setMap(_template, _pathToMap, map);
+      print('path is ${_pathToMap}');
+      if (_pathToMap.endsWith('children')) {
+        final list = getMap(_template, _pathToMap, _template);
+        print('list is ${list}');
+        if (list == null || list.isEmpty) {
+          _template = setMap(_template, _pathToMap, [map]);
+        } else {
+          list.add(map);
+        }
+      } else {
+        _template = setMap(_template, _pathToMap, map);
+      }
 
       final newTree = _treeViewController?.addNode(
           _selectedNode!,
@@ -267,6 +293,7 @@ abstract class _TreeStore with Store {
               data: map));
       init(newTree!);
     }
+    print(_template);
     _buildPdf();
   }
 
@@ -278,6 +305,7 @@ abstract class _TreeStore with Store {
       for (;;) {
         final map = getMap(_template, _pathToMap, _template);
         searchedId = _searchMap(map!);
+
         if (searchedId == _selectedNode) break;
       }
 
@@ -361,7 +389,6 @@ abstract class _TreeStore with Store {
         pathToMap = _pathToMap.isEmpty ? key : '$_pathToMap.$key';
       }
     });
-    print(_pathToMap);
     return map['id'];
   }
 }
