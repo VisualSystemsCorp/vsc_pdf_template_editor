@@ -208,6 +208,17 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
+  dynamic reformat() {
+    final _$actionInfo =
+        _$_TreeStoreActionController.startAction(name: '_TreeStore.reformat');
+    try {
+      return super.reformat();
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 

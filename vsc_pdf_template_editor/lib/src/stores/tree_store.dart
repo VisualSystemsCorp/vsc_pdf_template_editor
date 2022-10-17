@@ -37,6 +37,7 @@ abstract class _TreeStore with Store {
   ];
   final Map<String, dynamic> _data;
   final List<TextEditingController> _controllers = [];
+  final _templateController = TextEditingController();
   String _pathToMap = '';
   String? _rootKey = '';
 
@@ -72,6 +73,8 @@ abstract class _TreeStore with Store {
   List<String> get supportedWidgets => _supportedWidgets;
 
   List<String> get selectedNodeProps => _selectedNodeProps;
+
+  TextEditingController get templateController => _templateController;
 
   set setPdfBytes(Uint8List? value) {
     _pdfBytes = value;
@@ -337,6 +340,9 @@ abstract class _TreeStore with Store {
   updateTreeView(List<Node> updated) {
     _treeViewController = _treeViewController!.copyWith(children: updated);
   }
+
+  @action
+  reformat() {}
 
   _resetPdf() {
     setPdfBytes = null;
