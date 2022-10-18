@@ -67,8 +67,12 @@ abstract class _TreeStore with Store {
 
   @action
   onInputChanged() {
-    _template = jsonDecode(_templateController.text);
-    _buildPdf();
+    try {
+      _template = jsonDecode(_templateController.text);
+      _buildPdf();
+    } catch (e) {
+      buildErrorText = e.toString();
+    }
   }
 
   @action
