@@ -111,8 +111,9 @@ abstract class _TreeStore with Store {
       final cursorPos = _templateController.selection.base.offset;
       final newMap = StringUtils.addCharAtPosition(
           _templateController.text, jsonEncode(map), cursorPos);
+
+      _templateController.text = newMap;
       _template = jsonDecode(newMap);
-      _initTemplateController();
       _buildPdf();
       buildErrorText = '';
     } catch (e) {
