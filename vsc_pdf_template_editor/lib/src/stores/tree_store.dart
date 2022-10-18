@@ -39,6 +39,9 @@ abstract class _TreeStore with Store {
   pw.Document _doc = pw.Document();
 
   @observable
+  String buildErrorText = '';
+
+  @observable
   int activeTab = 0;
 
   @readonly
@@ -64,8 +67,13 @@ abstract class _TreeStore with Store {
 
   @action
   onInputChanged() {
-    _template = jsonDecode(_templateController.text);
-    _buildPdf();
+    try {
+      _template = jsonDecode(_templateController.text);
+      _buildPdf();
+      buildErrorText = '';
+    } catch (e) {
+      buildErrorText = e.toString();
+    }
   }
 
   @action
@@ -99,12 +107,17 @@ abstract class _TreeStore with Store {
 
   @action
   addWidget(Map<String, dynamic> map) {
-    final cursorPos = _templateController.selection.base.offset;
-    final newMap = StringUtils.addCharAtPosition(
-        _templateController.text, jsonEncode(map), cursorPos);
-    _template = jsonDecode(newMap);
-    _initTemplateController();
-    _buildPdf();
+    try {
+      final cursorPos = _templateController.selection.base.offset;
+      final newMap = StringUtils.addCharAtPosition(
+          _templateController.text, jsonEncode(map), cursorPos);
+      _template = jsonDecode(newMap);
+      _initTemplateController();
+      _buildPdf();
+      buildErrorText = '';
+    } catch (e) {
+      buildErrorText = e.toString();
+    }
   }
 
   @action
@@ -133,7 +146,12 @@ abstract class _TreeStore with Store {
   }
 
   _buildPdf() async {
-    _doc = transformer.Transformer.buildPdf(_template, _data);
-    await _savePdf();
+    try {
+      _doc = transformer.Transformer.buildPdf(_template, _data);
+      await _savePdf();
+      buildErrorText = '';
+    } catch (e) {
+      buildErrorText = e.toString();
+    }
   }
 }

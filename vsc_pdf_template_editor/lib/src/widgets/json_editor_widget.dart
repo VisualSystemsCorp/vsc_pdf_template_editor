@@ -47,49 +47,60 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
                   TextButton(onPressed: null, child: Text(AppStrings.template)),
                   TextButton(onPressed: null, child: Text(AppStrings.data))
                 ])),
-        body: TabBarView(
-          controller: _tabController,
+        body: Column(
           children: [
-            Container(
-              color: Colors.amber.withOpacity(0.1),
-              padding: const EdgeInsets.all(20),
-              child: TextField(
-                controller: widget.viewModel.templateController,
-                autocorrect: false,
-                enableSuggestions: false,
-                keyboardType: TextInputType.multiline,
-                textInputAction: TextInputAction.newline,
-                autofocus: true,
-                maxLines: null,
-                decoration: const InputDecoration.collapsed(hintText: ''),
-                onChanged: (val) => EasyDebounce.debounce(
-                    '',
-                    const Duration(milliseconds: 500),
-                    () => widget.viewModel.onInputChanged()),
+            Flexible(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  Container(
+                    color: Colors.amber.withOpacity(0.1),
+                    padding: const EdgeInsets.all(20),
+                    child: TextField(
+                      controller: widget.viewModel.templateController,
+                      autocorrect: false,
+                      enableSuggestions: false,
+                      keyboardType: TextInputType.multiline,
+                      textInputAction: TextInputAction.newline,
+                      autofocus: true,
+                      maxLines: null,
+                      decoration: const InputDecoration.collapsed(hintText: ''),
+                      onChanged: (val) => EasyDebounce.debounce(
+                          '',
+                          const Duration(milliseconds: 500),
+                          () => widget.viewModel.onInputChanged()),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.amber.withOpacity(0.1),
+                    padding: const EdgeInsets.all(20),
+                    child: Container(
+                      color: Colors.amber.withOpacity(0.1),
+                      padding: const EdgeInsets.all(20),
+                      child: TextField(
+                        controller: widget.viewModel.dataController,
+                        autocorrect: false,
+                        enableSuggestions: false,
+                        keyboardType: TextInputType.multiline,
+                        textInputAction: TextInputAction.newline,
+                        autofocus: true,
+                        maxLines: null,
+                        decoration:
+                            const InputDecoration.collapsed(hintText: ''),
+                        onChanged: (val) => EasyDebounce.debounce(
+                            '',
+                            const Duration(milliseconds: 500),
+                            () => widget.viewModel.onDataChanged()),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Container(
-              color: Colors.amber.withOpacity(0.1),
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                color: Colors.amber.withOpacity(0.1),
                 padding: const EdgeInsets.all(20),
-                child: TextField(
-                  controller: widget.viewModel.dataController,
-                  autocorrect: false,
-                  enableSuggestions: false,
-                  keyboardType: TextInputType.multiline,
-                  textInputAction: TextInputAction.newline,
-                  autofocus: true,
-                  maxLines: null,
-                  decoration: const InputDecoration.collapsed(hintText: ''),
-                  onChanged: (val) => EasyDebounce.debounce(
-                      '',
-                      const Duration(milliseconds: 500),
-                      () => widget.viewModel.onDataChanged()),
-                ),
-              ),
-            ),
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: Text(widget.viewModel.buildErrorText))
           ],
         ),
       );

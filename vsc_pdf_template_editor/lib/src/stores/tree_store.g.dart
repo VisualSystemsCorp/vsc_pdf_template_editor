@@ -9,6 +9,22 @@ part of 'tree_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$TreeStore on _TreeStore, Store {
+  late final _$buildErrorTextAtom =
+      Atom(name: '_TreeStore.buildErrorText', context: context);
+
+  @override
+  String get buildErrorText {
+    _$buildErrorTextAtom.reportRead();
+    return super.buildErrorText;
+  }
+
+  @override
+  set buildErrorText(String value) {
+    _$buildErrorTextAtom.reportWrite(value, super.buildErrorText, () {
+      super.buildErrorText = value;
+    });
+  }
+
   late final _$activeTabAtom =
       Atom(name: '_TreeStore.activeTab', context: context);
 
@@ -139,6 +155,7 @@ mixin _$TreeStore on _TreeStore, Store {
   @override
   String toString() {
     return '''
+buildErrorText: ${buildErrorText},
 activeTab: ${activeTab}
     ''';
   }
