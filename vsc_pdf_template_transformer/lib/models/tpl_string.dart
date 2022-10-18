@@ -12,12 +12,12 @@ class TplString {
       };
       try {
         res = evaluator.eval(
-            Expression.parse(expression!), Map<String, dynamic>.from(context));
+            Expression.parse(expression), Map<String, dynamic>.from(context));
       } catch (e) {
-        return expression!;
+        return expression;
       }
 
-      return res != null ? res!.toString() : expression!;
+      return res != null ? res!.toString() : expression;
     } else {
       return '';
     }

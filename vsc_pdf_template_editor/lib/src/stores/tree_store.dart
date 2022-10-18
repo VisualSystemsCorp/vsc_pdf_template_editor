@@ -70,6 +70,7 @@ abstract class _TreeStore with Store {
     try {
       _template = jsonDecode(_templateController.text);
       _buildPdf();
+      buildErrorText = '';
     } catch (e) {
       buildErrorText = e.toString();
     }
@@ -113,6 +114,7 @@ abstract class _TreeStore with Store {
       _template = jsonDecode(newMap);
       _initTemplateController();
       _buildPdf();
+      buildErrorText = '';
     } catch (e) {
       buildErrorText = e.toString();
     }
@@ -147,6 +149,7 @@ abstract class _TreeStore with Store {
     try {
       _doc = transformer.Transformer.buildPdf(_template, _data);
       await _savePdf();
+      buildErrorText = '';
     } catch (e) {
       buildErrorText = e.toString();
     }
