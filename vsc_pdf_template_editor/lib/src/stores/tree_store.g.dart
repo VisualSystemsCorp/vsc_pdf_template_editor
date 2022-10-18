@@ -153,6 +153,17 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
+  String _reformatNewWidget(String text) {
+    final _$actionInfo = _$_TreeStoreActionController.startAction(
+        name: '_TreeStore._reformatNewWidget');
+    try {
+      return super._reformatNewWidget(text);
+    } finally {
+      _$_TreeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 buildErrorText: ${buildErrorText},
