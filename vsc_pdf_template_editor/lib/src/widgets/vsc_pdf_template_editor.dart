@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
+import 'package:vsc_pdf_template_editor/src/widgets/error_pane.dart';
 import 'package:vsc_pdf_template_editor/src/widgets/json_editor_widget.dart';
 import 'add_widget_dialog.dart';
 import 'pdf_view_widget.dart';
@@ -25,6 +26,12 @@ class VscPdfTemplateEditor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
+      if (viewModel.buildErrorText.isNotEmpty) {
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          await _showError(context);
+          viewModel.buildErrorText = '';
+        });
+      }
       return Column(
         children: [
           Padding(
@@ -90,4 +97,12 @@ class VscPdfTemplateEditor extends StatelessWidget {
               ),
             ),
           ));
+
+  _showError(BuildContext context) async => showModalBottomSheet(
+      context: context,
+      builder: (c) {
+        return ErrorPane(
+          errorText: viewModel.buildErrorText,
+        );
+      });
 }
