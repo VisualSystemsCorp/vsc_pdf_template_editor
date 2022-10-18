@@ -109,10 +109,11 @@ abstract class _TreeStore with Store {
   addWidget(Map<String, dynamic> map) {
     try {
       final cursorPos = _templateController.selection.base.offset;
-      final newMap = StringUtils.addCharAtPosition(
-          _templateController.text, jsonEncode(map), cursorPos);
+      final newMap = StringUtils.addCharAtPosition(_templateController.text,
+          _reformatNewWidget(jsonEncode(map)), cursorPos);
+
+      _templateController.text = newMap;
       _template = jsonDecode(newMap);
-      _initTemplateController();
       _buildPdf();
       buildErrorText = '';
     } catch (e) {
@@ -131,6 +132,20 @@ abstract class _TreeStore with Store {
         .split('\n')
         .forEach((dynamic element) => sb.write('\n$element'));
     controller.text = sb.toString();
+  }
+
+  @action
+  String _reformatNewWidget(String text) {
+    const JsonDecoder decoder = JsonDecoder();
+    const JsonEncoder encoder = JsonEncoder.withIndent('  ');
+    final dynamic object = decoder.convert(text);
+    final dynamic prettyString = encoder.convert(object);
+    final sb = StringBuffer();
+    prettyString
+        .split('\n')
+        .forEach((dynamic element) => sb.write('\n$element'));
+    text = sb.toString();
+    return text;
   }
 
   _initTemplateController() {
