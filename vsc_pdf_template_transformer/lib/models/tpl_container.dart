@@ -22,18 +22,13 @@ class TplContainer implements wb.WidgetBuilder {
   TplEdgeInsets? padding;
   @JsonKey(defaultValue: null)
   String? color;
-
-  @JsonKey(defaultValue: null)
   TplBoxDecoration? decoration;
-  @JsonKey(defaultValue: null)
   TplBoxDecoration? foregroundDecoration;
   @JsonKey()
   double? width;
   @JsonKey()
   double? height;
-
-  // @JsonKey(defaultValue: null)
-  //TplBoxConstraints? constraints;
+  TplBoxConstraints? constraints;
   TplEdgeInsets? margin;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
@@ -42,11 +37,11 @@ class TplContainer implements wb.WidgetBuilder {
     this.alignment = const TplAlignment(),
     this.padding = const TplEdgeInsets(),
     this.color,
-    this.decoration,
-    this.foregroundDecoration,
+    this.decoration = const TplBoxDecoration(),
+    this.foregroundDecoration = const TplBoxDecoration(),
     this.width,
     this.height,
-    // this.constraints,
+    this.constraints = const TplBoxConstraints(),
     this.margin = const TplEdgeInsets(),
     this.child,
   });
@@ -66,7 +61,7 @@ class TplContainer implements wb.WidgetBuilder {
         foregroundDecoration: TplBoxDecoration.to(foregroundDecoration),
         width: TplString.evaluateDouble(width, data),
         height: TplString.evaluateDouble(height, data),
-        //   constraints: constraints,
+        constraints: TplBoxConstraints.to(constraints),
         margin: TplEdgeInsets.to(margin),
         child: child?.buildWidget(data));
     return value;

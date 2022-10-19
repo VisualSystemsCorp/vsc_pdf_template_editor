@@ -11,13 +11,16 @@ part 'tpl_box_decoration.g.dart';
   explicitToJson: true,
 )
 class TplBoxDecoration {
-  TplBoxDecoration({
+  const TplBoxDecoration({
+    this.color,
     this.border,
     this.borderRadius,
   });
 
-  TplBoxBorder? border;
-  TplBorderRadius? borderRadius;
+  @JsonKey(defaultValue: null)
+  final String? color;
+  final TplBoxBorder? border;
+  final TplBorderRadius? borderRadius;
 
   factory TplBoxDecoration.fromJson(Map<String, dynamic> json) =>
       _$TplBoxDecorationFromJson(json);
@@ -25,9 +28,10 @@ class TplBoxDecoration {
   Map<String, dynamic> toJson() => _$TplBoxDecorationToJson(this);
 
   static TplBoxDecoration? from(ws.BoxDecoration value) {
-    TplBoxDecoration result = TplBoxDecoration();
-    result.border = TplBoxBorder();
-    result.borderRadius = TplBorderRadius();
+    TplBoxDecoration result = TplBoxDecoration(
+        color: value.color.toString(),
+        border: TplBoxBorder(),
+        borderRadius: TplBorderRadius());
     return result;
   }
 

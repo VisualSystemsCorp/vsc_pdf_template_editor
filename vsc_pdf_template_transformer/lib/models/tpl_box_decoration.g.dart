@@ -12,6 +12,7 @@ TplBoxDecoration _$TplBoxDecorationFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplBoxDecoration(
+          color: $checkedConvert('color', (v) => v as String?),
           border: $checkedConvert(
               'border',
               (v) => v == null
@@ -29,6 +30,7 @@ TplBoxDecoration _$TplBoxDecorationFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplBoxDecorationToJson(TplBoxDecoration instance) =>
     <String, dynamic>{
+      'color': instance.color,
       'border': instance.border?.toJson(),
       'borderRadius': instance.borderRadius?.toJson(),
     };
