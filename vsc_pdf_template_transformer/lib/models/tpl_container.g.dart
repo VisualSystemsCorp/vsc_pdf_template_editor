@@ -12,13 +12,34 @@ TplContainer _$TplContainerFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplContainer(
-          width: $checkedConvert('width', (v) => v as String?),
-          height: $checkedConvert('height', (v) => v as String?),
+          alignment: $checkedConvert(
+              'alignment',
+              (v) => v == null
+                  ? const TplAlignment()
+                  : TplAlignment.fromJson(v as Map<String, dynamic>)),
+          padding: $checkedConvert(
+              'padding',
+              (v) => v == null
+                  ? const TplEdgeInsets()
+                  : TplEdgeInsets.fromJson(v as Map<String, dynamic>)),
+          color: $checkedConvert('color', (v) => v as String?),
           decoration: $checkedConvert(
               'decoration',
               (v) => v == null
                   ? null
                   : TplBoxDecoration.fromJson(v as Map<String, dynamic>)),
+          foregroundDecoration: $checkedConvert(
+              'foregroundDecoration',
+              (v) => v == null
+                  ? null
+                  : TplBoxDecoration.fromJson(v as Map<String, dynamic>)),
+          width: $checkedConvert('width', (v) => (v as num?)?.toDouble()),
+          height: $checkedConvert('height', (v) => (v as num?)?.toDouble()),
+          margin: $checkedConvert(
+              'margin',
+              (v) => v == null
+                  ? const TplEdgeInsets()
+                  : TplEdgeInsets.fromJson(v as Map<String, dynamic>)),
           child: $checkedConvert(
               'child',
               (v) => const WidgetJsonConverter()
@@ -32,8 +53,13 @@ TplContainer _$TplContainerFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TplContainerToJson(TplContainer instance) =>
     <String, dynamic>{
       'className': instance.className,
+      'alignment': instance.alignment?.toJson(),
+      'padding': instance.padding?.toJson(),
+      'color': instance.color,
+      'decoration': instance.decoration?.toJson(),
+      'foregroundDecoration': instance.foregroundDecoration?.toJson(),
       'width': instance.width,
       'height': instance.height,
-      'decoration': instance.decoration?.toJson(),
+      'margin': instance.margin?.toJson(),
       'child': const WidgetJsonConverter().toJson(instance.child),
     };
