@@ -12,7 +12,14 @@ TplBorderSide _$TplBorderSideFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplBorderSide(
-          width: $checkedConvert('width', (v) => (v as num).toDouble()),
+          width:
+              $checkedConvert('width', (v) => (v as num?)?.toDouble() ?? 1.0),
+          color: $checkedConvert('color', (v) => v as String? ?? '000000'),
+          style: $checkedConvert(
+              'style',
+              (v) => v == null
+                  ? const TplBorderStyle()
+                  : TplBorderStyle.fromJson(v as Map<String, dynamic>)),
         );
         return val;
       },
@@ -21,4 +28,6 @@ TplBorderSide _$TplBorderSideFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TplBorderSideToJson(TplBorderSide instance) =>
     <String, dynamic>{
       'width': instance.width,
+      'color': instance.color,
+      'style': instance.style.toJson(),
     };

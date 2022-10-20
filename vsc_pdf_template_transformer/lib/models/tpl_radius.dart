@@ -9,7 +9,7 @@ part 'tpl_radius.g.dart';
   explicitToJson: true,
 )
 class TplRadius {
-  TplRadius(this.x, this.y);
+  const TplRadius({this.x = 0, this.y = 0});
 
   const TplRadius.circular(double radius) : this.elliptical(radius, radius);
 

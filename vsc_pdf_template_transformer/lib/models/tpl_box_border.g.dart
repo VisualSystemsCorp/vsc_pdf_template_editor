@@ -15,22 +15,22 @@ TplBoxBorder _$TplBoxBorderFromJson(Map<String, dynamic> json) =>
           top: $checkedConvert(
               'top',
               (v) => v == null
-                  ? null
-                  : TplBorderSide.fromJson(v as Map<String, dynamic>)),
-          right: $checkedConvert(
-              'right',
-              (v) => v == null
-                  ? null
+                  ? const TplBorderSide()
                   : TplBorderSide.fromJson(v as Map<String, dynamic>)),
           bottom: $checkedConvert(
               'bottom',
               (v) => v == null
-                  ? null
+                  ? const TplBorderSide()
                   : TplBorderSide.fromJson(v as Map<String, dynamic>)),
           left: $checkedConvert(
               'left',
               (v) => v == null
-                  ? null
+                  ? const TplBorderSide()
+                  : TplBorderSide.fromJson(v as Map<String, dynamic>)),
+          right: $checkedConvert(
+              'right',
+              (v) => v == null
+                  ? const TplBorderSide()
                   : TplBorderSide.fromJson(v as Map<String, dynamic>)),
         );
         return val;
@@ -40,7 +40,7 @@ TplBoxBorder _$TplBoxBorderFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TplBoxBorderToJson(TplBoxBorder instance) =>
     <String, dynamic>{
       'top': instance.top?.toJson(),
-      'right': instance.right?.toJson(),
       'bottom': instance.bottom?.toJson(),
       'left': instance.left?.toJson(),
+      'right': instance.right?.toJson(),
     };

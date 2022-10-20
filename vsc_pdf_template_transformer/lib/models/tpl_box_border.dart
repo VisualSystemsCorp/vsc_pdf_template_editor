@@ -10,17 +10,19 @@ part 'tpl_box_border.g.dart';
   explicitToJson: true,
 )
 class TplBoxBorder {
-  TplBoxBorder({
-    this.top,
-    this.right,
-    this.bottom,
-    this.left,
+  const TplBoxBorder({
+    this.top = const TplBorderSide(),
+    this.bottom = const TplBorderSide(),
+    this.left = const TplBorderSide(),
+    this.right = const TplBorderSide(),
+    this.type = 'all',
   });
 
-  TplBorderSide? top;
-  TplBorderSide? right;
-  TplBorderSide? bottom;
-  TplBorderSide? left;
+  final TplBorderSide? top;
+  final TplBorderSide? bottom;
+  final TplBorderSide? left;
+  final TplBorderSide? right;
+  final String type;
 
   factory TplBoxBorder.fromJson(Map<String, dynamic> json) =>
       _$TplBoxBorderFromJson(json);
@@ -34,8 +36,16 @@ class TplBoxBorder {
   }
 
   static ws.BoxBorder to(TplBoxBorder? value) {
-    ws.BoxBorder result = ws.Border();
-    if (value == null) return result;
+    if (value == null) return ws.Border();
+    ws.Border result = ws.Border.all();
+    switch (value.type) {
+      case 'symmetric':
+        result = ws.Border.symmetric();
+        break;
+      case 'fromBorderSide':
+        result = ws.Border.fromBorderSide(TplBorderSide.to(value.right));
+        break;
+    }
     return result;
   }
 }

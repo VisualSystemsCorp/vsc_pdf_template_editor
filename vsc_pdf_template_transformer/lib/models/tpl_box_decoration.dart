@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:pdf/pdf.dart';
 import "package:pdf/widgets.dart" as ws;
 import 'package:vsc_pdf_template_transformer/models/tpl_border_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_border.dart';
@@ -13,8 +14,8 @@ part 'tpl_box_decoration.g.dart';
 class TplBoxDecoration {
   const TplBoxDecoration({
     this.color,
-    this.border,
-    this.borderRadius,
+    this.border = const TplBoxBorder(),
+    this.borderRadius = TplBorderRadius.zero,
   });
 
   @JsonKey(defaultValue: null)
@@ -31,13 +32,16 @@ class TplBoxDecoration {
     TplBoxDecoration result = TplBoxDecoration(
         color: value.color.toString(),
         border: TplBoxBorder(),
-        borderRadius: TplBorderRadius());
+        borderRadius: TplBorderRadius.zero);
     return result;
   }
 
   static ws.BoxDecoration to(TplBoxDecoration? value) {
-    ws.BoxDecoration result = ws.BoxDecoration();
-    if (value == null) return result;
+    if (value == null) return ws.BoxDecoration();
+    final result = ws.BoxDecoration(
+        color: value.color != null ? PdfColor.fromHex(value.color!) : null,
+        border: TplBoxBorder.to(value.border),
+        borderRadius: TplBorderRadius.to(value.borderRadius));
     return result;
   }
 }

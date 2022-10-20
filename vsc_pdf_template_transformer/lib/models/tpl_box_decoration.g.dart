@@ -16,12 +16,12 @@ TplBoxDecoration _$TplBoxDecorationFromJson(Map<String, dynamic> json) =>
           border: $checkedConvert(
               'border',
               (v) => v == null
-                  ? null
+                  ? const TplBoxBorder()
                   : TplBoxBorder.fromJson(v as Map<String, dynamic>)),
           borderRadius: $checkedConvert(
               'borderRadius',
               (v) => v == null
-                  ? null
+                  ? TplBorderRadius.zero
                   : TplBorderRadius.fromJson(v as Map<String, dynamic>)),
         );
         return val;
