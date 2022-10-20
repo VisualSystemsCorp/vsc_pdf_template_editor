@@ -33,7 +33,12 @@ class TplBoxConstraints {
 
   static ws.BoxConstraints to(TplBoxConstraints? value) {
     if (value == null) return ws.BoxConstraints();
-    ws.BoxConstraints result = ws.BoxConstraints();
+    ws.BoxConstraints result = ws.BoxConstraints(
+      minWidth: value.minWidth,
+      maxWidth: value.maxWidth,
+      minHeight: value.minHeight,
+      maxHeight: value.maxHeight,
+    );
     return result;
   }
 }

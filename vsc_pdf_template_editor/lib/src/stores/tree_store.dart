@@ -21,6 +21,7 @@ abstract class _TreeStore with Store {
     this._template,
     this._data,
   ) {
+    _mergeTemplate();
     _initTemplateController();
     _initDataController();
     _buildPdf();
@@ -35,6 +36,13 @@ abstract class _TreeStore with Store {
   ];
   final _templateController = TextEditingController();
   final _dataController = TextEditingController();
+  final Map<String, dynamic> _rootTemplate = {
+    "className": "TplDocument",
+    "pageMode": "none",
+    "children": [
+      {"className": "TplPage", "pageFormat": "letter", "children": []}
+    ]
+  };
 
   pw.Document _doc = pw.Document();
 
@@ -162,11 +170,18 @@ abstract class _TreeStore with Store {
 
   _buildPdf() async {
     try {
-      _doc = transformer.Transformer.buildPdf(_template, _data);
+      _doc = transformer.Transformer.buildPdf(
+          _template['children'][0]['children'][0], _data);
       await _savePdf();
       buildErrorText = '';
     } catch (e) {
       buildErrorText = e.toString();
     }
+  }
+
+  _mergeTemplate() {
+    final newMap = StringUtils.addCharAtPosition(
+        jsonEncode(_rootTemplate), jsonEncode(_template), 114);
+    _template = jsonDecode(newMap);
   }
 }

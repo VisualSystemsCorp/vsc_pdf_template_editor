@@ -32,6 +32,7 @@ TplBoxBorder _$TplBoxBorderFromJson(Map<String, dynamic> json) =>
               (v) => v == null
                   ? const TplBorderSide()
                   : TplBorderSide.fromJson(v as Map<String, dynamic>)),
+          type: $checkedConvert('type', (v) => v as String? ?? 'all'),
         );
         return val;
       },
@@ -43,4 +44,5 @@ Map<String, dynamic> _$TplBoxBorderToJson(TplBoxBorder instance) =>
       'bottom': instance.bottom?.toJson(),
       'left': instance.left?.toJson(),
       'right': instance.right?.toJson(),
+      'type': instance.type,
     };

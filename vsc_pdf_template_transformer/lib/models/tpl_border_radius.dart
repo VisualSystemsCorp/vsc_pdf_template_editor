@@ -82,7 +82,16 @@ class TplBorderRadius {
     if (value == null) return result;
     switch (value.type) {
       case 'all':
-        result = ws.BorderRadius.all(TplRadius.to(TplRadius()));
+        result = ws.BorderRadius.all(ws.Radius.circular(20));
+        break;
+      case 'circular':
+        result = ws.BorderRadius.circular(10);
+        break;
+      case 'vertical':
+        result = ws.BorderRadius.vertical();
+        break;
+      case 'horizontal':
+        result = ws.BorderRadius.horizontal();
         break;
     }
 
