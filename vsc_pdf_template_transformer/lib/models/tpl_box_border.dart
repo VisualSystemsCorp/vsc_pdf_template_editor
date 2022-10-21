@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import "package:pdf/widgets.dart" as ws;
+import 'package:pdf/widgets.dart' as ws;
 import 'package:vsc_pdf_template_transformer/models/tpl_border_side.dart';
 
 part 'tpl_box_border.g.dart';

@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/pdf.dart';
-import "package:pdf/widgets.dart" as ws;
+import 'package:pdf/widgets.dart' as ws;
 import 'package:vsc_pdf_template_transformer/models/tpl_border_style.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 

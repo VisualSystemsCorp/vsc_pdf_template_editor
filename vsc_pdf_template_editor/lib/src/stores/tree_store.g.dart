@@ -120,17 +120,6 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   @override
-  dynamic onWidgetSelected(int index) {
-    final _$actionInfo = _$_TreeStoreActionController.startAction(
-        name: '_TreeStore.onWidgetSelected');
-    try {
-      return super.onWidgetSelected(index);
-    } finally {
-      _$_TreeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic addWidget(Map<String, dynamic> map) {
     final _$actionInfo =
         _$_TreeStoreActionController.startAction(name: '_TreeStore.addWidget');
