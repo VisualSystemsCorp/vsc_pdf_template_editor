@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import "package:pdf/widgets.dart" as ws;
+import 'package:pdf/widgets.dart' as ws;
+import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 
 part 'tpl_alignment.g.dart';
 
@@ -11,48 +12,34 @@ part 'tpl_alignment.g.dart';
 class TplAlignment {
   const TplAlignment({this.alignment = 'center'});
 
-  final String alignment;
+  final dynamic alignment;
 
   factory TplAlignment.fromJson(Map<String, dynamic> json) =>
       _$TplAlignmentFromJson(json);
 
   Map<String, dynamic> toJson() => _$TplAlignmentToJson(this);
 
-  static TplAlignment? from(ws.EdgeInsets value) {
-    final result = TplAlignment();
-    return result;
-  }
-
-  static ws.Alignment to(TplAlignment? value) {
-    if (value == null) return ws.Alignment(0, 0);
-    ws.Alignment result = ws.Alignment(0, 0);
-    switch (value.alignment) {
+  ws.Alignment toPdf(Map<String, dynamic> data) {
+    final alignmentStr = evaluateString(alignment, data);
+    switch (alignmentStr) {
       case 'topLeft':
-        result = ws.Alignment(-1, 1);
-        break;
+        return ws.Alignment(-1, 1);
       case 'topCenter':
-        result = ws.Alignment(0, 1);
-        break;
+        return ws.Alignment(0, 1);
       case 'topRight':
-        result = ws.Alignment(1, 1);
-        break;
+        return ws.Alignment(1, 1);
       case 'centerLeft':
-        result = ws.Alignment(-1, 0);
-        break;
+        return ws.Alignment(-1, 0);
       case 'centerRight':
-        result = ws.Alignment(1, 0);
-        break;
+        return ws.Alignment(1, 0);
       case 'bottomLeft':
-        result = ws.Alignment(-1, -1);
-        break;
+        return ws.Alignment(-1, -1);
       case 'bottomCenter':
-        result = ws.Alignment(0, -1);
-        break;
+        return ws.Alignment(0, -1);
       case 'bottomRight':
-        result = ws.Alignment(1, -1);
-        break;
+        return ws.Alignment(1, -1);
+      default:
+        throw Exception('Invalid alignment: $alignmentStr');
     }
-
-    return result;
   }
 }

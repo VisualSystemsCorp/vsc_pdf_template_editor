@@ -11,19 +11,18 @@ TplBoxDecoration _$TplBoxDecorationFromJson(Map<String, dynamic> json) =>
       'TplBoxDecoration',
       json,
       ($checkedConvert) {
-        final val = TplBoxDecoration(
-          color: $checkedConvert('color', (v) => v as String?),
-          border: $checkedConvert(
-              'border',
-              (v) => v == null
-                  ? const TplBoxBorder()
-                  : TplBoxBorder.fromJson(v as Map<String, dynamic>)),
-          borderRadius: $checkedConvert(
-              'borderRadius',
-              (v) => v == null
-                  ? TplBorderRadius.zero
-                  : TplBorderRadius.fromJson(v as Map<String, dynamic>)),
-        );
+        final val = TplBoxDecoration();
+        $checkedConvert('color', (v) => val.color = v);
+        $checkedConvert(
+            'border',
+            (v) => val.border = v == null
+                ? null
+                : TplBoxBorder.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'borderRadius',
+            (v) => val.borderRadius = v == null
+                ? null
+                : TplBorderRadius.fromJson(v as Map<String, dynamic>));
         return val;
       },
     );

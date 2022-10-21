@@ -11,12 +11,13 @@ TplBorderStyle _$TplBorderStyleFromJson(Map<String, dynamic> json) =>
       'TplBorderStyle',
       json,
       ($checkedConvert) {
-        final val = TplBorderStyle(
-          paint: $checkedConvert('paint', (v) => v as bool? ?? true),
-          pattern: $checkedConvert('pattern',
-              (v) => (v as List<dynamic>?)?.map((e) => e as num).toList()),
-          phase: $checkedConvert('phase', (v) => v as int? ?? 0),
-        );
+        final val = TplBorderStyle();
+        $checkedConvert('paint', (v) => val.paint = v);
+        $checkedConvert(
+            'pattern',
+            (v) => val.pattern =
+                (v as List<dynamic>?)?.map((e) => e as num).toList());
+        $checkedConvert('phase', (v) => val.phase = v);
         return val;
       },
     );

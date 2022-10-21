@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
+import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 import '../utils/widget_builder.dart' as wb;
 
@@ -13,10 +13,13 @@ part 'tpl_sized_box.g.dart';
 )
 class TplSizedBox implements wb.WidgetBuilder {
   String className = 'TplSizedBox';
+
   @JsonKey()
-  double? width;
+  dynamic width;
+
   @JsonKey()
-  double? height;
+  dynamic height;
+
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
 
@@ -29,14 +32,14 @@ class TplSizedBox implements wb.WidgetBuilder {
   factory TplSizedBox.fromJson(Map<String, dynamic> json) =>
       _$TplSizedBoxFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$TplSizedBoxToJson(this);
 
   @override
-  Widget? buildWidget(Map<String, dynamic> data) {
-    final value = SizedBox(
-        width: TplString.evaluateDouble(width, data),
-        height: TplString.evaluateDouble(height, data),
+  Widget buildWidget(Map<String, dynamic> data) {
+    return SizedBox(
+        width: evaluateDouble(width, data),
+        height: evaluateDouble(height, data),
         child: child?.buildWidget(data));
-    return value;
   }
 }

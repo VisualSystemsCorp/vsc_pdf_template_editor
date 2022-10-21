@@ -11,29 +11,42 @@ TplBoxBorder _$TplBoxBorderFromJson(Map<String, dynamic> json) =>
       'TplBoxBorder',
       json,
       ($checkedConvert) {
-        final val = TplBoxBorder(
-          top: $checkedConvert(
-              'top',
-              (v) => v == null
-                  ? const TplBorderSide()
-                  : TplBorderSide.fromJson(v as Map<String, dynamic>)),
-          bottom: $checkedConvert(
-              'bottom',
-              (v) => v == null
-                  ? const TplBorderSide()
-                  : TplBorderSide.fromJson(v as Map<String, dynamic>)),
-          left: $checkedConvert(
-              'left',
-              (v) => v == null
-                  ? const TplBorderSide()
-                  : TplBorderSide.fromJson(v as Map<String, dynamic>)),
-          right: $checkedConvert(
-              'right',
-              (v) => v == null
-                  ? const TplBorderSide()
-                  : TplBorderSide.fromJson(v as Map<String, dynamic>)),
-          type: $checkedConvert('type', (v) => v as String? ?? 'all'),
-        );
+        final val = TplBoxBorder();
+        $checkedConvert(
+            'top',
+            (v) => val.top = v == null
+                ? null
+                : TplBorderSide.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'bottom',
+            (v) => val.bottom = v == null
+                ? null
+                : TplBorderSide.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'left',
+            (v) => val.left = v == null
+                ? null
+                : TplBorderSide.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'right',
+            (v) => val.right = v == null
+                ? null
+                : TplBorderSide.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'all',
+            (v) => val.all = v == null
+                ? null
+                : TplBorderSide.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'vertical',
+            (v) => val.vertical = v == null
+                ? null
+                : TplBorderSide.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'horizontal',
+            (v) => val.horizontal = v == null
+                ? null
+                : TplBorderSide.fromJson(v as Map<String, dynamic>));
         return val;
       },
     );
@@ -44,5 +57,7 @@ Map<String, dynamic> _$TplBoxBorderToJson(TplBoxBorder instance) =>
       'bottom': instance.bottom?.toJson(),
       'left': instance.left?.toJson(),
       'right': instance.right?.toJson(),
-      'type': instance.type,
+      'all': instance.all?.toJson(),
+      'vertical': instance.vertical?.toJson(),
+      'horizontal': instance.horizontal?.toJson(),
     };

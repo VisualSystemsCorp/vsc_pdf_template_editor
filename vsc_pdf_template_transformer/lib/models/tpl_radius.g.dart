@@ -10,11 +10,10 @@ TplRadius _$TplRadiusFromJson(Map<String, dynamic> json) => $checkedCreate(
       'TplRadius',
       json,
       ($checkedConvert) {
-        final val = TplRadius(
-          x: $checkedConvert('x', (v) => (v as num?)?.toDouble() ?? 0),
-          y: $checkedConvert('y', (v) => (v as num?)?.toDouble() ?? 0),
-          type: $checkedConvert('type', (v) => v as String? ?? 'zero'),
-        );
+        final val = TplRadius();
+        $checkedConvert('x', (v) => val.x = v);
+        $checkedConvert('y', (v) => val.y = v);
+        $checkedConvert('circular', (v) => val.circular = v);
         return val;
       },
     );
@@ -22,5 +21,5 @@ TplRadius _$TplRadiusFromJson(Map<String, dynamic> json) => $checkedCreate(
 Map<String, dynamic> _$TplRadiusToJson(TplRadius instance) => <String, dynamic>{
       'x': instance.x,
       'y': instance.y,
-      'type': instance.type,
+      'circular': instance.circular,
     };

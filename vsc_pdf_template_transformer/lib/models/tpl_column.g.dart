@@ -10,35 +10,34 @@ TplColumn _$TplColumnFromJson(Map<String, dynamic> json) => $checkedCreate(
       'TplColumn',
       json,
       ($checkedConvert) {
-        final val = TplColumn(
-          mainAxisAlignment: $checkedConvert(
-              'mainAxisAlignment',
-              (v) =>
-                  $enumDecodeNullable(_$MainAxisAlignmentEnumMap, v) ??
-                  MainAxisAlignment.start),
-          mainAxisSize: $checkedConvert(
-              'mainAxisSize',
-              (v) =>
-                  $enumDecodeNullable(_$MainAxisSizeEnumMap, v) ??
-                  MainAxisSize.max),
-          crossAxisAlignment: $checkedConvert(
-              'crossAxisAlignment',
-              (v) =>
-                  $enumDecodeNullable(_$CrossAxisAlignmentEnumMap, v) ??
-                  CrossAxisAlignment.center),
-          verticalDirection: $checkedConvert(
-              'verticalDirection',
-              (v) =>
-                  $enumDecodeNullable(_$VerticalDirectionEnumMap, v) ??
-                  VerticalDirection.down),
-          children: $checkedConvert(
-              'children',
-              (v) => (v as List<dynamic>?)
-                  ?.map((e) => const WidgetJsonConverter()
-                      .fromJson(e as Map<String, dynamic>?))
-                  .toList()),
-        );
+        final val = TplColumn();
         $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert(
+            'mainAxisAlignment',
+            (v) => val.mainAxisAlignment =
+                $enumDecodeNullable(_$MainAxisAlignmentEnumMap, v) ??
+                    MainAxisAlignment.start);
+        $checkedConvert(
+            'mainAxisSize',
+            (v) => val.mainAxisSize =
+                $enumDecodeNullable(_$MainAxisSizeEnumMap, v) ??
+                    MainAxisSize.max);
+        $checkedConvert(
+            'crossAxisAlignment',
+            (v) => val.crossAxisAlignment =
+                $enumDecodeNullable(_$CrossAxisAlignmentEnumMap, v) ??
+                    CrossAxisAlignment.center);
+        $checkedConvert(
+            'verticalDirection',
+            (v) => val.verticalDirection =
+                $enumDecodeNullable(_$VerticalDirectionEnumMap, v) ??
+                    VerticalDirection.down);
+        $checkedConvert(
+            'children',
+            (v) => val.children = (v as List<dynamic>?)
+                ?.map((e) => const WidgetJsonConverter()
+                    .fromJson(e as Map<String, dynamic>?))
+                .toList());
         return val;
       },
     );

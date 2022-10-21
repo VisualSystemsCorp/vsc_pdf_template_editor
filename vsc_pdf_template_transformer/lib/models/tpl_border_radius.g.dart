@@ -11,29 +11,33 @@ TplBorderRadius _$TplBorderRadiusFromJson(Map<String, dynamic> json) =>
       'TplBorderRadius',
       json,
       ($checkedConvert) {
-        final val = TplBorderRadius(
-          $checkedConvert(
-              'topLeft',
-              (v) => v == null
-                  ? null
-                  : TplRadius.fromJson(v as Map<String, dynamic>)),
-          $checkedConvert(
-              'topRight',
-              (v) => v == null
-                  ? null
-                  : TplRadius.fromJson(v as Map<String, dynamic>)),
-          $checkedConvert(
-              'bottomLeft',
-              (v) => v == null
-                  ? null
-                  : TplRadius.fromJson(v as Map<String, dynamic>)),
-          $checkedConvert(
-              'bottomRight',
-              (v) => v == null
-                  ? null
-                  : TplRadius.fromJson(v as Map<String, dynamic>)),
-          type: $checkedConvert('type', (v) => v as String? ?? 'zero'),
-        );
+        final val = TplBorderRadius();
+        $checkedConvert(
+            'topLeft',
+            (v) => val.topLeft = v == null
+                ? null
+                : TplRadius.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'topRight',
+            (v) => val.topRight = v == null
+                ? null
+                : TplRadius.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'bottomLeft',
+            (v) => val.bottomLeft = v == null
+                ? null
+                : TplRadius.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'bottomRight',
+            (v) => val.bottomRight = v == null
+                ? null
+                : TplRadius.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'all',
+            (v) => val.all = v == null
+                ? null
+                : TplRadius.fromJson(v as Map<String, dynamic>));
+        $checkedConvert('circular', (v) => val.circular = v);
         return val;
       },
     );
@@ -44,5 +48,6 @@ Map<String, dynamic> _$TplBorderRadiusToJson(TplBorderRadius instance) =>
       'topRight': instance.topRight?.toJson(),
       'bottomLeft': instance.bottomLeft?.toJson(),
       'bottomRight': instance.bottomRight?.toJson(),
-      'type': instance.type,
+      'all': instance.all?.toJson(),
+      'circular': instance.circular,
     };

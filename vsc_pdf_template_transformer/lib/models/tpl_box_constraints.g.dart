@@ -11,16 +11,11 @@ TplBoxConstraints _$TplBoxConstraintsFromJson(Map<String, dynamic> json) =>
       'TplBoxConstraints',
       json,
       ($checkedConvert) {
-        final val = TplBoxConstraints(
-          minWidth: $checkedConvert(
-              'minWidth', (v) => (v as num?)?.toDouble() ?? 0.0),
-          maxWidth: $checkedConvert(
-              'maxWidth', (v) => (v as num?)?.toDouble() ?? 100000000000.0),
-          minHeight: $checkedConvert(
-              'minHeight', (v) => (v as num?)?.toDouble() ?? 0.0),
-          maxHeight: $checkedConvert(
-              'maxHeight', (v) => (v as num?)?.toDouble() ?? 10000000000.0),
-        );
+        final val = TplBoxConstraints();
+        $checkedConvert('minWidth', (v) => val.minWidth = v);
+        $checkedConvert('maxWidth', (v) => val.maxWidth = v);
+        $checkedConvert('minHeight', (v) => val.minHeight = v);
+        $checkedConvert('maxHeight', (v) => val.maxHeight = v);
         return val;
       },
     );

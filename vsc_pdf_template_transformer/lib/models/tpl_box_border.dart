@@ -10,42 +10,40 @@ part 'tpl_box_border.g.dart';
   explicitToJson: true,
 )
 class TplBoxBorder {
-  const TplBoxBorder({
-    this.top = const TplBorderSide(),
-    this.bottom = const TplBorderSide(),
-    this.left = const TplBorderSide(),
-    this.right = const TplBorderSide(),
-    this.type = 'all',
-  });
+  TplBoxBorder();
 
-  final TplBorderSide? top;
-  final TplBorderSide? bottom;
-  final TplBorderSide? left;
-  final TplBorderSide? right;
-  final String type;
+  TplBorderSide? top;
+  TplBorderSide? bottom;
+  TplBorderSide? left;
+  TplBorderSide? right;
+  TplBorderSide? all;
+  TplBorderSide? vertical;
+  TplBorderSide? horizontal;
 
   factory TplBoxBorder.fromJson(Map<String, dynamic> json) =>
       _$TplBoxBorderFromJson(json);
 
   Map<String, dynamic> toJson() => _$TplBoxBorderToJson(this);
 
-  static TplBoxBorder? from(ws.BoxBorder value) {
-    TplBoxBorder result = TplBoxBorder();
-
-    return result;
-  }
-
-  static ws.BoxBorder to(TplBoxBorder? value) {
-    if (value == null) return ws.Border();
-    ws.Border result = ws.Border.all();
-    switch (value.type) {
-      case 'symmetric':
-        result = ws.Border.symmetric();
-        break;
-      case 'fromBorderSide':
-        result = ws.Border.fromBorderSide(TplBorderSide.to(value.right));
-        break;
+  ws.BoxBorder toPdf(Map<String, dynamic> data) {
+    if (all != null) {
+      final border = all!.toPdf(data);
+      return ws.Border.all(
+          color: border.color, width: border.width, style: border.style);
     }
-    return result;
+
+    if (vertical != null || horizontal != null) {
+      return ws.Border.symmetric(
+        vertical: vertical?.toPdf(data) ?? ws.BorderSide.none,
+        horizontal: horizontal?.toPdf(data) ?? ws.BorderSide.none,
+      );
+    }
+
+    return ws.Border(
+      top: top?.toPdf(data) ?? ws.BorderSide.none,
+      bottom: bottom?.toPdf(data) ?? ws.BorderSide.none,
+      left: left?.toPdf(data) ?? ws.BorderSide.none,
+      right: right?.toPdf(data) ?? ws.BorderSide.none,
+    );
   }
 }

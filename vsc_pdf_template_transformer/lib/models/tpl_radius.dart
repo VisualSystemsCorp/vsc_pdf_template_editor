@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import "package:pdf/widgets.dart" as ws;
+import 'package:pdf/widgets.dart' as ws;
+import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 
 part 'tpl_radius.g.dart';
 
@@ -9,41 +10,25 @@ part 'tpl_radius.g.dart';
   explicitToJson: true,
 )
 class TplRadius {
-  const TplRadius({this.x = 0, this.y = 0, this.type = 'zero'});
+  TplRadius();
 
-  const TplRadius.circular(double radius) : this.elliptical(radius, radius);
-
-  const TplRadius.elliptical(this.x, this.y, {this.type = 'elliptical'});
-
-  final double x;
-
-  final double y;
-
-  final String type;
-
-  static const TplRadius zero = TplRadius.circular(0.0);
+  dynamic x;
+  dynamic y;
+  dynamic circular;
 
   factory TplRadius.fromJson(Map<String, dynamic> json) =>
       _$TplRadiusFromJson(json);
 
   Map<String, dynamic> toJson() => _$TplRadiusToJson(this);
 
-  static TplRadius? from(ws.Radius value) {
-    TplRadius result = TplRadius.zero;
-    return result;
-  }
-
-  static ws.Radius to(TplRadius? value) {
-    ws.Radius result = ws.Radius.zero;
-    if (value == null) return result;
-    switch (value.type) {
-      case 'elliptical':
-        result = ws.Radius.elliptical(value.x, value.y);
-        break;
-      case 'circular':
-        result = ws.Radius.circular(value.x);
-        break;
+  ws.Radius toPdf(Map<String, dynamic> data) {
+    if (circular != null) {
+      return ws.Radius.circular(evaluateDouble(circular, data) ?? 0);
     }
-    return result;
+
+    return ws.Radius.elliptical(
+      evaluateDouble(x, data) ?? 0,
+      evaluateDouble(y, data) ?? 0,
+    );
   }
 }

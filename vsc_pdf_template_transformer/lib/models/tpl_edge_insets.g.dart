@@ -11,19 +11,14 @@ TplEdgeInsets _$TplEdgeInsetsFromJson(Map<String, dynamic> json) =>
       'TplEdgeInsets',
       json,
       ($checkedConvert) {
-        final val = TplEdgeInsets(
-          left: $checkedConvert('left', (v) => (v as num?)?.toDouble() ?? 0),
-          top: $checkedConvert('top', (v) => (v as num?)?.toDouble() ?? 0),
-          right: $checkedConvert('right', (v) => (v as num?)?.toDouble() ?? 0),
-          bottom:
-              $checkedConvert('bottom', (v) => (v as num?)?.toDouble() ?? 0),
-          all: $checkedConvert('all', (v) => (v as num?)?.toDouble() ?? 0),
-          vertical:
-              $checkedConvert('vertical', (v) => (v as num?)?.toDouble() ?? 0),
-          horizontal: $checkedConvert(
-              'horizontal', (v) => (v as num?)?.toDouble() ?? 0),
-          type: $checkedConvert('type', (v) => v as String? ?? 'zero'),
-        );
+        final val = TplEdgeInsets();
+        $checkedConvert('left', (v) => val.left = v);
+        $checkedConvert('top', (v) => val.top = v);
+        $checkedConvert('right', (v) => val.right = v);
+        $checkedConvert('bottom', (v) => val.bottom = v);
+        $checkedConvert('all', (v) => val.all = v);
+        $checkedConvert('vertical', (v) => val.vertical = v);
+        $checkedConvert('horizontal', (v) => val.horizontal = v);
         return val;
       },
     );
@@ -37,5 +32,4 @@ Map<String, dynamic> _$TplEdgeInsetsToJson(TplEdgeInsets instance) =>
       'all': instance.all,
       'vertical': instance.vertical,
       'horizontal': instance.horizontal,
-      'type': instance.type,
     };

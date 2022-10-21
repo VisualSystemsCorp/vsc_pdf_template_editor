@@ -37,10 +37,10 @@ abstract class _TreeStore with Store {
   final _templateController = TextEditingController();
   final _dataController = TextEditingController();
   final Map<String, dynamic> _rootTemplate = {
-    "className": "TplDocument",
-    "pageMode": "none",
-    "children": [
-      {"className": "TplPage", "pageFormat": "letter", "children": []}
+    'className': 'TplDocument',
+    'pageMode': 'none',
+    'children': [
+      {'className': 'TplPage', 'pageFormat': 'letter', 'children': []}
     ]
   };
 
@@ -95,7 +95,7 @@ abstract class _TreeStore with Store {
     Map<String, dynamic> map = {};
     switch (index) {
       case 0:
-        map = TplText(text: '').toJson();
+        map = TplText().toJson();
         break;
       case 1:
         map = TplSizedBox().toJson();

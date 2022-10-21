@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:pdf/pdf.dart';
-import "package:pdf/widgets.dart" as ws;
+import 'package:pdf/widgets.dart' as ws;
+import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 
 part 'tpl_border_style.g.dart';
 
@@ -10,30 +10,21 @@ part 'tpl_border_style.g.dart';
   explicitToJson: true,
 )
 class TplBorderStyle {
-  const TplBorderStyle({
-    this.paint = true,
-    this.pattern,
-    this.phase = 0,
-  });
+  TplBorderStyle();
 
-  final bool paint;
-  final List<num>? pattern;
-  final int phase;
+  dynamic paint;
+  List<num>? pattern;
+  dynamic phase;
 
   factory TplBorderStyle.fromJson(Map<String, dynamic> json) =>
       _$TplBorderStyleFromJson(json);
 
   Map<String, dynamic> toJson() => _$TplBorderStyleToJson(this);
 
-  static TplBorderStyle? from(ws.BorderStyle value) {
-    TplBorderStyle result = TplBorderStyle();
-    return result;
-  }
-
-  static ws.BorderStyle to(TplBorderStyle? value) {
-    if (value == null) return ws.BorderStyle();
-    final result = ws.BorderStyle(
-        paint: value.paint, pattern: value.pattern, phase: value.phase);
-    return result;
+  ws.BorderStyle toPdf(Map<String, dynamic> data) {
+    return ws.BorderStyle(
+        paint: evaluateBool(paint, data) ?? true,
+        pattern: evaluateList(pattern, data),
+        phase: evaluateInt(phase, data) ?? 0);
   }
 }

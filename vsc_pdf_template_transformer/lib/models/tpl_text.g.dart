@@ -10,35 +10,33 @@ TplText _$TplTextFromJson(Map<String, dynamic> json) => $checkedCreate(
       'TplText',
       json,
       ($checkedConvert) {
-        final val = TplText(
-          text: $checkedConvert('text', (v) => v as String),
-          style: $checkedConvert(
-              'style',
-              (v) => v == null
-                  ? null
-                  : TplTextStyle.fromJson(v as Map<String, dynamic>)),
-          textAlign: $checkedConvert(
-              'textAlign',
-              (v) =>
-                  $enumDecodeNullable(_$TextAlignEnumMap, v) ?? TextAlign.left),
-          textDirection: $checkedConvert(
-              'textDirection',
-              (v) =>
-                  $enumDecodeNullable(_$TextDirectionEnumMap, v) ??
-                  TextDirection.ltr),
-          softWrap: $checkedConvert('softWrap', (v) => v as bool? ?? true),
-          tightBounds:
-              $checkedConvert('tightBounds', (v) => v as bool? ?? false),
-          textScaleFactor: $checkedConvert(
-              'textScaleFactor', (v) => (v as num?)?.toDouble() ?? 1.0),
-          maxLines: $checkedConvert('maxLines', (v) => v as int? ?? 1),
-          overflow: $checkedConvert(
-              'overflow',
-              (v) =>
-                  $enumDecodeNullable(_$TextOverflowEnumMap, v) ??
-                  TextOverflow.clip),
-        );
+        final val = TplText();
         $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('text', (v) => val.text = v);
+        $checkedConvert(
+            'style',
+            (v) => val.style = v == null
+                ? null
+                : TplTextStyle.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'textAlign',
+            (v) => val.textAlign =
+                $enumDecodeNullable(_$TextAlignEnumMap, v) ?? TextAlign.left);
+        $checkedConvert(
+            'textDirection',
+            (v) => val.textDirection =
+                $enumDecodeNullable(_$TextDirectionEnumMap, v) ??
+                    TextDirection.ltr);
+        $checkedConvert('softWrap', (v) => val.softWrap = v ?? true);
+        $checkedConvert('tightBounds', (v) => val.tightBounds = v ?? false);
+        $checkedConvert(
+            'textScaleFactor', (v) => val.textScaleFactor = v ?? 1.0);
+        $checkedConvert('maxLines', (v) => val.maxLines = v ?? 1);
+        $checkedConvert(
+            'overflow',
+            (v) => val.overflow =
+                $enumDecodeNullable(_$TextOverflowEnumMap, v) ??
+                    TextOverflow.clip);
         return val;
       },
     );

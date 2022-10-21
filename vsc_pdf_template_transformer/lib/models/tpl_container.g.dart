@@ -11,46 +11,45 @@ TplContainer _$TplContainerFromJson(Map<String, dynamic> json) =>
       'TplContainer',
       json,
       ($checkedConvert) {
-        final val = TplContainer(
-          alignment: $checkedConvert(
-              'alignment',
-              (v) => v == null
-                  ? const TplAlignment()
-                  : TplAlignment.fromJson(v as Map<String, dynamic>)),
-          padding: $checkedConvert(
-              'padding',
-              (v) => v == null
-                  ? const TplEdgeInsets()
-                  : TplEdgeInsets.fromJson(v as Map<String, dynamic>)),
-          color: $checkedConvert('color', (v) => v as String?),
-          decoration: $checkedConvert(
-              'decoration',
-              (v) => v == null
-                  ? const TplBoxDecoration()
-                  : TplBoxDecoration.fromJson(v as Map<String, dynamic>)),
-          foregroundDecoration: $checkedConvert(
-              'foregroundDecoration',
-              (v) => v == null
-                  ? const TplBoxDecoration()
-                  : TplBoxDecoration.fromJson(v as Map<String, dynamic>)),
-          width: $checkedConvert('width', (v) => (v as num?)?.toDouble()),
-          height: $checkedConvert('height', (v) => (v as num?)?.toDouble()),
-          constraints: $checkedConvert(
-              'constraints',
-              (v) => v == null
-                  ? const TplBoxConstraints()
-                  : TplBoxConstraints.fromJson(v as Map<String, dynamic>)),
-          margin: $checkedConvert(
-              'margin',
-              (v) => v == null
-                  ? const TplEdgeInsets()
-                  : TplEdgeInsets.fromJson(v as Map<String, dynamic>)),
-          child: $checkedConvert(
-              'child',
-              (v) => const WidgetJsonConverter()
-                  .fromJson(v as Map<String, dynamic>?)),
-        );
+        final val = TplContainer();
         $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert(
+            'alignment',
+            (v) => val.alignment = v == null
+                ? null
+                : TplAlignment.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'padding',
+            (v) => val.padding = v == null
+                ? null
+                : TplEdgeInsets.fromJson(v as Map<String, dynamic>));
+        $checkedConvert('color', (v) => val.color = v);
+        $checkedConvert(
+            'decoration',
+            (v) => val.decoration = v == null
+                ? null
+                : TplBoxDecoration.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'foregroundDecoration',
+            (v) => val.foregroundDecoration = v == null
+                ? null
+                : TplBoxDecoration.fromJson(v as Map<String, dynamic>));
+        $checkedConvert('width', (v) => val.width = v);
+        $checkedConvert('height', (v) => val.height = v);
+        $checkedConvert(
+            'constraints',
+            (v) => val.constraints = v == null
+                ? null
+                : TplBoxConstraints.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'margin',
+            (v) => val.margin = v == null
+                ? null
+                : TplEdgeInsets.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'child',
+            (v) => val.child = const WidgetJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
         return val;
       },
     );
