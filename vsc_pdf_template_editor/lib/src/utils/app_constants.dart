@@ -6,16 +6,18 @@ class AppConstants {
     'Column',
     'Row',
   ];
-  static const supportedProperties = {
-    'Container': [
-      'Alignment',
-      'Padding',
-      'Decoration',
-      'Foreground decoration',
-      'Constraints',
-      'Margin'
-    ]
-  };
+  static const supportedProperties = [
+    'Alignment',
+    'Edge Insets',
+    'Box Decoration',
+    'Radius',
+    'Box Border',
+    'Box Constraints',
+    'Border Style',
+    'Border Radius',
+    'Border Side',
+    'Text Style',
+  ];
 
   static const Map<String, dynamic> rootTemplate = {
     'className': 'TplDocument',

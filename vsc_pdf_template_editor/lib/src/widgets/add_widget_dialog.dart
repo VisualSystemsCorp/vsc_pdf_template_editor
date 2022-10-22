@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 
 class AddWidgetDialog extends StatefulWidget {
-  const AddWidgetDialog({super.key, required this.supportedWidgets});
+  const AddWidgetDialog({super.key, required this.items});
 
-  final List<String> supportedWidgets;
+  final List<String> items;
 
   @override
   State<StatefulWidget> createState() => _AddWidgetDialogState();
@@ -19,24 +19,27 @@ class _AddWidgetDialogState extends State<AddWidgetDialog> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-            mainAxisSize: MainAxisSize.min,
-            children: List.generate(
-                widget.supportedWidgets.length,
-                (i) => Container(
-                      color: _selected == i
-                          ? Theme.of(context).primaryColor
-                          : Colors.transparent,
-                      child: GestureDetector(
-                        onDoubleTap: () => Navigator.of(context).pop(i),
-                        child: ListTile(
-                          title: Text(widget.supportedWidgets[i]),
-                          selected: _selected == i,
-                          selectedColor: Colors.white,
-                          onTap: () => _select(i),
-                        ),
-                      ),
-                    ))),
+        Flexible(
+          child: ListView.builder(
+              itemCount: widget.items.length,
+              shrinkWrap: true,
+              itemBuilder: (c, i) {
+                return Container(
+                  color: _selected == i
+                      ? Theme.of(context).primaryColor
+                      : Colors.transparent,
+                  child: GestureDetector(
+                    onTap: () => _select(i),
+                    onDoubleTap: () => Navigator.of(context).pop(i),
+                    child: ListTile(
+                      title: Text(widget.items[i]),
+                      selected: _selected == i,
+                      selectedColor: Colors.white,
+                    ),
+                  ),
+                );
+              }),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

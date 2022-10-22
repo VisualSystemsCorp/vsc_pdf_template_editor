@@ -2,14 +2,20 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_border_radius.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_border_side.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_border_style.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_box_border.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_constraints.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_decoration.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:flutter/material.dart';
@@ -19,10 +25,10 @@ import 'package:basic_utils/basic_utils.dart';
 
 part 'tree_store.g.dart';
 
-class TreeStore = _TreeStore with _$TreeStore;
+class TreeStore = TreeStoreModel with _$TreeStore;
 
-abstract class _TreeStore with Store {
-  _TreeStore(
+abstract class TreeStoreModel with Store {
+  TreeStoreModel(
     this._template,
     this._data,
   ) {
@@ -144,26 +150,38 @@ abstract class _TreeStore with Store {
     addWidget(map);
   }
 
-  onPropertySelected(String name) {
+  onPropertySelected(int index) {
     Map<String, dynamic> map = {};
-    switch (name) {
-      case 'Alignment':
+    switch (index) {
+      case 0:
         map = const TplAlignment().toJson();
         break;
-      case 'Padding':
+      case 1:
         map = TplEdgeInsets().toJson();
         break;
-      case 'Decoration':
+      case 2:
         map = TplBoxDecoration().toJson();
         break;
-      case 'Foreground Decoration':
-        map = TplBoxDecoration().toJson();
+      case 3:
+        map = TplRadius().toJson();
         break;
-      case 'Constraints':
+      case 4:
+        map = TplBoxBorder().toJson();
+        break;
+      case 5:
         map = TplBoxConstraints().toJson();
         break;
-      case 'Margin':
-        map = TplEdgeInsets().toJson();
+      case 6:
+        map = TplBorderStyle().toJson();
+        break;
+      case 7:
+        map = TplBorderRadius().toJson();
+        break;
+      case 8:
+        map = TplBorderSide().toJson();
+        break;
+      case 9:
+        map = TplTextStyle().toJson();
         break;
     }
     addWidget(map);

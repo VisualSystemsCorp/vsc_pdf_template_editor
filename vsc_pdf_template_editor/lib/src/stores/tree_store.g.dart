@@ -8,9 +8,9 @@ part of 'tree_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$TreeStore on _TreeStore, Store {
+mixin _$TreeStore on TreeStoreModel, Store {
   late final _$buildErrorTextAtom =
-      Atom(name: '_TreeStore.buildErrorText', context: context);
+      Atom(name: 'TreeStoreModel.buildErrorText', context: context);
 
   @override
   String get buildErrorText {
@@ -26,7 +26,7 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   late final _$activeTabAtom =
-      Atom(name: '_TreeStore.activeTab', context: context);
+      Atom(name: 'TreeStoreModel.activeTab', context: context);
 
   @override
   int get activeTab {
@@ -42,7 +42,7 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   late final _$_templateAtom =
-      Atom(name: '_TreeStore._template', context: context);
+      Atom(name: 'TreeStoreModel._template', context: context);
 
   Map<String, dynamic> get template {
     _$_templateAtom.reportRead();
@@ -59,7 +59,7 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
-  late final _$_dataAtom = Atom(name: '_TreeStore._data', context: context);
+  late final _$_dataAtom = Atom(name: 'TreeStoreModel._data', context: context);
 
   Map<String, dynamic> get data {
     _$_dataAtom.reportRead();
@@ -77,7 +77,7 @@ mixin _$TreeStore on _TreeStore, Store {
   }
 
   late final _$_pdfBytesAtom =
-      Atom(name: '_TreeStore._pdfBytes', context: context);
+      Atom(name: 'TreeStoreModel._pdfBytes', context: context);
 
   Uint8List? get pdfBytes {
     _$_pdfBytesAtom.reportRead();
@@ -94,61 +94,61 @@ mixin _$TreeStore on _TreeStore, Store {
     });
   }
 
-  late final _$_TreeStoreActionController =
-      ActionController(name: '_TreeStore', context: context);
+  late final _$TreeStoreModelActionController =
+      ActionController(name: 'TreeStoreModel', context: context);
 
   @override
   dynamic onInputChanged() {
-    final _$actionInfo = _$_TreeStoreActionController.startAction(
-        name: '_TreeStore.onInputChanged');
+    final _$actionInfo = _$TreeStoreModelActionController.startAction(
+        name: 'TreeStoreModel.onInputChanged');
     try {
       return super.onInputChanged();
     } finally {
-      _$_TreeStoreActionController.endAction(_$actionInfo);
+      _$TreeStoreModelActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic onDataChanged() {
-    final _$actionInfo = _$_TreeStoreActionController.startAction(
-        name: '_TreeStore.onDataChanged');
+    final _$actionInfo = _$TreeStoreModelActionController.startAction(
+        name: 'TreeStoreModel.onDataChanged');
     try {
       return super.onDataChanged();
     } finally {
-      _$_TreeStoreActionController.endAction(_$actionInfo);
+      _$TreeStoreModelActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic addWidget(Map<String, dynamic> map) {
-    final _$actionInfo =
-        _$_TreeStoreActionController.startAction(name: '_TreeStore.addWidget');
+    final _$actionInfo = _$TreeStoreModelActionController.startAction(
+        name: 'TreeStoreModel.addWidget');
     try {
       return super.addWidget(map);
     } finally {
-      _$_TreeStoreActionController.endAction(_$actionInfo);
+      _$TreeStoreModelActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic reformat(TextEditingController controller) {
-    final _$actionInfo =
-        _$_TreeStoreActionController.startAction(name: '_TreeStore.reformat');
+    final _$actionInfo = _$TreeStoreModelActionController.startAction(
+        name: 'TreeStoreModel.reformat');
     try {
       return super.reformat(controller);
     } finally {
-      _$_TreeStoreActionController.endAction(_$actionInfo);
+      _$TreeStoreModelActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String _reformatNewWidget(String text) {
-    final _$actionInfo = _$_TreeStoreActionController.startAction(
-        name: '_TreeStore._reformatNewWidget');
+    final _$actionInfo = _$TreeStoreModelActionController.startAction(
+        name: 'TreeStoreModel._reformatNewWidget');
     try {
       return super._reformatNewWidget(text);
     } finally {
-      _$_TreeStoreActionController.endAction(_$actionInfo);
+      _$TreeStoreModelActionController.endAction(_$actionInfo);
     }
   }
 

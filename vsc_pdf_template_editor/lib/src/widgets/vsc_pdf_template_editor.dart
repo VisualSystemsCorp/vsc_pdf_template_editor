@@ -3,7 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
-import 'package:vsc_pdf_template_editor/src/widgets/add_property_dialog.dart';
 import 'package:vsc_pdf_template_editor/src/widgets/json_editor_widget.dart';
 import 'add_widget_dialog.dart';
 import 'pdf_view_widget.dart';
@@ -99,7 +98,7 @@ class VscPdfTemplateEditor extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.3,
               height: MediaQuery.of(context).size.height * 0.4,
               child: const AddWidgetDialog(
-                supportedWidgets: AppConstants.supportedWidgets,
+                items: AppConstants.supportedWidgets,
               ),
             ),
           ));
@@ -111,11 +110,10 @@ class VscPdfTemplateEditor extends StatelessWidget {
             title: const Center(child: Text(AppStrings.addProperty)),
             contentPadding: const EdgeInsets.symmetric(vertical: 20),
             content: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: MediaQuery.of(context).size.width * 0.3,
               height: MediaQuery.of(context).size.height * 0.4,
-              child: const AddPropertyDialog(
-                supportedWidgets: AppConstants.supportedWidgets,
-                supportedProperties: AppConstants.supportedProperties,
+              child: const AddWidgetDialog(
+                items: AppConstants.supportedProperties,
               ),
             ),
           ));
