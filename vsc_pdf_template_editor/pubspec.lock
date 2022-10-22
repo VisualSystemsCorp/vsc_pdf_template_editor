@@ -177,7 +177,7 @@ packages:
     source: hosted
     version: "2.0.2+1"
   expressions:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: expressions
       url: "https://pub.dartlang.org"
