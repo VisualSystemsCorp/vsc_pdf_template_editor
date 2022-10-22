@@ -74,8 +74,8 @@ abstract class TreeStoreModel with Store {
       _template = jsonDecode(_templateController.text);
       _buildPdf();
       buildErrorText = '';
-    } catch (e) {
-      buildErrorText = e.toString();
+    } catch (e, s) {
+      buildErrorText = '$e \n $s';
     }
   }
 
@@ -96,8 +96,8 @@ abstract class TreeStoreModel with Store {
       _template = jsonDecode(newMap);
       _buildPdf();
       buildErrorText = '';
-    } catch (e) {
-      buildErrorText = e.toString();
+    } catch (e, s) {
+      buildErrorText = '$e \n $s';
     }
   }
 
@@ -205,8 +205,8 @@ abstract class TreeStoreModel with Store {
           _template['children'][0]['children'][0], _data);
       await _savePdf();
       buildErrorText = '';
-    } catch (e) {
-      buildErrorText = e.toString();
+    } catch (e, s) {
+      buildErrorText = '$e \n $s';
     }
   }
 

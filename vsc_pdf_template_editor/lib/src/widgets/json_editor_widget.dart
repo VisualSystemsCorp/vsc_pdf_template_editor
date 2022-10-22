@@ -100,7 +100,8 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
             Container(
                 padding: const EdgeInsets.all(20),
                 height: MediaQuery.of(context).size.height * 0.2,
-                child: Text(widget.viewModel.buildErrorText))
+                child: SingleChildScrollView(
+                    child: Text(widget.viewModel.buildErrorText)))
           ],
         ),
       );
