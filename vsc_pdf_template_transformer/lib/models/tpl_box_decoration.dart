@@ -1,7 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-import "package:pdf/widgets.dart" as ws;
+import 'package:pdf/widgets.dart' as ws;
 import 'package:vsc_pdf_template_transformer/models/tpl_border_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_border.dart';
+import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 
 part 'tpl_box_decoration.g.dart';
 
@@ -11,11 +12,9 @@ part 'tpl_box_decoration.g.dart';
   explicitToJson: true,
 )
 class TplBoxDecoration {
-  TplBoxDecoration({
-    this.border,
-    this.borderRadius,
-  });
+  TplBoxDecoration();
 
+  dynamic color;
   TplBoxBorder? border;
   TplBorderRadius? borderRadius;
 
@@ -24,16 +23,11 @@ class TplBoxDecoration {
 
   Map<String, dynamic> toJson() => _$TplBoxDecorationToJson(this);
 
-  static TplBoxDecoration? from(ws.BoxDecoration value) {
-    TplBoxDecoration result = TplBoxDecoration();
-    result.border = TplBoxBorder();
-    result.borderRadius = TplBorderRadius();
-    return result;
-  }
-
-  static ws.BoxDecoration to(TplBoxDecoration? value) {
-    ws.BoxDecoration result = ws.BoxDecoration();
-    if (value == null) return result;
+  ws.BoxDecoration toPdf(Map<String, dynamic> data) {
+    final result = ws.BoxDecoration(
+        color: evaluateColor(color, data),
+        border: border?.toPdf(data),
+        borderRadius: borderRadius?.toPdf(data));
     return result;
   }
 }

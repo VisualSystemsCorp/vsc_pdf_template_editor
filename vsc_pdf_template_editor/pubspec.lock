@@ -177,11 +177,13 @@ packages:
     source: hosted
     version: "2.0.2+1"
   expressions:
-    dependency: "direct main"
+    dependency: transitive
     description:
-      name: expressions
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: a105e937873283858547bf106528b2e85b4cc5c1
+      url: "https://github.com/VisualSystemsCorp/expressions.git"
+    source: git
     version: "0.2.4"
   fake_async:
     dependency: transitive

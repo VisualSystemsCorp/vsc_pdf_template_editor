@@ -1,10 +1,21 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_border_radius.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_border_side.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_border_style.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_box_border.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_box_constraints.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_box_decoration.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:flutter/material.dart';
@@ -14,25 +25,19 @@ import 'package:basic_utils/basic_utils.dart';
 
 part 'tree_store.g.dart';
 
-class TreeStore = _TreeStore with _$TreeStore;
+class TreeStore = TreeStoreModel with _$TreeStore;
 
-abstract class _TreeStore with Store {
-  _TreeStore(
+abstract class TreeStoreModel with Store {
+  TreeStoreModel(
     this._template,
     this._data,
   ) {
+    _mergeTemplate();
     _initTemplateController();
     _initDataController();
     _buildPdf();
   }
 
-  final _supportedWidgets = [
-    'Text',
-    'Sized Box',
-    'Container',
-    'Column',
-    'Row',
-  ];
   final _templateController = TextEditingController();
   final _dataController = TextEditingController();
 
@@ -55,8 +60,6 @@ abstract class _TreeStore with Store {
 
   Uint8List? get pdfBytes => _pdfBytes;
 
-  List<String> get supportedWidgets => _supportedWidgets;
-
   TextEditingController get templateController => _templateController;
 
   TextEditingController get dataController => _dataController;
@@ -71,8 +74,8 @@ abstract class _TreeStore with Store {
       _template = jsonDecode(_templateController.text);
       _buildPdf();
       buildErrorText = '';
-    } catch (e) {
-      buildErrorText = e.toString();
+    } catch (e, s) {
+      buildErrorText = '$e \n $s';
     }
   }
 
@@ -80,29 +83,6 @@ abstract class _TreeStore with Store {
   onDataChanged() {
     _data = jsonDecode(_dataController.text);
     _buildPdf();
-  }
-
-  @action
-  onWidgetSelected(int index) {
-    Map<String, dynamic> map = {};
-    switch (index) {
-      case 0:
-        map = TplText(text: '').toJson();
-        break;
-      case 1:
-        map = TplSizedBox().toJson();
-        break;
-      case 2:
-        map = TplContainer().toJson();
-        break;
-      case 3:
-        map = TplColumn().toJson();
-        break;
-      case 4:
-        map = TplRow().toJson();
-        break;
-    }
-    addWidget(map);
   }
 
   @action
@@ -116,8 +96,8 @@ abstract class _TreeStore with Store {
       _template = jsonDecode(newMap);
       _buildPdf();
       buildErrorText = '';
-    } catch (e) {
-      buildErrorText = e.toString();
+    } catch (e, s) {
+      buildErrorText = '$e \n $s';
     }
   }
 
@@ -148,6 +128,65 @@ abstract class _TreeStore with Store {
     return text;
   }
 
+  onWidgetSelected(int index) {
+    Map<String, dynamic> map = {};
+    switch (index) {
+      case 0:
+        map = TplText().toJson();
+        break;
+      case 1:
+        map = TplSizedBox().toJson();
+        break;
+      case 2:
+        map = TplContainer().toJson();
+        break;
+      case 3:
+        map = TplColumn().toJson();
+        break;
+      case 4:
+        map = TplRow().toJson();
+        break;
+    }
+    addWidget(map);
+  }
+
+  onPropertySelected(int index) {
+    Map<String, dynamic> map = {};
+    switch (index) {
+      case 0:
+        map = const TplAlignment().toJson();
+        break;
+      case 1:
+        map = TplEdgeInsets().toJson();
+        break;
+      case 2:
+        map = TplBoxDecoration().toJson();
+        break;
+      case 3:
+        map = TplRadius().toJson();
+        break;
+      case 4:
+        map = TplBoxBorder().toJson();
+        break;
+      case 5:
+        map = TplBoxConstraints().toJson();
+        break;
+      case 6:
+        map = TplBorderStyle().toJson();
+        break;
+      case 7:
+        map = TplBorderRadius().toJson();
+        break;
+      case 8:
+        map = TplBorderSide().toJson();
+        break;
+      case 9:
+        map = TplTextStyle().toJson();
+        break;
+    }
+    addWidget(map);
+  }
+
   _initTemplateController() {
     _templateController.text = jsonEncode(_template);
   }
@@ -162,11 +201,18 @@ abstract class _TreeStore with Store {
 
   _buildPdf() async {
     try {
-      _doc = transformer.Transformer.buildPdf(_template, _data);
+      _doc = transformer.Transformer.buildPdf(
+          _template['children'][0]['children'][0], _data);
       await _savePdf();
       buildErrorText = '';
-    } catch (e) {
-      buildErrorText = e.toString();
+    } catch (e, s) {
+      buildErrorText = '$e \n $s';
     }
+  }
+
+  _mergeTemplate() {
+    final newMap = StringUtils.addCharAtPosition(
+        jsonEncode(AppConstants.rootTemplate), jsonEncode(_template), 114);
+    _template = jsonDecode(newMap);
   }
 }

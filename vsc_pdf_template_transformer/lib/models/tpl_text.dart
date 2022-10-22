@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_string.dart';
 import '../utils/widget_builder.dart' as wb;
 import 'tpl_text_style.dart';
+import '../utils/evaluator.dart';
 
 part 'tpl_text.g.dart';
 
@@ -12,55 +12,52 @@ part 'tpl_text.g.dart';
   explicitToJson: true,
 )
 class TplText implements wb.WidgetBuilder {
-  String className = 'TplText';
-  @JsonKey()
-  String text;
-  @JsonKey(defaultValue: null)
-  TplTextStyle? style;
-  @JsonKey(defaultValue: TextAlign.left)
-  TextAlign textAlign;
-  @JsonKey(defaultValue: TextDirection.ltr)
-  TextDirection textDirection;
-  @JsonKey(defaultValue: true)
-  bool softWrap;
-  @JsonKey(defaultValue: false)
-  bool tightBounds = false;
-  @JsonKey(defaultValue: 1.0)
-  double textScaleFactor;
-  @JsonKey(defaultValue: 1)
-  int maxLines;
-  @JsonKey(defaultValue: TextOverflow.clip)
-  TextOverflow overflow;
+  TplText();
 
-  TplText(
-      {required this.text,
-      this.style,
-      this.textAlign = TextAlign.left,
-      this.textDirection = TextDirection.ltr,
-      this.softWrap = true,
-      this.tightBounds = false,
-      this.textScaleFactor = 1.0,
-      this.maxLines = 1,
-      this.overflow = TextOverflow.clip});
+  String className = 'TplText';
+
+  dynamic text;
+  TplTextStyle? style;
+
+  @JsonKey(defaultValue: TextAlign.left)
+  TextAlign textAlign = TextAlign.left;
+
+  @JsonKey(defaultValue: TextDirection.ltr)
+  TextDirection textDirection = TextDirection.ltr;
+
+  @JsonKey(defaultValue: true)
+  dynamic softWrap = true;
+
+  @JsonKey(defaultValue: false)
+  dynamic tightBounds = false;
+
+  @JsonKey(defaultValue: 1.0)
+  dynamic textScaleFactor;
+
+  @JsonKey(defaultValue: 1)
+  dynamic maxLines;
+
+  @JsonKey(defaultValue: TextOverflow.clip)
+  TextOverflow overflow = TextOverflow.clip;
 
   factory TplText.fromJson(Map<String, dynamic> json) =>
       _$TplTextFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$TplTextToJson(this);
 
   @override
-  Widget? buildWidget(Map<String, dynamic> data) {
-    final value = Text(
-      TplString.evaluateString(text, data),
-      style: TplTextStyle.to(style),
+  Widget buildWidget(Map<String, dynamic> data) {
+    return Text(
+      evaluateString(text, data).toString(),
+      style: style?.toPdf(data),
       textAlign: textAlign,
       textDirection: textDirection,
-      softWrap: softWrap,
-      tightBounds: tightBounds,
-      textScaleFactor: textScaleFactor,
-      maxLines: maxLines,
+      softWrap: evaluateBool(softWrap, data),
+      tightBounds: evaluateBool(tightBounds, data) ?? false,
+      textScaleFactor: evaluateDouble(textScaleFactor, data) ?? 1,
+      maxLines: evaluateInt(maxLines, data),
       overflow: overflow,
     );
-    return value;
   }
 }

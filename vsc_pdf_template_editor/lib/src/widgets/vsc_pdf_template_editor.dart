@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
+import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 import 'package:vsc_pdf_template_editor/src/widgets/json_editor_widget.dart';
 import 'add_widget_dialog.dart';
@@ -39,6 +40,17 @@ class VscPdfTemplateEditor extends StatelessWidget {
                       }
                     },
                     child: const Text(AppStrings.addWidget)),
+                const SizedBox(
+                  width: 50,
+                ),
+                ElevatedButton(
+                    onPressed: () async {
+                      final res = await _onAddPropertyPressed(context);
+                      if (res != null) {
+                        viewModel.onPropertySelected(res);
+                      }
+                    },
+                    child: const Text(AppStrings.addProperty)),
                 const SizedBox(
                   width: 50,
                 ),
@@ -85,8 +97,23 @@ class VscPdfTemplateEditor extends StatelessWidget {
             content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
               height: MediaQuery.of(context).size.height * 0.4,
-              child: AddWidgetDialog(
-                supportedWidgets: viewModel.supportedWidgets,
+              child: const AddWidgetDialog(
+                items: AppConstants.supportedWidgets,
+              ),
+            ),
+          ));
+
+  _onAddPropertyPressed(BuildContext context) => showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (c) => AlertDialog(
+            title: const Center(child: Text(AppStrings.addProperty)),
+            contentPadding: const EdgeInsets.symmetric(vertical: 20),
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.3,
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: const AddWidgetDialog(
+                items: AppConstants.supportedProperties,
               ),
             ),
           ));

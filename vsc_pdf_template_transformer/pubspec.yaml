@@ -8,7 +8,8 @@ environment:
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
-  expressions: ^0.2.4
+  expressions:
+    git: https://github.com/VisualSystemsCorp/expressions.git
   path: ^1.8.2
   pdf: ^3.8.3
   printing: ^5.9.2

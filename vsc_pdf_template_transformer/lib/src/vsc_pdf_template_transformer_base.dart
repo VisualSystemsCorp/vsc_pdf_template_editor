@@ -18,7 +18,7 @@ class Transformer {
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
           final proxy = getWidgetBuilder(jsonDecode(jsonEncode(template)));
-          return proxy.buildWidget(data)!; // Center
+          return proxy.buildWidget(data); // Center
         }));
     return pdf;
   }
@@ -37,10 +37,10 @@ class Transformer {
 
     final fromJson = widgetClassFromJson[valueMap['className']];
 
-    if (fromJson == null) throw Exception("No className or unknown className");
+    if (fromJson == null) throw Exception('No className or unknown className');
     result = fromJson(valueMap);
 
-    print('------- generated widget ${result} -----');
+    print('------- generated widget $result -----');
     return result;
   }
 }

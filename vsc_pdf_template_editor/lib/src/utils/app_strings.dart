@@ -3,6 +3,7 @@ class AppStrings {
   static const testAppName = 'VSC: PDF Editor Example';
 
   static const addWidget = 'Add a Widget';
+  static const addProperty = 'Add a Property';
   static const reformat = 'Reformat';
 
   static const cancel = 'Cancel';
