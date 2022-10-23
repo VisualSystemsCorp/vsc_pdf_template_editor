@@ -30,6 +30,11 @@ TplTextStyle _$TplTextStyleFromJson(Map<String, dynamic> json) =>
             (v) => val.background = v == null
                 ? null
                 : TplBoxDecoration.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'decoration',
+            (v) => val.decoration = v == null
+                ? null
+                : TplTextDecoration.fromJson(v as Map<String, dynamic>));
         $checkedConvert('decorationColor', (v) => val.decorationColor = v);
         $checkedConvert(
             'decorationStyle',
@@ -41,6 +46,31 @@ TplTextStyle _$TplTextStyleFromJson(Map<String, dynamic> json) =>
             'renderingMode',
             (v) => val.renderingMode =
                 $enumDecodeNullable(_$PdfTextRenderingModeEnumMap, v));
+        $checkedConvert(
+            'font',
+            (v) => val.font =
+                v == null ? null : TplFont.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'fontNormal',
+            (v) => val.fontNormal =
+                v == null ? null : TplFont.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'fontBold',
+            (v) => val.fontBold =
+                v == null ? null : TplFont.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'fontItalic',
+            (v) => val.fontItalic =
+                v == null ? null : TplFont.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'fontBoldItalic',
+            (v) => val.fontBoldItalic =
+                v == null ? null : TplFont.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'fontFallback',
+            (v) => val.fontFallback = (v as List<dynamic>?)
+                ?.map((e) => TplFont.fromJson(e as Map<String, dynamic>))
+                .toList());
         return val;
       },
     );
@@ -57,10 +87,17 @@ Map<String, dynamic> _$TplTextStyleToJson(TplTextStyle instance) =>
       'lineSpacing': instance.lineSpacing,
       'height': instance.height,
       'background': instance.background?.toJson(),
+      'decoration': instance.decoration?.toJson(),
       'decorationColor': instance.decorationColor,
       'decorationStyle': _$TextDecorationStyleEnumMap[instance.decorationStyle],
       'decorationThickness': instance.decorationThickness,
       'renderingMode': _$PdfTextRenderingModeEnumMap[instance.renderingMode],
+      'font': instance.font?.toJson(),
+      'fontNormal': instance.fontNormal?.toJson(),
+      'fontBold': instance.fontBold?.toJson(),
+      'fontItalic': instance.fontItalic?.toJson(),
+      'fontBoldItalic': instance.fontBoldItalic?.toJson(),
+      'fontFallback': instance.fontFallback?.map((e) => e.toJson()).toList(),
     };
 
 const _$FontWeightEnumMap = {
