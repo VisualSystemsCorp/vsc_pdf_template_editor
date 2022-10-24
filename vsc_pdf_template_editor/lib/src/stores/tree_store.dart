@@ -9,14 +9,12 @@ import 'package:vsc_pdf_template_transformer/models/tpl_box_border.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_constraints.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_decoration.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_font.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_text_decoration.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
@@ -183,12 +181,6 @@ abstract class TreeStoreModel with Store {
         break;
       case 9:
         map = TplTextStyle().toJson();
-        break;
-      case 10:
-        map = const TplTextDecoration().toJson();
-        break;
-      case 11:
-        map = TplFont().toJson();
         break;
     }
     addWidget(map);
