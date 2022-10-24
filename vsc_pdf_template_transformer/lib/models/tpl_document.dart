@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
+import '../utils/evaluator.dart';
 
 part 'tpl_document.g.dart';
 
@@ -20,30 +21,30 @@ class TplDocument {
     this.producer,
   });
 
-  final bool compress;
-  final bool verbose;
-  final String? title;
-  final String? author;
-  final String? creator;
-  final String? subject;
-  final String? keywords;
-  final String? producer;
+  final dynamic compress;
+  final dynamic verbose;
+  final dynamic title;
+  final dynamic author;
+  final dynamic creator;
+  final dynamic subject;
+  final dynamic keywords;
+  final dynamic producer;
 
   factory TplDocument.fromJson(Map<String, dynamic> json) =>
       _$TplDocumentFromJson(json);
 
   Map<String, dynamic> toJson() => _$TplDocumentToJson(this);
 
-  Document toPdf() {
+  Document toPdf(Map<String, dynamic> data) {
     return Document(
-      compress: compress,
-      verbose: verbose,
-      title: title,
-      author: author,
-      creator: creator,
-      subject: subject,
-      keywords: keywords,
-      producer: producer,
+      compress: evaluateBool(compress, data) ?? true,
+      verbose: evaluateBool(verbose, data) ?? false,
+      title: evaluateString(title, data).toString(),
+      author: evaluateString(author, data).toString(),
+      creator: evaluateString(creator, data).toString(),
+      subject: evaluateString(subject, data).toString(),
+      keywords: evaluateString(keywords, data).toString(),
+      producer: evaluateString(producer, data).toString(),
     );
   }
 }

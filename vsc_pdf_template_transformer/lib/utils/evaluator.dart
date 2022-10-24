@@ -125,11 +125,20 @@ List<Font> evaluateFontList(
 
 TextDecoration? evaluateTextDecoration(
     dynamic expression, Map<String, dynamic> data) {
+  if (expression is List && expression.isNotEmpty) {
+    final List<TextDecoration> list = [];
+    for (final e in expression) {
+      final result = evaluateTextDecoration(e, data);
+      if (result != null) {
+        list.add(result);
+      }
+    }
+    return TextDecoration.combine(list);
+  }
   final result = _evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
-  // TODO Should accept a list or string. If list, use TextDecoration.combine()
   switch (result) {
     case 'none':
       return TextDecoration.none;

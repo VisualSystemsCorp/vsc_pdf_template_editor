@@ -11,14 +11,14 @@ TplDocument _$TplDocumentFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplDocument(
-          compress: $checkedConvert('compress', (v) => v as bool? ?? true),
-          verbose: $checkedConvert('verbose', (v) => v as bool? ?? false),
-          title: $checkedConvert('title', (v) => v as String?),
-          author: $checkedConvert('author', (v) => v as String?),
-          creator: $checkedConvert('creator', (v) => v as String?),
-          subject: $checkedConvert('subject', (v) => v as String?),
-          keywords: $checkedConvert('keywords', (v) => v as String?),
-          producer: $checkedConvert('producer', (v) => v as String?),
+          compress: $checkedConvert('compress', (v) => v ?? true),
+          verbose: $checkedConvert('verbose', (v) => v ?? false),
+          title: $checkedConvert('title', (v) => v),
+          author: $checkedConvert('author', (v) => v),
+          creator: $checkedConvert('creator', (v) => v),
+          subject: $checkedConvert('subject', (v) => v),
+          keywords: $checkedConvert('keywords', (v) => v),
+          producer: $checkedConvert('producer', (v) => v),
         );
         return val;
       },

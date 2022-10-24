@@ -14,7 +14,7 @@ class Transformer {
 
   static pw.Document buildPdf(
       Map<String, dynamic> template, Map<String, dynamic> data) {
-    final pdf = TplDocument.fromJson(template).toPdf();
+    final pdf = TplDocument.fromJson(template).toPdf(data);
     final content = template['children'][0]['children'][0];
     pdf.addPage(pw.Page(
         pageFormat: PdfPageFormat.a4,
