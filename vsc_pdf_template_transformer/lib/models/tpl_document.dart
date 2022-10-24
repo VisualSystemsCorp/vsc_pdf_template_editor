@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_page.dart';
 import '../utils/evaluator.dart';
 
 part 'tpl_document.g.dart';
@@ -19,8 +20,10 @@ class TplDocument {
     this.subject,
     this.keywords,
     this.producer,
+    this.children,
   });
 
+  String className = 'TplDocument';
   final dynamic compress;
   final dynamic verbose;
   final dynamic title;
@@ -29,6 +32,7 @@ class TplDocument {
   final dynamic subject;
   final dynamic keywords;
   final dynamic producer;
+  final List<dynamic>? children;
 
   factory TplDocument.fromJson(Map<String, dynamic> json) =>
       _$TplDocumentFromJson(json);
@@ -39,12 +43,12 @@ class TplDocument {
     return Document(
       compress: evaluateBool(compress, data) ?? true,
       verbose: evaluateBool(verbose, data) ?? false,
-      title: evaluateString(title, data).toString(),
-      author: evaluateString(author, data).toString(),
-      creator: evaluateString(creator, data).toString(),
-      subject: evaluateString(subject, data).toString(),
-      keywords: evaluateString(keywords, data).toString(),
-      producer: evaluateString(producer, data).toString(),
+      title: evaluateString(title, data),
+      author: evaluateString(author, data),
+      creator: evaluateString(creator, data),
+      subject: evaluateString(subject, data),
+      keywords: evaluateString(keywords, data),
+      producer: evaluateString(producer, data),
     );
   }
 }

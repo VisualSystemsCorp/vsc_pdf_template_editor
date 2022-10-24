@@ -19,13 +19,16 @@ TplDocument _$TplDocumentFromJson(Map<String, dynamic> json) => $checkedCreate(
           subject: $checkedConvert('subject', (v) => v),
           keywords: $checkedConvert('keywords', (v) => v),
           producer: $checkedConvert('producer', (v) => v),
+          children: $checkedConvert('children', (v) => v as List<dynamic>?),
         );
+        $checkedConvert('className', (v) => val.className = v as String);
         return val;
       },
     );
 
 Map<String, dynamic> _$TplDocumentToJson(TplDocument instance) =>
     <String, dynamic>{
+      'className': instance.className,
       'compress': instance.compress,
       'verbose': instance.verbose,
       'title': instance.title,
@@ -34,4 +37,5 @@ Map<String, dynamic> _$TplDocumentToJson(TplDocument instance) =>
       'subject': instance.subject,
       'keywords': instance.keywords,
       'producer': instance.producer,
+      'children': instance.children,
     };
