@@ -1,5 +1,6 @@
 import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart';
 
 dynamic _evaluateDynamic(dynamic expression, Map<String, dynamic> data) {
   if (expression is! String) {
@@ -87,4 +88,94 @@ List<T>? evaluateList<T>(dynamic expression, Map<String, dynamic> data) {
   }
 
   return List<T>.from(result, growable: false);
+}
+
+T? evaluateEnum<T extends Enum>(
+    List<T> values, dynamic expression, Map<String, dynamic> data) {
+  final result = _evaluateDynamic(expression, data);
+  if (result == null) {
+    return null;
+  }
+
+  return values.byName(result.toString());
+}
+
+Font? evaluateFont(dynamic expression, Map<String, dynamic> data) {
+  final fontEnum = evaluateEnum(Type1Fonts.values, expression, data);
+  if (fontEnum == null) {
+    return null;
+  }
+
+  return Font.type1(fontEnum);
+}
+
+List<Font> evaluateFontList(
+    List<dynamic>? expressions, Map<String, dynamic> data) {
+  final List<Font> list = [];
+  if (expressions != null && expressions.isNotEmpty) {
+    for (final e in expressions) {
+      final result = evaluateFont(e, data);
+      if (result != null) {
+        list.add(result);
+      }
+    }
+  }
+  return list;
+}
+
+TextDecoration? evaluateTextDecoration(
+    dynamic expression, Map<String, dynamic> data) {
+  if (expression is List && expression.isNotEmpty) {
+    final List<TextDecoration> list = [];
+    for (final e in expression) {
+      final result = evaluateTextDecoration(e, data);
+      if (result != null) {
+        list.add(result);
+      }
+    }
+    return TextDecoration.combine(list);
+  }
+  final result = _evaluateDynamic(expression, data);
+  if (result == null) {
+    return null;
+  }
+  switch (result) {
+    case 'none':
+      return TextDecoration.none;
+    case 'underline':
+      return TextDecoration.underline;
+    case 'overline':
+      return TextDecoration.overline;
+    case 'lineThrough':
+      return TextDecoration.lineThrough;
+    default:
+      throw Exception('Invalid text decoration: $result');
+  }
+}
+
+FontWeight? evaluateFontWeight(dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(FontWeight.values, expression, data);
+}
+
+FontStyle? evaluateFontStyle(dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(FontStyle.values, expression, data);
+}
+
+PdfTextRenderingMode? evaluatePdfTextRenderingMode(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PdfTextRenderingMode.values, expression, data);
+}
+
+TextAlign? evaluateTextAlign(dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(TextAlign.values, expression, data);
+}
+
+TextDirection? evaluateTextDirection(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(TextDirection.values, expression, data);
+}
+
+TextOverflow? evaluateTextOverflow(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(TextOverflow.values, expression, data);
 }

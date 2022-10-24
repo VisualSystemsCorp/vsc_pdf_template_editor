@@ -15,30 +15,19 @@ class TplText implements wb.WidgetBuilder {
   TplText();
 
   String className = 'TplText';
-
   dynamic text;
   TplTextStyle? style;
-
-  @JsonKey(defaultValue: TextAlign.left)
-  TextAlign textAlign = TextAlign.left;
-
-  @JsonKey(defaultValue: TextDirection.ltr)
-  TextDirection textDirection = TextDirection.ltr;
-
+  dynamic textAlign;
+  dynamic textDirection;
   @JsonKey(defaultValue: true)
   dynamic softWrap = true;
-
   @JsonKey(defaultValue: false)
   dynamic tightBounds = false;
-
   @JsonKey(defaultValue: 1.0)
   dynamic textScaleFactor;
-
   @JsonKey(defaultValue: 1)
   dynamic maxLines;
-
-  @JsonKey(defaultValue: TextOverflow.clip)
-  TextOverflow overflow = TextOverflow.clip;
+  dynamic overflow;
 
   factory TplText.fromJson(Map<String, dynamic> json) =>
       _$TplTextFromJson(json);
@@ -51,13 +40,13 @@ class TplText implements wb.WidgetBuilder {
     return Text(
       evaluateString(text, data).toString(),
       style: style?.toPdf(data),
-      textAlign: textAlign,
-      textDirection: textDirection,
+      textAlign: evaluateTextAlign(textAlign, data),
+      textDirection: evaluateTextDirection(textDirection, data),
       softWrap: evaluateBool(softWrap, data),
       tightBounds: evaluateBool(tightBounds, data) ?? false,
       textScaleFactor: evaluateDouble(textScaleFactor, data) ?? 1,
       maxLines: evaluateInt(maxLines, data),
-      overflow: overflow,
+      overflow: evaluateTextOverflow(overflow, data),
     );
   }
 }

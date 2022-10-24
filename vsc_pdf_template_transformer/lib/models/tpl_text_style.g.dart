@@ -15,12 +15,8 @@ TplTextStyle _$TplTextStyleFromJson(Map<String, dynamic> json) =>
         $checkedConvert('inherit', (v) => val.inherit = v);
         $checkedConvert('color', (v) => val.color = v);
         $checkedConvert('fontSize', (v) => val.fontSize = v);
-        $checkedConvert(
-            'fontWeight',
-            (v) =>
-                val.fontWeight = $enumDecodeNullable(_$FontWeightEnumMap, v));
-        $checkedConvert('fontStyle',
-            (v) => val.fontStyle = $enumDecodeNullable(_$FontStyleEnumMap, v));
+        $checkedConvert('fontWeight', (v) => val.fontWeight = v);
+        $checkedConvert('fontStyle', (v) => val.fontStyle = v);
         $checkedConvert('letterSpacing', (v) => val.letterSpacing = v);
         $checkedConvert('wordSpacing', (v) => val.wordSpacing = v);
         $checkedConvert('lineSpacing', (v) => val.lineSpacing = v);
@@ -30,6 +26,7 @@ TplTextStyle _$TplTextStyleFromJson(Map<String, dynamic> json) =>
             (v) => val.background = v == null
                 ? null
                 : TplBoxDecoration.fromJson(v as Map<String, dynamic>));
+        $checkedConvert('decoration', (v) => val.decoration = v);
         $checkedConvert('decorationColor', (v) => val.decorationColor = v);
         $checkedConvert(
             'decorationStyle',
@@ -37,10 +34,14 @@ TplTextStyle _$TplTextStyleFromJson(Map<String, dynamic> json) =>
                 $enumDecodeNullable(_$TextDecorationStyleEnumMap, v));
         $checkedConvert(
             'decorationThickness', (v) => val.decorationThickness = v);
+        $checkedConvert('renderingMode', (v) => val.renderingMode = v);
+        $checkedConvert('font', (v) => val.font = v);
+        $checkedConvert('fontNormal', (v) => val.fontNormal = v);
+        $checkedConvert('fontBold', (v) => val.fontBold = v);
+        $checkedConvert('fontItalic', (v) => val.fontItalic = v);
+        $checkedConvert('fontBoldItalic', (v) => val.fontBoldItalic = v);
         $checkedConvert(
-            'renderingMode',
-            (v) => val.renderingMode =
-                $enumDecodeNullable(_$PdfTextRenderingModeEnumMap, v));
+            'fontFallback', (v) => val.fontFallback = v as List<dynamic>?);
         return val;
       },
     );
@@ -50,41 +51,27 @@ Map<String, dynamic> _$TplTextStyleToJson(TplTextStyle instance) =>
       'inherit': instance.inherit,
       'color': instance.color,
       'fontSize': instance.fontSize,
-      'fontWeight': _$FontWeightEnumMap[instance.fontWeight],
-      'fontStyle': _$FontStyleEnumMap[instance.fontStyle],
+      'fontWeight': instance.fontWeight,
+      'fontStyle': instance.fontStyle,
       'letterSpacing': instance.letterSpacing,
       'wordSpacing': instance.wordSpacing,
       'lineSpacing': instance.lineSpacing,
       'height': instance.height,
       'background': instance.background?.toJson(),
+      'decoration': instance.decoration,
       'decorationColor': instance.decorationColor,
       'decorationStyle': _$TextDecorationStyleEnumMap[instance.decorationStyle],
       'decorationThickness': instance.decorationThickness,
-      'renderingMode': _$PdfTextRenderingModeEnumMap[instance.renderingMode],
+      'renderingMode': instance.renderingMode,
+      'font': instance.font,
+      'fontNormal': instance.fontNormal,
+      'fontBold': instance.fontBold,
+      'fontItalic': instance.fontItalic,
+      'fontBoldItalic': instance.fontBoldItalic,
+      'fontFallback': instance.fontFallback,
     };
-
-const _$FontWeightEnumMap = {
-  FontWeight.normal: 'normal',
-  FontWeight.bold: 'bold',
-};
-
-const _$FontStyleEnumMap = {
-  FontStyle.normal: 'normal',
-  FontStyle.italic: 'italic',
-};
 
 const _$TextDecorationStyleEnumMap = {
   TextDecorationStyle.solid: 'solid',
   TextDecorationStyle.double: 'double',
-};
-
-const _$PdfTextRenderingModeEnumMap = {
-  PdfTextRenderingMode.fill: 'fill',
-  PdfTextRenderingMode.stroke: 'stroke',
-  PdfTextRenderingMode.fillAndStroke: 'fillAndStroke',
-  PdfTextRenderingMode.invisible: 'invisible',
-  PdfTextRenderingMode.fillAndClip: 'fillAndClip',
-  PdfTextRenderingMode.strokeAndClip: 'strokeAndClip',
-  PdfTextRenderingMode.fillStrokeAndClip: 'fillStrokeAndClip',
-  PdfTextRenderingMode.clip: 'clip',
 };
