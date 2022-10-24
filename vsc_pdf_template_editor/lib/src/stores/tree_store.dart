@@ -201,7 +201,7 @@ abstract class TreeStoreModel with Store {
   _buildPdf() async {
     try {
       _doc = transformer.Transformer.buildPdf(
-          _template['children'][0]['children'][0], _data);
+          _template, _data);
       await _savePdf();
       buildErrorText = '';
     } catch (e, s) {
@@ -210,8 +210,9 @@ abstract class TreeStoreModel with Store {
   }
 
   _mergeTemplate() {
+    print(jsonEncode(AppConstants.rootTemplate));
     final newMap = StringUtils.addCharAtPosition(
-        jsonEncode(AppConstants.rootTemplate), jsonEncode(_template), 114);
+        jsonEncode(AppConstants.rootTemplate), jsonEncode(_template), 235);
     _template = jsonDecode(newMap);
   }
 }
