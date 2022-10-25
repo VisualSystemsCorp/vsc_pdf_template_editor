@@ -18,6 +18,7 @@ class AppConstants {
     'Border Radius',
     'Border Side',
     'Text Style',
+    'Page Format'
   ];
 
   static const Map<String, dynamic> rootTemplate = {

@@ -30,7 +30,11 @@ TplMultiPage _$TplMultiPageFromJson(Map<String, dynamic> json) =>
             (v) => val.theme = v == null
                 ? null
                 : TplThemeData.fromJson(v as Map<String, dynamic>));
-        $checkedConvert('pageFormat', (v) => val.pageFormat = v);
+        $checkedConvert(
+            'pageFormat',
+            (v) => val.pageFormat = v == null
+                ? null
+                : TplPdfPageFormat.fromJson(v as Map<String, dynamic>));
         $checkedConvert('orientation', (v) => val.orientation = v);
         $checkedConvert(
             'margin',
@@ -52,7 +56,7 @@ Map<String, dynamic> _$TplMultiPageToJson(TplMultiPage instance) =>
       'className': instance.className,
       'pageTheme': instance.pageTheme?.toJson(),
       'theme': instance.theme?.toJson(),
-      'pageFormat': instance.pageFormat,
+      'pageFormat': instance.pageFormat?.toJson(),
       'orientation': instance.orientation,
       'margin': instance.margin?.toJson(),
       'clip': instance.clip,

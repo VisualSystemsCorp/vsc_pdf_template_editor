@@ -20,8 +20,8 @@ class Transformer {
       if (template['children'][i]['className'] == 'TplMultiPage') {
         final List<WidgetBuilder> children = [];
         for (int j = 0; j < template['children'][i]['children'].length; j++) {
-          final child = getWidgetBuilder(
-              jsonDecode(jsonEncode(template['children'][i]['children'][j])));
+          final child =
+              getWidgetBuilder(template['children'][i]['children'][j]);
           children.add(child);
         }
         pdf.addPage(TplMultiPage(children).toPdf(data));

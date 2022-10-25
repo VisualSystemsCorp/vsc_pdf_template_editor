@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_theme.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
@@ -20,7 +21,7 @@ class TplMultiPage {
   String className = 'TplMultiPage';
   TplPageTheme? pageTheme;
   TplThemeData? theme;
-  dynamic pageFormat;
+  TplPdfPageFormat? pageFormat;
   dynamic orientation;
   TplEdgeInsets? margin;
   dynamic clip;
@@ -40,7 +41,7 @@ class TplMultiPage {
     return pw.MultiPage(
         pageTheme: pageTheme?.toPdf(data),
         theme: theme?.toPdf(data),
-        pageFormat: evaluatePageFormat(pageFormat, data),
+        pageFormat: pageFormat?.toPdf(data),
         orientation: evaluatePageOrientation(orientation, data),
         margin: margin?.toPdf(data),
         textDirection: evaluateTextDirection(textDirection, data),
