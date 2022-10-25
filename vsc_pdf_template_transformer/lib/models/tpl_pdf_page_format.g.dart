@@ -11,15 +11,14 @@ TplPdfPageFormat _$TplPdfPageFormatFromJson(Map<String, dynamic> json) =>
       'TplPdfPageFormat',
       json,
       ($checkedConvert) {
-        final val = TplPdfPageFormat(
-          width: $checkedConvert('width', (v) => v ?? 0),
-          height: $checkedConvert('height', (v) => v ?? 0),
-          marginTop: $checkedConvert('marginTop', (v) => v ?? 0),
-          marginBottom: $checkedConvert('marginBottom', (v) => v ?? 0),
-          marginLeft: $checkedConvert('marginLeft', (v) => v ?? 0),
-          marginRight: $checkedConvert('marginRight', (v) => v ?? 0),
-          marginAll: $checkedConvert('marginAll', (v) => v),
-        );
+        final val = TplPdfPageFormat();
+        $checkedConvert('width', (v) => val.width = v);
+        $checkedConvert('height', (v) => val.height = v);
+        $checkedConvert('marginTop', (v) => val.marginTop = v);
+        $checkedConvert('marginBottom', (v) => val.marginBottom = v);
+        $checkedConvert('marginLeft', (v) => val.marginLeft = v);
+        $checkedConvert('marginRight', (v) => val.marginRight = v);
+        $checkedConvert('marginAll', (v) => val.marginAll = v);
         $checkedConvert('format', (v) => val.format = v);
         return val;
       },

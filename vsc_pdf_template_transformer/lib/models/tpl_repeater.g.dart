@@ -12,12 +12,7 @@ TplRepeater _$TplRepeaterFromJson(Map<String, dynamic> json) => $checkedCreate(
       ($checkedConvert) {
         final val = TplRepeater();
         $checkedConvert('className', (v) => val.className = v as String);
-        $checkedConvert(
-            'array',
-            (v) => val.array = (v as List<dynamic>?)
-                ?.map((e) => const WidgetJsonConverter()
-                    .fromJson(e as Map<String, dynamic>?))
-                .toList());
+        $checkedConvert('array', (v) => val.array = v as List<dynamic>?);
         $checkedConvert(
             'childTemplate',
             (v) => val.childTemplate = const WidgetJsonConverter()
@@ -29,7 +24,7 @@ TplRepeater _$TplRepeaterFromJson(Map<String, dynamic> json) => $checkedCreate(
 Map<String, dynamic> _$TplRepeaterToJson(TplRepeater instance) =>
     <String, dynamic>{
       'className': instance.className,
-      'array': instance.array?.map(const WidgetJsonConverter().toJson).toList(),
+      'array': instance.array,
       'childTemplate':
           const WidgetJsonConverter().toJson(instance.childTemplate),
     };
