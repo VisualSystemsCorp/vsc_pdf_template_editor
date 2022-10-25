@@ -179,3 +179,50 @@ TextOverflow? evaluateTextOverflow(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(TextOverflow.values, expression, data);
 }
+
+PageOrientation? evaluatePageOrientation(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PageOrientation.values, expression, data);
+}
+
+PdfPageFormat? evaluatePageFormat(
+    dynamic expression, Map<String, dynamic> data) {
+  final result = _evaluateDynamic(expression, data);
+  if (result == null) {
+    return null;
+  }
+  switch (result) {
+    case 'a3':
+      return PdfPageFormat.a3;
+    case 'a4':
+      return PdfPageFormat.a4;
+    case 'a5':
+      return PdfPageFormat.a5;
+    case 'a6':
+      return PdfPageFormat.a6;
+    case 'letter':
+      return PdfPageFormat.letter;
+    case 'legal':
+      return PdfPageFormat.legal;
+    case 'roll57':
+      return PdfPageFormat.roll57;
+    case 'roll80':
+      return PdfPageFormat.roll80;
+    case 'undefined':
+      return PdfPageFormat.undefined;
+    case 'standard':
+      return PdfPageFormat.standard;
+    default:
+      throw Exception('Invalid page format: $result');
+  }
+}
+
+MainAxisAlignment? evaluateMainAxisAlignment(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(MainAxisAlignment.values, expression, data);
+}
+
+CrossAxisAlignment? evaluateCrossAxisAlignment(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(CrossAxisAlignment.values, expression, data);
+}

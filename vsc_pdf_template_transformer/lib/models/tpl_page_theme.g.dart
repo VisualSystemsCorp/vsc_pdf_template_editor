@@ -1,27 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tpl_page.dart';
+part of 'tpl_page_theme.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TplPage _$TplPageFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'TplPage',
+TplPageTheme _$TplPageThemeFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'TplPageTheme',
       json,
       ($checkedConvert) {
-        final val = TplPage(
-          $checkedConvert(
-              'child',
-              (v) => const WidgetJsonConverter()
-                  .fromJson(v as Map<String, dynamic>?)),
-        );
+        final val = TplPageTheme();
         $checkedConvert('className', (v) => val.className = v as String);
-        $checkedConvert(
-            'pageTheme',
-            (v) => val.pageTheme = v == null
-                ? null
-                : TplPageTheme.fromJson(v as Map<String, dynamic>));
         $checkedConvert('pageFormat', (v) => val.pageFormat = v);
         $checkedConvert('orientation', (v) => val.orientation = v);
         $checkedConvert(
@@ -35,13 +26,12 @@ TplPage _$TplPageFromJson(Map<String, dynamic> json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$TplPageToJson(TplPage instance) => <String, dynamic>{
+Map<String, dynamic> _$TplPageThemeToJson(TplPageTheme instance) =>
+    <String, dynamic>{
       'className': instance.className,
-      'pageTheme': instance.pageTheme?.toJson(),
       'pageFormat': instance.pageFormat,
       'orientation': instance.orientation,
       'margin': instance.margin?.toJson(),
       'clip': instance.clip,
       'textDirection': instance.textDirection,
-      'child': const WidgetJsonConverter().toJson(instance.child),
     };

@@ -20,6 +20,24 @@ TplMultiPage _$TplMultiPageFromJson(Map<String, dynamic> json) =>
                   .toList()),
         );
         $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert(
+            'pageTheme',
+            (v) => val.pageTheme = v == null
+                ? null
+                : TplPageTheme.fromJson(v as Map<String, dynamic>));
+        $checkedConvert('pageFormat', (v) => val.pageFormat = v);
+        $checkedConvert('orientation', (v) => val.orientation = v);
+        $checkedConvert(
+            'margin',
+            (v) => val.margin = v == null
+                ? null
+                : TplEdgeInsets.fromJson(v as Map<String, dynamic>));
+        $checkedConvert('clip', (v) => val.clip = v);
+        $checkedConvert('textDirection', (v) => val.textDirection = v);
+        $checkedConvert('maxPages', (v) => val.maxPages = v);
+        $checkedConvert('mainAxisAlignment', (v) => val.mainAxisAlignment = v);
+        $checkedConvert(
+            'crossAxisAlignment', (v) => val.crossAxisAlignment = v);
         return val;
       },
     );
@@ -27,6 +45,15 @@ TplMultiPage _$TplMultiPageFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TplMultiPageToJson(TplMultiPage instance) =>
     <String, dynamic>{
       'className': instance.className,
+      'pageTheme': instance.pageTheme?.toJson(),
+      'pageFormat': instance.pageFormat,
+      'orientation': instance.orientation,
+      'margin': instance.margin?.toJson(),
+      'clip': instance.clip,
+      'textDirection': instance.textDirection,
+      'maxPages': instance.maxPages,
+      'mainAxisAlignment': instance.mainAxisAlignment,
+      'crossAxisAlignment': instance.crossAxisAlignment,
       'children':
           instance.children?.map(const WidgetJsonConverter().toJson).toList(),
     };

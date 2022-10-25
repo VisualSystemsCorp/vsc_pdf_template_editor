@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
@@ -27,9 +26,9 @@ class Transformer {
         }
         pdf.addPage(TplMultiPage(children).toPdf(data));
       } else {
-        pdf.addPage(TplPage(getWidgetBuilder(
-                jsonDecode(jsonEncode(template['children'][i]['children'][0]))))
-            .toPdf(data));
+        pdf.addPage(
+            TplPage(getWidgetBuilder(template['children'][i]['children'][0]))
+                .toPdf(data));
       }
     }
     return pdf;

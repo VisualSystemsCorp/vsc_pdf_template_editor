@@ -1,5 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_theme.dart';
+import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 import '../utils/widget_builder.dart' as wb;
 
@@ -14,7 +18,16 @@ class TplMultiPage {
   TplMultiPage(this.children);
 
   String className = 'TplMultiPage';
-
+  TplPageTheme? pageTheme;
+  TplThemeData? theme;
+  dynamic pageFormat;
+  dynamic orientation;
+  TplEdgeInsets? margin;
+  dynamic clip;
+  dynamic textDirection;
+  dynamic maxPages;
+  dynamic mainAxisAlignment;
+  dynamic crossAxisAlignment;
   @WidgetJsonConverter()
   List<wb.WidgetBuilder?>? children;
 
@@ -24,12 +37,25 @@ class TplMultiPage {
   Map<String, dynamic> toJson() => _$TplMultiPageToJson(this);
 
   pw.Page toPdf(Map<String, dynamic> data) {
-    return pw.MultiPage(build: (pw.Context context) {
-      return children == null
-          ? []
-          : children!
-              .map((child) => child!.buildWidget(data))
-              .toList(growable: false);
-    });
+    return pw.MultiPage(
+        pageTheme: pageTheme?.toPdf(data),
+        theme: theme?.toPdf(data),
+        pageFormat: evaluatePageFormat(pageFormat, data),
+        orientation: evaluatePageOrientation(orientation, data),
+        margin: margin?.toPdf(data),
+        textDirection: evaluateTextDirection(textDirection, data),
+        maxPages: evaluateInt(maxPages, data) ?? 20,
+        mainAxisAlignment: evaluateMainAxisAlignment(mainAxisAlignment, data) ??
+            pw.MainAxisAlignment.start,
+        crossAxisAlignment:
+            evaluateCrossAxisAlignment(crossAxisAlignment, data) ??
+                pw.CrossAxisAlignment.start,
+        build: (pw.Context context) {
+          return children == null
+              ? []
+              : children!
+                  .map((child) => child!.buildWidget(data))
+                  .toList(growable: false);
+        });
   }
 }

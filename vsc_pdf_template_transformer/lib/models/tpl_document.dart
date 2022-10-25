@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_page.dart';
 import '../utils/evaluator.dart';
 
 part 'tpl_document.g.dart';
