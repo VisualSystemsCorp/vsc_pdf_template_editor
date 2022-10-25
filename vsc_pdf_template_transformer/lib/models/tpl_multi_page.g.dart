@@ -25,6 +25,11 @@ TplMultiPage _$TplMultiPageFromJson(Map<String, dynamic> json) =>
             (v) => val.pageTheme = v == null
                 ? null
                 : TplPageTheme.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'theme',
+            (v) => val.theme = v == null
+                ? null
+                : TplThemeData.fromJson(v as Map<String, dynamic>));
         $checkedConvert('pageFormat', (v) => val.pageFormat = v);
         $checkedConvert('orientation', (v) => val.orientation = v);
         $checkedConvert(
@@ -46,6 +51,7 @@ Map<String, dynamic> _$TplMultiPageToJson(TplMultiPage instance) =>
     <String, dynamic>{
       'className': instance.className,
       'pageTheme': instance.pageTheme?.toJson(),
+      'theme': instance.theme?.toJson(),
       'pageFormat': instance.pageFormat,
       'orientation': instance.orientation,
       'margin': instance.margin?.toJson(),

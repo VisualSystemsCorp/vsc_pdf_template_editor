@@ -5,6 +5,7 @@ class AppConstants {
     'Container',
     'Column',
     'Row',
+    'Repeater',
   ];
   static const supportedProperties = [
     'Alignment',
