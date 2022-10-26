@@ -21,20 +21,4 @@ class AppConstants {
     'Text Style',
     'Page Format'
   ];
-
-  static const Map<String, dynamic> rootTemplate = {
-    'className': 'TplDocument',
-    'pageMode': 'none',
-    'compress': true,
-    'verbose': false,
-    'title': null,
-    'author': null,
-    'creator': null,
-    'subject': null,
-    'keywords': null,
-    'producer': null,
-    'children': [
-      {'className': 'TplPage', 'pageFormat': 'letter', 'children': []}
-    ]
-  };
 }

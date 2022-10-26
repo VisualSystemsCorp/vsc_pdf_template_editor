@@ -10,7 +10,7 @@ void main() {
     });
 
     test('First Test Demo', () {
-      expect(transformer.isReady, isTrue);
+      expect(transformer, isNotNull);
     });
   });
 }

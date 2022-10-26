@@ -42,6 +42,10 @@ TplMultiPage _$TplMultiPageFromJson(Map<String, dynamic> json) =>
         $checkedConvert('mainAxisAlignment', (v) => val.mainAxisAlignment = v);
         $checkedConvert(
             'crossAxisAlignment', (v) => val.crossAxisAlignment = v);
+        $checkedConvert(
+            'header',
+            (v) => val.header = const WidgetJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
         return val;
       },
     );
@@ -59,5 +63,6 @@ Map<String, dynamic> _$TplMultiPageToJson(TplMultiPage instance) =>
       'maxPages': instance.maxPages,
       'mainAxisAlignment': instance.mainAxisAlignment,
       'crossAxisAlignment': instance.crossAxisAlignment,
+      'header': const WidgetJsonConverter().toJson(instance.header),
       'children': instance.children,
     };

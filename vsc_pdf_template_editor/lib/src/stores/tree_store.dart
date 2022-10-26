@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:typed_data';
-import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_side.dart';
@@ -24,7 +23,6 @@ import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:basic_utils/basic_utils.dart';
 
 part 'tree_store.g.dart';
 
@@ -35,7 +33,6 @@ abstract class TreeStoreModel with Store {
     this._template,
     this._data,
   ) {
-    _mergeTemplate();
     _initTemplateController();
     _initDataController();
     _buildPdf();
@@ -92,8 +89,9 @@ abstract class TreeStoreModel with Store {
   addWidget(Map<String, dynamic> map) {
     try {
       final cursorPos = _templateController.selection.base.offset;
-      final newMap = StringUtils.addCharAtPosition(_templateController.text,
-          _reformatNewWidget(jsonEncode(map)), cursorPos);
+      final newMap = _templateController.text.substring(0, cursorPos) +
+          _reformatNewWidget(jsonEncode(map)) +
+          _templateController.text.substring(cursorPos);
       _templateController.text = newMap;
       _template = jsonDecode(newMap);
       _buildPdf();
@@ -218,12 +216,5 @@ abstract class TreeStoreModel with Store {
     } catch (e, s) {
       buildErrorText = '$e \n $s';
     }
-  }
-
-  _mergeTemplate() {
-    print(jsonEncode(AppConstants.rootTemplate));
-    final newMap = StringUtils.addCharAtPosition(
-        jsonEncode(AppConstants.rootTemplate), jsonEncode(_template), 235);
-    _template = jsonDecode(newMap);
   }
 }

@@ -2,6 +2,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_document.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_multi_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
@@ -10,27 +11,24 @@ import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
 
 class Transformer {
-  get isReady => true;
-
   static pw.Document buildPdf(
       Map<String, dynamic> template, Map<String, dynamic> data) {
-    final pdf = TplDocument.fromJson(template).toPdf(data);
-    for (int i = 0; i < template['children'].length; i++) {
-      if (template['children'][i]['className'] == 'TplMultiPage') {
-        final List<WidgetBuilder> children = [];
-        for (int j = 0; j < template['children'][i]['children'].length; j++) {
-          final child =
-              getWidgetBuilder(template['children'][i]['children'][j]);
-          children.add(child);
-        }
-        pdf.addPage(TplMultiPage(children).toPdf(data));
+    final tplDocument = TplDocument.fromJson(template);
+    final document = tplDocument.toPdf(data);
+
+    final documentChildren = tplDocument.children ?? [];
+    for (int i = 0; i < documentChildren.length; i++) {
+      final childJson = documentChildren[i];
+      if (childJson['className'] == 'TplMultiPage') {
+        document.addPage(TplMultiPage.fromJson(childJson).toPdf(data));
+      } else if (childJson['className'] == 'TplPage') {
+        document.addPage(TplPage.fromJson(childJson).toPdf(data));
       } else {
-        pdf.addPage(
-            TplPage(getWidgetBuilder(template['children'][i]['children'][0]))
-                .toPdf(data));
+        throw Exception(
+            '${childJson['className']} is not a recognized Page type');
       }
     }
-    return pdf;
+    return document;
   }
 
   static WidgetBuilder getWidgetBuilder(Map<String, dynamic> valueMap) {
@@ -42,6 +40,7 @@ class Transformer {
       'TplContainer': TplContainer.fromJson,
       'TplColumn': TplColumn.fromJson,
       'TplRow': TplRow.fromJson,
+      'TplHeader': TplHeader.fromJson,
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];
