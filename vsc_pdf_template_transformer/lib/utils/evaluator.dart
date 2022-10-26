@@ -1,6 +1,8 @@
 import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
+import '../vsc_pdf_template_transformer.dart';
 
 dynamic _evaluateDynamic(dynamic expression, Map<String, dynamic> data) {
   if (expression is! String) {
@@ -178,4 +180,72 @@ TextDirection? evaluateTextDirection(
 TextOverflow? evaluateTextOverflow(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(TextOverflow.values, expression, data);
+}
+
+PageOrientation? evaluatePageOrientation(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PageOrientation.values, expression, data);
+}
+
+PdfPageFormat? evaluatePageFormat(
+    dynamic expression, Map<String, dynamic> data) {
+  final result = _evaluateDynamic(expression, data);
+  if (result == null) {
+    return null;
+  }
+  switch (result) {
+    case 'a3':
+      return PdfPageFormat.a3;
+    case 'a4':
+      return PdfPageFormat.a4;
+    case 'a5':
+      return PdfPageFormat.a5;
+    case 'a6':
+      return PdfPageFormat.a6;
+    case 'letter':
+      return PdfPageFormat.letter;
+    case 'legal':
+      return PdfPageFormat.legal;
+    case 'roll57':
+      return PdfPageFormat.roll57;
+    case 'roll80':
+      return PdfPageFormat.roll80;
+    case 'undefined':
+      return PdfPageFormat.undefined;
+    case 'standard':
+      return PdfPageFormat.standard;
+    default:
+      throw Exception('Invalid page format: $result');
+  }
+}
+
+MainAxisAlignment? evaluateMainAxisAlignment(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(MainAxisAlignment.values, expression, data);
+}
+
+CrossAxisAlignment? evaluateCrossAxisAlignment(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(CrossAxisAlignment.values, expression, data);
+}
+
+PdfOutlineStyle? evaluateOutlineStyle(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PdfOutlineStyle.values, expression, data);
+}
+
+List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
+  final List<Widget> res = [];
+
+  for (final e in children) {
+    if (e['className'] == 'TplRepeater') {
+      final arr = TplRepeater.fromJson(e).toPdf(data);
+      res.addAll(arr);
+    } else {
+      final widget = Transformer.getWidgetBuilder(e);
+
+      res.add(widget.buildWidget(data));
+    }
+  }
+  return res;
 }

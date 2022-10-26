@@ -52,7 +52,7 @@ class _EditorAppState extends State<EditorApp> {
   }
 
   Future<Map<String, dynamic>> _getData() async {
-    final res = await rootBundle.loadString('assets/test/simple_contact.json');
+    final res = await rootBundle.loadString('assets/test/sample_invoice.json');
     final result = Map<String, dynamic>.from(json.decode(res));
     return result;
   }
