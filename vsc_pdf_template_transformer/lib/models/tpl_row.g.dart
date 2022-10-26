@@ -32,12 +32,7 @@ TplRow _$TplRowFromJson(Map<String, dynamic> json) => $checkedCreate(
             (v) => val.verticalDirection =
                 $enumDecodeNullable(_$VerticalDirectionEnumMap, v) ??
                     VerticalDirection.down);
-        $checkedConvert(
-            'children',
-            (v) => val.children = (v as List<dynamic>?)
-                ?.map((e) => const WidgetJsonConverter()
-                    .fromJson(e as Map<String, dynamic>?))
-                .toList());
+        $checkedConvert('children', (v) => val.children = v as List<dynamic>?);
         return val;
       },
     );
@@ -51,8 +46,7 @@ Map<String, dynamic> _$TplRowToJson(TplRow instance) => <String, dynamic>{
           _$CrossAxisAlignmentEnumMap[instance.crossAxisAlignment]!,
       'verticalDirection':
           _$VerticalDirectionEnumMap[instance.verticalDirection]!,
-      'children':
-          instance.children?.map(const WidgetJsonConverter().toJson).toList(),
+      'children': instance.children,
     };
 
 const _$MainAxisAlignmentEnumMap = {

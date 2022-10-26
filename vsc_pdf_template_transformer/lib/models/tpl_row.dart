@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
+import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 import '../utils/widget_builder.dart' as wb;
 
@@ -28,7 +29,7 @@ class TplRow implements wb.WidgetBuilder {
   VerticalDirection verticalDirection = VerticalDirection.down;
 
   @WidgetJsonConverter()
-  List<wb.WidgetBuilder?>? children;
+  List<dynamic>? children;
 
   factory TplRow.fromJson(Map<String, dynamic> json) => _$TplRowFromJson(json);
 
@@ -42,11 +43,7 @@ class TplRow implements wb.WidgetBuilder {
       mainAxisSize: mainAxisSize,
       crossAxisAlignment: crossAxisAlignment,
       verticalDirection: verticalDirection,
-      children: children == null
-          ? []
-          : children!
-              .map((child) => child!.buildWidget(data))
-              .toList(growable: false),
+      children: children == null ? [] : getChildren(children!, data),
     );
   }
 }

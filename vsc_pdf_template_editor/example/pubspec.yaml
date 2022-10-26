@@ -55,3 +55,4 @@ flutter:
   assets:
     - assets/test/sample_text.json
     - assets/test/simple_contact.json
+    - assets/test/sample_invoice.json

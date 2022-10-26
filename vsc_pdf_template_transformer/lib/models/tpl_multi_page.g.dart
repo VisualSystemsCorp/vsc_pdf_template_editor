@@ -12,12 +12,7 @@ TplMultiPage _$TplMultiPageFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplMultiPage(
-          $checkedConvert(
-              'children',
-              (v) => (v as List<dynamic>?)
-                  ?.map((e) => const WidgetJsonConverter()
-                      .fromJson(e as Map<String, dynamic>?))
-                  .toList()),
+          $checkedConvert('children', (v) => v as List<dynamic>?),
         );
         $checkedConvert('className', (v) => val.className = v as String);
         $checkedConvert(
@@ -64,6 +59,5 @@ Map<String, dynamic> _$TplMultiPageToJson(TplMultiPage instance) =>
       'maxPages': instance.maxPages,
       'mainAxisAlignment': instance.mainAxisAlignment,
       'crossAxisAlignment': instance.crossAxisAlignment,
-      'children':
-          instance.children?.map(const WidgetJsonConverter().toJson).toList(),
+      'children': instance.children,
     };

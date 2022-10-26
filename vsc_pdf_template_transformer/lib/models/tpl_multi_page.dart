@@ -6,7 +6,6 @@ import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_theme.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
-import '../utils/widget_builder.dart' as wb;
 
 part 'tpl_multi_page.g.dart';
 
@@ -30,7 +29,7 @@ class TplMultiPage {
   dynamic mainAxisAlignment;
   dynamic crossAxisAlignment;
   @WidgetJsonConverter()
-  List<wb.WidgetBuilder?>? children;
+  List<dynamic>? children;
 
   factory TplMultiPage.fromJson(Map<String, dynamic> json) =>
       _$TplMultiPageFromJson(json);
@@ -52,11 +51,7 @@ class TplMultiPage {
             evaluateCrossAxisAlignment(crossAxisAlignment, data) ??
                 pw.CrossAxisAlignment.start,
         build: (pw.Context context) {
-          return children == null
-              ? []
-              : children!
-                  .map((child) => child!.buildWidget(data))
-                  .toList(growable: false);
+          return children == null ? [] : getChildren(children!, data);
         });
   }
 }
