@@ -18,6 +18,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:flutter/material.dart';
@@ -149,6 +150,9 @@ abstract class TreeStoreModel with Store {
         break;
       case 5:
         map = TplRepeater().toJson();
+        break;
+      case 6:
+        map = TplHeader().toJson();
         break;
     }
     addWidget(map);

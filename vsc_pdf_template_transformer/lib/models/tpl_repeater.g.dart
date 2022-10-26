@@ -12,7 +12,7 @@ TplRepeater _$TplRepeaterFromJson(Map<String, dynamic> json) => $checkedCreate(
       ($checkedConvert) {
         final val = TplRepeater();
         $checkedConvert('className', (v) => val.className = v as String);
-        $checkedConvert('array', (v) => val.array = v as List<dynamic>?);
+        $checkedConvert('array', (v) => val.array = v);
         $checkedConvert(
             'childTemplate',
             (v) => val.childTemplate = const WidgetJsonConverter()

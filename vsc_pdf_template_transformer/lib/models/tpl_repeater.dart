@@ -14,8 +14,7 @@ part 'tpl_repeater.g.dart';
 class TplRepeater {
   String className = 'TplRepeater';
 
-  @WidgetJsonConverter()
-  List<dynamic>? array;
+  dynamic array;
   @WidgetJsonConverter()
   wb.WidgetBuilder? childTemplate;
 

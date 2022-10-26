@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_theme.dart';
@@ -29,6 +30,8 @@ class TplMultiPage {
   dynamic mainAxisAlignment;
   dynamic crossAxisAlignment;
   @WidgetJsonConverter()
+  TplHeader? header;
+  @WidgetJsonConverter()
   List<dynamic>? children;
 
   factory TplMultiPage.fromJson(Map<String, dynamic> json) =>
@@ -50,6 +53,9 @@ class TplMultiPage {
         crossAxisAlignment:
             evaluateCrossAxisAlignment(crossAxisAlignment, data) ??
                 pw.CrossAxisAlignment.start,
+        header: header != null
+            ? (pw.Context context) => header!.buildWidget(data)
+            : null,
         build: (pw.Context context) {
           return children == null ? [] : getChildren(children!, data);
         });

@@ -1,12 +1,8 @@
 import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
+import '../vsc_pdf_template_transformer.dart';
 
 dynamic _evaluateDynamic(dynamic expression, Map<String, dynamic> data) {
   if (expression is! String) {
@@ -233,6 +229,11 @@ CrossAxisAlignment? evaluateCrossAxisAlignment(
   return evaluateEnum(CrossAxisAlignment.values, expression, data);
 }
 
+PdfOutlineStyle? evaluateOutlineStyle(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PdfOutlineStyle.values, expression, data);
+}
+
 List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
   final List<Widget> res = [];
 
@@ -241,16 +242,8 @@ List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
       final arr = TplRepeater.fromJson(e).toPdf(data);
       res.addAll(arr);
     } else {
-      const widgetClassFromJson = {
-        'TplText': TplText.fromJson,
-        'TplSizedBox': TplSizedBox.fromJson,
-        'TplContainer': TplContainer.fromJson,
-        'TplColumn': TplColumn.fromJson,
-        'TplRow': TplRow.fromJson,
-      };
+      final widget = Transformer.getWidgetBuilder(e);
 
-      final fromJson = widgetClassFromJson[e['className']];
-      final widget = fromJson!(e);
       res.add(widget.buildWidget(data));
     }
   }

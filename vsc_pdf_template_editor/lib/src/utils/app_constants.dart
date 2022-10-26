@@ -6,6 +6,7 @@ class AppConstants {
     'Column',
     'Row',
     'Repeater',
+    'Header'
   ];
   static const supportedProperties = [
     'Alignment',
