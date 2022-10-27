@@ -187,6 +187,10 @@ PageOrientation? evaluatePageOrientation(
   return evaluateEnum(PageOrientation.values, expression, data);
 }
 
+FlexFit? evaluateFlexFit(dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(FlexFit.values, expression, data);
+}
+
 PdfPageFormat? evaluatePageFormat(
     dynamic expression, Map<String, dynamic> data) {
   final result = _evaluateDynamic(expression, data);
