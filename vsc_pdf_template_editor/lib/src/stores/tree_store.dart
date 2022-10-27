@@ -7,10 +7,13 @@ import 'package:vsc_pdf_template_transformer/models/tpl_border_style.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_border.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_constraints.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_decoration.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_center.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_expanded.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
@@ -18,6 +21,11 @@ import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_new_page.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_divider.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_full_page.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_padding.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:flutter/material.dart';
@@ -151,6 +159,30 @@ abstract class TreeStoreModel with Store {
         break;
       case 6:
         map = TplHeader().toJson();
+        break;
+      case 7:
+        map = TplNewPage().toJson();
+        break;
+      case 8:
+        map = TplSpacer().toJson();
+        break;
+      case 9:
+        map = TplExpanded().toJson();
+        break;
+      case 10:
+        map = TplCenter().toJson();
+        break;
+      case 11:
+        map = TplDivider().toJson();
+        break;
+      case 12:
+        map = TplFullPage().toJson();
+        break;
+      case 13:
+        map = TplPadding().toJson();
+        break;
+      case 14:
+        map = TplPlaceholder().toJson();
         break;
     }
     addWidget(map);

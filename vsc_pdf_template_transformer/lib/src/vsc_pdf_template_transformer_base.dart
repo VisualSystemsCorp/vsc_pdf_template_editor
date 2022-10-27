@@ -1,12 +1,20 @@
 import 'package:pdf/widgets.dart' as pw;
+import 'package:vsc_pdf_template_transformer/models/tpl_center.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_document.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_expanded.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_full_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_multi_page.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_new_page.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_padding.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
 import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
 
@@ -41,6 +49,14 @@ class Transformer {
       'TplColumn': TplColumn.fromJson,
       'TplRow': TplRow.fromJson,
       'TplHeader': TplHeader.fromJson,
+      'TplNewPage': TplNewPage.fromJson,
+      'TplSpacer': TplSpacer.fromJson,
+      'TplExpanded': TplExpanded.fromJson,
+      'TplCenter': TplCenter.fromJson,
+      'TplDivider': TplDivider.fromJson,
+      'TplFullPage': TplFullPage.fromJson,
+      'TplPadding': TplPadding.fromJson,
+      'TplPlaceholder': TplPlaceholder.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];

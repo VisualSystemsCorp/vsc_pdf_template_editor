@@ -38,7 +38,7 @@ class TplRow implements wb.WidgetBuilder {
 
   @override
   Widget buildWidget(Map<String, dynamic> data) {
-    return Column(
+    return Row(
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       crossAxisAlignment: crossAxisAlignment,

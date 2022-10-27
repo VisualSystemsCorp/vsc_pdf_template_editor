@@ -6,7 +6,15 @@ class AppConstants {
     'Column',
     'Row',
     'Repeater',
-    'Header'
+    'Header',
+    'New Page',
+    'Spacer',
+    'Expanded',
+    'Center',
+    'Divider',
+    'Full Page',
+    'Padding',
+    'Placeholder'
   ];
   static const supportedProperties = [
     'Alignment',

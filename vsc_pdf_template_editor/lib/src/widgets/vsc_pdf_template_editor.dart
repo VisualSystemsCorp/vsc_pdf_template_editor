@@ -90,7 +90,6 @@ class VscPdfTemplateEditor extends StatelessWidget {
 
   _onAddWidgetPressed(BuildContext context) => showDialog(
       context: context,
-      barrierDismissible: true,
       builder: (c) => AlertDialog(
             title: const Center(child: Text(AppStrings.addWidget)),
             contentPadding: const EdgeInsets.symmetric(vertical: 20),
@@ -105,7 +104,6 @@ class VscPdfTemplateEditor extends StatelessWidget {
 
   _onAddPropertyPressed(BuildContext context) => showDialog(
       context: context,
-      barrierDismissible: true,
       builder: (c) => AlertDialog(
             title: const Center(child: Text(AppStrings.addProperty)),
             contentPadding: const EdgeInsets.symmetric(vertical: 20),
