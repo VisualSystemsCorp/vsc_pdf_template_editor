@@ -1,5 +1,5 @@
 class AppConstants {
-  static const supportedWidgets = [
+  static List<String> supportedWidgets = [
     'Text',
     'Sized Box',
     'Container',
@@ -16,7 +16,7 @@ class AppConstants {
     'Padding',
     'Placeholder'
   ];
-  static const supportedProperties = [
+  static List<String> supportedProperties = [
     'Alignment',
     'Edge Insets',
     'Box Decoration',
