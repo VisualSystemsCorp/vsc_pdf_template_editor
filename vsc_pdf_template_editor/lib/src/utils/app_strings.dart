@@ -5,6 +5,7 @@ class AppStrings {
   static const addWidget = 'Add a Widget';
   static const addProperty = 'Add a Property';
   static const reformat = 'Reformat';
+  static const search = 'Search';
 
   static const cancel = 'Cancel';
   static const ok = 'Ok';

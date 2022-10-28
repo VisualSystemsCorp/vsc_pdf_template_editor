@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:easy_debounce/easy_debounce.dart';
+import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_side.dart';
@@ -28,9 +30,11 @@ import 'package:vsc_pdf_template_transformer/models/tpl_padding.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:code_text_field/code_text_field.dart';
+import 'package:highlight/languages/json.dart';
+import 'package:flutter_highlight/themes/atelier-lakeside-light.dart';
 
 part 'tree_store.g.dart';
 
@@ -41,13 +45,13 @@ abstract class TreeStoreModel with Store {
     this._template,
     this._data,
   ) {
-    _initTemplateController();
-    _initDataController();
+    _sortDialogItems();
+    _initControllers();
     _buildPdf();
   }
 
-  final _templateController = TextEditingController();
-  final _dataController = TextEditingController();
+  late final CodeController _templateController;
+  late final CodeController _dataController;
 
   pw.Document _doc = pw.Document();
 
@@ -68,9 +72,9 @@ abstract class TreeStoreModel with Store {
 
   Uint8List? get pdfBytes => _pdfBytes;
 
-  TextEditingController get templateController => _templateController;
+  CodeController get templateController => _templateController;
 
-  TextEditingController get dataController => _dataController;
+  CodeController get dataController => _dataController;
 
   set setPdfBytes(Uint8List? value) {
     _pdfBytes = value;
@@ -79,7 +83,7 @@ abstract class TreeStoreModel with Store {
   @action
   onInputChanged() {
     try {
-      _template = jsonDecode(_templateController.text);
+      _template = jsonDecode(_templateController.rawText);
       _buildPdf();
       buildErrorText = '';
     } catch (e, s) {
@@ -89,7 +93,7 @@ abstract class TreeStoreModel with Store {
 
   @action
   onDataChanged() {
-    _data = jsonDecode(_dataController.text);
+    _data = jsonDecode(_dataController.rawText);
     _buildPdf();
   }
 
@@ -110,7 +114,7 @@ abstract class TreeStoreModel with Store {
   }
 
   @action
-  reformat(TextEditingController controller) {
+  reformat(CodeController controller) {
     const JsonDecoder decoder = JsonDecoder();
     const JsonEncoder encoder = JsonEncoder.withIndent('  ');
     final dynamic object = decoder.convert(controller.text);
@@ -136,104 +140,96 @@ abstract class TreeStoreModel with Store {
     return text;
   }
 
-  onWidgetSelected(int index) {
+  onWidgetSelected(String name) {
     Map<String, dynamic> map = {};
-    switch (index) {
-      case 0:
+    switch (name) {
+      case 'Text':
         map = TplText().toJson();
         break;
-      case 1:
+      case 'Sized Box':
         map = TplSizedBox().toJson();
         break;
-      case 2:
+      case 'Container':
         map = TplContainer().toJson();
         break;
-      case 3:
+      case 'Column':
         map = TplColumn().toJson();
         break;
-      case 4:
+      case 'Row':
         map = TplRow().toJson();
         break;
-      case 5:
+      case 'Repeater':
         map = TplRepeater().toJson();
         break;
-      case 6:
+      case 'Header':
         map = TplHeader().toJson();
         break;
-      case 7:
+      case 'New Page':
         map = TplNewPage().toJson();
         break;
-      case 8:
+      case 'Spacer':
         map = TplSpacer().toJson();
         break;
-      case 9:
+      case 'Expanded':
         map = TplExpanded().toJson();
         break;
-      case 10:
+      case 'Center':
         map = TplCenter().toJson();
         break;
-      case 11:
+      case 'Divider':
         map = TplDivider().toJson();
         break;
-      case 12:
+      case 'Full Page':
         map = TplFullPage().toJson();
         break;
-      case 13:
+      case 'Padding':
         map = TplPadding().toJson();
         break;
-      case 14:
+      case 'Placeholder':
         map = TplPlaceholder().toJson();
         break;
     }
     addWidget(map);
   }
 
-  onPropertySelected(int index) {
+  onPropertySelected(String name) {
     Map<String, dynamic> map = {};
-    switch (index) {
-      case 0:
+    switch (name) {
+      case 'Alignment':
         map = const TplAlignment().toJson();
         break;
-      case 1:
+      case 'Edge Insets':
         map = TplEdgeInsets().toJson();
         break;
-      case 2:
+      case 'Box Decoration':
         map = TplBoxDecoration().toJson();
         break;
-      case 3:
+      case 'Radius':
         map = TplRadius().toJson();
         break;
-      case 4:
+      case 'Box Border':
         map = TplBoxBorder().toJson();
         break;
-      case 5:
+      case 'Box Constraints':
         map = TplBoxConstraints().toJson();
         break;
-      case 6:
+      case 'Border Style':
         map = TplBorderStyle().toJson();
         break;
-      case 7:
+      case 'Border Radius':
         map = TplBorderRadius().toJson();
         break;
-      case 8:
+      case 'Border Side':
         map = TplBorderSide().toJson();
         break;
-      case 9:
+      case 'Text Style':
         map = TplTextStyle().toJson();
         break;
-      case 10:
+      case 'Page Format':
         map = TplPdfPageFormat().toJson();
         break;
     }
     addWidget(map);
-  }
-
-  _initTemplateController() {
-    _templateController.text = jsonEncode(_template);
-  }
-
-  _initDataController() {
-    _dataController.text = jsonEncode(_data);
   }
 
   _savePdf() async {
@@ -248,5 +244,27 @@ abstract class TreeStoreModel with Store {
     } catch (e, s) {
       buildErrorText = '$e \n $s';
     }
+  }
+
+  _sortDialogItems() {
+    AppConstants.supportedWidgets.sort((a, b) => a.compareTo(b));
+    AppConstants.supportedProperties.sort((a, b) => a.compareTo(b));
+  }
+
+  _initControllers() {
+    _templateController = CodeController(
+      language: json,
+      theme: atelierLakesideLightTheme,
+      text: jsonEncode(_template),
+      onChange: (val) => EasyDebounce.debounce(
+          '', const Duration(milliseconds: 500), () => onInputChanged()),
+    );
+    _dataController = CodeController(
+      language: json,
+      theme: atelierLakesideLightTheme,
+      text: jsonEncode(_data),
+      onChange: (val) => EasyDebounce.debounce(
+          '', const Duration(milliseconds: 500), () => onDataChanged()),
+    );
   }
 }

@@ -95,8 +95,8 @@ class VscPdfTemplateEditor extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(vertical: 20),
             content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
-              height: MediaQuery.of(context).size.height * 0.4,
-              child: const AddWidgetDialog(
+              height: MediaQuery.of(context).size.height * 0.9,
+              child: AddWidgetDialog(
                 items: AppConstants.supportedWidgets,
               ),
             ),
@@ -109,8 +109,8 @@ class VscPdfTemplateEditor extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(vertical: 20),
             content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
-              height: MediaQuery.of(context).size.height * 0.4,
-              child: const AddWidgetDialog(
+              height: MediaQuery.of(context).size.height * 0.9,
+              child: AddWidgetDialog(
                 items: AppConstants.supportedProperties,
               ),
             ),

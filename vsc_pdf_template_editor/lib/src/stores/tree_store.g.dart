@@ -131,7 +131,7 @@ mixin _$TreeStore on TreeStoreModel, Store {
   }
 
   @override
-  dynamic reformat(TextEditingController controller) {
+  dynamic reformat(CodeController controller) {
     final _$actionInfo = _$TreeStoreModelActionController.startAction(
         name: 'TreeStoreModel.reformat');
     try {

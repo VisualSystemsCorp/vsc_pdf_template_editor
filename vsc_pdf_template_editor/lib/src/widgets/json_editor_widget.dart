@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
-import 'package:easy_debounce/easy_debounce.dart';
+import 'package:code_text_field/code_text_field.dart';
 
 class JsonEditorWidget extends StatefulWidget {
   const JsonEditorWidget({
@@ -54,46 +54,18 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
                 controller: _tabController,
                 children: [
                   Container(
-                    color: Colors.amber.withOpacity(0.1),
                     padding: const EdgeInsets.all(20),
-                    child: TextField(
+                    child: CodeField(
                       controller: widget.viewModel.templateController,
-                      autocorrect: false,
-                      enableSuggestions: false,
-                      keyboardType: TextInputType.multiline,
-                      textInputAction: TextInputAction.newline,
-                      autofocus: true,
-                      maxLines: null,
-                      decoration: const InputDecoration.collapsed(hintText: ''),
-                      onChanged: (val) => EasyDebounce.debounce(
-                          '',
-                          const Duration(milliseconds: 500),
-                          () => widget.viewModel.onInputChanged()),
+                      expands: true,
                     ),
                   ),
                   Container(
-                    color: Colors.amber.withOpacity(0.1),
-                    padding: const EdgeInsets.all(20),
-                    child: Container(
-                      color: Colors.amber.withOpacity(0.1),
                       padding: const EdgeInsets.all(20),
-                      child: TextField(
+                      child: CodeField(
                         controller: widget.viewModel.dataController,
-                        autocorrect: false,
-                        enableSuggestions: false,
-                        keyboardType: TextInputType.multiline,
-                        textInputAction: TextInputAction.newline,
-                        autofocus: true,
-                        maxLines: null,
-                        decoration:
-                            const InputDecoration.collapsed(hintText: ''),
-                        onChanged: (val) => EasyDebounce.debounce(
-                            '',
-                            const Duration(milliseconds: 500),
-                            () => widget.viewModel.onDataChanged()),
-                      ),
-                    ),
-                  ),
+                        expands: true,
+                      )),
                 ],
               ),
             ),

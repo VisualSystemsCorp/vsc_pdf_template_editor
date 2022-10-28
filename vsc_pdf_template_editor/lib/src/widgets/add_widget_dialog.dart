@@ -11,7 +11,9 @@ class AddWidgetDialog extends StatefulWidget {
 }
 
 class _AddWidgetDialogState extends State<AddWidgetDialog> {
-  int _selected = 0;
+  final TextEditingController controller = TextEditingController();
+  int? _selected;
+  List<String> searchedItems = [];
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +21,40 @@ class _AddWidgetDialogState extends State<AddWidgetDialog> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        Container(
+          height: 50,
+          margin: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: Colors.blueGrey.withOpacity(0.3),
+              borderRadius: const BorderRadius.all(Radius.circular(12))),
+          child: TextField(
+            autofocus: true,
+            controller: controller,
+            decoration:
+                const InputDecoration.collapsed(hintText: AppStrings.search),
+            onChanged: (v) => _searchItems(),
+          ),
+        ),
         Flexible(
           child: ListView.builder(
-              itemCount: widget.items.length,
-              shrinkWrap: true,
+              itemCount: controller.text.isEmpty
+                  ? widget.items.length
+                  : searchedItems.length,
               itemBuilder: (c, i) {
+                final item = controller.text.isEmpty
+                    ? widget.items[i]
+                    : searchedItems[i];
                 return Container(
                   color: _selected == i
                       ? Theme.of(context).primaryColor
                       : Colors.transparent,
                   child: GestureDetector(
                     onTap: () => _select(i),
-                    onDoubleTap: () => Navigator.of(context).pop(i),
+                    onDoubleTap: () => Navigator.of(context).pop(item),
                     child: ListTile(
-                      title: Text(widget.items[i]),
+                      title: Text(item),
                       selected: _selected == i,
                       selectedColor: Colors.white,
                     ),
@@ -60,4 +82,11 @@ class _AddWidgetDialogState extends State<AddWidgetDialog> {
       _selected = i;
     });
   }
+
+  _searchItems() => setState(() {
+        searchedItems = widget.items
+            .where(
+                (e) => e.toLowerCase().contains(controller.text.toLowerCase()))
+            .toList();
+      });
 }
