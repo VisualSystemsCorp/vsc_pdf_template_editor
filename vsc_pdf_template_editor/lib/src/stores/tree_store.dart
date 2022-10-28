@@ -34,7 +34,7 @@ import 'package:mobx/mobx.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:code_text_field/code_text_field.dart';
 import 'package:highlight/languages/json.dart';
-import 'package:flutter_highlight/themes/atelier-lakeside-light.dart';
+import 'package:flutter_highlight/themes/atom-one-dark-reasonable.dart';
 
 part 'tree_store.g.dart';
 
@@ -254,14 +254,14 @@ abstract class TreeStoreModel with Store {
   _initControllers() {
     _templateController = CodeController(
       language: json,
-      theme: atelierLakesideLightTheme,
+      theme: atomOneDarkReasonableTheme,
       text: jsonEncode(_template),
       onChange: (val) => EasyDebounce.debounce(
           '', const Duration(milliseconds: 500), () => onInputChanged()),
     );
     _dataController = CodeController(
       language: json,
-      theme: atelierLakesideLightTheme,
+      theme: atomOneDarkReasonableTheme,
       text: jsonEncode(_data),
       onChange: (val) => EasyDebounce.debounce(
           '', const Duration(milliseconds: 500), () => onDataChanged()),

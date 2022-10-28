@@ -12,6 +12,7 @@ class VscPdfTemplateEditor extends StatelessWidget {
     super.key,
     required this.template,
     required this.data,
+    this.codeFieldTextStyle,
   }) {
     viewModel = TreeStore(
       template,
@@ -21,6 +22,7 @@ class VscPdfTemplateEditor extends StatelessWidget {
 
   final Map<String, dynamic> template;
   final Map<String, dynamic> data;
+  final TextStyle? codeFieldTextStyle;
   late final TreeStore viewModel;
 
   @override
@@ -71,6 +73,7 @@ class VscPdfTemplateEditor extends StatelessWidget {
                   child: JsonEditorWidget(
                     viewModel: viewModel,
                     data: data.toString(),
+                    codeFieldTextStyle: codeFieldTextStyle,
                   ),
                 ),
                 const VerticalDivider(thickness: 1, width: 1),

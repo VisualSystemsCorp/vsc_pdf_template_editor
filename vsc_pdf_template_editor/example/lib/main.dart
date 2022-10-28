@@ -33,6 +33,10 @@ class _EditorAppState extends State<EditorApp> {
                     return VscPdfTemplateEditor(
                       template: snapshot.data![0],
                       data: snapshot.data![1],
+                      codeFieldTextStyle: const TextStyle(
+                        fontFamily: 'SourceCodePro',
+                        fontSize: 14,
+                      ),
                     );
                   }
                   return const Center(child: CircularProgressIndicator());

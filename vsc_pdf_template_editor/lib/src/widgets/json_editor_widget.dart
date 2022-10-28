@@ -9,10 +9,12 @@ class JsonEditorWidget extends StatefulWidget {
     Key? key,
     required this.viewModel,
     required this.data,
+    this.codeFieldTextStyle,
   }) : super(key: key);
 
   final TreeStore viewModel;
   final String data;
+  final TextStyle? codeFieldTextStyle;
 
   @override
   State<StatefulWidget> createState() => _JsonEditorWidgetState();
@@ -58,6 +60,7 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
                     child: CodeField(
                       controller: widget.viewModel.templateController,
                       expands: true,
+                      textStyle: widget.codeFieldTextStyle,
                     ),
                   ),
                   Container(
@@ -65,6 +68,7 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
                       child: CodeField(
                         controller: widget.viewModel.dataController,
                         expands: true,
+                        textStyle: widget.codeFieldTextStyle,
                       )),
                 ],
               ),
