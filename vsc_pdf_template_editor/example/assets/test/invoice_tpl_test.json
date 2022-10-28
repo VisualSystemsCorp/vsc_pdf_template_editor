@@ -1,29 +1,30 @@
+
 {
   "className": "TplDocument",
   "pageMode": "none",
   "children": [
     {
       "className": "TplPage",
-      "pageFormat": "letter",
-      "children": [
-        {
-          "className": "TplColumn",
-          "children": [
-            {
-              "className": "TplRepeater",
-              "array": "data.line_items",
-              "childTemplate": {
-                "className": "TplText",
-                "text": "data.item_description"
-              }
-            },
-            {
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplColumn",
+        "children": [
+          {
+            "className": "TplRepeater",
+            "array": "data.line_items",
+            "childTemplate": {
               "className": "TplText",
-              "text": "'...some text outside of the repeater, but in the same column...'"
+              "text": "data.item_description"
             }
-          ]
-        }
-      ]
+          },
+          {
+            "className": "TplText",
+            "text": "'...some text outside of the repeater, but in the same column...'"
+          }
+        ]
+      }
     }
   ]
 }
