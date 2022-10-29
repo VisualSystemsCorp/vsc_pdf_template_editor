@@ -238,6 +238,15 @@ PdfOutlineStyle? evaluateOutlineStyle(
   return evaluateEnum(PdfOutlineStyle.values, expression, data);
 }
 
+DecorationPosition? evaluateDecorationPosition(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(DecorationPosition.values, expression, data);
+}
+
+BoxFit? evaluateBoxFit(dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(BoxFit.values, expression, data);
+}
+
 List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
   final List<Widget> res = [];
 

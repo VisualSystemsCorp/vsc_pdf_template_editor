@@ -14,7 +14,19 @@ class AppConstants {
     'Divider',
     'Full Page',
     'Padding',
-    'Placeholder'
+    'Placeholder',
+    'Align',
+    'Aspect Ratio',
+    'Checkbox',
+    'Constrained Box',
+    'Decorated Box',
+    'Fitted Box',
+    'Flex',
+    'Flexible',
+    'Flat Button',
+    'Footer',
+    'Grid View',
+    'Limited Box'
   ];
   static List<String> supportedProperties = [
     'Alignment',
@@ -27,6 +39,7 @@ class AppConstants {
     'Border Radius',
     'Border Side',
     'Text Style',
-    'Page Format'
+    'Page Format',
+    'Box Fit'
   ];
 }

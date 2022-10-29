@@ -1,12 +1,24 @@
 import 'package:pdf/widgets.dart' as pw;
+import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_aspect_ratio.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_center.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_checkbox.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_constrained_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_decorated_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_document.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_expanded.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_fitted_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_flat_button.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_flex.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_flexible.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_footer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_full_page.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_multi_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_new_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_padding.dart';
@@ -56,7 +68,19 @@ class Transformer {
       'TplDivider': TplDivider.fromJson,
       'TplFullPage': TplFullPage.fromJson,
       'TplPadding': TplPadding.fromJson,
-      'TplPlaceholder': TplPlaceholder.fromJson
+      'TplPlaceholder': TplPlaceholder.fromJson,
+      'TplAlign': TplAlign.fromJson,
+      'TplAspectRatio': TplAspectRatio.fromJson,
+      'TplCheckbox': TplCheckbox.fromJson,
+      'TplConstrainedBox': TplConstrainedBox.fromJson,
+      'TplDecoratedBox': TplDecoratedBox.fromJson,
+      'TplFittedBox': TplFittedBox.fromJson,
+      'TplFlex': TplFlex.fromJson,
+      'TplFlexible': TplFlexible.fromJson,
+      'TplFlatButton': TplFlatButton.fromJson,
+      'TplFooter': TplFooter.fromJson,
+      'TplGridView': TplGridView.fromJson,
+      'TplLimitedBox': TplLimitedBox.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];

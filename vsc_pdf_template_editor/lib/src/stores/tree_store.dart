@@ -2,16 +2,29 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_aspect_ratio.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_side.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_style.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_border.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_constraints.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_decoration.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_box_fit.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_center.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_checkbox.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_constrained_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_decorated_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_expanded.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_fitted_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_flat_button.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_flex.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_flexible.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_footer.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
@@ -188,6 +201,42 @@ abstract class TreeStoreModel with Store {
       case 'Placeholder':
         map = TplPlaceholder().toJson();
         break;
+      case 'Align':
+        map = TplAlign().toJson();
+        break;
+      case 'Aspect Ratio':
+        map = TplAspectRatio().toJson();
+        break;
+      case 'Checkbox':
+        map = TplCheckbox().toJson();
+        break;
+      case 'Constrained Box':
+        map = TplConstrainedBox().toJson();
+        break;
+      case 'Decorated Box':
+        map = TplDecoratedBox().toJson();
+        break;
+      case 'Fitted Box':
+        map = TplFittedBox().toJson();
+        break;
+      case 'Flex':
+        map = TplFlex().toJson();
+        break;
+      case 'Flexible':
+        map = TplFlexible().toJson();
+        break;
+      case 'Flat Button':
+        map = TplFlatButton().toJson();
+        break;
+      case 'Footer':
+        map = TplFooter().toJson();
+        break;
+      case 'Grid View':
+        map = TplGridView().toJson();
+        break;
+      case 'Limited Box':
+        map = TplLimitedBox().toJson();
+        break;
     }
     addWidget(map);
   }
@@ -227,6 +276,9 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Page Format':
         map = TplPdfPageFormat().toJson();
+        break;
+      case 'Box Fit':
+        map = TplBoxFit().toJson();
         break;
     }
     addWidget(map);
