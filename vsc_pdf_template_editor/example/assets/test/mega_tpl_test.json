@@ -124,6 +124,128 @@
           }
         }
       }
+    },
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplAlign",
+        "alignment": "center",
+        "widthFactor": 100,
+        "heightFactor": 50,
+        "child": {
+          "className": "TplAspectRatio",
+          "aspectRatio": 1,
+          "child": {
+            "className": "TplConstrainedBox",
+            "constraints": {
+              "minWidth": 20,
+              "maxWidth": 200,
+              "minHeight": 100,
+              "maxHeight": 10
+            },
+            "child": {
+              "className": "TplDecoratedBox",
+              "decoration": {
+                "color": "'#ff0000'",
+                "border": null,
+                "borderRadius": null
+              },
+              "position": "background",
+              "child": {
+                "className": "TplFittedBox",
+                "fit": "contain",
+                "alignment": "center",
+                "child": {
+                  "className": "TplFlatButton",
+                  "textColor": "'#ff0000'",
+                  "color": "'#ff0000'",
+                  "colorDown": "'#ff0000'",
+                  "colorRollover": "'#ff0000'",
+                  "padding": null,
+                  "decoration": {
+                    "color": "'#ff0000'",
+                    "border": null,
+                    "borderRadius": null
+                  },
+                  "flags": [],
+                  "child": {
+                    "className": "TplCheckbox",
+                    "value": false,
+                    "tristate": false,
+                    "activeColor": "'#ff0000'",
+                    "checkColor": "'#ff0000'",
+                    "name": "test·checkbox",
+                    "width": 50,
+                    "height": 40,
+                    "decoration": {
+                      "color": "'#ff0000'",
+                      "border": null,
+                      "borderRadius": null
+                    }
+                  },
+                  "name": "'test·button'"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplFlexible",
+        "flex": null,
+        "fit": "'loose'",
+        "child": {
+          "className": "TplFooter",
+          "leading": {
+            "className": "TplFlex",
+            "direction": "'vertical'",
+            "mainAxisAlignment": "'start'",
+            "mainAxisSize": "'max'",
+            "crossAxisAlignment": "'center'",
+            "verticalDirection": "'down'",
+            "children": []
+          },
+          "title": {
+            "className": "TplLimitedBox",
+            "maxWidth": 150,
+            "maxHeight": 90,
+            "child": null
+          },
+          "trailing": null,
+          "margin": null,
+          "padding": null,
+          "decoration": {
+            "color": "'#ff0000'",
+            "border": null,
+            "borderRadius": null
+          }
+        }
+      }
+    },
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplGridView",
+        "direction": "'vertical'",
+        "crossAxisCount": 1,
+        "mainAxisSpacing": 0,
+        "crossAxisSpacing": 0,
+        "childAspectRatio": 1,
+        "padding": null,
+        "children": []
+      }
     }
   ]
 }
