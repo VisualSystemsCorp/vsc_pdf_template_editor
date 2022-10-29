@@ -39,7 +39,6 @@ class AppConstants {
     'Border Radius',
     'Border Side',
     'Text Style',
-    'Page Format',
-    'Box Fit'
+    'Page Format'
   ];
 }

@@ -17,8 +17,7 @@ class TplGridView implements wb.WidgetBuilder {
 
   String className = 'TplGridView';
 
-  @JsonKey(defaultValue: Axis.vertical)
-  Axis direction = Axis.vertical;
+  dynamic direction;
   TplEdgeInsets? padding;
   dynamic crossAxisCount;
   dynamic mainAxisSpacing;
@@ -36,7 +35,7 @@ class TplGridView implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return GridView(
-      direction: direction,
+      direction: evaluateAxis(direction, data) ?? Axis.vertical,
       padding: padding?.toPdf(data) ?? EdgeInsets.zero,
       crossAxisCount: evaluateInt(crossAxisCount, data) ?? 1,
       mainAxisSpacing: evaluateDouble(mainAxisSpacing, data) ?? 0,
