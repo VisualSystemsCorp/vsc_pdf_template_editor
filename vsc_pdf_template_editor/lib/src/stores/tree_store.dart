@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/widgets.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
@@ -96,10 +97,11 @@ abstract class TreeStoreModel with Store {
   onInputChanged() {
     try {
       _template = jsonDecode(_templateController.rawText);
-      _buildPdf();
       buildErrorText = '';
+      _buildPdf();
     } catch (e, s) {
       buildErrorText = '$e \n $s';
+      debugPrint('$e\n$s');
     }
   }
 
@@ -118,10 +120,11 @@ abstract class TreeStoreModel with Store {
           _templateController.text.substring(cursorPos);
       _templateController.text = newMap;
       _template = jsonDecode(newMap);
-      _buildPdf();
       buildErrorText = '';
+      _buildPdf();
     } catch (e, s) {
       buildErrorText = '$e \n $s';
+      debugPrint('$e\n$s');
     }
   }
 
@@ -244,7 +247,7 @@ abstract class TreeStoreModel with Store {
     Map<String, dynamic> map = {};
     switch (name) {
       case 'Alignment':
-        map = const TplAlignment().toJson();
+        map = TplAlignment().toJson();
         break;
       case 'Edge Insets':
         map = TplEdgeInsets().toJson();
@@ -287,10 +290,11 @@ abstract class TreeStoreModel with Store {
   _buildPdf() async {
     try {
       _doc = transformer.Transformer.buildPdf(_template, _data);
-      await _savePdf();
       buildErrorText = '';
+      await _savePdf();
     } catch (e, s) {
       buildErrorText = '$e \n $s';
+      debugPrint('$e\n$s');
     }
   }
 

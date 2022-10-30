@@ -132,7 +132,9 @@
       },
       "child": {
         "className": "TplAlign",
-        "alignment": "center",
+        "alignment": {
+          "alignment": "'center'"
+        },
         "widthFactor": 100,
         "heightFactor": 50,
         "child": {
@@ -157,7 +159,9 @@
               "child": {
                 "className": "TplFittedBox",
                 "fit": "contain",
-                "alignment": "center",
+                "alignment": {
+                  "alignment": "'center'"
+                },
                 "child": {
                   "className": "TplFlatButton",
                   "textColor": "'#ff0000'",
@@ -177,7 +181,7 @@
                     "tristate": false,
                     "activeColor": "'#ff0000'",
                     "checkColor": "'#ff0000'",
-                    "name": "test·checkbox",
+                    "name": "'test·checkbox'",
                     "width": 50,
                     "height": 40,
                     "decoration": {

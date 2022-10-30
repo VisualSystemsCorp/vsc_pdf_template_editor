@@ -10,9 +10,11 @@ part 'tpl_alignment.g.dart';
   explicitToJson: true,
 )
 class TplAlignment {
-  const TplAlignment({this.alignment = 'center'});
+  TplAlignment();
 
-  final dynamic alignment;
+  dynamic alignment;
+  dynamic x;
+  dynamic y;
 
   factory TplAlignment.fromJson(Map<String, dynamic> json) =>
       _$TplAlignmentFromJson(json);
@@ -21,23 +23,30 @@ class TplAlignment {
 
   ws.Alignment toPdf(Map<String, dynamic> data) {
     final alignmentStr = evaluateString(alignment, data);
+    if (alignmentStr == null) {
+      return ws.Alignment(
+          evaluateDouble(x, data) ?? 0.0, evaluateDouble(y, data) ?? 0.0);
+    }
+
     switch (alignmentStr) {
+      case 'center':
+        return ws.Alignment.center;
       case 'topLeft':
-        return ws.Alignment(-1, 1);
+        return ws.Alignment.topLeft;
       case 'topCenter':
-        return ws.Alignment(0, 1);
+        return ws.Alignment.topCenter;
       case 'topRight':
-        return ws.Alignment(1, 1);
+        return ws.Alignment.topRight;
       case 'centerLeft':
-        return ws.Alignment(-1, 0);
+        return ws.Alignment.centerLeft;
       case 'centerRight':
-        return ws.Alignment(1, 0);
+        return ws.Alignment.centerRight;
       case 'bottomLeft':
-        return ws.Alignment(-1, -1);
+        return ws.Alignment.bottomLeft;
       case 'bottomCenter':
-        return ws.Alignment(0, -1);
+        return ws.Alignment.bottomCenter;
       case 'bottomRight':
-        return ws.Alignment(1, -1);
+        return ws.Alignment.bottomRight;
       default:
         throw Exception('Invalid alignment: $alignmentStr');
     }

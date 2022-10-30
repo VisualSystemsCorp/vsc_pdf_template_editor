@@ -12,10 +12,7 @@ TplGridView _$TplGridViewFromJson(Map<String, dynamic> json) => $checkedCreate(
       ($checkedConvert) {
         final val = TplGridView();
         $checkedConvert('className', (v) => val.className = v as String);
-        $checkedConvert(
-            'direction',
-            (v) => val.direction =
-                $enumDecodeNullable(_$AxisEnumMap, v) ?? Axis.vertical);
+        $checkedConvert('direction', (v) => val.direction = v);
         $checkedConvert(
             'padding',
             (v) => val.padding = v == null
@@ -33,7 +30,7 @@ TplGridView _$TplGridViewFromJson(Map<String, dynamic> json) => $checkedCreate(
 Map<String, dynamic> _$TplGridViewToJson(TplGridView instance) =>
     <String, dynamic>{
       'className': instance.className,
-      'direction': _$AxisEnumMap[instance.direction]!,
+      'direction': instance.direction,
       'padding': instance.padding?.toJson(),
       'crossAxisCount': instance.crossAxisCount,
       'mainAxisSpacing': instance.mainAxisSpacing,
@@ -41,8 +38,3 @@ Map<String, dynamic> _$TplGridViewToJson(TplGridView instance) =>
       'childAspectRatio': instance.childAspectRatio,
       'children': instance.children,
     };
-
-const _$AxisEnumMap = {
-  Axis.horizontal: 'horizontal',
-  Axis.vertical: 'vertical',
-};
