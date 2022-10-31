@@ -137,5 +137,5 @@ class VscPdfTemplateEditor extends StatelessWidget {
           ));
 
   _onAddImagePressed() async =>
-      await FilePicker.platform.pickFiles(type: FileType.image);
+      await FilePicker.platform.pickFiles(type: FileType.image, withData: true);
 }
