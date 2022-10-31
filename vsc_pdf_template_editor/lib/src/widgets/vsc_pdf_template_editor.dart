@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
@@ -6,6 +7,7 @@ import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 import 'package:vsc_pdf_template_editor/src/widgets/json_editor_widget.dart';
 import 'add_widget_dialog.dart';
 import 'pdf_view_widget.dart';
+import 'package:file_picker/file_picker.dart';
 
 class VscPdfTemplateEditor extends StatelessWidget {
   VscPdfTemplateEditor({
@@ -53,6 +55,21 @@ class VscPdfTemplateEditor extends StatelessWidget {
                       }
                     },
                     child: const Text(AppStrings.addProperty)),
+                const SizedBox(
+                  width: 50,
+                ),
+                ElevatedButton(
+                    onPressed: () async {
+                      final res =
+                          await _onAddImagePressed() as FilePickerResult?;
+                      if (res != null) {
+                        final file = res.files.first.bytes!;
+                        final base64Str = base64Encode(file.toList());
+                        viewModel.imageData = base64Str;
+                        viewModel.onWidgetSelected('Image');
+                      }
+                    },
+                    child: const Text(AppStrings.addImage)),
                 const SizedBox(
                   width: 50,
                 ),
@@ -118,4 +135,7 @@ class VscPdfTemplateEditor extends StatelessWidget {
               ),
             ),
           ));
+
+  _onAddImagePressed() async =>
+      await FilePicker.platform.pickFiles(type: FileType.image);
 }

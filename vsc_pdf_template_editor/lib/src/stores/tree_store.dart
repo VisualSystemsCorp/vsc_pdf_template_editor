@@ -24,6 +24,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_flex.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_flexible.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_footer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
@@ -41,6 +42,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_full_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_padding.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -88,6 +90,8 @@ abstract class TreeStoreModel with Store {
   CodeController get templateController => _templateController;
 
   CodeController get dataController => _dataController;
+
+  dynamic imageData;
 
   set setPdfBytes(Uint8List? value) {
     _pdfBytes = value;
@@ -238,6 +242,9 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Limited Box':
         map = TplLimitedBox().toJson();
+        break;
+      case 'Image':
+        map = TplImage(TplMemoryImage(imageData)).toJson();
         break;
     }
     addWidget(map);
