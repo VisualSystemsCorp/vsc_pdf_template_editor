@@ -15,19 +15,10 @@ class TplColumn implements wb.WidgetBuilder {
   TplColumn();
 
   String className = 'TplColumn';
-
-  @JsonKey(defaultValue: MainAxisAlignment.start)
-  MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start;
-
-  @JsonKey(defaultValue: MainAxisSize.max)
-  MainAxisSize mainAxisSize = MainAxisSize.max;
-
-  @JsonKey(defaultValue: CrossAxisAlignment.center)
-  CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center;
-
-  @JsonKey(defaultValue: VerticalDirection.down)
-  VerticalDirection verticalDirection = VerticalDirection.down;
-
+  dynamic mainAxisAlignment;
+  dynamic mainAxisSize;
+  dynamic crossAxisAlignment;
+  dynamic verticalDirection;
   @WidgetJsonConverter()
   List<dynamic>? children;
 
@@ -40,10 +31,15 @@ class TplColumn implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return Column(
-      mainAxisAlignment: mainAxisAlignment,
-      mainAxisSize: mainAxisSize,
-      crossAxisAlignment: crossAxisAlignment,
-      verticalDirection: verticalDirection,
+      mainAxisAlignment: evaluateMainAxisAlignment(mainAxisAlignment, data) ??
+          MainAxisAlignment.start,
+      mainAxisSize:
+          evaluateMainAxisSize(mainAxisSize, data) ?? MainAxisSize.max,
+      crossAxisAlignment:
+          evaluateCrossAxisAlignment(crossAxisAlignment, data) ??
+              CrossAxisAlignment.center,
+      verticalDirection: evaluateVerticalDirection(verticalDirection, data) ??
+          VerticalDirection.down,
       children: children == null ? [] : getChildren(children!, data),
     );
   }

@@ -1,20 +1,21 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
-import '../utils/widget_builder.dart' as wb;
 
-part 'tpl_row.g.dart';
+part 'tpl_flex.g.dart';
 
 @JsonSerializable(
   checked: true,
   disallowUnrecognizedKeys: false,
   explicitToJson: true,
 )
-class TplRow implements wb.WidgetBuilder {
-  TplRow();
+class TplFlex implements wb.WidgetBuilder {
+  TplFlex();
 
-  String className = 'TplRow';
+  String className = 'TplFlex';
+  dynamic direction;
   dynamic mainAxisAlignment;
   dynamic mainAxisSize;
   dynamic crossAxisAlignment;
@@ -22,14 +23,16 @@ class TplRow implements wb.WidgetBuilder {
   @WidgetJsonConverter()
   List<dynamic>? children;
 
-  factory TplRow.fromJson(Map<String, dynamic> json) => _$TplRowFromJson(json);
+  factory TplFlex.fromJson(Map<String, dynamic> json) =>
+      _$TplFlexFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$TplRowToJson(this);
+  Map<String, dynamic> toJson() => _$TplFlexToJson(this);
 
   @override
   Widget buildWidget(Map<String, dynamic> data) {
-    return Row(
+    return Flex(
+      direction: evaluateAxis(direction, data) ?? Axis.vertical,
       mainAxisAlignment: evaluateMainAxisAlignment(mainAxisAlignment, data) ??
           MainAxisAlignment.start,
       mainAxisSize:

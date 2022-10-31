@@ -1,0 +1,29 @@
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplAspectRatio",
+        "aspectRatio": 0.2,
+        "child": {
+          "className": "TplContainer",
+          "alignment": null,
+          "padding": null,
+          "color": "'#fc03ca'",
+          "decoration": null,
+          "foregroundDecoration": null,
+          "width": null,
+          "height": null,
+          "constraints": null,
+          "margin": null,
+          "child": null
+        }
+      }
+    }
+  ]
+}

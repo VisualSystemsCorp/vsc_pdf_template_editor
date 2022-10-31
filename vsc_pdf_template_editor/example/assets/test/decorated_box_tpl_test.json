@@ -1,0 +1,38 @@
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplSizedBox",
+        "width": 300,
+        "height": 200,
+        "child": {
+          "className": "TplDecoratedBox",
+          "decoration": {
+            "color": "'#fc03ca'",
+            "border": null,
+            "borderRadius": {
+              "topLeft": null,
+              "topRight": null,
+              "bottomLeft": null,
+              "bottomRight": null,
+              "all": {
+                "x": null,
+                "y": null,
+                "circular": 10
+              },
+              "circular": true
+            }
+          },
+          "position": null,
+          "child": null
+        }
+      }
+    }
+  ]
+}

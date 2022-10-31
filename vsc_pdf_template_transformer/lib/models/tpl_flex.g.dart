@@ -1,17 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tpl_column.dart';
+part of 'tpl_flex.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TplColumn _$TplColumnFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'TplColumn',
+TplFlex _$TplFlexFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'TplFlex',
       json,
       ($checkedConvert) {
-        final val = TplColumn();
+        final val = TplFlex();
         $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('direction', (v) => val.direction = v);
         $checkedConvert('mainAxisAlignment', (v) => val.mainAxisAlignment = v);
         $checkedConvert('mainAxisSize', (v) => val.mainAxisSize = v);
         $checkedConvert(
@@ -22,8 +23,9 @@ TplColumn _$TplColumnFromJson(Map<String, dynamic> json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$TplColumnToJson(TplColumn instance) => <String, dynamic>{
+Map<String, dynamic> _$TplFlexToJson(TplFlex instance) => <String, dynamic>{
       'className': instance.className,
+      'direction': instance.direction,
       'mainAxisAlignment': instance.mainAxisAlignment,
       'mainAxisSize': instance.mainAxisSize,
       'crossAxisAlignment': instance.crossAxisAlignment,
