@@ -43,6 +43,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_full_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_padding.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -325,9 +326,17 @@ abstract class TreeStoreModel with Store {
     );
   }
 
-  dynamic insertImage(Uint8List file) {
+  dynamic insertImage(Uint8List file, String name) {
+    Map<String, dynamic> map = {};
     final base64Str = base64Encode(file.toList());
-    final map = TplMemoryImage(base64Str).toJson();
+    switch (name) {
+      case 'Memory Image':
+        map = TplMemoryImage(base64Str).toJson();
+        break;
+      case 'Raw Image':
+        map = TplRawImage(base64Str).toJson();
+        break;
+    }
     addWidget(map);
   }
 }

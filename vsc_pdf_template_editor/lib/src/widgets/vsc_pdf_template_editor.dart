@@ -60,12 +60,20 @@ class VscPdfTemplateEditor extends StatelessWidget {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      final res =
-                          await _onAddImagePressed() as FilePickerResult?;
+                      final type = await _onAddImagePressed(context);
+                      if (type != null) {
+                        final res = await _pickImage() as FilePickerResult?;
+                        if (res != null) {
+                          final file = res.files.first.bytes!;
+                          viewModel.insertImage(file, type);
+                        }
+                      }
+                      /*  final res =
+                          await _pickImage() as FilePickerResult?;
                       if (res != null) {
                         final file = res.files.first.bytes!;
                         viewModel.insertImage(file);
-                      }
+                      }*/
                     },
                     child: const Text(AppStrings.addImage)),
                 const SizedBox(
@@ -134,6 +142,20 @@ class VscPdfTemplateEditor extends StatelessWidget {
             ),
           ));
 
-  _onAddImagePressed() async =>
+  _onAddImagePressed(BuildContext context) => showDialog(
+      context: context,
+      builder: (c) => AlertDialog(
+            title: const Center(child: Text(AppStrings.addImage)),
+            contentPadding: const EdgeInsets.symmetric(vertical: 20),
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.3,
+              height: MediaQuery.of(context).size.height * 0.9,
+              child: AddWidgetDialog(
+                items: AppConstants.supportedImages,
+              ),
+            ),
+          ));
+
+  _pickImage() async =>
       await FilePicker.platform.pickFiles(type: FileType.image, withData: true);
 }

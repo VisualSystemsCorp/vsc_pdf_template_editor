@@ -42,4 +42,9 @@ class AppConstants {
     'Text Style',
     'Page Format'
   ];
+
+  static List<String> supportedImages = [
+    'Memory Image',
+    'Raw Image',
+  ];
 }
