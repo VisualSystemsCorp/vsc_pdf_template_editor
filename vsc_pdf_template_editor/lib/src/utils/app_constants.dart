@@ -26,7 +26,8 @@ class AppConstants {
     'Flat Button',
     'Footer',
     'Grid View',
-    'Limited Box'
+    'Limited Box',
+    'Image'
   ];
   static List<String> supportedProperties = [
     'Alignment',

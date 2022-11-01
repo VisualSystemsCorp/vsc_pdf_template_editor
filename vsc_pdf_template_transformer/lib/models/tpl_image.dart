@@ -13,13 +13,12 @@ part 'tpl_image.g.dart';
   explicitToJson: true,
 )
 class TplImage implements wb.WidgetBuilder {
-  TplImage(this.image);
+  TplImage();
 
   String className = 'TplImage';
-  TplMemoryImage image;
+  TplMemoryImage? image;
   dynamic fit;
   TplAlignment? alignment;
-  dynamic orientation;
   dynamic width;
   dynamic height;
   dynamic dpi;
@@ -32,7 +31,7 @@ class TplImage implements wb.WidgetBuilder {
 
   @override
   Widget buildWidget(Map<String, dynamic> data) {
-    return Image(image.buildImage(data),
+    return Image(image?.buildImage(data),
         fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
         alignment: alignment?.toPdf(data) ?? Alignment.center,
         width: evaluateDouble(width, data),

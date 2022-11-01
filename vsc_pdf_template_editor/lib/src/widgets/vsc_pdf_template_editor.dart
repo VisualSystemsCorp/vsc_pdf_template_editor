@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
@@ -40,6 +39,7 @@ class VscPdfTemplateEditor extends StatelessWidget {
                     onPressed: () async {
                       final res = await _onAddWidgetPressed(context);
                       if (res != null) {
+                        print(res);
                         viewModel.onWidgetSelected(res);
                       }
                     },
@@ -64,9 +64,7 @@ class VscPdfTemplateEditor extends StatelessWidget {
                           await _onAddImagePressed() as FilePickerResult?;
                       if (res != null) {
                         final file = res.files.first.bytes!;
-                        final base64Str = base64Encode(file.toList());
-                        viewModel.imageData = base64Str;
-                        viewModel.onWidgetSelected('Image');
+                        viewModel.insertImage(file);
                       }
                     },
                     child: const Text(AppStrings.addImage)),

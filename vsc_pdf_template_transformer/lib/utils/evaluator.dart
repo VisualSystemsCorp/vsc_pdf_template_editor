@@ -86,14 +86,9 @@ PdfColor? evaluateColor(dynamic expression, Map<String, dynamic> data) {
 }
 
 Uint8List? evaluateBase64(dynamic expression, Map<String, dynamic> data) {
-  dynamic result;
-  try {
-    result = _evaluateDynamic(expression, data);
-    if (result == null) {
-      return null;
-    }
-  } catch (e) {
-    return Base64Decoder().convert(expression);
+  final result = evaluateString(expression, data);
+  if (result == null) {
+    return null;
   }
 
   return Base64Decoder().convert(result);

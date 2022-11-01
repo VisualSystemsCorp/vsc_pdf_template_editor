@@ -91,8 +91,6 @@ abstract class TreeStoreModel with Store {
 
   CodeController get dataController => _dataController;
 
-  dynamic imageData;
-
   set setPdfBytes(Uint8List? value) {
     _pdfBytes = value;
   }
@@ -244,7 +242,7 @@ abstract class TreeStoreModel with Store {
         map = TplLimitedBox().toJson();
         break;
       case 'Image':
-        map = TplImage(TplMemoryImage(imageData)).toJson();
+        map = TplImage().toJson();
         break;
     }
     addWidget(map);
@@ -325,5 +323,11 @@ abstract class TreeStoreModel with Store {
       onChange: (val) => EasyDebounce.debounce(
           '', const Duration(milliseconds: 500), () => onDataChanged()),
     );
+  }
+
+  dynamic insertImage(Uint8List file) {
+    final base64Str = base64Encode(file.toList());
+    final map = TplMemoryImage(base64Str).toJson();
+    addWidget(map);
   }
 }
