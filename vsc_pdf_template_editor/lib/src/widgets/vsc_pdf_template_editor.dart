@@ -68,12 +68,6 @@ class VscPdfTemplateEditor extends StatelessWidget {
                           viewModel.insertImage(file, type);
                         }
                       }
-                      /*  final res =
-                          await _pickImage() as FilePickerResult?;
-                      if (res != null) {
-                        final file = res.files.first.bytes!;
-                        viewModel.insertImage(file);
-                      }*/
                     },
                     child: const Text(AppStrings.addImage)),
                 const SizedBox(

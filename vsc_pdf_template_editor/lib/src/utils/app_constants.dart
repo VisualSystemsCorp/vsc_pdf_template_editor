@@ -27,7 +27,8 @@ class AppConstants {
     'Footer',
     'Grid View',
     'Limited Box',
-    'Image'
+    'Image',
+    'Svg Image'
   ];
   static List<String> supportedProperties = [
     'Alignment',
@@ -40,7 +41,10 @@ class AppConstants {
     'Border Radius',
     'Border Side',
     'Text Style',
-    'Page Format'
+    'Page Format',
+    'Decoration Graphic',
+    'Decoration Image',
+    'Decoration Svg Image'
   ];
 
   static List<String> supportedImages = [

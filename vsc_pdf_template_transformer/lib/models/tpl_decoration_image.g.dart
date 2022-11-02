@@ -1,16 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tpl_image.dart';
+part of 'tpl_decoration_image.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TplImage _$TplImageFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'TplImage',
+TplDecorationImage _$TplDecorationImageFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'TplDecorationImage',
       json,
       ($checkedConvert) {
-        final val = TplImage();
+        final val = TplDecorationImage();
         $checkedConvert('className', (v) => val.className = v as String);
         $checkedConvert(
             'provider',
@@ -23,19 +24,16 @@ TplImage _$TplImageFromJson(Map<String, dynamic> json) => $checkedCreate(
             (v) => val.alignment = v == null
                 ? null
                 : TplAlignment.fromJson(v as Map<String, dynamic>));
-        $checkedConvert('width', (v) => val.width = v);
-        $checkedConvert('height', (v) => val.height = v);
         $checkedConvert('dpi', (v) => val.dpi = v);
         return val;
       },
     );
 
-Map<String, dynamic> _$TplImageToJson(TplImage instance) => <String, dynamic>{
+Map<String, dynamic> _$TplDecorationImageToJson(TplDecorationImage instance) =>
+    <String, dynamic>{
       'className': instance.className,
       'provider': instance.provider?.toJson(),
       'fit': instance.fit,
       'alignment': instance.alignment?.toJson(),
-      'width': instance.width,
-      'height': instance.height,
       'dpi': instance.dpi,
     };

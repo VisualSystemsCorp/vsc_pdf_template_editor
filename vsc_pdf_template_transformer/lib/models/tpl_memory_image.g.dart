@@ -14,6 +14,7 @@ TplMemoryImage _$TplMemoryImageFromJson(Map<String, dynamic> json) =>
         final val = TplMemoryImage(
           $checkedConvert('imageData', (v) => v),
         );
+        $checkedConvert('className', (v) => val.className = v as String);
         $checkedConvert('orientation', (v) => val.orientation = v);
         $checkedConvert('dpi', (v) => val.dpi = v);
         return val;
@@ -22,6 +23,7 @@ TplMemoryImage _$TplMemoryImageFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplMemoryImageToJson(TplMemoryImage instance) =>
     <String, dynamic>{
+      'className': instance.className,
       'imageData': instance.imageData,
       'orientation': instance.orientation,
       'dpi': instance.dpi,

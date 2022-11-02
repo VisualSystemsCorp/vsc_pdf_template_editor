@@ -23,6 +23,11 @@ TplBoxDecoration _$TplBoxDecorationFromJson(Map<String, dynamic> json) =>
             (v) => val.borderRadius = v == null
                 ? null
                 : TplBorderRadius.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'image',
+            (v) => val.image = v == null
+                ? null
+                : TplDecorationGraphic.fromJson(v as Map<String, dynamic>));
         return val;
       },
     );
@@ -32,4 +37,5 @@ Map<String, dynamic> _$TplBoxDecorationToJson(TplBoxDecoration instance) =>
       'color': instance.color,
       'border': instance.border?.toJson(),
       'borderRadius': instance.borderRadius?.toJson(),
+      'image': instance.image?.toJson(),
     };

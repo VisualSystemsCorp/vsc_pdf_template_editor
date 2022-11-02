@@ -13,6 +13,7 @@ part 'tpl_raw_image.g.dart';
 class TplRawImage {
   TplRawImage(this.imageData);
 
+  String className = 'TplRawImage';
   dynamic imageData;
   dynamic width;
   dynamic height;

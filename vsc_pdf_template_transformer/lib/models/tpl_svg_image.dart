@@ -1,41 +1,44 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_image_provider.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
 
-part 'tpl_image.g.dart';
+part 'tpl_svg_image.g.dart';
 
 @JsonSerializable(
   checked: true,
   disallowUnrecognizedKeys: false,
   explicitToJson: true,
 )
-class TplImage implements wb.WidgetBuilder {
-  TplImage();
+class TplSvgImage implements wb.WidgetBuilder {
+  TplSvgImage();
 
-  String className = 'TplImage';
-  TplImageProvider? provider;
+  String className = 'TplSvgImage';
+  dynamic svg;
   dynamic fit;
   TplAlignment? alignment;
+  dynamic clip;
   dynamic width;
   dynamic height;
   dynamic dpi;
+  dynamic colorFilter;
 
-  factory TplImage.fromJson(Map<String, dynamic> json) =>
-      _$TplImageFromJson(json);
+  factory TplSvgImage.fromJson(Map<String, dynamic> json) =>
+      _$TplSvgImageFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$TplImageToJson(this);
+  Map<String, dynamic> toJson() => _$TplSvgImageToJson(this);
 
   @override
   Widget buildWidget(Map<String, dynamic> data) {
-    return Image(provider!.buildImage(data),
+    return SvgImage(
+        svg: evaluateString(svg, data) ?? '',
         fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
         alignment: alignment?.toPdf(data) ?? Alignment.center,
+        clip: evaluateBool(clip, data) ?? true,
         width: evaluateDouble(width, data),
         height: evaluateDouble(height, data),
-        dpi: evaluateDouble(dpi, data));
+        colorFilter: evaluateColor(colorFilter, data));
   }
 }

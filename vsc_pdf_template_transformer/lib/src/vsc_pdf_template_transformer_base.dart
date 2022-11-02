@@ -28,6 +28,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_svg_image.dart';
 import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
 
@@ -82,7 +83,8 @@ class Transformer {
       'TplFooter': TplFooter.fromJson,
       'TplGridView': TplGridView.fromJson,
       'TplLimitedBox': TplLimitedBox.fromJson,
-      'TplImage': TplImage.fromJson
+      'TplImage': TplImage.fromJson,
+      'TplSvgImage': TplSvgImage.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];

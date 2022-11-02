@@ -13,6 +13,7 @@ part 'tpl_memory_image.g.dart';
 class TplMemoryImage {
   TplMemoryImage(this.imageData);
 
+  String className = 'TplMemoryImage';
   dynamic imageData;
   dynamic orientation;
   dynamic dpi;
