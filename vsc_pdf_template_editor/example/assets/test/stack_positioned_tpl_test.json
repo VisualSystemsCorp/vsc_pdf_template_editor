@@ -1,0 +1,62 @@
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplStack",
+        "alignment": null,
+        "fit": null,
+        "overflow": null,
+        "children": [
+          {
+            "className": "TplPositioned",
+            "left": 100,
+            "top": null,
+            "right": null,
+            "bottom": null,
+            "child": {
+              "className": "TplText",
+              "text": "'positioned1'",
+              "style": {
+                "color": "'00FF00'"
+              },
+              "textAlign": "left",
+              "textDirection": "ltr",
+              "softWrap": true,
+              "tightBounds": true,
+              "textScaleFactor": 2,
+              "maxLines": 3,
+              "overflow": "span"
+            }
+          },
+          {
+            "className": "TplPositioned",
+            "left": 100,
+            "top": 200,
+            "right": null,
+            "bottom": null,
+            "child": {
+              "className": "TplText",
+              "text": "'positioned2'",
+              "style": {
+                "color": "'00FF00'"
+              },
+              "textAlign": "left",
+              "textDirection": "ltr",
+              "softWrap": true,
+              "tightBounds": true,
+              "textScaleFactor": 2,
+              "maxLines": 3,
+              "overflow": "span"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

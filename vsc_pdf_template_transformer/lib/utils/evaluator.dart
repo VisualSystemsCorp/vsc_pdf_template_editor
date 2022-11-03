@@ -207,6 +207,14 @@ PdfImageOrientation? evaluatePdfImageOrientation(
   return evaluateEnum(PdfImageOrientation.values, expression, data);
 }
 
+StackFit? evaluateStackFit(dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(StackFit.values, expression, data);
+}
+
+Overflow? evaluateOverflow(dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(Overflow.values, expression, data);
+}
+
 PdfPageFormat? evaluatePageFormat(
     dynamic expression, Map<String, dynamic> data) {
   final result = _evaluateDynamic(expression, data);
@@ -275,6 +283,16 @@ MainAxisSize? evaluateMainAxisSize(
 VerticalDirection? evaluateVerticalDirection(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(VerticalDirection.values, expression, data);
+}
+
+WrapAlignment? evaluateWrapAlignment(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(WrapAlignment.values, expression, data);
+}
+
+WrapCrossAlignment? evaluateWrapCrossAlignment(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(WrapCrossAlignment.values, expression, data);
 }
 
 List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {

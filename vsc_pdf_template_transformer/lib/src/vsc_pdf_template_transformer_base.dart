@@ -20,15 +20,24 @@ import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_link.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_listview.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_multi_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_new_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_padding.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_paragraph.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_stack.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_svg_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_url_link.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_watermark.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_wrap.dart';
 import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
 
@@ -84,7 +93,16 @@ class Transformer {
       'TplGridView': TplGridView.fromJson,
       'TplLimitedBox': TplLimitedBox.fromJson,
       'TplImage': TplImage.fromJson,
-      'TplSvgImage': TplSvgImage.fromJson
+      'TplSvgImage': TplSvgImage.fromJson,
+      'TplStack': TplStack.fromJson,
+      'TplPositioned': TplPositioned.fromJson,
+      'TplListView': TplListView.fromJson,
+      'TplLink': TplLink.fromJson,
+      'TplUrlLink': TplUrlLink.fromJson,
+      'TplParagraph': TplParagraph.fromJson,
+      'TplVerticalDivider': TplVerticalDivider.fromJson,
+      'TplWatermark': TplWatermark.fromJson,
+      'TplWrap': TplWrap.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];

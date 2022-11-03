@@ -27,6 +27,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
@@ -47,6 +48,14 @@ import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_svg_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_decoration_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_decoration_svg_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_stack.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_listview.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_link.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_url_link.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_paragraph.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_watermark.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_wrap.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -250,6 +259,33 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Svg Image':
         map = TplSvgImage().toJson();
+        break;
+      case 'Stack':
+        map = TplStack().toJson();
+        break;
+      case 'Positioned':
+        map = TplPositioned().toJson();
+        break;
+      case 'List View':
+        map = TplListView().toJson();
+        break;
+      case 'Link':
+        map = TplLink().toJson();
+        break;
+      case 'Url Link':
+        map = TplUrlLink().toJson();
+        break;
+      case 'Paragraph':
+        map = TplParagraph().toJson();
+        break;
+      case 'Vertical Divider':
+        map = TplVerticalDivider().toJson();
+        break;
+      case 'Watermark':
+        map = TplWatermark().toJson();
+        break;
+      case 'Wrap':
+        map = TplWrap().toJson();
         break;
     }
     addWidget(map);

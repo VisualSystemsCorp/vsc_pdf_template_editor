@@ -1,0 +1,28 @@
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplParagraph",
+        "text": "'Paragraph'",
+        "textAlign": null,
+        "style": null,
+        "margin": null,
+        "padding": {
+          "left": 150,
+          "top": 50,
+          "right": null,
+          "bottom": null,
+          "all": null,
+          "vertical": null,
+          "horizontal": null
+        }
+      }
+    }
+  ]
+}
