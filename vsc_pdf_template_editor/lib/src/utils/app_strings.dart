@@ -4,6 +4,7 @@ class AppStrings {
 
   static const addWidget = 'Add a Widget';
   static const addProperty = 'Add a Property';
+  static const addImage = 'Add an image';
   static const reformat = 'Reformat';
   static const search = 'Search';
 

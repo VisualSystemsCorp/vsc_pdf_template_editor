@@ -18,6 +18,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_footer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_full_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_multi_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_new_page.dart';
@@ -27,6 +28,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_svg_image.dart';
 import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
 
@@ -80,7 +82,9 @@ class Transformer {
       'TplFlatButton': TplFlatButton.fromJson,
       'TplFooter': TplFooter.fromJson,
       'TplGridView': TplGridView.fromJson,
-      'TplLimitedBox': TplLimitedBox.fromJson
+      'TplLimitedBox': TplLimitedBox.fromJson,
+      'TplImage': TplImage.fromJson,
+      'TplSvgImage': TplSvgImage.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];

@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:typed_data';
 import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
@@ -81,6 +83,15 @@ PdfColor? evaluateColor(dynamic expression, Map<String, dynamic> data) {
   }
 
   return PdfColor.fromHex(result.toString());
+}
+
+Uint8List? evaluateBase64(dynamic expression, Map<String, dynamic> data) {
+  final result = evaluateString(expression, data);
+  if (result == null) {
+    return null;
+  }
+
+  return Base64Decoder().convert(result);
 }
 
 List<T>? evaluateList<T>(dynamic expression, Map<String, dynamic> data) {
@@ -189,6 +200,11 @@ PageOrientation? evaluatePageOrientation(
 
 FlexFit? evaluateFlexFit(dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(FlexFit.values, expression, data);
+}
+
+PdfImageOrientation? evaluatePdfImageOrientation(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PdfImageOrientation.values, expression, data);
 }
 
 PdfPageFormat? evaluatePageFormat(

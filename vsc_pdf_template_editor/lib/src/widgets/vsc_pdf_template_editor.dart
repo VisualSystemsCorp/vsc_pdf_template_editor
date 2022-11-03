@@ -6,6 +6,7 @@ import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 import 'package:vsc_pdf_template_editor/src/widgets/json_editor_widget.dart';
 import 'add_widget_dialog.dart';
 import 'pdf_view_widget.dart';
+import 'package:file_picker/file_picker.dart';
 
 class VscPdfTemplateEditor extends StatelessWidget {
   VscPdfTemplateEditor({
@@ -38,6 +39,7 @@ class VscPdfTemplateEditor extends StatelessWidget {
                     onPressed: () async {
                       final res = await _onAddWidgetPressed(context);
                       if (res != null) {
+                        print(res);
                         viewModel.onWidgetSelected(res);
                       }
                     },
@@ -53,6 +55,21 @@ class VscPdfTemplateEditor extends StatelessWidget {
                       }
                     },
                     child: const Text(AppStrings.addProperty)),
+                const SizedBox(
+                  width: 50,
+                ),
+                ElevatedButton(
+                    onPressed: () async {
+                      final type = await _onAddImagePressed(context);
+                      if (type != null) {
+                        final res = await _pickImage() as FilePickerResult?;
+                        if (res != null) {
+                          final file = res.files.first.bytes!;
+                          viewModel.insertImage(file, type);
+                        }
+                      }
+                    },
+                    child: const Text(AppStrings.addImage)),
                 const SizedBox(
                   width: 50,
                 ),
@@ -118,4 +135,21 @@ class VscPdfTemplateEditor extends StatelessWidget {
               ),
             ),
           ));
+
+  _onAddImagePressed(BuildContext context) => showDialog(
+      context: context,
+      builder: (c) => AlertDialog(
+            title: const Center(child: Text(AppStrings.addImage)),
+            contentPadding: const EdgeInsets.symmetric(vertical: 20),
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.3,
+              height: MediaQuery.of(context).size.height * 0.9,
+              child: AddWidgetDialog(
+                items: AppConstants.supportedImages,
+              ),
+            ),
+          ));
+
+  _pickImage() async =>
+      await FilePicker.platform.pickFiles(type: FileType.image, withData: true);
 }

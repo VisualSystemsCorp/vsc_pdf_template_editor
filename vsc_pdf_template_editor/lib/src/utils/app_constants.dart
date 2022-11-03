@@ -26,7 +26,9 @@ class AppConstants {
     'Flat Button',
     'Footer',
     'Grid View',
-    'Limited Box'
+    'Limited Box',
+    'Image',
+    'Svg Image'
   ];
   static List<String> supportedProperties = [
     'Alignment',
@@ -39,6 +41,13 @@ class AppConstants {
     'Border Radius',
     'Border Side',
     'Text Style',
-    'Page Format'
+    'Page Format',
+    'Decoration Image',
+    'Decoration Svg Image'
+  ];
+
+  static List<String> supportedImages = [
+    'Memory Image',
+    'Raw Image',
   ];
 }

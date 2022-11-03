@@ -13,6 +13,7 @@ class AddWidgetDialog extends StatefulWidget {
 class _AddWidgetDialogState extends State<AddWidgetDialog> {
   final TextEditingController controller = TextEditingController();
   int? _selected;
+  String? _selectedName;
   List<String> searchedItems = [];
 
   @override
@@ -51,7 +52,7 @@ class _AddWidgetDialogState extends State<AddWidgetDialog> {
                       ? Theme.of(context).primaryColor
                       : Colors.transparent,
                   child: GestureDetector(
-                    onTap: () => _select(i),
+                    onTap: () => _select(i, item),
                     onDoubleTap: () => Navigator.of(context).pop(item),
                     child: ListTile(
                       title: Text(item),
@@ -69,7 +70,7 @@ class _AddWidgetDialogState extends State<AddWidgetDialog> {
                 onPressed: () => Navigator.of(context).pop(),
                 child: const Text(AppStrings.cancel)),
             TextButton(
-                onPressed: () => Navigator.of(context).pop(_selected),
+                onPressed: () => Navigator.of(context).pop(_selectedName),
                 child: const Text(AppStrings.ok))
           ],
         )
@@ -77,9 +78,10 @@ class _AddWidgetDialogState extends State<AddWidgetDialog> {
     );
   }
 
-  void _select(int i) {
+  void _select(int i, String name) {
     setState(() {
       _selected = i;
+      _selectedName = name;
     });
   }
 

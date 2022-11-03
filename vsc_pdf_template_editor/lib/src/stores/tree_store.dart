@@ -24,6 +24,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_flex.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_flexible.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_footer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
@@ -41,6 +42,11 @@ import 'package:vsc_pdf_template_transformer/models/tpl_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_full_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_padding.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_svg_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_decoration_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_decoration_svg_image.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -239,6 +245,12 @@ abstract class TreeStoreModel with Store {
       case 'Limited Box':
         map = TplLimitedBox().toJson();
         break;
+      case 'Image':
+        map = TplImage().toJson();
+        break;
+      case 'Svg Image':
+        map = TplSvgImage().toJson();
+        break;
     }
     addWidget(map);
   }
@@ -279,6 +291,12 @@ abstract class TreeStoreModel with Store {
       case 'Page Format':
         map = TplPdfPageFormat().toJson();
         break;
+      case 'Decoration Image':
+        map = TplDecorationImage().toJson();
+        break;
+      case 'Decoration Svg Image':
+        map = TplDecorationSvgImage().toJson();
+        break;
     }
     addWidget(map);
   }
@@ -318,5 +336,19 @@ abstract class TreeStoreModel with Store {
       onChange: (val) => EasyDebounce.debounce(
           '', const Duration(milliseconds: 500), () => onDataChanged()),
     );
+  }
+
+  dynamic insertImage(Uint8List file, String name) {
+    Map<String, dynamic> map = {};
+    final base64Str = base64Encode(file.toList());
+    switch (name) {
+      case 'Memory Image':
+        map = TplMemoryImage("'$base64Str'").toJson();
+        break;
+      case 'Raw Image':
+        map = TplRawImage("'$base64Str'").toJson();
+        break;
+    }
+    addWidget(map);
   }
 }
