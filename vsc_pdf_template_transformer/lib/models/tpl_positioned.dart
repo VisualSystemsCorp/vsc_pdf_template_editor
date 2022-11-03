@@ -19,6 +19,10 @@ class TplPositioned implements wb.WidgetBuilder {
   dynamic top;
   dynamic right;
   dynamic bottom;
+  dynamic type;
+  dynamic textDirection;
+  dynamic start;
+  dynamic end;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
 
@@ -30,11 +34,35 @@ class TplPositioned implements wb.WidgetBuilder {
 
   @override
   Widget buildWidget(Map<String, dynamic> data) {
-    return Positioned(
-        left: evaluateDouble(left, data),
-        top: evaluateDouble(top, data),
-        right: evaluateDouble(right, data),
-        bottom: evaluateDouble(bottom, data),
-        child: child?.buildWidget(data) ?? SizedBox());
+    final positionedStr = evaluateString(type, data);
+    if (positionedStr == null) {
+      return Positioned(
+          left: evaluateDouble(left, data),
+          top: evaluateDouble(top, data),
+          right: evaluateDouble(right, data),
+          bottom: evaluateDouble(bottom, data),
+          child: child?.buildWidget(data) ?? SizedBox());
+    }
+
+    switch (positionedStr) {
+      case 'fill':
+        return Positioned.fill(
+            left: evaluateDouble(left, data),
+            top: evaluateDouble(top, data),
+            right: evaluateDouble(right, data),
+            bottom: evaluateDouble(bottom, data),
+            child: child?.buildWidget(data) ?? SizedBox());
+      case 'directional':
+        return Positioned.directional(
+            textDirection:
+                evaluateTextDirection(textDirection, data) ?? TextDirection.ltr,
+            start: evaluateDouble(start, data),
+            top: evaluateDouble(top, data),
+            end: evaluateDouble(end, data),
+            bottom: evaluateDouble(bottom, data),
+            child: child?.buildWidget(data) ?? SizedBox());
+      default:
+        throw Exception('Invalid positioned: $positionedStr');
+    }
   }
 }

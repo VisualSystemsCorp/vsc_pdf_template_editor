@@ -15,44 +15,26 @@
         "children": [
           {
             "className": "TplPositioned",
-            "left": 100,
-            "top": null,
+            "left": null,
+            "top": 15,
             "right": null,
-            "bottom": null,
+            "bottom": 15,
+            "type": "'directional'",
+            "textDirection": "'rtl'",
+            "start": 50,
+            "end": 15,
             "child": {
-              "className": "TplText",
-              "text": "'positioned1'",
-              "style": {
-                "color": "'00FF00'"
-              },
-              "textAlign": "left",
-              "textDirection": "ltr",
-              "softWrap": true,
-              "tightBounds": true,
-              "textScaleFactor": 2,
-              "maxLines": 3,
-              "overflow": "span"
-            }
-          },
-          {
-            "className": "TplPositioned",
-            "left": 100,
-            "top": 200,
-            "right": null,
-            "bottom": null,
-            "child": {
-              "className": "TplText",
-              "text": "'positioned2'",
-              "style": {
-                "color": "'00FF00'"
-              },
-              "textAlign": "left",
-              "textDirection": "ltr",
-              "softWrap": true,
-              "tightBounds": true,
-              "textScaleFactor": 2,
-              "maxLines": 3,
-              "overflow": "span"
+              "className": "TplContainer",
+              "alignment": null,
+              "padding": null,
+              "color": "'#f542a7'",
+              "decoration": null,
+              "foregroundDecoration": null,
+              "width": 100,
+              "height": 200,
+              "constraints": null,
+              "margin": null,
+              "child": null
             }
           }
         ]

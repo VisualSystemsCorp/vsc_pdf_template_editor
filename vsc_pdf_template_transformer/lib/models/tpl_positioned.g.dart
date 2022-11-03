@@ -17,6 +17,10 @@ TplPositioned _$TplPositionedFromJson(Map<String, dynamic> json) =>
         $checkedConvert('top', (v) => val.top = v);
         $checkedConvert('right', (v) => val.right = v);
         $checkedConvert('bottom', (v) => val.bottom = v);
+        $checkedConvert('type', (v) => val.type = v);
+        $checkedConvert('textDirection', (v) => val.textDirection = v);
+        $checkedConvert('start', (v) => val.start = v);
+        $checkedConvert('end', (v) => val.end = v);
         $checkedConvert(
             'child',
             (v) => val.child = const WidgetJsonConverter()
@@ -32,5 +36,9 @@ Map<String, dynamic> _$TplPositionedToJson(TplPositioned instance) =>
       'top': instance.top,
       'right': instance.right,
       'bottom': instance.bottom,
+      'type': instance.type,
+      'textDirection': instance.textDirection,
+      'start': instance.start,
+      'end': instance.end,
       'child': const WidgetJsonConverter().toJson(instance.child),
     };
