@@ -1,0 +1,45 @@
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplListView",
+        "direction": null,
+        "reverse": null,
+        "spacing": null,
+        "padding": null,
+        "children": [
+          {
+            "className": "TplText",
+            "text": "'text1'",
+            "style": null,
+            "textAlign": null,
+            "textDirection": null,
+            "softWrap": true,
+            "tightBounds": false,
+            "textScaleFactor": null,
+            "maxLines": null,
+            "overflow": null
+          },
+          {
+            "className": "TplText",
+            "text": "'text2'",
+            "style": null,
+            "textAlign": null,
+            "textDirection": null,
+            "softWrap": true,
+            "tightBounds": false,
+            "textScaleFactor": null,
+            "maxLines": null,
+            "overflow": null
+          }
+        ]
+      }
+    }
+  ]
+}

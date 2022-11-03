@@ -28,7 +28,16 @@ class AppConstants {
     'Grid View',
     'Limited Box',
     'Image',
-    'Svg Image'
+    'Svg Image',
+    'Stack',
+    'Positioned',
+    'List View',
+    'Link',
+    'Url Link',
+    'Paragraph',
+    'Vertical Divider',
+    'Watermark',
+    'Wrap'
   ];
   static List<String> supportedProperties = [
     'Alignment',
