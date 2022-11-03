@@ -16,7 +16,6 @@ import 'package:vsc_pdf_template_transformer/models/tpl_center.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_checkbox.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_constrained_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_decorated_box.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_decoration_graphic.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_expanded.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fitted_box.dart';
@@ -26,7 +25,6 @@ import 'package:vsc_pdf_template_transformer/models/tpl_flexible.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_footer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_image_provider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
@@ -293,9 +291,6 @@ abstract class TreeStoreModel with Store {
       case 'Page Format':
         map = TplPdfPageFormat().toJson();
         break;
-      case 'Decoration Graphic':
-        map = TplDecorationGraphic().toJson();
-        break;
       case 'Decoration Image':
         map = TplDecorationImage().toJson();
         break;
@@ -354,6 +349,6 @@ abstract class TreeStoreModel with Store {
         map = TplRawImage("'$base64Str'").toJson();
         break;
     }
-    addWidget(TplImageProvider(map).toJson());
+    addWidget(map);
   }
 }

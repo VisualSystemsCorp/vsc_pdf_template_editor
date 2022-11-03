@@ -22,7 +22,6 @@ TplSvgImage _$TplSvgImageFromJson(Map<String, dynamic> json) => $checkedCreate(
         $checkedConvert('clip', (v) => val.clip = v);
         $checkedConvert('width', (v) => val.width = v);
         $checkedConvert('height', (v) => val.height = v);
-        $checkedConvert('dpi', (v) => val.dpi = v);
         $checkedConvert('colorFilter', (v) => val.colorFilter = v);
         return val;
       },
@@ -37,6 +36,5 @@ Map<String, dynamic> _$TplSvgImageToJson(TplSvgImage instance) =>
       'clip': instance.clip,
       'width': instance.width,
       'height': instance.height,
-      'dpi': instance.dpi,
       'colorFilter': instance.colorFilter,
     };

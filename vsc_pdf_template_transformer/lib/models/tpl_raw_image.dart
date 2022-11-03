@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+import '../utils/image_provider.dart' as ip;
 
 part 'tpl_raw_image.g.dart';
 
@@ -10,7 +11,7 @@ part 'tpl_raw_image.g.dart';
   disallowUnrecognizedKeys: false,
   explicitToJson: true,
 )
-class TplRawImage {
+class TplRawImage implements ip.ImageProvider {
   TplRawImage(this.imageData);
 
   String className = 'TplRawImage';
@@ -23,8 +24,10 @@ class TplRawImage {
   factory TplRawImage.fromJson(Map<String, dynamic> json) =>
       _$TplRawImageFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$TplRawImageToJson(this);
 
+  @override
   buildImage(Map<String, dynamic> data) {
     return RawImage(
       bytes: evaluateBase64(imageData, data) ?? Uint8List(0),

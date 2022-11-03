@@ -1,8 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_image_provider.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+import 'package:vsc_pdf_template_transformer/utils/image_provider_json_converter.dart';
+import '../utils/image_provider.dart' as ip;
+import '../utils/decoration_graphic.dart' as dg;
 
 part 'tpl_decoration_image.g.dart';
 
@@ -11,11 +13,12 @@ part 'tpl_decoration_image.g.dart';
   disallowUnrecognizedKeys: false,
   explicitToJson: true,
 )
-class TplDecorationImage {
+class TplDecorationImage implements dg.DecorationGraphic {
   TplDecorationImage();
 
   String className = 'TplDecorationImage';
-  TplImageProvider? provider;
+  @ImageProviderJsonConverter()
+  ip.ImageProvider? image;
   dynamic fit;
   TplAlignment? alignment;
   dynamic dpi;
@@ -23,11 +26,13 @@ class TplDecorationImage {
   factory TplDecorationImage.fromJson(Map<String, dynamic> json) =>
       _$TplDecorationImageFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$TplDecorationImageToJson(this);
 
-  DecorationGraphic buildImage(Map<String, dynamic> data) {
+  @override
+  DecorationGraphic buildDecorationImage(Map<String, dynamic> data) {
     return DecorationImage(
-        image: provider!.buildImage(data),
+        image: image!.buildImage(data),
         fit: evaluateBoxFit(fit, data) ?? BoxFit.cover,
         alignment: alignment?.toPdf(data) ?? Alignment.center,
         dpi: evaluateDouble(dpi, data));

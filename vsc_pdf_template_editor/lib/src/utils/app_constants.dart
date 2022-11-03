@@ -42,7 +42,6 @@ class AppConstants {
     'Border Side',
     'Text Style',
     'Page Format',
-    'Decoration Graphic',
     'Decoration Image',
     'Decoration Svg Image'
   ];

@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+import '../utils/decoration_graphic.dart' as dg;
 
 part 'tpl_decoration_svg_image.g.dart';
 
@@ -10,7 +11,7 @@ part 'tpl_decoration_svg_image.g.dart';
   disallowUnrecognizedKeys: false,
   explicitToJson: true,
 )
-class TplDecorationSvgImage {
+class TplDecorationSvgImage implements dg.DecorationGraphic {
   TplDecorationSvgImage();
 
   String className = 'TplDecorationSvgImage';
@@ -21,9 +22,11 @@ class TplDecorationSvgImage {
   factory TplDecorationSvgImage.fromJson(Map<String, dynamic> json) =>
       _$TplDecorationSvgImageFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$TplDecorationSvgImageToJson(this);
 
-  DecorationGraphic buildImage(Map<String, dynamic> data) {
+  @override
+  DecorationGraphic buildDecorationImage(Map<String, dynamic> data) {
     return DecorationSvgImage(
       svg: evaluateString(svg, data) ?? '',
       fit: evaluateBoxFit(fit, data) ?? BoxFit.cover,

@@ -21,7 +21,6 @@ class TplSvgImage implements wb.WidgetBuilder {
   dynamic clip;
   dynamic width;
   dynamic height;
-  dynamic dpi;
   dynamic colorFilter;
 
   factory TplSvgImage.fromJson(Map<String, dynamic> json) =>
