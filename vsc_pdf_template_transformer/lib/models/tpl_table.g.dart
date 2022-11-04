@@ -25,7 +25,11 @@ TplTable _$TplTableFromJson(Map<String, dynamic> json) => $checkedCreate(
         $checkedConvert('defaultVerticalAlignment',
             (v) => val.defaultVerticalAlignment = v);
         $checkedConvert(
-            'columnWidths', (v) => val.columnWidths = v as List<dynamic>?);
+            'columnWidths',
+            (v) => val.columnWidths = (v as List<dynamic>?)
+                ?.map((e) => const TableColumnWidthJsonConverter()
+                    .fromJson(e as Map<String, dynamic>?))
+                .toList());
         $checkedConvert(
             'defaultColumnWidth',
             (v) => val.defaultColumnWidth =
@@ -41,7 +45,9 @@ Map<String, dynamic> _$TplTableToJson(TplTable instance) => <String, dynamic>{
       'children': instance.children?.map((e) => e.toJson()).toList(),
       'border': instance.border?.toJson(),
       'defaultVerticalAlignment': instance.defaultVerticalAlignment,
-      'columnWidths': instance.columnWidths,
+      'columnWidths': instance.columnWidths
+          ?.map(const TableColumnWidthJsonConverter().toJson)
+          .toList(),
       'defaultColumnWidth': const TableColumnWidthJsonConverter()
           .toJson(instance.defaultColumnWidth),
       'tableWidth': instance.tableWidth,

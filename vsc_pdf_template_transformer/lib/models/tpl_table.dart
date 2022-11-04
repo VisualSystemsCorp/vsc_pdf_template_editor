@@ -22,7 +22,7 @@ class TplTable implements wb.WidgetBuilder {
   TplTableBorder? border;
   dynamic defaultVerticalAlignment;
   @TableColumnWidthJsonConverter()
-  List<dynamic>? columnWidths;
+  List<tcw.TableColumnWidth?>? columnWidths;
   @TableColumnWidthJsonConverter()
   tcw.TableColumnWidth? defaultColumnWidth;
   dynamic tableWidth;

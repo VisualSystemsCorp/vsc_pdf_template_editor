@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:typed_data';
+
 import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table_row.dart';
-import 'package:vsc_pdf_template_transformer/utils/table_column_width_json_converter.dart';
+
+import '../utils/table_column_width.dart' as tcw;
 import '../vsc_pdf_template_transformer.dart';
 
 dynamic _evaluateDynamic(dynamic expression, Map<String, dynamic> data) {
@@ -333,13 +335,8 @@ List<TableRow> getTableRows(
 }
 
 List<TableColumnWidth> getTableColumnWidths(
-    List<dynamic> children, Map<String, dynamic> data) {
-  final List<TableColumnWidth> res = [];
-
-  for (final e in children) {
-    res.add(TableColumnWidthJsonConverter()
-        .fromJson(e)!
-        .buildTableColumnWidth(data));
-  }
-  return res;
-}
+        List<tcw.TableColumnWidth?> children, Map<String, dynamic> data) =>
+    children
+        .map((tplWidth) =>
+            tplWidth?.buildTableColumnWidth(data) ?? IntrinsicColumnWidth())
+        .toList(growable: false);
