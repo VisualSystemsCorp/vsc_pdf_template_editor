@@ -16,38 +16,36 @@
         "children": [
           {
             "className": "TplLimitedBox",
-            "maxWidth": null,
+            "maxWidth": 20,
             "maxHeight": 20,
             "child": {
               "className": "TplContainer",
-              "alignment": null,
-              "padding": null,
               "color": "'#bc3ad6'",
-              "decoration": null,
-              "foregroundDecoration": null,
-              "width": null,
-              "height": 100,
-              "constraints": null,
-              "margin": null,
-              "child": null
+              "width": 500,
+              "height": 500
             }
           },
           {
-            "className": "TplLimitedBox",
-            "maxWidth": null,
-            "maxHeight": null,
+            "className": "TplSizedBox",
+            "width": 100,
+            "height": 100,
             "child": {
-              "className": "TplContainer",
-              "alignment": null,
-              "padding": null,
-              "color": "'#bc3ad6'",
-              "decoration": null,
-              "foregroundDecoration": null,
-              "width": null,
-              "height": 100,
-              "constraints": null,
-              "margin": null,
-              "child": null
+              "className": "TplLimitedBox",
+              "maxWidth": 20,
+              "maxHeight": 20,
+              "child": {
+                "className": "TplContainer",
+                "alignment": null,
+                "padding": null,
+                "color": "'#bc3ad6'",
+                "decoration": null,
+                "foregroundDecoration": null,
+                "width": 500,
+                "height": 500,
+                "constraints": null,
+                "margin": null,
+                "child": null
+              }
             }
           }
         ]
