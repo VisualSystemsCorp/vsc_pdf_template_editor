@@ -308,6 +308,10 @@ TableWidth? evaluateTableWidth(dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(TableWidth.values, expression, data);
 }
 
+TileMode? evaluateTileMode(dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(TileMode.values, expression, data);
+}
+
 List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
   final List<Widget> res = [];
 
@@ -340,3 +344,15 @@ List<TableColumnWidth> getTableColumnWidths(
         .map((tplWidth) =>
             tplWidth?.buildTableColumnWidth(data) ?? IntrinsicColumnWidth())
         .toList(growable: false);
+
+List<PdfColor> getColors(List<dynamic> colors, Map<String, dynamic> data) {
+  final List<PdfColor> res = [];
+
+  for (final e in colors) {
+    final color = evaluateColor(e, data);
+    if (color != null) {
+      res.add(color);
+    }
+  }
+  return res;
+}
