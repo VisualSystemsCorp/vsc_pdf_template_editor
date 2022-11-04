@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:typed_data';
+
 import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table_row.dart';
-import 'package:vsc_pdf_template_transformer/utils/table_column_width_json_converter.dart';
+
+import '../utils/table_column_width.dart' as tcw;
 import '../vsc_pdf_template_transformer.dart';
 
 dynamic _evaluateDynamic(dynamic expression, Map<String, dynamic> data) {
@@ -306,10 +308,6 @@ TableWidth? evaluateTableWidth(dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(TableWidth.values, expression, data);
 }
 
-TileMode? evaluateTileMode(dynamic expression, Map<String, dynamic> data) {
-  return evaluateEnum(TileMode.values, expression, data);
-}
-
 List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
   final List<Widget> res = [];
 
@@ -337,25 +335,8 @@ List<TableRow> getTableRows(
 }
 
 List<TableColumnWidth> getTableColumnWidths(
-    List<dynamic> children, Map<String, dynamic> data) {
-  final List<TableColumnWidth> res = [];
-
-  for (final e in children) {
-    res.add(TableColumnWidthJsonConverter()
-        .fromJson(e)!
-        .buildTableColumnWidth(data));
-  }
-  return res;
-}
-
-List<PdfColor> getColors(List<dynamic> colors, Map<String, dynamic> data) {
-  final List<PdfColor> res = [];
-
-  for (final e in colors) {
-    final color = evaluateColor(e, data);
-    if (color != null) {
-      res.add(color);
-    }
-  }
-  return res;
-}
+        List<tcw.TableColumnWidth?> children, Map<String, dynamic> data) =>
+    children
+        .map((tplWidth) =>
+            tplWidth?.buildTableColumnWidth(data) ?? IntrinsicColumnWidth())
+        .toList(growable: false);

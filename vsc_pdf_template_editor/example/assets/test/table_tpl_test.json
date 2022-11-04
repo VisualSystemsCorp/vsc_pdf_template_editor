@@ -49,6 +49,10 @@
                 "constraints": null,
                 "margin": null,
                 "child": null
+              },
+              {
+                "className": "TplText",
+                "text": "'4th'"
               }
             ],
             "repeat": null,
@@ -94,6 +98,10 @@
                 "constraints": null,
                 "margin": null,
                 "child": null
+              },
+              {
+                "className": "TplText",
+                "text": "'r2c4'"
               }
             ],
             "repeat": null,
@@ -111,7 +119,7 @@
           "verticalInside": null,
           "inside": null,
           "outside": {
-            "width": null,
+            "width": 3,
             "color": "'#ad2710'",
             "style": null
           }
@@ -120,19 +128,19 @@
         "columnWidths": [
           {
             "className": "TplIntrinsicColumnWidth",
-            "flex": null
+            "flex": 1
           },
           {
             "className": "TplFlexColumnWidth",
-            "flex": null
+            "flex": 2
           },
           {
             "className": "TplFixedColumnWidth",
-            "width": null
+            "width": 50
           },
           {
             "className": "TplFractionColumnWidth",
-            "value": null
+            "value": 0.25
           }
         ],
         "defaultColumnWidth": null,
