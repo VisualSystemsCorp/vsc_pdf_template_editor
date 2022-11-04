@@ -30,8 +30,10 @@ import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_intrinsic_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_linear_gradient.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_radial_gradient.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
@@ -360,6 +362,12 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Fraction Column Width':
         map = TplFractionColumnWidth().toJson();
+        break;
+      case 'Linear Gradient':
+        map = TplLinearGradient().toJson();
+        break;
+      case 'Radial Gradient':
+        map = TplRadialGradient().toJson();
         break;
     }
     addWidget(map);
