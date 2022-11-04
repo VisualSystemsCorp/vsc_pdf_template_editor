@@ -1,8 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
+import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import '../utils/gradient.dart' as g;
+import '../utils/alignment.dart' as a;
 
 part 'tpl_linear_gradient.g.dart';
 
@@ -15,8 +16,10 @@ class TplLinearGradient implements g.Gradient {
   TplLinearGradient();
 
   String className = 'TplLinearGradient';
-  TplAlignment? begin;
-  TplAlignment? end;
+  @AlignmentJsonConverter()
+  a.Alignment? begin;
+  @AlignmentJsonConverter()
+  a.Alignment? end;
   List<dynamic>? colors;
   List<double>? stops;
   dynamic tileMode;
@@ -30,8 +33,8 @@ class TplLinearGradient implements g.Gradient {
   @override
   Gradient buildGradient(Map<String, dynamic> data) {
     return LinearGradient(
-        begin: begin?.toPdf(data) ?? Alignment.centerLeft,
-        end: end?.toPdf(data) ?? Alignment.centerLeft,
+        begin: begin?.buildAlignment(data) ?? Alignment.centerLeft,
+        end: end?.buildAlignment(data) ?? Alignment.centerLeft,
         colors: colors == null ? [] : getColors(colors!, data),
         stops: evaluateList(stops, data),
         tileMode: evaluateTileMode(tileMode, data) ?? TileMode.clamp);

@@ -18,9 +18,8 @@ TplDecorationSvgImage _$TplDecorationSvgImageFromJson(
         $checkedConvert('fit', (v) => val.fit = v);
         $checkedConvert(
             'alignment',
-            (v) => val.alignment = v == null
-                ? null
-                : TplAlignment.fromJson(v as Map<String, dynamic>));
+            (v) => val.alignment = const AlignmentJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
         return val;
       },
     );
@@ -31,5 +30,5 @@ Map<String, dynamic> _$TplDecorationSvgImageToJson(
       'className': instance.className,
       'svg': instance.svg,
       'fit': instance.fit,
-      'alignment': instance.alignment?.toJson(),
+      'alignment': const AlignmentJsonConverter().toJson(instance.alignment),
     };

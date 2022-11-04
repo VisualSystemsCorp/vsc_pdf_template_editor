@@ -1,0 +1,34 @@
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplAlign",
+        "alignment": {
+          "className": "TplFractionalOffset",
+          "dx": 1,
+          "dy": 1
+        },
+        "widthFactor": null,
+        "heightFactor": null,
+        "child": {
+          "className": "TplText",
+          "text": "'Hello·world'",
+          "style": null,
+          "textAlign": null,
+          "textDirection": null,
+          "softWrap": true,
+          "tightBounds": false,
+          "textScaleFactor": null,
+          "maxLines": null,
+          "overflow": null
+        }
+      }
+    }
+  ]
+}

@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
+import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
+import '../utils/alignment.dart' as a;
 
 part 'tpl_fitted_box.g.dart';
 
@@ -17,7 +18,8 @@ class TplFittedBox implements wb.WidgetBuilder {
 
   String className = 'TplFittedBox';
   dynamic fit;
-  TplAlignment? alignment;
+  @AlignmentJsonConverter()
+  a.Alignment? alignment;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
 
@@ -31,7 +33,7 @@ class TplFittedBox implements wb.WidgetBuilder {
   Widget buildWidget(Map<String, dynamic> data) {
     return FittedBox(
       fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
-      alignment: alignment?.toPdf(data) ?? Alignment.center,
+      alignment: alignment?.buildAlignment(data) ?? Alignment.center,
       child: child?.buildWidget(data),
     );
   }

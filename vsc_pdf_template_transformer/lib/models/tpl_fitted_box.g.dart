@@ -16,9 +16,8 @@ TplFittedBox _$TplFittedBoxFromJson(Map<String, dynamic> json) =>
         $checkedConvert('fit', (v) => val.fit = v);
         $checkedConvert(
             'alignment',
-            (v) => val.alignment = v == null
-                ? null
-                : TplAlignment.fromJson(v as Map<String, dynamic>));
+            (v) => val.alignment = const AlignmentJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
         $checkedConvert(
             'child',
             (v) => val.child = const WidgetJsonConverter()
@@ -31,6 +30,6 @@ Map<String, dynamic> _$TplFittedBoxToJson(TplFittedBox instance) =>
     <String, dynamic>{
       'className': instance.className,
       'fit': instance.fit,
-      'alignment': instance.alignment?.toJson(),
+      'alignment': const AlignmentJsonConverter().toJson(instance.alignment),
       'child': const WidgetJsonConverter().toJson(instance.child),
     };

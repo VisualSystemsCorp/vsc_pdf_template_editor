@@ -1,29 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tpl_alignment.dart';
+part of 'tpl_fractional_offset.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TplAlignment _$TplAlignmentFromJson(Map<String, dynamic> json) =>
+TplFractionalOffset _$TplFractionalOffsetFromJson(Map<String, dynamic> json) =>
     $checkedCreate(
-      'TplAlignment',
+      'TplFractionalOffset',
       json,
       ($checkedConvert) {
-        final val = TplAlignment();
+        final val = TplFractionalOffset();
         $checkedConvert('className', (v) => val.className = v as String);
-        $checkedConvert('alignment', (v) => val.alignment = v);
-        $checkedConvert('x', (v) => val.x = v);
-        $checkedConvert('y', (v) => val.y = v);
+        $checkedConvert('dx', (v) => val.dx = v);
+        $checkedConvert('dy', (v) => val.dy = v);
         return val;
       },
     );
 
-Map<String, dynamic> _$TplAlignmentToJson(TplAlignment instance) =>
+Map<String, dynamic> _$TplFractionalOffsetToJson(
+        TplFractionalOffset instance) =>
     <String, dynamic>{
       'className': instance.className,
-      'alignment': instance.alignment,
-      'x': instance.x,
-      'y': instance.y,
+      'dx': instance.dx,
+      'dy': instance.dy,
     };

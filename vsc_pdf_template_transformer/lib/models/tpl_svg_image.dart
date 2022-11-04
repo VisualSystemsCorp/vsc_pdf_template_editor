@@ -1,8 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
+import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
+import '../utils/alignment.dart' as a;
 
 part 'tpl_svg_image.g.dart';
 
@@ -17,7 +18,8 @@ class TplSvgImage implements wb.WidgetBuilder {
   String className = 'TplSvgImage';
   dynamic svg;
   dynamic fit;
-  TplAlignment? alignment;
+  @AlignmentJsonConverter()
+  a.Alignment? alignment;
   dynamic clip;
   dynamic width;
   dynamic height;
@@ -34,7 +36,7 @@ class TplSvgImage implements wb.WidgetBuilder {
     return SvgImage(
         svg: evaluateString(svg, data) ?? '',
         fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
-        alignment: alignment?.toPdf(data) ?? Alignment.center,
+        alignment: alignment?.buildAlignment(data) ?? Alignment.center,
         clip: evaluateBool(clip, data) ?? true,
         width: evaluateDouble(width, data),
         height: evaluateDouble(height, data),

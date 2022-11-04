@@ -15,9 +15,8 @@ TplRadialGradient _$TplRadialGradientFromJson(Map<String, dynamic> json) =>
         $checkedConvert('className', (v) => val.className = v as String);
         $checkedConvert(
             'center',
-            (v) => val.center = v == null
-                ? null
-                : TplAlignment.fromJson(v as Map<String, dynamic>));
+            (v) => val.center = const AlignmentJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
         $checkedConvert('radius', (v) => val.radius = v);
         $checkedConvert('colors', (v) => val.colors = v as List<dynamic>?);
         $checkedConvert(
@@ -28,9 +27,8 @@ TplRadialGradient _$TplRadialGradientFromJson(Map<String, dynamic> json) =>
         $checkedConvert('tileMode', (v) => val.tileMode = v);
         $checkedConvert(
             'focal',
-            (v) => val.focal = v == null
-                ? null
-                : TplAlignment.fromJson(v as Map<String, dynamic>));
+            (v) => val.focal = const AlignmentJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
         $checkedConvert('focalRadius', (v) => val.focalRadius = v);
         return val;
       },
@@ -39,11 +37,11 @@ TplRadialGradient _$TplRadialGradientFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TplRadialGradientToJson(TplRadialGradient instance) =>
     <String, dynamic>{
       'className': instance.className,
-      'center': instance.center?.toJson(),
+      'center': const AlignmentJsonConverter().toJson(instance.center),
       'radius': instance.radius,
       'colors': instance.colors,
       'stops': instance.stops,
       'tileMode': instance.tileMode,
-      'focal': instance.focal?.toJson(),
+      'focal': const AlignmentJsonConverter().toJson(instance.focal),
       'focalRadius': instance.focalRadius,
     };

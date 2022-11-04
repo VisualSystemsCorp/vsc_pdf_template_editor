@@ -16,9 +16,8 @@ TplSvgImage _$TplSvgImageFromJson(Map<String, dynamic> json) => $checkedCreate(
         $checkedConvert('fit', (v) => val.fit = v);
         $checkedConvert(
             'alignment',
-            (v) => val.alignment = v == null
-                ? null
-                : TplAlignment.fromJson(v as Map<String, dynamic>));
+            (v) => val.alignment = const AlignmentJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
         $checkedConvert('clip', (v) => val.clip = v);
         $checkedConvert('width', (v) => val.width = v);
         $checkedConvert('height', (v) => val.height = v);
@@ -32,7 +31,7 @@ Map<String, dynamic> _$TplSvgImageToJson(TplSvgImage instance) =>
       'className': instance.className,
       'svg': instance.svg,
       'fit': instance.fit,
-      'alignment': instance.alignment?.toJson(),
+      'alignment': const AlignmentJsonConverter().toJson(instance.alignment),
       'clip': instance.clip,
       'width': instance.width,
       'height': instance.height,

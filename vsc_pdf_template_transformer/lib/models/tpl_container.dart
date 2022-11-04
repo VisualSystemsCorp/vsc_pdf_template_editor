@@ -1,12 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_constraints.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_decoration.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
+import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 import '../utils/widget_builder.dart' as wb;
+import '../utils/alignment.dart' as a;
 
 part 'tpl_container.g.dart';
 
@@ -17,7 +18,8 @@ part 'tpl_container.g.dart';
 )
 class TplContainer implements wb.WidgetBuilder {
   String className = 'TplContainer';
-  TplAlignment? alignment;
+  @AlignmentJsonConverter()
+  a.Alignment? alignment;
   TplEdgeInsets? padding;
   dynamic color;
   TplBoxDecoration? decoration;
@@ -40,7 +42,7 @@ class TplContainer implements wb.WidgetBuilder {
   @override
   pw.Widget buildWidget(Map<String, dynamic> data) {
     return pw.Container(
-        alignment: alignment?.toPdf(data),
+        alignment: alignment?.buildAlignment(data),
         padding: padding?.toPdf(data),
         color: evaluateColor(color, data),
         decoration: decoration?.toPdf(data),

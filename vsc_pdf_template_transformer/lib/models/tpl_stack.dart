@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
+import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 import '../utils/widget_builder.dart' as wb;
+import '../utils/alignment.dart' as a;
 
 part 'tpl_stack.g.dart';
 
@@ -16,7 +17,8 @@ class TplStack implements wb.WidgetBuilder {
   TplStack();
 
   String className = 'TplStack';
-  TplAlignment? alignment;
+  @AlignmentJsonConverter()
+  a.Alignment? alignment;
   dynamic fit;
   dynamic overflow;
   @WidgetJsonConverter()
@@ -31,7 +33,7 @@ class TplStack implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return Stack(
-      alignment: alignment?.toPdf(data) ?? Alignment.topLeft,
+      alignment: alignment?.buildAlignment(data) ?? Alignment.topLeft,
       fit: evaluateStackFit(fit, data) ?? StackFit.loose,
       overflow: evaluateOverflow(overflow, data) ?? Overflow.clip,
       children: children == null ? [] : getChildren(children!, data),
