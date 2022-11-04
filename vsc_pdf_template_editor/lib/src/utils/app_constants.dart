@@ -37,7 +37,8 @@ class AppConstants {
     'Paragraph',
     'Vertical Divider',
     'Watermark',
-    'Wrap'
+    'Wrap',
+    'Table'
   ];
   static List<String> supportedProperties = [
     'Alignment',
@@ -52,7 +53,13 @@ class AppConstants {
     'Text Style',
     'Page Format',
     'Decoration Image',
-    'Decoration Svg Image'
+    'Decoration Svg Image',
+    'Table Border',
+    'Table Row',
+    'Intrinsic Column Width',
+    'Fixed Column Width',
+    'Flex Column Width',
+    'Fraction Column Width',
   ];
 
   static List<String> supportedImages = [

@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'dart:typed_data';
+
 import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_table_row.dart';
+
+import '../utils/table_column_width.dart' as tcw;
 import '../vsc_pdf_template_transformer.dart';
 
 dynamic _evaluateDynamic(dynamic expression, Map<String, dynamic> data) {
@@ -295,6 +299,15 @@ WrapCrossAlignment? evaluateWrapCrossAlignment(
   return evaluateEnum(WrapCrossAlignment.values, expression, data);
 }
 
+TableCellVerticalAlignment? evaluateTableCellVerticalAlignment(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(TableCellVerticalAlignment.values, expression, data);
+}
+
+TableWidth? evaluateTableWidth(dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(TableWidth.values, expression, data);
+}
+
 List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
   final List<Widget> res = [];
 
@@ -310,3 +323,20 @@ List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
   }
   return res;
 }
+
+List<TableRow> getTableRows(
+    List<TplTableRow> children, Map<String, dynamic> data) {
+  final List<TableRow> res = [];
+
+  for (final e in children) {
+    res.add(e.buildRow(data));
+  }
+  return res;
+}
+
+List<TableColumnWidth> getTableColumnWidths(
+        List<tcw.TableColumnWidth?> children, Map<String, dynamic> data) =>
+    children
+        .map((tplWidth) =>
+            tplWidth?.buildTableColumnWidth(data) ?? IntrinsicColumnWidth())
+        .toList(growable: false);
