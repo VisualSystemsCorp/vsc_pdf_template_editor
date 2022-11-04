@@ -19,18 +19,24 @@ import 'package:vsc_pdf_template_transformer/models/tpl_decorated_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_expanded.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fitted_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_fixed_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_flat_button.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_flex.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_flex_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_flexible.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_footer.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_fraction_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_intrinsic_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_table_border.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_table_row.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
@@ -56,6 +62,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_paragraph.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_watermark.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_wrap.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_table.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -287,6 +294,9 @@ abstract class TreeStoreModel with Store {
       case 'Wrap':
         map = TplWrap().toJson();
         break;
+      case 'Table':
+        map = TplTable().toJson();
+        break;
     }
     addWidget(map);
   }
@@ -332,6 +342,24 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Decoration Svg Image':
         map = TplDecorationSvgImage().toJson();
+        break;
+      case 'Table Border':
+        map = TplTableBorder().toJson();
+        break;
+      case 'Table Row':
+        map = TplTableRow().toJson();
+        break;
+      case 'Intrinsic Column Width':
+        map = TplIntrinsicColumnWidth().toJson();
+        break;
+      case 'Fixed Column Width':
+        map = TplFixedColumnWidth().toJson();
+        break;
+      case 'Flex Column Width':
+        map = TplFlexColumnWidth().toJson();
+        break;
+      case 'Fraction Column Width':
+        map = TplFractionColumnWidth().toJson();
         break;
     }
     addWidget(map);
