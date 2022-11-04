@@ -14,9 +14,8 @@ TplStack _$TplStackFromJson(Map<String, dynamic> json) => $checkedCreate(
         $checkedConvert('className', (v) => val.className = v as String);
         $checkedConvert(
             'alignment',
-            (v) => val.alignment = v == null
-                ? null
-                : TplAlignment.fromJson(v as Map<String, dynamic>));
+            (v) => val.alignment = const AlignmentJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
         $checkedConvert('fit', (v) => val.fit = v);
         $checkedConvert('overflow', (v) => val.overflow = v);
         $checkedConvert('children', (v) => val.children = v as List<dynamic>?);
@@ -26,7 +25,7 @@ TplStack _$TplStackFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplStackToJson(TplStack instance) => <String, dynamic>{
       'className': instance.className,
-      'alignment': instance.alignment?.toJson(),
+      'alignment': const AlignmentJsonConverter().toJson(instance.alignment),
       'fit': instance.fit,
       'overflow': instance.overflow,
       'children': instance.children,

@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart' as ws;
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+import '../utils/alignment.dart' as a;
 
 part 'tpl_alignment.g.dart';
 
@@ -9,9 +10,10 @@ part 'tpl_alignment.g.dart';
   disallowUnrecognizedKeys: false,
   explicitToJson: true,
 )
-class TplAlignment {
+class TplAlignment extends a.Alignment {
   TplAlignment();
 
+  String className = 'TplAlignment';
   dynamic alignment;
   dynamic x;
   dynamic y;
@@ -19,9 +21,11 @@ class TplAlignment {
   factory TplAlignment.fromJson(Map<String, dynamic> json) =>
       _$TplAlignmentFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$TplAlignmentToJson(this);
 
-  ws.Alignment toPdf(Map<String, dynamic> data) {
+  @override
+  ws.Alignment buildAlignment(Map<String, dynamic> data) {
     final alignmentStr = evaluateString(alignment, data);
     if (alignmentStr == null) {
       return ws.Alignment(

@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
+import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
+import '../utils/alignment.dart' as a;
 
 part 'tpl_align.g.dart';
 
@@ -16,7 +17,8 @@ class TplAlign implements wb.WidgetBuilder {
   TplAlign();
 
   String className = 'TplAlign';
-  TplAlignment? alignment;
+  @AlignmentJsonConverter()
+  a.Alignment? alignment;
   dynamic widthFactor;
   dynamic heightFactor;
   @WidgetJsonConverter()
@@ -31,7 +33,7 @@ class TplAlign implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return Align(
-        alignment: alignment?.toPdf(data) ?? Alignment.center,
+        alignment: alignment?.buildAlignment(data) ?? Alignment.center,
         widthFactor: evaluateDouble(widthFactor, data),
         heightFactor: evaluateDouble(heightFactor, data),
         child: child?.buildWidget(data));

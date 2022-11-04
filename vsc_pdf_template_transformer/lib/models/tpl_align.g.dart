@@ -14,9 +14,8 @@ TplAlign _$TplAlignFromJson(Map<String, dynamic> json) => $checkedCreate(
         $checkedConvert('className', (v) => val.className = v as String);
         $checkedConvert(
             'alignment',
-            (v) => val.alignment = v == null
-                ? null
-                : TplAlignment.fromJson(v as Map<String, dynamic>));
+            (v) => val.alignment = const AlignmentJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
         $checkedConvert('widthFactor', (v) => val.widthFactor = v);
         $checkedConvert('heightFactor', (v) => val.heightFactor = v);
         $checkedConvert(
@@ -29,7 +28,7 @@ TplAlign _$TplAlignFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplAlignToJson(TplAlign instance) => <String, dynamic>{
       'className': instance.className,
-      'alignment': instance.alignment?.toJson(),
+      'alignment': const AlignmentJsonConverter().toJson(instance.alignment),
       'widthFactor': instance.widthFactor,
       'heightFactor': instance.heightFactor,
       'child': const WidgetJsonConverter().toJson(instance.child),

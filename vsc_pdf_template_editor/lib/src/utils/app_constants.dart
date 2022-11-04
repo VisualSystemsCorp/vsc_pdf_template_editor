@@ -61,7 +61,8 @@ class AppConstants {
     'Flex Column Width',
     'Fraction Column Width',
     'Linear Gradient',
-    'Radial Gradient'
+    'Radial Gradient',
+    'Fractional Offset'
   ];
 
   static List<String> supportedImages = [

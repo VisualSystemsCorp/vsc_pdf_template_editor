@@ -65,6 +65,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_watermark.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_wrap.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_fractional_offset.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -368,6 +369,9 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Radial Gradient':
         map = TplRadialGradient().toJson();
+        break;
+      case 'Fractional Offset':
+        map = TplFractionalOffset().toJson();
         break;
     }
     addWidget(map);

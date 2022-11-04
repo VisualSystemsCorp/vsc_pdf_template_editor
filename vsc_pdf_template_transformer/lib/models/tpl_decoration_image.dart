@@ -1,10 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
+import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/image_provider_json_converter.dart';
 import '../utils/image_provider.dart' as ip;
 import '../utils/decoration_graphic.dart' as dg;
+import '../utils/alignment.dart' as a;
 
 part 'tpl_decoration_image.g.dart';
 
@@ -20,7 +21,8 @@ class TplDecorationImage implements dg.DecorationGraphic {
   @ImageProviderJsonConverter()
   ip.ImageProvider? image;
   dynamic fit;
-  TplAlignment? alignment;
+  @AlignmentJsonConverter()
+  a.Alignment? alignment;
   dynamic dpi;
 
   factory TplDecorationImage.fromJson(Map<String, dynamic> json) =>
@@ -34,7 +36,7 @@ class TplDecorationImage implements dg.DecorationGraphic {
     return DecorationImage(
         image: image!.buildImage(data),
         fit: evaluateBoxFit(fit, data) ?? BoxFit.cover,
-        alignment: alignment?.toPdf(data) ?? Alignment.center,
+        alignment: alignment?.buildAlignment(data) ?? Alignment.center,
         dpi: evaluateDouble(dpi, data));
   }
 }
