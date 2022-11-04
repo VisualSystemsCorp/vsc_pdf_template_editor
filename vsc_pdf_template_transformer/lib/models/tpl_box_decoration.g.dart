@@ -24,6 +24,10 @@ TplBoxDecoration _$TplBoxDecorationFromJson(Map<String, dynamic> json) =>
                 ? null
                 : TplBorderRadius.fromJson(v as Map<String, dynamic>));
         $checkedConvert(
+            'gradient',
+            (v) => val.gradient = const GradientJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
+        $checkedConvert(
             'image',
             (v) => val.image = const DecorationGraphicJsonConverter()
                 .fromJson(v as Map<String, dynamic>?));
@@ -36,5 +40,6 @@ Map<String, dynamic> _$TplBoxDecorationToJson(TplBoxDecoration instance) =>
       'color': instance.color,
       'border': instance.border?.toJson(),
       'borderRadius': instance.borderRadius?.toJson(),
+      'gradient': const GradientJsonConverter().toJson(instance.gradient),
       'image': const DecorationGraphicJsonConverter().toJson(instance.image),
     };

@@ -4,7 +4,9 @@ import 'package:vsc_pdf_template_transformer/models/tpl_border_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_border.dart';
 import 'package:vsc_pdf_template_transformer/utils/decoration_graphic_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+import 'package:vsc_pdf_template_transformer/utils/gradient_json_converter.dart';
 import '../utils/decoration_graphic.dart' as dg;
+import '../utils/gradient.dart' as g;
 
 part 'tpl_box_decoration.g.dart';
 
@@ -19,6 +21,8 @@ class TplBoxDecoration {
   dynamic color;
   TplBoxBorder? border;
   TplBorderRadius? borderRadius;
+  @GradientJsonConverter()
+  g.Gradient? gradient;
   @DecorationGraphicJsonConverter()
   dg.DecorationGraphic? image;
 
@@ -32,6 +36,7 @@ class TplBoxDecoration {
         color: evaluateColor(color, data),
         border: border?.toPdf(data),
         borderRadius: borderRadius?.toPdf(data),
+        gradient: gradient?.buildGradient(data),
         image: image?.buildDecorationImage(data));
     return result;
   }

@@ -60,6 +60,8 @@ class AppConstants {
     'Fixed Column Width',
     'Flex Column Width',
     'Fraction Column Width',
+    'Linear Gradient',
+    'Radial Gradient'
   ];
 
   static List<String> supportedImages = [
