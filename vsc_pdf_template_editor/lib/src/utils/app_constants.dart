@@ -38,7 +38,10 @@ class AppConstants {
     'Vertical Divider',
     'Watermark',
     'Wrap',
-    'Table'
+    'Table',
+    'Bullet',
+    'Icon',
+    'Opacity'
   ];
   static List<String> supportedProperties = [
     'Alignment',
@@ -62,7 +65,9 @@ class AppConstants {
     'Fraction Column Width',
     'Linear Gradient',
     'Radial Gradient',
-    'Fractional Offset'
+    'Fractional Offset',
+    'Fitted Sizes',
+    'Icon Data'
   ];
 
   static List<String> supportedImages = [

@@ -1,6 +1,7 @@
 import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_aspect_ratio.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_bullet.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_center.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_checkbox.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
@@ -18,12 +19,14 @@ import 'package:vsc_pdf_template_transformer/models/tpl_footer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_full_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_icon.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_link.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_listview.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_multi_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_new_page.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_opacity.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_padding.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_paragraph.dart';
@@ -104,7 +107,10 @@ class Transformer {
       'TplVerticalDivider': TplVerticalDivider.fromJson,
       'TplWatermark': TplWatermark.fromJson,
       'TplWrap': TplWrap.fromJson,
-      'TplTable': TplTable.fromJson
+      'TplTable': TplTable.fromJson,
+      'TplBullet': TplBullet.fromJson,
+      'TplIcon': TplIcon.fromJson,
+      'TplOpacity': TplOpacity.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];
