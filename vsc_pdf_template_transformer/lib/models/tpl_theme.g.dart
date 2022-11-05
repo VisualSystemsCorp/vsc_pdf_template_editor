@@ -72,6 +72,11 @@ TplThemeData _$TplThemeDataFromJson(Map<String, dynamic> json) =>
         $checkedConvert('textAlign', (v) => val.textAlign = v);
         $checkedConvert('maxLines', (v) => val.maxLines = v ?? 1);
         $checkedConvert('overflow', (v) => val.overflow = v);
+        $checkedConvert(
+            'iconTheme',
+            (v) => val.iconTheme = v == null
+                ? null
+                : TplIconThemeData.fromJson(v as Map<String, dynamic>));
         return val;
       },
     );
@@ -94,4 +99,5 @@ Map<String, dynamic> _$TplThemeDataToJson(TplThemeData instance) =>
       'textAlign': instance.textAlign,
       'maxLines': instance.maxLines,
       'overflow': instance.overflow,
+      'iconTheme': instance.iconTheme?.toJson(),
     };
