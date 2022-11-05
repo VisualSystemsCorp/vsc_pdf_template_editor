@@ -27,10 +27,12 @@ import 'package:vsc_pdf_template_transformer/models/tpl_flexible.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_footer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fraction_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_icon_theme_data.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_intrinsic_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_linear_gradient.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radial_gradient.dart';
@@ -59,6 +61,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_decoration_svg_image.dar
 import 'package:vsc_pdf_template_transformer/models/tpl_stack.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_listview.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_link.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_theme.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_url_link.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_paragraph.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
@@ -392,6 +395,15 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Icon Data':
         map = TplIconData().toJson();
+        break;
+      case 'Page Theme':
+        map = TplPageTheme().toJson();
+        break;
+      case 'Theme Data':
+        map = TplThemeData().toJson();
+        break;
+      case 'Icon Theme Data':
+        map = TplIconThemeData().toJson();
         break;
     }
     addWidget(map);

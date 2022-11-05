@@ -67,7 +67,10 @@ class AppConstants {
     'Radial Gradient',
     'Fractional Offset',
     'Fitted Sizes',
-    'Icon Data'
+    'Icon Data',
+    'Page Theme',
+    'Theme Data',
+    'Icon Theme Data'
   ];
 
   static List<String> supportedImages = [
