@@ -66,6 +66,11 @@ import 'package:vsc_pdf_template_transformer/models/tpl_watermark.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_wrap.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fractional_offset.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_fitted_sizes.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_bullet.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_icon.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_icon_data.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_opacity.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -300,6 +305,15 @@ abstract class TreeStoreModel with Store {
       case 'Table':
         map = TplTable().toJson();
         break;
+      case 'Bullet':
+        map = TplBullet().toJson();
+        break;
+      case 'Icon':
+        map = TplIcon().toJson();
+        break;
+      case 'Opacity':
+        map = TplOpacity().toJson();
+        break;
     }
     addWidget(map);
   }
@@ -372,6 +386,12 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Fractional Offset':
         map = TplFractionalOffset().toJson();
+        break;
+      case 'Fitted Sizes':
+        map = TplFittedSizes().toJson();
+        break;
+      case 'Icon Data':
+        map = TplIconData().toJson();
         break;
     }
     addWidget(map);

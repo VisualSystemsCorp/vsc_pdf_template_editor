@@ -219,6 +219,10 @@ Overflow? evaluateOverflow(dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(Overflow.values, expression, data);
 }
 
+BoxShape? evaluateBoxShape(dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(BoxShape.values, expression, data);
+}
+
 PdfPageFormat? evaluatePageFormat(
     dynamic expression, Map<String, dynamic> data) {
   final result = _evaluateDynamic(expression, data);
