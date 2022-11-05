@@ -11,13 +11,13 @@
         "className": "TplIcon",
         "iconData": {
           "className": "TplIconData",
-          "codePoint": 38,
+          "codePoint": 95,
           "matchTextDirection": null
         },
         "size": 32,
         "color": "'#ebc034'",
         "textDirection": null,
-        "font": null
+        "font": "'zapfDingbats'"
       }
     }
   ]
