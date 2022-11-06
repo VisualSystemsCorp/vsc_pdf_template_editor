@@ -18,7 +18,7 @@
         "heightFactor": null,
         "child": {
           "className": "TplText",
-          "text": "'Hello·world'",
+          "text": "'Hello world'",
           "style": null,
           "textAlign": null,
           "textDirection": null,

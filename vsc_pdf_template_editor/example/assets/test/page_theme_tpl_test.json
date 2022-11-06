@@ -75,7 +75,7 @@
         "children": [
           {
             "className": "TplText",
-            "text": "'sample·text'",
+            "text": "'sample text'",
             "textAlign": "left",
             "textDirection": "ltr",
             "softWrap": true,

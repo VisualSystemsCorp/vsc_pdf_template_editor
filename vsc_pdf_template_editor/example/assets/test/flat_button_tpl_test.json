@@ -37,7 +37,7 @@
           "flags": [],
           "child": {
             "className": "TplText",
-            "text": "'flat·button'",
+            "text": "'flat button'",
             "style": null,
             "textAlign": null,
             "textDirection": null,

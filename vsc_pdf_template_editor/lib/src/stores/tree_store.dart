@@ -436,6 +436,7 @@ abstract class TreeStoreModel with Store {
       text: jsonEncode(_template),
       onChange: (val) => EasyDebounce.debounce(
           '', const Duration(milliseconds: 500), () => onInputChanged()),
+      webSpaceFix: false,
     );
     _dataController = CodeController(
       language: json,
@@ -443,6 +444,7 @@ abstract class TreeStoreModel with Store {
       text: jsonEncode(_data),
       onChange: (val) => EasyDebounce.debounce(
           '', const Duration(milliseconds: 500), () => onDataChanged()),
+      webSpaceFix: false,
     );
   }
 

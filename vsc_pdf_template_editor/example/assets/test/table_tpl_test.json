@@ -27,7 +27,7 @@
               },
               {
                 "className": "TplText",
-                "text": "'Hello·world'",
+                "text": "'Hello world'",
                 "style": null,
                 "textAlign": null,
                 "textDirection": null,
@@ -63,7 +63,7 @@
             "children": [
               {
                 "className": "TplText",
-                "text": "'Hello·world'",
+                "text": "'Hello world'",
                 "style": null,
                 "textAlign": null,
                 "textDirection": null,

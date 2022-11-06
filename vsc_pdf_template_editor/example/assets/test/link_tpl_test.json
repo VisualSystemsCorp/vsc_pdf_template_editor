@@ -12,7 +12,7 @@
         "destination": "'https://flutter.dev'",
         "child": {
           "className": "TplText",
-          "text": "'sample·text'",
+          "text": "'sample text'",
           "style": {
             "color": "'00FF00'"
           },

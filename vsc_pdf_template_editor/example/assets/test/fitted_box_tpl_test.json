@@ -27,7 +27,7 @@
             "margin": null,
             "child": {
               "className": "TplText",
-              "text": "'this·is·a·test·text'",
+              "text": "'this is a test text'",
               "style": null,
               "textAlign": null,
               "textDirection": null,
@@ -61,7 +61,7 @@
               "alignment": null,
               "child": {
                 "className": "TplText",
-                "text": "'this·is·a·test·text'",
+                "text": "'this is a test text'",
                 "style": null,
                 "textAlign": null,
                 "textDirection": null,
