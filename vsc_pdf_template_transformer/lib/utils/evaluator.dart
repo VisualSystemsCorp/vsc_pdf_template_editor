@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'dart:typed_data';
-
 import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table_row.dart';
-
 import '../utils/table_column_width.dart' as tcw;
 import '../vsc_pdf_template_transformer.dart';
+import '../utils/inline_span.dart' as ins;
 
 dynamic _evaluateDynamic(dynamic expression, Map<String, dynamic> data) {
   if (expression is! String) {
@@ -356,6 +356,28 @@ List<PdfColor> getColors(List<dynamic> colors, Map<String, dynamic> data) {
     final color = evaluateColor(e, data);
     if (color != null) {
       res.add(color);
+    }
+  }
+  return res;
+}
+
+List<Partition> getPartitions(
+    List<TplPartition> children, Map<String, dynamic> data) {
+  final List<Partition> res = [];
+
+  for (final e in children) {
+    res.add(e.buildWidget(data) as Partition);
+  }
+  return res;
+}
+
+List<InlineSpan> getInlineSpanChildren(
+    List<ins.InlineSpan?> children, Map<String, dynamic> data) {
+  final List<InlineSpan> res = [];
+
+  for (final e in children) {
+    if (e != null) {
+      res.add(e.buildInlineSpan(data));
     }
   }
   return res;

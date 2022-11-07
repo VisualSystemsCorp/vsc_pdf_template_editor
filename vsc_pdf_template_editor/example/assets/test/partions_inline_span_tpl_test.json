@@ -1,0 +1,166 @@
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplPartitions",
+        "children": [
+          {
+            "className": "TplPartition",
+            "child": {
+              "className": "TplRichText",
+              "text": {
+                "className": "TplTextSpan",
+                "children": [
+                  {
+                    "className": "TplWidgetSpan",
+                    "child": {
+                      "className": "TplContainer",
+                      "alignment": null,
+                      "padding": null,
+                      "color": "'#15d468'",
+                      "decoration": null,
+                      "foregroundDecoration": null,
+                      "width": 30,
+                      "height": 30,
+                      "constraints": null,
+                      "margin": {
+                        "left": null,
+                        "top": null,
+                        "right": null,
+                        "bottom": null,
+                        "all": null,
+                        "vertical": null,
+                        "horizontal": 10
+                      },
+                      "child": null
+                    },
+                    "baseline": null,
+                    "style": null
+                  },
+                  {
+                    "className": "TplTextSpan",
+                    "children": [],
+                    "text": "'hey'",
+                    "baseline": null,
+                    "style": {
+                      "inherit": null,
+                      "color": "'#d4ae15'",
+                      "fontSize": null,
+                      "fontWeight": "'bold'",
+                      "fontStyle": null,
+                      "letterSpacing": null,
+                      "wordSpacing": null,
+                      "lineSpacing": null,
+                      "height": null,
+                      "background": null,
+                      "decoration": null,
+                      "decorationColor": null,
+                      "decorationStyle": null,
+                      "decorationThickness": null,
+                      "renderingMode": null,
+                      "font": null,
+                      "fontNormal": null,
+                      "fontBold": null,
+                      "fontItalic": null,
+                      "fontBoldItalic": null,
+                      "fontFallback": null
+                    }
+                  },
+                  {
+                    "className": "TplWidgetSpan",
+                    "child": {
+                      "className": "TplContainer",
+                      "alignment": null,
+                      "padding": null,
+                      "color": "'#d415bd'",
+                      "decoration": null,
+                      "foregroundDecoration": null,
+                      "width": 30,
+                      "height": 30,
+                      "constraints": null,
+                      "margin": {
+                        "left": 10,
+                        "top": null,
+                        "right": null,
+                        "bottom": null,
+                        "all": null,
+                        "vertical": null,
+                        "horizontal": null
+                      },
+                      "child": null
+                    },
+                    "baseline": null,
+                    "style": null
+                  }
+                ],
+                "text": "'Hello world'",
+                "baseline": null,
+                "style": null
+              },
+              "textAlign": null,
+              "textDirection": null,
+              "softWrap": true,
+              "tightBounds": false,
+              "textScaleFactor": null,
+              "maxLines": null,
+              "overflow": null
+            },
+            "width": null,
+            "flex": null
+          },
+          {
+            "className": "TplPartition",
+            "child": {
+              "className": "TplRichText",
+              "text": {
+                "className": "TplTextSpan",
+                "children": null,
+                "text": "'Hi again!'",
+                "baseline": null,
+                "style": {
+                  "inherit": null,
+                  "color": null,
+                  "fontSize": null,
+                  "fontWeight": null,
+                  "fontStyle": "'italic'",
+                  "letterSpacing": null,
+                  "wordSpacing": null,
+                  "lineSpacing": null,
+                  "height": null,
+                  "background": null,
+                  "decoration": null,
+                  "decorationColor": null,
+                  "decorationStyle": null,
+                  "decorationThickness": null,
+                  "renderingMode": null,
+                  "font": null,
+                  "fontNormal": null,
+                  "fontBold": null,
+                  "fontItalic": null,
+                  "fontBoldItalic": null,
+                  "fontFallback": null
+                }
+              },
+              "textAlign": null,
+              "textDirection": null,
+              "softWrap": true,
+              "tightBounds": false,
+              "textScaleFactor": null,
+              "maxLines": null,
+              "overflow": null
+            },
+            "width": null,
+            "flex": 2
+          }
+        ],
+        "mainAxisSize": null
+      }
+    }
+  ]
+}

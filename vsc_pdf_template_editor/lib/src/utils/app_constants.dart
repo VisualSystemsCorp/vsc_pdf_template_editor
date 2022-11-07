@@ -41,7 +41,12 @@ class AppConstants {
     'Table',
     'Bullet',
     'Icon',
-    'Opacity'
+    'Opacity',
+    'Partition',
+    'Partitions',
+    'Rich Text',
+    'Widget Span',
+    'Text Span'
   ];
   static List<String> supportedProperties = [
     'Alignment',
