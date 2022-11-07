@@ -23,6 +23,10 @@ TplWidgetSpan _$TplWidgetSpanFromJson(Map<String, dynamic> json) =>
             (v) => val.style = v == null
                 ? null
                 : TplTextStyle.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'annotation',
+            (v) => val.annotation = const AnnotationBuilderJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
         return val;
       },
     );
@@ -33,4 +37,6 @@ Map<String, dynamic> _$TplWidgetSpanToJson(TplWidgetSpan instance) =>
       'child': const WidgetJsonConverter().toJson(instance.child),
       'baseline': instance.baseline,
       'style': instance.style?.toJson(),
+      'annotation':
+          const AnnotationBuilderJsonConverter().toJson(instance.annotation),
     };

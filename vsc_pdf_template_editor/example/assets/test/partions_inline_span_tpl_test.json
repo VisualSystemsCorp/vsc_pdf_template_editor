@@ -41,13 +41,35 @@
                       "child": null
                     },
                     "baseline": null,
-                    "style": null
+                    "style": null,
+                    "annotation": {
+                      "className": "TplAnnotationTextField",
+                      "name": "'Test'",
+                      "color": null,
+                      "date": null,
+                      "backgroundColor": null,
+                      "maxLength": 10,
+                      "subject": null,
+                      "author": null,
+                      "alternateName": null,
+                      "mappingName": null,
+                      "value": "text",
+                      "defaultValue": null,
+                      "textStyle": null
+                    }
                   },
                   {
                     "className": "TplTextSpan",
                     "children": [],
                     "text": "'hey'",
                     "baseline": null,
+                    "annotation": {
+                      "className": "TplAnnotationUrl",
+                      "destination": "'https://flutter.dev'",
+                      "date": null,
+                      "subject": null,
+                      "author": "'GZ'"
+                    },
                     "style": {
                       "inherit": null,
                       "color": "'#d4ae15'",
@@ -96,12 +118,30 @@
                       "child": null
                     },
                     "baseline": null,
-                    "style": null
+                    "style": null,
+                    "annotation": {
+                      "className": "TplAnnotationCircle",
+                      "color": null,
+                      "interiorColor": null,
+                      "date": "'2022-12-12'",
+                      "subject": null,
+                      "author": "GZ",
+                      "content": "'This is annotation circle'"
+                    }
                   }
                 ],
                 "text": "'Hello world'",
                 "baseline": null,
-                "style": null
+                "style": null,
+                "annotation": {
+                  "className": "TplAnnotationSquare",
+                  "color": null,
+                  "interiorColor": null,
+                  "date": "'2012-02-27 13:27:00'",
+                  "subject": null,
+                  "author": null,
+                  "content": "'This is annotation square'"
+                }
               },
               "textAlign": null,
               "textDirection": null,
@@ -123,6 +163,25 @@
                 "children": null,
                 "text": "'Hi again!'",
                 "baseline": null,
+                "annotation": {
+                  "className": "TplAnnotationPolygon",
+                  "points": [
+                    {
+                      "x": 4,
+                      "y": 12
+                    },
+                    {
+                      "x": 5,
+                      "y": 13
+                    }
+                  ],
+                  "color": null,
+                  "interiorColor": null,
+                  "date": null,
+                  "subject": null,
+                  "author": null,
+                  "content": null
+                },
                 "style": {
                   "inherit": null,
                   "color": null,

@@ -25,6 +25,10 @@ TplTextSpan _$TplTextSpanFromJson(Map<String, dynamic> json) => $checkedCreate(
             (v) => val.style = v == null
                 ? null
                 : TplTextStyle.fromJson(v as Map<String, dynamic>));
+        $checkedConvert(
+            'annotation',
+            (v) => val.annotation = const AnnotationBuilderJsonConverter()
+                .fromJson(v as Map<String, dynamic>?));
         return val;
       },
     );
@@ -38,4 +42,6 @@ Map<String, dynamic> _$TplTextSpanToJson(TplTextSpan instance) =>
       'text': instance.text,
       'baseline': instance.baseline,
       'style': instance.style?.toJson(),
+      'annotation':
+          const AnnotationBuilderJsonConverter().toJson(instance.annotation),
     };

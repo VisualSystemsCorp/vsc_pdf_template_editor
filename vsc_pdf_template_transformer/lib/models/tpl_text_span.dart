@@ -1,9 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
+import 'package:vsc_pdf_template_transformer/utils/annotation_builder_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/inline_span_json_converter.dart';
 import '../utils/inline_span.dart' as ins;
+import '../utils/annotation_builder.dart' as ab;
 
 part 'tpl_text_span.g.dart';
 
@@ -21,6 +23,8 @@ class TplTextSpan implements ins.InlineSpan {
   dynamic text;
   dynamic baseline;
   TplTextStyle? style;
+  @AnnotationBuilderJsonConverter()
+  ab.AnnotationBuilder? annotation;
 
   factory TplTextSpan.fromJson(Map<String, dynamic> json) =>
       _$TplTextSpanFromJson(json);
@@ -36,6 +40,6 @@ class TplTextSpan implements ins.InlineSpan {
         baseline: evaluateDouble(baseline, data) ?? 0,
         text: evaluateString(text, data),
         style: style?.toPdf(data),
-        annotation: null);
+        annotation: annotation?.buildAnnotation(data));
   }
 }

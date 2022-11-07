@@ -4,6 +4,7 @@ import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table_row.dart';
 import '../utils/table_column_width.dart' as tcw;
@@ -379,6 +380,26 @@ List<InlineSpan> getInlineSpanChildren(
     if (e != null) {
       res.add(e.buildInlineSpan(data));
     }
+  }
+  return res;
+}
+
+List<PdfPoint> getPdfPoints(
+    List<TplPdfPoint> children, Map<String, dynamic> data) {
+  final List<PdfPoint> res = [];
+
+  for (final e in children) {
+    res.add(e.toPdf(data));
+  }
+  return res;
+}
+
+List<List<PdfPoint>> getListOfPdfPoints(
+    List<List<TplPdfPoint>> children, Map<String, dynamic> data) {
+  final List<List<PdfPoint>> res = [];
+
+  for (final e in children) {
+    res.add(getPdfPoints(e, data));
   }
   return res;
 }
