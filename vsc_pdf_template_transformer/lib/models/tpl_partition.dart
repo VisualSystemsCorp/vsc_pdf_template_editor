@@ -1,8 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
-import 'package:vsc_pdf_template_transformer/utils/spanning_widget_json_converter.dart';
-import 'package:vsc_pdf_template_transformer/utils/spanning_widget.dart' as sw;
+import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 import '../utils/widget_builder.dart' as wb;
 
 part 'tpl_partition.g.dart';
@@ -16,8 +15,8 @@ class TplPartition implements wb.WidgetBuilder {
   TplPartition();
 
   String className = 'TplPartition';
-  @SpanningWidgetJsonConverter()
-  sw.SpanningWidgetBuilder? child;
+  @WidgetJsonConverter()
+  wb.WidgetBuilder? child;
   dynamic width;
   dynamic flex;
 
@@ -30,7 +29,7 @@ class TplPartition implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return Partition(
-        child: child!.buildWidget(data),
+        child: child!.buildWidget(data) as SpanningWidget,
         width: evaluateDouble(width, data),
         flex: evaluateInt(flex, data) ?? 1);
   }

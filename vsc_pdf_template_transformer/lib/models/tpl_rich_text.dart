@@ -3,7 +3,7 @@ import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/inline_span_json_converter.dart';
 import '../utils/inline_span.dart' as ins;
-import '../utils/spanning_widget.dart' as sw;
+import '../utils/widget_builder.dart' as wb;
 
 part 'tpl_rich_text.g.dart';
 
@@ -12,7 +12,7 @@ part 'tpl_rich_text.g.dart';
   disallowUnrecognizedKeys: false,
   explicitToJson: true,
 )
-class TplRichText implements sw.SpanningWidgetBuilder {
+class TplRichText implements wb.WidgetBuilder {
   TplRichText();
 
   String className = 'TplRichText';
@@ -33,7 +33,7 @@ class TplRichText implements sw.SpanningWidgetBuilder {
   Map<String, dynamic> toJson() => _$TplRichTextToJson(this);
 
   @override
-  SpanningWidget buildWidget(Map<String, dynamic> data) {
+  Widget buildWidget(Map<String, dynamic> data) {
     return RichText(
       text: text!.buildInlineSpan(data),
       textAlign: evaluateTextAlign(textAlign, data),
