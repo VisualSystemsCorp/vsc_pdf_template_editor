@@ -16,6 +16,7 @@ part 'tpl_text_field.g.dart';
 class TplTextField implements wb.WidgetBuilder {
   TplTextField();
 
+  String className = 'TplTextField';
   dynamic name;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;

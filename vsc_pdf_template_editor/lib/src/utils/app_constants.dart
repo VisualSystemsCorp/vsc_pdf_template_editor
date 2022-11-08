@@ -45,6 +45,8 @@ class AppConstants {
     'Partition',
     'Partitions',
     'Rich Text',
+    'Table of Content',
+    'Text Field'
   ];
   static List<String> supportedProperties = [
     'Alignment',
@@ -82,7 +84,9 @@ class AppConstants {
     'Annotation Polygon',
     'Annotation Ink',
     'Annotation Text Field',
-    'Pdf Point'
+    'Pdf Point',
+    'Pdf Border',
+    'Pdf Document'
   ];
 
   static List<String> supportedImages = [

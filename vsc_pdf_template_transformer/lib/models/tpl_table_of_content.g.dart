@@ -12,9 +12,12 @@ TplTableOfContent _$TplTableOfContentFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplTableOfContent();
+        $checkedConvert('className', (v) => val.className = v as String);
         return val;
       },
     );
 
 Map<String, dynamic> _$TplTableOfContentToJson(TplTableOfContent instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'className': instance.className,
+    };

@@ -12,6 +12,8 @@ part 'tpl_table_of_content.g.dart';
 class TplTableOfContent implements wb.WidgetBuilder {
   TplTableOfContent();
 
+  String className = 'TplTableOfContent';
+
   factory TplTableOfContent.fromJson(Map<String, dynamic> json) =>
       _$TplTableOfContentFromJson(json);
 
