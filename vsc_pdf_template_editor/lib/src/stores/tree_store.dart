@@ -40,8 +40,6 @@ import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_linear_gradient.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_pdf_border.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_pdf_document.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
@@ -462,12 +460,6 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Pdf Point':
         map = TplPdfPoint().toJson();
-        break;
-      case 'Pdf Border':
-        map = TplPdfBorder().toJson();
-        break;
-      case 'Pdf Document':
-        map = TplPdfDocument().toJson();
         break;
     }
     addWidget(map);

@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_pdf_border.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
@@ -22,7 +21,6 @@ class TplTextField implements wb.WidgetBuilder {
   wb.WidgetBuilder? child;
   dynamic width;
   dynamic height;
-  TplPdfBorder? border;
   List<dynamic>? flags;
   dynamic date;
   dynamic color;
@@ -46,7 +44,6 @@ class TplTextField implements wb.WidgetBuilder {
   Widget buildWidget(Map<String, dynamic> data) {
     return TextField(
         name: evaluateString(name, data) ?? '',
-        border: border?.toPdf(data),
         child: child?.buildWidget(data),
         width: evaluateDouble(width, data) ?? 120,
         height: evaluateDouble(height, data) ?? 13,

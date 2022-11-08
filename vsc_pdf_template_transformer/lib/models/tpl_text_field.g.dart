@@ -20,11 +20,6 @@ TplTextField _$TplTextFieldFromJson(Map<String, dynamic> json) =>
                 .fromJson(v as Map<String, dynamic>?));
         $checkedConvert('width', (v) => val.width = v);
         $checkedConvert('height', (v) => val.height = v);
-        $checkedConvert(
-            'border',
-            (v) => val.border = v == null
-                ? null
-                : TplPdfBorder.fromJson(v as Map<String, dynamic>));
         $checkedConvert('flags', (v) => val.flags = v as List<dynamic>?);
         $checkedConvert('date', (v) => val.date = v);
         $checkedConvert('color', (v) => val.color = v);
@@ -53,7 +48,6 @@ Map<String, dynamic> _$TplTextFieldToJson(TplTextField instance) =>
       'child': const WidgetJsonConverter().toJson(instance.child),
       'width': instance.width,
       'height': instance.height,
-      'border': instance.border?.toJson(),
       'flags': instance.flags,
       'date': instance.date,
       'color': instance.color,

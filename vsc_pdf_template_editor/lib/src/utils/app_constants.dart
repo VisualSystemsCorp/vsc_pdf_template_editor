@@ -85,8 +85,6 @@ class AppConstants {
     'Annotation Ink',
     'Annotation Text Field',
     'Pdf Point',
-    'Pdf Border',
-    'Pdf Document'
   ];
 
   static List<String> supportedImages = [
