@@ -5,6 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_annotation_circle.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_annotation_ink.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_annotation_polygon.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_annotation_square.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_annotation_text_field.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_annotation_url.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_aspect_ratio.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_side.dart';
@@ -33,10 +39,13 @@ import 'package:vsc_pdf_template_transformer/models/tpl_intrinsic_column_width.d
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_linear_gradient.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radial_gradient.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_rich_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table_border.dart';
@@ -45,6 +54,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_text_span.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
@@ -66,6 +76,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_url_link.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_paragraph.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_watermark.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_widget_span.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_wrap.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fractional_offset.dart';
@@ -74,6 +85,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_bullet.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_icon.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_icon_data.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_opacity.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_partitions.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -317,6 +329,15 @@ abstract class TreeStoreModel with Store {
       case 'Opacity':
         map = TplOpacity().toJson();
         break;
+      case 'Partition':
+        map = TplPartition().toJson();
+        break;
+      case 'Partitions':
+        map = TplPartitions().toJson();
+        break;
+      case 'Rich Text':
+        map = TplRichText().toJson();
+        break;
     }
     addWidget(map);
   }
@@ -404,6 +425,33 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Icon Theme Data':
         map = TplIconThemeData().toJson();
+        break;
+      case 'Widget Span':
+        map = TplWidgetSpan().toJson();
+        break;
+      case 'Text Span':
+        map = TplTextSpan().toJson();
+        break;
+      case 'Annotation Url':
+        map = TplAnnotationUrl().toJson();
+        break;
+      case 'Annotation Square':
+        map = TplAnnotationSquare().toJson();
+        break;
+      case 'Annotation Circle':
+        map = TplAnnotationCircle().toJson();
+        break;
+      case 'Annotation Polygon':
+        map = TplAnnotationPolygon().toJson();
+        break;
+      case 'Annotation Ink':
+        map = TplAnnotationInk().toJson();
+        break;
+      case 'Annotation Text Field':
+        map = TplAnnotationTextField().toJson();
+        break;
+      case 'Pdf Point':
+        map = TplPdfPoint().toJson();
         break;
     }
     addWidget(map);

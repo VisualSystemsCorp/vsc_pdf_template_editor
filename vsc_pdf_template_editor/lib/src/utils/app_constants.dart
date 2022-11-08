@@ -41,7 +41,10 @@ class AppConstants {
     'Table',
     'Bullet',
     'Icon',
-    'Opacity'
+    'Opacity',
+    'Partition',
+    'Partitions',
+    'Rich Text',
   ];
   static List<String> supportedProperties = [
     'Alignment',
@@ -70,7 +73,16 @@ class AppConstants {
     'Icon Data',
     'Page Theme',
     'Theme Data',
-    'Icon Theme Data'
+    'Icon Theme Data',
+    'Widget Span',
+    'Text Span',
+    'Annotation Url',
+    'Annotation Square',
+    'Annotation Circle',
+    'Annotation Polygon',
+    'Annotation Ink',
+    'Annotation Text Field',
+    'Pdf Point'
   ];
 
   static List<String> supportedImages = [
