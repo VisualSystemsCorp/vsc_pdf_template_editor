@@ -44,6 +44,7 @@ class AppConstants {
     'Opacity',
     'Partition',
     'Partitions',
+    'Rich Text',
   ];
   static List<String> supportedProperties = [
     'Alignment',
@@ -73,7 +74,6 @@ class AppConstants {
     'Page Theme',
     'Theme Data',
     'Icon Theme Data',
-    'Rich Text',
     'Widget Span',
     'Text Span',
     'Annotation Url',

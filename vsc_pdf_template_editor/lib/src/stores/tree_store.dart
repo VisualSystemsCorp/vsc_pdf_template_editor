@@ -335,6 +335,9 @@ abstract class TreeStoreModel with Store {
       case 'Partitions':
         map = TplPartitions().toJson();
         break;
+      case 'Rich Text':
+        map = TplRichText().toJson();
+        break;
     }
     addWidget(map);
   }
@@ -422,9 +425,6 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Icon Theme Data':
         map = TplIconThemeData().toJson();
-        break;
-      case 'Rich Text':
-        map = TplRichText().toJson();
         break;
       case 'Widget Span':
         map = TplWidgetSpan().toJson();
