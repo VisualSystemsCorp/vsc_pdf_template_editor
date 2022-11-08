@@ -1,0 +1,42 @@
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplTextField",
+        "name": "'Text Field'",
+        "child": null,
+        "width": null,
+        "height": null,
+        "border": {
+          "pdfDocument": {
+            "pageMode": "'outlines'",
+            "compress": null,
+            "verbose": null,
+            "version": null
+          },
+          "width": 3,
+          "style": null,
+          "dash": null
+        },
+        "flags": null,
+        "date": null,
+        "color": null,
+        "backgroundColor": "'#343deb'",
+        "highlighting": null,
+        "maxLength": 10,
+        "alternateName": null,
+        "mappingName": null,
+        "fieldFlags": null,
+        "value": null,
+        "defaultValue": null,
+        "textStyle": null
+      }
+    }
+  ]
+}

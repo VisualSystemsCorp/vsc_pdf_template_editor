@@ -40,8 +40,8 @@ class TplHeader implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return Header(
-        title: evaluateString(title, data).toString(),
-        text: evaluateString(text, data).toString(),
+        title: evaluateString(title, data),
+        text: evaluateString(text, data),
         child: child?.buildWidget(data),
         level: evaluateInt(level, data) ?? 1,
         decoration: decoration?.toPdf(data),

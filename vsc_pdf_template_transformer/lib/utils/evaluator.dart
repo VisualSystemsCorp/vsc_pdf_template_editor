@@ -317,6 +317,35 @@ TileMode? evaluateTileMode(dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(TileMode.values, expression, data);
 }
 
+PdfFieldFlags? evaluatePdfFieldFlags(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PdfFieldFlags.values, expression, data);
+}
+
+PdfAnnotHighlighting? evaluatePdfAnnotHighlighting(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PdfAnnotHighlighting.values, expression, data);
+}
+
+PdfAnnotFlags? evaluatePdfAnnotFlags(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PdfAnnotFlags.values, expression, data);
+}
+
+PdfBorderStyle? evaluatePdfBorderStyle(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PdfBorderStyle.values, expression, data);
+}
+
+PdfVersion? evaluatePdfVersion(dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PdfVersion.values, expression, data);
+}
+
+PdfPageMode? evaluatePdfPageMode(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PdfPageMode.values, expression, data);
+}
+
 List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
   final List<Widget> res = [];
 
@@ -402,4 +431,30 @@ List<List<PdfPoint>> getListOfPdfPoints(
     res.add(getPdfPoints(e, data));
   }
   return res;
+}
+
+Set<PdfFieldFlags> getPdfFieldFlags(
+    List<dynamic> children, Map<String, dynamic> data) {
+  final Set<PdfFieldFlags> flags = {};
+
+  for (final e in children) {
+    final res = evaluatePdfFieldFlags(e, data);
+    if (res != null) {
+      flags.add(res);
+    }
+  }
+  return flags;
+}
+
+Set<PdfAnnotFlags> getPdfAnnotFlags(
+    List<dynamic> children, Map<String, dynamic> data) {
+  final Set<PdfAnnotFlags> flags = {};
+
+  for (final e in children) {
+    final res = evaluatePdfAnnotFlags(e, data);
+    if (res != null) {
+      flags.add(res);
+    }
+  }
+  return flags;
 }

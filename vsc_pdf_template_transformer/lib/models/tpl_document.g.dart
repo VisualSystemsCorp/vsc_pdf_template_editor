@@ -11,6 +11,7 @@ TplDocument _$TplDocumentFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplDocument(
+          pageMode: $checkedConvert('pageMode', (v) => v ?? PdfPageMode.none),
           compress: $checkedConvert('compress', (v) => v ?? true),
           verbose: $checkedConvert('verbose', (v) => v ?? false),
           title: $checkedConvert('title', (v) => v),
@@ -29,6 +30,7 @@ TplDocument _$TplDocumentFromJson(Map<String, dynamic> json) => $checkedCreate(
 Map<String, dynamic> _$TplDocumentToJson(TplDocument instance) =>
     <String, dynamic>{
       'className': instance.className,
+      'pageMode': instance.pageMode,
       'compress': instance.compress,
       'verbose': instance.verbose,
       'title': instance.title,

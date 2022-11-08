@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import '../utils/evaluator.dart';
 
@@ -11,6 +12,7 @@ part 'tpl_document.g.dart';
 )
 class TplDocument {
   TplDocument({
+    this.pageMode = PdfPageMode.none,
     this.compress = true,
     this.verbose = false,
     this.title,
@@ -23,6 +25,7 @@ class TplDocument {
   });
 
   String className = 'TplDocument';
+  final dynamic pageMode;
   final dynamic compress;
   final dynamic verbose;
   final dynamic title;
@@ -40,6 +43,7 @@ class TplDocument {
 
   Document toPdf(Map<String, dynamic> data) {
     return Document(
+      pageMode: evaluatePdfPageMode(pageMode, data) ?? PdfPageMode.none,
       compress: evaluateBool(compress, data) ?? true,
       verbose: evaluateBool(verbose, data) ?? false,
       title: evaluateString(title, data),

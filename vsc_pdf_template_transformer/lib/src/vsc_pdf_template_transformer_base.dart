@@ -45,6 +45,8 @@ import 'package:vsc_pdf_template_transformer/models/tpl_url_link.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_watermark.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_wrap.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_table_of_content.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_text_field.dart';
 import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
 
@@ -117,6 +119,8 @@ class Transformer {
       'TplPartition': TplPartition.fromJson,
       'TplPartitions': TplPartitions.fromJson,
       'TplRichText': TplRichText.fromJson,
+      'TplTableOfContent': TplTableOfContent.fromJson,
+      'TplTextField': TplTextField.fromJson,
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];

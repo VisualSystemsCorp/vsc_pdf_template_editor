@@ -86,6 +86,8 @@ import 'package:vsc_pdf_template_transformer/models/tpl_icon.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_icon_data.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_opacity.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partitions.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_table_of_content.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_text_field.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -337,6 +339,12 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Rich Text':
         map = TplRichText().toJson();
+        break;
+      case 'Table of Content':
+        map = TplTableOfContent().toJson();
+        break;
+      case 'Text Field':
+        map = TplTextField().toJson();
         break;
     }
     addWidget(map);
