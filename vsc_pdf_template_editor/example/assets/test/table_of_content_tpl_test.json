@@ -9,68 +9,48 @@
       },
       "child": {
         "className": "TplColumn",
-        "mainAxisAlignment": null,
-        "mainAxisSize": null,
-        "crossAxisAlignment": null,
-        "verticalDirection": null,
         "children": [
           {
+            "className": "TplText",
+            "text": "'Table of Contents'"
+          },
+          {
             "className": "TplTableOfContent"
-          },
-          {
-            "className": "TplHeader",
-            "title": "'Header 1'",
-            "text": "'text 1'",
-            "child": null,
-            "level": null,
-            "decoration": null,
-            "margin": null,
-            "padding": null,
-            "style": null,
-            "color": null,
-            "outlineStyle": null
-          },
-          {
-            "className": "TplContainer",
-            "alignment": null,
-            "padding": null,
-            "color": "'#343deb'",
-            "decoration": null,
-            "foregroundDecoration": null,
-            "width": 200,
-            "height": 300,
-            "constraints": null,
-            "margin": null,
-            "child": null
-          },
-          {
-            "className": "TplHeader",
-            "title": "'Header 2'",
-            "text": "'text 2'",
-            "child": null,
-            "level": null,
-            "decoration": null,
-            "margin": null,
-            "padding": null,
-            "style": null,
-            "color": null,
-            "outlineStyle": null
-          },
-          {
-            "className": "TplContainer",
-            "alignment": null,
-            "padding": null,
-            "color": "'#343deb'",
-            "decoration": null,
-            "foregroundDecoration": null,
-            "width": 200,
-            "height": 200,
-            "constraints": null,
-            "margin": null,
-            "child": null
           }
         ]
       }
+    },
+    {
+      "className": "TplMultiPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "children": [
+        {
+          "className": "TplHeader",
+          "text": "'Heading 1'",
+          "child": null,
+          "level": 0,
+          "decoration": null,
+          "margin": null,
+          "padding": null,
+          "style": null,
+          "color": null,
+          "outlineStyle": null
+        },
+        {
+          "className": "TplHeader",
+          "text": "'Heading 1.1'",
+          "child": null,
+          "level": 1,
+          "decoration": null,
+          "margin": null,
+          "padding": null,
+          "style": null,
+          "color": null,
+          "outlineStyle": null
+        }
+      ]
     }
   ]
 }
