@@ -25,6 +25,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_decorated_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_expanded.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fitted_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_fixed_axis.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fixed_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_flat_button.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_flex.dart';
@@ -42,6 +43,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_point_chart_value.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radial_gradient.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
@@ -88,6 +90,12 @@ import 'package:vsc_pdf_template_transformer/models/tpl_opacity.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partitions.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table_of_content.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_field.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_chart.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_cartesian_grid.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_pie_grid.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_radial_grid.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_bar_data_set.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_pie_data_set.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -346,6 +354,24 @@ abstract class TreeStoreModel with Store {
       case 'Text Field':
         map = TplTextField().toJson();
         break;
+      case 'Chart':
+        map = TplChart().toJson();
+        break;
+      case 'Cartesian Grid':
+        map = TplCartesianGrid().toJson();
+        break;
+      case 'Pie Grid':
+        map = TplPieGrid().toJson();
+        break;
+      case 'Radial Grid':
+        map = TplRadialGrid().toJson();
+        break;
+      case 'Pie Data Set':
+        map = TplPieDataSet().toJson();
+        break;
+      case 'Bar Data Set':
+        map = TplBarDataSet().toJson();
+        break;
     }
     addWidget(map);
   }
@@ -460,6 +486,12 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Pdf Point':
         map = TplPdfPoint().toJson();
+        break;
+      case 'Fixed Axis':
+        map = TplFixedAxis().toJson();
+        break;
+      case 'Point Chart Value':
+        map = TplPointChartValue().toJson();
         break;
     }
     addWidget(map);

@@ -5,11 +5,13 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_point_chart_value.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table_row.dart';
 import '../utils/table_column_width.dart' as tcw;
 import '../vsc_pdf_template_transformer.dart';
 import '../utils/inline_span.dart' as ins;
+import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
 
 dynamic _evaluateDynamic(dynamic expression, Map<String, dynamic> data) {
   if (expression is! String) {
@@ -65,6 +67,18 @@ int? evaluateInt(dynamic expression, Map<String, dynamic> data) {
   }
 
   return int.tryParse(result.toString());
+}
+
+num? evaluateNum(dynamic expression, Map<String, dynamic> data) {
+  final result = _evaluateDynamic(expression, data);
+  if (result == null) {
+    return null;
+  }
+  if (result is num) {
+    return result;
+  }
+
+  return num.tryParse(result.toString());
 }
 
 bool? evaluateBool(dynamic expression, Map<String, dynamic> data) {
@@ -346,6 +360,16 @@ PdfPageMode? evaluatePdfPageMode(
   return evaluateEnum(PdfPageMode.values, expression, data);
 }
 
+PieLegendPosition? evaluatePieLegendPosition(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(PieLegendPosition.values, expression, data);
+}
+
+ValuePosition? evaluateValuePosition(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(ValuePosition.values, expression, data);
+}
+
 List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
   final List<Widget> res = [];
 
@@ -457,4 +481,26 @@ Set<PdfAnnotFlags> getPdfAnnotFlags(
     }
   }
   return flags;
+}
+
+List<PointChartValue> getPointChartValues(
+    List<TplPointChartValue> children, Map<String, dynamic> data) {
+  final List<PointChartValue> res = [];
+
+  for (final e in children) {
+    res.add(e.toPdf(data));
+  }
+  return res;
+}
+
+List<Dataset> getDatasets(
+    List<wb.WidgetBuilder?> children, Map<String, dynamic> data) {
+  final List<Dataset> res = [];
+
+  for (final e in children) {
+    if (e != null) {
+      res.add(e.buildWidget(data) as Dataset);
+    }
+  }
+  return res;
 }

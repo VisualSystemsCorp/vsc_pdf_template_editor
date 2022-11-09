@@ -46,7 +46,13 @@ class AppConstants {
     'Partitions',
     'Rich Text',
     'Table of Content',
-    'Text Field'
+    'Text Field',
+    'Chart',
+    'Cartesian Grid',
+    'Pie Grid',
+    'Radial Grid',
+    'Pie Data Set',
+    'Bar Data Set',
   ];
   static List<String> supportedProperties = [
     'Alignment',
@@ -85,6 +91,8 @@ class AppConstants {
     'Annotation Ink',
     'Annotation Text Field',
     'Pdf Point',
+    'Fixed Axis',
+    'Point Chart Value'
   ];
 
   static List<String> supportedImages = [
