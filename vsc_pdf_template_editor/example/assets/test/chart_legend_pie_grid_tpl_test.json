@@ -91,7 +91,14 @@
         },
         "bottom": null,
         "left": null,
-        "right": null
+        "right": {
+          "className": "TplChartLegend",
+          "textStyle": null,
+          "position": null,
+          "direction": null,
+          "decoration": null,
+          "padding": null
+        }
       }
     }
   ]

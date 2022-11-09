@@ -5,6 +5,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_bar_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_bullet.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_center.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_chart.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_chart_legend.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_checkbox.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_constrained_box.dart';
@@ -24,6 +25,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_icon.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_line_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_link.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_listview.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_multi_page.dart';
@@ -36,6 +38,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partitions.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pie_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_point_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_rich_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
@@ -133,6 +136,9 @@ class Transformer {
       'TplRadialGrid': TplRadialGrid.fromJson,
       'TplPieDataSet': TplPieDataSet.fromJson,
       'TplBarDataSet': TplBarDataSet.fromJson,
+      'TplPointDataSet': TplPointDataSet.fromJson,
+      'TplLineDataSet': TplLineDataSet.fromJson,
+      'TplChartLegend': TplChartLegend.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];

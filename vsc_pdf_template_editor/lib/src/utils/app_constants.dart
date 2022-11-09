@@ -53,6 +53,9 @@ class AppConstants {
     'Radial Grid',
     'Pie Data Set',
     'Bar Data Set',
+    'Point Data Set',
+    'Line Data Set',
+    'Chart Legend'
   ];
   static List<String> supportedProperties = [
     'Alignment',
