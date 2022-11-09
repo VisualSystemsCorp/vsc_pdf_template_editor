@@ -1,8 +1,10 @@
 import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_aspect_ratio.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_bar_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_bullet.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_center.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_chart.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_checkbox.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_constrained_box.dart';
@@ -32,6 +34,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_page.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_paragraph.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partitions.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_pie_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_rich_text.dart';
@@ -47,6 +50,9 @@ import 'package:vsc_pdf_template_transformer/models/tpl_watermark.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_wrap.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table_of_content.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_field.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_cartesian_grid.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_pie_grid.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_radial_grid.dart';
 import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
 
@@ -121,6 +127,12 @@ class Transformer {
       'TplRichText': TplRichText.fromJson,
       'TplTableOfContent': TplTableOfContent.fromJson,
       'TplTextField': TplTextField.fromJson,
+      'TplChart': TplChart.fromJson,
+      'TplCartesianGrid': TplCartesianGrid.fromJson,
+      'TplPieGrid': TplPieGrid.fromJson,
+      'TplRadialGrid': TplRadialGrid.fromJson,
+      'TplPieDataSet': TplPieDataSet.fromJson,
+      'TplBarDataSet': TplBarDataSet.fromJson,
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];
