@@ -96,6 +96,9 @@ import 'package:vsc_pdf_template_transformer/models/tpl_pie_grid.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radial_grid.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_bar_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pie_data_set.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_point_data_set.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_line_data_set.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_chart_legend.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -371,6 +374,15 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Bar Data Set':
         map = TplBarDataSet().toJson();
+        break;
+      case 'Point Data Set':
+        map = TplPointDataSet().toJson();
+        break;
+      case 'Line Data Set':
+        map = TplLineDataSet().toJson();
+        break;
+      case 'Chart Legend':
+        map = TplChartLegend().toJson();
         break;
     }
     addWidget(map);
