@@ -99,6 +99,13 @@ import 'package:vsc_pdf_template_transformer/models/tpl_pie_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_point_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_line_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_chart_legend.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_circle.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_clip_oval.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_clip_rect.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_clip_rrect.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_rectangle.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_polygon.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_transform.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -383,6 +390,27 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Chart Legend':
         map = TplChartLegend().toJson();
+        break;
+      case 'Circle':
+        map = TplCircle().toJson();
+        break;
+      case 'Clip Oval':
+        map = TplClipOval().toJson();
+        break;
+      case 'Clip Rect':
+        map = TplClipRect().toJson();
+        break;
+      case 'Clip RRect':
+        map = TplClipRRect().toJson();
+        break;
+      case 'Rectangle':
+        map = TplRectangle().toJson();
+        break;
+      case 'Polygon':
+        map = TplPolygon().toJson();
+        break;
+      case 'Transform':
+        map = TplTransform().toJson();
         break;
     }
     addWidget(map);

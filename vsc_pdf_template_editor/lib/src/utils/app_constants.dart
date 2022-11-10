@@ -55,7 +55,14 @@ class AppConstants {
     'Bar Data Set',
     'Point Data Set',
     'Line Data Set',
-    'Chart Legend'
+    'Chart Legend',
+    'Circle',
+    'Clip Oval',
+    'Clip Rect',
+    'Clip RRect',
+    'Rectangle',
+    'Polygon',
+    'Transform'
   ];
   static List<String> supportedProperties = [
     'Alignment',

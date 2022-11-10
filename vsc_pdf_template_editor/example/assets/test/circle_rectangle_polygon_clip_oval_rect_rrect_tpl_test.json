@@ -1,0 +1,131 @@
+
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplColumn",
+        "mainAxisAlignment": "'spaceBetween'",
+        "mainAxisSize": null,
+        "crossAxisAlignment": null,
+        "verticalDirection": null,
+        "children": [
+          {
+            "className": "TplSizedBox",
+            "width": 100,
+            "height": 100,
+            "child": {
+              "className": "TplCircle",
+              "fillColor": "'#3498eb'",
+              "strokeColor": "'#eb7434'",
+              "strokeWidth": 2
+            }
+          },
+          {
+            "className": "TplClipOval",
+            "child": {
+              "className": "TplContainer",
+              "alignment": null,
+              "padding": null,
+              "color": "'#34eb49'",
+              "decoration": null,
+              "foregroundDecoration": null,
+              "width": 100,
+              "height": 100,
+              "constraints": null,
+              "margin": null,
+              "child": null
+            }
+          },
+          {
+            "className": "TplClipRect",
+            "child": {
+              "className": "TplAlign",
+              "alignment": {
+                "className": "TplAlignment",
+                "alignment": "'topCenter'",
+                "x": null,
+                "y": null
+              },
+              "widthFactor": 0.2,
+              "heightFactor": 0.5,
+              "child": {
+                "className": "TplContainer",
+                "alignment": null,
+                "padding": null,
+                "color": "'#34eb49'",
+                "decoration": null,
+                "foregroundDecoration": null,
+                "width": 200,
+                "height": 120,
+                "constraints": null,
+                "margin": null,
+                "child": null
+              }
+            }
+          },
+          {
+            "className": "TplClipRRect",
+            "child": {
+              "className": "TplContainer",
+              "alignment": null,
+              "padding": null,
+              "color": "'#e834eb'",
+              "decoration": null,
+              "foregroundDecoration": null,
+              "width": 200,
+              "height": 120,
+              "constraints": null,
+              "margin": null,
+              "child": null
+            },
+            "horizontalRadius": 30,
+            "verticalRadius": 32
+          },
+          {
+            "className": "TplSizedBox",
+            "width": 150,
+            "height": 100,
+            "child": {
+              "className": "TplRectangle",
+              "fillColor": "'#3498eb'",
+              "strokeColor": "'#eb7434'",
+              "strokeWidth": 2
+            }
+          },
+          {
+            "className": "TplSizedBox",
+            "width": 10,
+            "height": 10,
+            "child": {
+              "className": "TplPolygon",
+              "points": [
+                {
+                  "x": 3,
+                  "y": 15
+                },
+                {
+                  "x": 30,
+                  "y": 50
+                },
+                {
+                  "x": 50,
+                  "y": 50
+                }
+              ],
+              "fillColor": "'#3498eb'",
+              "strokeColor": "'#eb7434'",
+              "strokeWidth": 2,
+              "close": null
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
