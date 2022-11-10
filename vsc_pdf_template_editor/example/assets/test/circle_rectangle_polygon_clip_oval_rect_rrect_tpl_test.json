@@ -80,13 +80,13 @@
               "decoration": null,
               "foregroundDecoration": null,
               "width": 200,
-              "height": 150,
+              "height": 120,
               "constraints": null,
               "margin": {
                 "left": null,
                 "top": 20,
                 "right": null,
-                "bottom": null,
+                "bottom": 20,
                 "all": null,
                 "vertical": null,
                 "horizontal": null
@@ -95,6 +95,63 @@
             },
             "horizontalRadius": 30,
             "verticalRadius": 32
+          },
+          {
+            "className": "TplSizedBox",
+            "width": 150,
+            "height": 100,
+            "child": {
+              "className": "TplRectangle",
+              "fillColor": "'#3498eb'",
+              "strokeColor": "'#eb7434'",
+              "strokeWidth": 2
+            }
+          },
+          {
+            "className": "TplSizedBox",
+            "width": 10,
+            "height": 10,
+            "child": {
+              "className": "TplPolygon",
+              "points": [
+                {
+                  "x": 3,
+                  "y": 15
+                },
+                {
+                  "x": 6,
+                  "y": 50
+                },
+                {
+                  "x": 10,
+                  "y": 5
+                },
+                {
+                  "x": 14,
+                  "y": 5
+                },
+                {
+                  "x": 3,
+                  "y": 5
+                },
+                {
+                  "x": 3,
+                  "y": 50
+                },
+                {
+                  "x": 9,
+                  "y": 10
+                },
+                {
+                  "x": 10,
+                  "y": 50
+                }
+              ],
+              "fillColor": "'#3498eb'",
+              "strokeColor": "'#eb7434'",
+              "strokeWidth": 2,
+              "close": null
+            }
           }
         ]
       }

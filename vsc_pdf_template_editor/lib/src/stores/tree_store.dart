@@ -103,6 +103,8 @@ import 'package:vsc_pdf_template_transformer/models/tpl_circle.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_clip_oval.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_clip_rect.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_clip_rrect.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_rectangle.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_polygon.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -399,6 +401,12 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Clip RRect':
         map = TplClipRRect().toJson();
+        break;
+      case 'Rectangle':
+        map = TplRectangle().toJson();
+        break;
+      case 'Polygon':
+        map = TplPolygon().toJson();
         break;
     }
     addWidget(map);

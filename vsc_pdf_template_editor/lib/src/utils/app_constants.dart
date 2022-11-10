@@ -59,7 +59,9 @@ class AppConstants {
     'Circle',
     'Clip Oval',
     'Clip Rect',
-    'Clip RRect'
+    'Clip RRect',
+    'Rectangle',
+    'Polygon'
   ];
   static List<String> supportedProperties = [
     'Alignment',

@@ -43,7 +43,9 @@ import 'package:vsc_pdf_template_transformer/models/tpl_partitions.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pie_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_point_data_set.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_polygon.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_rectangle.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_rich_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
@@ -146,7 +148,9 @@ class Transformer {
       'TplCircle': TplCircle.fromJson,
       'TplClipOval': TplClipOval.fromJson,
       'TplClipRect': TplClipRect.fromJson,
-      'TplClipRRect': TplClipRRect.fromJson
+      'TplClipRRect': TplClipRRect.fromJson,
+      'TplRectangle': TplRectangle.fromJson,
+      'TplPolygon': TplPolygon.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];
