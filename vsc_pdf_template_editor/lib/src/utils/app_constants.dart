@@ -61,7 +61,9 @@ class AppConstants {
     'Clip Rect',
     'Clip RRect',
     'Rectangle',
-    'Polygon'
+    'Polygon',
+    'Shape',
+    'Transform'
   ];
   static List<String> supportedProperties = [
     'Alignment',

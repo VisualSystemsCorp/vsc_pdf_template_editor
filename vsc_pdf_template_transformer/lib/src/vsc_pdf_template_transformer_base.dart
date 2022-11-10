@@ -48,11 +48,13 @@ import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_rectangle.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_rich_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_shape.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_stack.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_svg_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_transform.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_url_link.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_watermark.dart';
@@ -150,7 +152,9 @@ class Transformer {
       'TplClipRect': TplClipRect.fromJson,
       'TplClipRRect': TplClipRRect.fromJson,
       'TplRectangle': TplRectangle.fromJson,
-      'TplPolygon': TplPolygon.fromJson
+      'TplPolygon': TplPolygon.fromJson,
+      'TplShape': TplShape.fromJson,
+      'TplTransform': TplTransform.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];
