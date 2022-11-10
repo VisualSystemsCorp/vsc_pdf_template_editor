@@ -10,7 +10,7 @@
       },
       "child": {
         "className": "TplColumn",
-        "mainAxisAlignment": null,
+        "mainAxisAlignment": "'spaceBetween'",
         "mainAxisSize": null,
         "crossAxisAlignment": null,
         "verticalDirection": null,
@@ -52,21 +52,20 @@
                 "x": null,
                 "y": null
               },
-              "widthFactor": null,
+              "widthFactor": 0.2,
               "heightFactor": 0.5,
               "child": {
-                "className": "TplImage",
-                "image": {
-                  "className": "TplMemoryImage",
-                  "imageData": "'UklGRpACAABXRUJQVlA4TIMCAAAv/8A/EJegJrLViKtEAC2SkISjTFTcGtKljYTYYBMAQBP2hpsSVKANNfc0gx2soKJIkpq9KODM3BcLGEITBnCDAYpvmv8AAADw/9/7QFxS7PANtzLOW1FQ2eIrHF9EOowO5rr2TDtWGRoDRUm25bbNu5YhQ4K4BP//t7fOe+ASQNL1Miei/xPQ/vn/n///+f93lwGkeMj6FcAEBDA/JECtCkAFMEk/dHTXpgBWIOQk/VRD1qMAVpmm7nP3tOl95cV2AHUogFWebE93uzxsAG1X1oBX22/AdLfnTW8Xsu3OerBumtbhsXybtlvrwCRTSJV/yhSybxmO7rZrv/dFd58OQOkAVuDUnWK47eIasMq+GFYx3GeZ2m7+/pcDGPthW63DyrZVPgMh65VO+f6QP2UAterV9hsQQMrrzU8ygCZDtl1dF/I2AZy6+/Z5PdCrjOGTRLbdXw+aDCDpU3cA7TDWBR3ASQK0w1kjVqDOja/dJ9vR/RxC1p+8DKdtLXmKFxlAzckBpDx3p1/DaZaL7dn2612vwEWmrHLNydGtMoACmLvT292f5EfvpT/kofLx8/HzHtD3s9jmaX7YlwCSjuHD488Bd34lZKS7VXvo9CGTTuMx/NU1/tm37XPIIVt3DKfxAL7StvzcW+RzuM/YtD3tmvT/+vdjS3eNm7rrnJ42jeE//+V6Nnf3LZtHdz1b7p7uAzLbx2zu/vrLt+kHqF2LfJwMULvmzW+DbLu8DizyvpBt13/vC2CWab5pH7Lt/jqwyNsh22GsAS+2E3K7q+3UDmUduNpODYhNX2zXufE/1wXwYvsqa95/tt+BANrmybbfgToWgOX95HcggBrW324ew/UHAA=='",
-                  "orientation": null,
-                  "dpi": null
-                },
-                "fit": null,
+                "className": "TplContainer",
                 "alignment": null,
-                "width": null,
-                "height": null,
-                "dpi": null
+                "padding": null,
+                "color": "'#34eb49'",
+                "decoration": null,
+                "foregroundDecoration": null,
+                "width": 200,
+                "height": 120,
+                "constraints": null,
+                "margin": null,
+                "child": null
               }
             }
           },
@@ -82,15 +81,7 @@
               "width": 200,
               "height": 120,
               "constraints": null,
-              "margin": {
-                "left": null,
-                "top": 20,
-                "right": null,
-                "bottom": 20,
-                "all": null,
-                "vertical": null,
-                "horizontal": null
-              },
+              "margin": null,
               "child": null
             },
             "horizontalRadius": 30,
@@ -119,31 +110,11 @@
                   "y": 15
                 },
                 {
-                  "x": 6,
+                  "x": 30,
                   "y": 50
                 },
                 {
-                  "x": 10,
-                  "y": 5
-                },
-                {
-                  "x": 14,
-                  "y": 5
-                },
-                {
-                  "x": 3,
-                  "y": 5
-                },
-                {
-                  "x": 3,
-                  "y": 50
-                },
-                {
-                  "x": 9,
-                  "y": 10
-                },
-                {
-                  "x": 10,
+                  "x": 50,
                   "y": 50
                 }
               ],

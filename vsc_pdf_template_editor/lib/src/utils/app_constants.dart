@@ -62,7 +62,6 @@ class AppConstants {
     'Clip RRect',
     'Rectangle',
     'Polygon',
-    'Shape',
     'Transform'
   ];
   static List<String> supportedProperties = [

@@ -5,7 +5,6 @@ import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
 import 'package:vector_math/vector_math_64.dart';
-
 import '../utils/widget_json_converter.dart';
 
 part 'tpl_transform.g.dart';
@@ -40,25 +39,33 @@ class TplTransform implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     final transformStr = evaluateString(transform, data);
-    Matrix4? matrix;
     switch (transformStr) {
       case 'rotate':
-        matrix = Matrix4.rotationZ(evaluateDouble(angle, data)!);
-        break;
+        return Transform.rotate(
+            angle: angle,
+            origin: origin?.toPdf(data),
+            alignment: alignment?.buildAlignment(data),
+            child: child?.buildWidget(data));
+
       case 'rotateBox':
-        matrix = Matrix4.rotationZ(evaluateDouble(angle, data)!);
-        break;
+        return Transform.rotateBox(
+            angle: angle,
+            child: child?.buildWidget(data),
+            unconstrained: false);
+
       case 'translate':
-        matrix = Matrix4.translationValues(evaluateDouble(offset?.x, data)!,
-            evaluateDouble(offset?.y, data)!, 0);
-        break;
+        return Transform.translate(
+            offset: offset!.toPdf(data), child: child?.buildWidget(data));
+
       case 'scale':
-        matrix = Matrix4.diagonal3Values(
-            evaluateDouble(scale, data)!, evaluateDouble(scale, data)!, 1);
-        break;
+        return Transform.scale(
+            scale: scale,
+            origin: origin?.toPdf(data),
+            alignment: alignment?.buildAlignment(data),
+            child: child?.buildWidget(data));
     }
     return Transform(
-        transform: matrix!,
+        transform: Matrix4.zero(),
         origin: origin?.toPdf(data),
         alignment: alignment?.buildAlignment(data),
         adjustLayout: evaluateBool(adjustLayout, data) ?? false,
