@@ -7,6 +7,10 @@ import 'package:vsc_pdf_template_transformer/models/tpl_center.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_chart.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_chart_legend.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_checkbox.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_circle.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_clip_oval.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_clip_rect.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_clip_rrect.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_constrained_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
@@ -138,7 +142,11 @@ class Transformer {
       'TplBarDataSet': TplBarDataSet.fromJson,
       'TplPointDataSet': TplPointDataSet.fromJson,
       'TplLineDataSet': TplLineDataSet.fromJson,
-      'TplChartLegend': TplChartLegend.fromJson
+      'TplChartLegend': TplChartLegend.fromJson,
+      'TplCircle': TplCircle.fromJson,
+      'TplClipOval': TplClipOval.fromJson,
+      'TplClipRect': TplClipRect.fromJson,
+      'TplClipRRect': TplClipRRect.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];
