@@ -4,7 +4,6 @@ import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
-import 'package:vector_math/vector_math_64.dart';
 import '../utils/widget_json_converter.dart';
 
 part 'tpl_transform.g.dart';
@@ -63,13 +62,8 @@ class TplTransform implements wb.WidgetBuilder {
             origin: origin?.toPdf(data),
             alignment: alignment?.buildAlignment(data),
             child: child?.buildWidget(data));
+      default:
+        throw Exception('Invalid transform: $transformStr');
     }
-    return Transform(
-        transform: Matrix4.zero(),
-        origin: origin?.toPdf(data),
-        alignment: alignment?.buildAlignment(data),
-        adjustLayout: evaluateBool(adjustLayout, data) ?? false,
-        unconstrained: evaluateBool(unconstrained, data) ?? false,
-        child: child?.buildWidget(data));
   }
 }
