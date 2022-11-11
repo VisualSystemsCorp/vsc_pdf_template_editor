@@ -370,6 +370,11 @@ ValuePosition? evaluateValuePosition(
   return evaluateEnum(ValuePosition.values, expression, data);
 }
 
+BarcodeType? evaluateBarcodeType(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(BarcodeType.values, expression, data);
+}
+
 List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
   final List<Widget> res = [];
 

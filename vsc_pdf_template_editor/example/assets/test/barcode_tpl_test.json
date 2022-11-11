@@ -19,7 +19,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'CODE 39'",
-              "type": "'code39'",
+              "type": "'Code39'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -34,7 +34,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'CODE 93'",
-              "type": "'code93'",
+              "type": "'Code93'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -49,7 +49,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'CODE 128'",
-              "type": "'code128'",
+              "type": "'Code128'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -64,7 +64,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'GS 128'",
-              "type": "'gs128'",
+              "type": "'GS128'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -79,7 +79,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'5786'",
-              "type": "'itf'",
+              "type": "'Itf'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -94,7 +94,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'2578639587234'",
-              "type": "'itf14'",
+              "type": "'CodeITF14'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -109,7 +109,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'257863958723411'",
-              "type": "'itf16'",
+              "type": "'CodeITF16'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -124,7 +124,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'590123412345'",
-              "type": "'ean13'",
+              "type": "'CodeEAN13'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -139,7 +139,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'9638507'",
-              "type": "'ean8'",
+              "type": "'CodeEAN8'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -154,7 +154,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'30897'",
-              "type": "'ean5'",
+              "type": "'CodeEAN5'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -169,7 +169,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'44'",
-              "type": "'ean2'",
+              "type": "'CodeEAN2'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -184,7 +184,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'978316148410'",
-              "type": "'isbn'",
+              "type": "'CodeISBN'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -199,7 +199,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'98765432109'",
-              "type": "'upca'",
+              "type": "'CodeUPCA'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -214,7 +214,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'06510000432'",
-              "type": "'upce'",
+              "type": "'CodeUPCE'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -229,7 +229,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'Telepen'",
-              "type": "'telepen'",
+              "type": "'Telepen'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -244,7 +244,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'1234-5678'",
-              "type": "'codabar'",
+              "type": "'Codabar'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -259,7 +259,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'12345678'",
-              "type": "'rm4scc'",
+              "type": "'Rm4scc'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -274,7 +274,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'qrCode'",
-              "type": "'qrCode'",
+              "type": "'QrCode'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -289,7 +289,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'pdf417'",
-              "type": "'pdf417'",
+              "type": "'PDF417'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -304,7 +304,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'dataMatrix'",
-              "type": "'dataMatrix'",
+              "type": "'DataMatrix'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
@@ -319,7 +319,7 @@
             {
               "className": "TplBarcodeWidget",
               "data": "'aztec'",
-              "type": "'aztec'",
+              "type": "'Aztec'",
               "color": null,
               "backgroundColor": null,
               "decoration": null,
