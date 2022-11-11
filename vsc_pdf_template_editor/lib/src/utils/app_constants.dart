@@ -62,7 +62,8 @@ class AppConstants {
     'Clip RRect',
     'Rectangle',
     'Polygon',
-    'Transform'
+    'Transform',
+    'Barcode Widget'
   ];
   static List<String> supportedProperties = [
     'Alignment',
@@ -102,7 +103,8 @@ class AppConstants {
     'Annotation Text Field',
     'Pdf Point',
     'Fixed Axis',
-    'Point Chart Value'
+    'Point Chart Value',
+    'Barcode'
   ];
 
   static List<String> supportedImages = [

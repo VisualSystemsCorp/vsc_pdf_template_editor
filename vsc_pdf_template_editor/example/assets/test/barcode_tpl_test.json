@@ -1,0 +1,402 @@
+
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplMultiPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "children": [
+        {
+          "className": "TplColumn",
+          "mainAxisAlignment": null,
+          "mainAxisSize": null,
+          "crossAxisAlignment": null,
+          "verticalDirection": null,
+          "children": [
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'CODE 39'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'code39'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'CODE 93'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'code93'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'CODE 128'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'code128'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'GS 128'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'gs128'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'5786'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'itf'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'2578639587234'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'itf14'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'257863958723411'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'itf16'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'590123412345'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'ean13'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'9638507'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'ean8'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'30897'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'ean5'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'44'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'ean2'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'978316148410'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'isbn'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'98765432109'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'upca'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'06510000432'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'upce'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'Telepen'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'telepen'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'1234-5678'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'codabar'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'12345678'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'rm4scc'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'qrCode'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'qrCode'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'pdf417'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'pdf417'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'dataMatrix'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'dataMatrix'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            },
+            {
+              "className": "TplBarcodeWidget",
+              "data": "'aztec'",
+              "barcode": {
+                "className": "TplBarcode",
+                "type": "'aztec'"
+              },
+              "color": null,
+              "backgroundColor": null,
+              "decoration": null,
+              "margin": null,
+              "padding": null,
+              "width": 100,
+              "height": 80,
+              "drawText": null,
+              "textStyle": null,
+              "textPadding": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
