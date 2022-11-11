@@ -106,8 +106,8 @@ import 'package:vsc_pdf_template_transformer/models/tpl_clip_rrect.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_rectangle.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_polygon.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_transform.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_barcode.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_barcode_widget.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_shape.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -417,6 +417,9 @@ abstract class TreeStoreModel with Store {
       case 'Barcode Widget':
         map = TplBarcodeWidget().toJson();
         break;
+      case 'Shape':
+        map = TplShape().toJson();
+        break;
     }
     addWidget(map);
   }
@@ -537,9 +540,6 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Point Chart Value':
         map = TplPointChartValue().toJson();
-        break;
-      case 'Barcode':
-        map = TplBarcode().toJson();
         break;
     }
     addWidget(map);
