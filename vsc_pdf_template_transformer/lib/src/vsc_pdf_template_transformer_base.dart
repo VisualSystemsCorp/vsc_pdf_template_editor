@@ -2,6 +2,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_aspect_ratio.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_bar_data_set.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_barcode_widget.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_bullet.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_center.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_chart.dart';
@@ -48,6 +49,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_rectangle.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_rich_text.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_shape.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_stack.dart';
@@ -152,7 +154,9 @@ class Transformer {
       'TplClipRRect': TplClipRRect.fromJson,
       'TplRectangle': TplRectangle.fromJson,
       'TplPolygon': TplPolygon.fromJson,
-      'TplTransform': TplTransform.fromJson
+      'TplTransform': TplTransform.fromJson,
+      'TplBarcodeWidget': TplBarcodeWidget.fromJson,
+      'TplShape': TplShape.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];

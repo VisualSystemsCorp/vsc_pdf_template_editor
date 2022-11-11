@@ -62,7 +62,9 @@ class AppConstants {
     'Clip RRect',
     'Rectangle',
     'Polygon',
-    'Transform'
+    'Transform',
+    'Barcode Widget',
+    'Shape'
   ];
   static List<String> supportedProperties = [
     'Alignment',
