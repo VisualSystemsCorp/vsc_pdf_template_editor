@@ -73,7 +73,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_decoration_svg_image.dar
 import 'package:vsc_pdf_template_transformer/models/tpl_stack.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_listview.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_link.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_theme.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_theme_data.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_url_link.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_paragraph.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
@@ -108,6 +108,8 @@ import 'package:vsc_pdf_template_transformer/models/tpl_polygon.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_transform.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_barcode_widget.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_shape.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_grid_paper.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_theme.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 import 'package:mobx/mobx.dart';
@@ -419,6 +421,12 @@ abstract class TreeStoreModel with Store {
         break;
       case 'Shape':
         map = TplShape().toJson();
+        break;
+      case 'Grid Paper':
+        map = TplGridPaper().toJson();
+        break;
+      case 'Theme':
+        map = TplTheme().toJson();
         break;
     }
     addWidget(map);

@@ -64,7 +64,9 @@ class AppConstants {
     'Polygon',
     'Transform',
     'Barcode Widget',
-    'Shape'
+    'Shape',
+    'Grid Paper',
+    'Theme'
   ];
   static List<String> supportedProperties = [
     'Alignment',
