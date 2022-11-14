@@ -158,16 +158,12 @@ abstract class TreeStoreModel with Store {
 
   CodeController get dataController => _dataController;
 
-  set setPdfBytes(Uint8List? value) {
-    _pdfBytes = value;
-  }
-
   @action
-  onInputChanged() {
+  Future<void> onInputChanged() async {
     try {
       _template = jsonDecode(_templateController.rawText);
+      await _buildPdf();
       buildErrorText = '';
-      _buildPdf();
     } catch (e, s) {
       buildErrorText = '$e \n $s';
       debugPrint('$e\n$s');
@@ -175,13 +171,19 @@ abstract class TreeStoreModel with Store {
   }
 
   @action
-  onDataChanged() {
-    _data = jsonDecode(_dataController.rawText);
-    _buildPdf();
+  Future<void> onDataChanged() async {
+    try {
+      _data = jsonDecode(_dataController.rawText);
+      await _buildPdf();
+      buildErrorText = '';
+    } catch (e, s) {
+      buildErrorText = '$e \n $s';
+      debugPrint('$e\n$s');
+    }
   }
 
   @action
-  addWidget(Map<String, dynamic> map) {
+  Future<void> addWidget(Map<String, dynamic> map) async {
     try {
       final cursorPos = _templateController.selection.base.offset;
       final newMap = _templateController.text.substring(0, cursorPos) +
@@ -189,39 +191,33 @@ abstract class TreeStoreModel with Store {
           _templateController.text.substring(cursorPos);
       _templateController.text = newMap;
       _template = jsonDecode(newMap);
+      await _buildPdf();
       buildErrorText = '';
-      _buildPdf();
     } catch (e, s) {
       buildErrorText = '$e \n $s';
       debugPrint('$e\n$s');
     }
   }
 
-  @action
-  reformat(CodeController controller) {
-    const JsonDecoder decoder = JsonDecoder();
+  String _prettyPrint(dynamic object) {
     const JsonEncoder encoder = JsonEncoder.withIndent('  ');
-    final dynamic object = decoder.convert(controller.text);
     final dynamic prettyString = encoder.convert(object);
     final sb = StringBuffer();
     prettyString
         .split('\n')
         .forEach((dynamic element) => sb.write('\n$element'));
-    controller.text = sb.toString();
+    return sb.toString();
+  }
+
+  @action
+  reformat(CodeController controller) {
+    controller.text =
+        _prettyPrint(const JsonDecoder().convert(controller.text));
   }
 
   @action
   String _reformatNewWidget(String text) {
-    const JsonDecoder decoder = JsonDecoder();
-    const JsonEncoder encoder = JsonEncoder.withIndent('  ');
-    final dynamic object = decoder.convert(text);
-    final dynamic prettyString = encoder.convert(object);
-    final sb = StringBuffer();
-    prettyString
-        .split('\n')
-        .forEach((dynamic element) => sb.write('\n$element'));
-    text = sb.toString();
-    return text;
+    return _prettyPrint(const JsonDecoder().convert(text));
   }
 
   onWidgetSelected(String name) {
@@ -553,19 +549,9 @@ abstract class TreeStoreModel with Store {
     addWidget(map);
   }
 
-  _savePdf() async {
-    setPdfBytes = await _doc.save();
-  }
-
-  _buildPdf() async {
-    try {
-      _doc = transformer.Transformer.buildPdf(_template, _data);
-      buildErrorText = '';
-      await _savePdf();
-    } catch (e, s) {
-      buildErrorText = '$e \n $s';
-      debugPrint('$e\n$s');
-    }
+  Future<void> _buildPdf() async {
+    _doc = transformer.Transformer.buildPdf(_template, _data);
+    _pdfBytes = await _doc.save();
   }
 
   _sortDialogItems() {
@@ -577,7 +563,7 @@ abstract class TreeStoreModel with Store {
     _templateController = CodeController(
       language: json,
       theme: atomOneDarkReasonableTheme,
-      text: jsonEncode(_template),
+      text: _prettyPrint(_template),
       onChange: (val) => EasyDebounce.debounce(
           '', const Duration(milliseconds: 500), () => onInputChanged()),
       webSpaceFix: false,
@@ -585,7 +571,7 @@ abstract class TreeStoreModel with Store {
     _dataController = CodeController(
       language: json,
       theme: atomOneDarkReasonableTheme,
-      text: jsonEncode(_data),
+      text: _prettyPrint(_data),
       onChange: (val) => EasyDebounce.debounce(
           '', const Duration(milliseconds: 500), () => onDataChanged()),
       webSpaceFix: false,

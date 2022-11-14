@@ -36,7 +36,7 @@ class TplTable implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return Table(
-      children: children == null ? [] : getTableRows(children!, data),
+      children: _getTableRows(data),
       border: border?.toPdf(data),
       defaultVerticalAlignment:
           evaluateTableCellVerticalAlignment(defaultVerticalAlignment, data) ??
@@ -48,5 +48,35 @@ class TplTable implements wb.WidgetBuilder {
           IntrinsicColumnWidth(),
       tableWidth: evaluateTableWidth(tableWidth, data) ?? TableWidth.max,
     );
+  }
+
+  List<TableRow> _getTableRows(Map<String, dynamic> data) {
+    final List<TableRow> res = [];
+
+    for (final row in children ?? []) {
+      if (row.array != null) {
+        // This is a repeating row. Treat it similar to TplRepeater.
+        res.addAll(_getRepeatingRows(row, data));
+      } else {
+        res.add(row.buildRow(data));
+      }
+    }
+    return res;
+  }
+
+  List<TableRow> _getRepeatingRows(TplTableRow row, Map<String, dynamic> data) {
+    final resultArray = evaluateList(row.array, data);
+    if (resultArray == null) return [];
+    final List<TableRow> rows = [];
+    for (int i = 0; i < resultArray.length; i++) {
+      final Map<String, dynamic> dataForChildRow = {
+        ...resultArray[i],
+        r'$parentData': data,
+        r'$index': i,
+      };
+      rows.add(row.buildRow(dataForChildRow));
+    }
+
+    return rows;
   }
 }

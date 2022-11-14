@@ -19,6 +19,7 @@ TplTableRow _$TplTableRowFromJson(Map<String, dynamic> json) => $checkedCreate(
             (v) => val.decoration = v == null
                 ? null
                 : TplBoxDecoration.fromJson(v as Map<String, dynamic>));
+        $checkedConvert('array', (v) => val.array = v);
         return val;
       },
     );
@@ -29,4 +30,5 @@ Map<String, dynamic> _$TplTableRowToJson(TplTableRow instance) =>
       'repeat': instance.repeat,
       'verticalAlignment': instance.verticalAlignment,
       'decoration': instance.decoration?.toJson(),
+      'array': instance.array,
     };

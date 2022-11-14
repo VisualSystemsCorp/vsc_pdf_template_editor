@@ -12,7 +12,6 @@ TplThemeData _$TplThemeDataFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplThemeData();
-        $checkedConvert('className', (v) => val.className = v as String);
         $checkedConvert(
             'defaultTextStyle',
             (v) => val.defaultTextStyle = v == null
@@ -83,7 +82,6 @@ TplThemeData _$TplThemeDataFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplThemeDataToJson(TplThemeData instance) =>
     <String, dynamic>{
-      'className': instance.className,
       'defaultTextStyle': instance.defaultTextStyle?.toJson(),
       'paragraphStyle': instance.paragraphStyle?.toJson(),
       'header0': instance.header0?.toJson(),

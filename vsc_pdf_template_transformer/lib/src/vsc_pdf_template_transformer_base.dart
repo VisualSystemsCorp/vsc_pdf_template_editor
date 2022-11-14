@@ -168,7 +168,7 @@ class Transformer {
     if (fromJson == null) throw Exception('No className or unknown className');
     result = fromJson(valueMap);
 
-    print('------- generated widget $result -----');
+    // print('------- generated widget $result -----');
     return result;
   }
 }

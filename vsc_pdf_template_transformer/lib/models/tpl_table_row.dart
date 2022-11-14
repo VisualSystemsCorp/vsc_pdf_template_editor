@@ -20,6 +20,9 @@ class TplTableRow {
   dynamic verticalAlignment;
   TplBoxDecoration? decoration;
 
+  /// If set, this row is repeated over the given array and this row serves as a template.
+  dynamic array;
+
   factory TplTableRow.fromJson(Map<String, dynamic> json) =>
       _$TplTableRowFromJson(json);
 

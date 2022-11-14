@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
@@ -32,6 +33,8 @@ class TplMultiPage {
   @WidgetJsonConverter()
   WidgetBuilder? header;
   @WidgetJsonConverter()
+  WidgetBuilder? footer;
+  @WidgetJsonConverter()
   List<dynamic>? children;
 
   factory TplMultiPage.fromJson(Map<String, dynamic> json) =>
@@ -56,8 +59,13 @@ class TplMultiPage {
         header: header != null
             ? (pw.Context context) => header!.buildWidget(data)
             : null,
+        footer: footer != null
+            ? (pw.Context context) => footer!.buildWidget(data)
+            : null,
         build: (pw.Context context) {
-          return children == null ? [] : getChildren(children!, data);
+          return children == null
+              ? [pw.SizedBox()]
+              : getChildren(children!, data);
         });
   }
 }

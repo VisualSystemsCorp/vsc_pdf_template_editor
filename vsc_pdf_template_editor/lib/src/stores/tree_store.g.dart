@@ -94,41 +94,32 @@ mixin _$TreeStore on TreeStoreModel, Store {
     });
   }
 
+  late final _$onInputChangedAsyncAction =
+      AsyncAction('TreeStoreModel.onInputChanged', context: context);
+
+  @override
+  Future<void> onInputChanged() {
+    return _$onInputChangedAsyncAction.run(() => super.onInputChanged());
+  }
+
+  late final _$onDataChangedAsyncAction =
+      AsyncAction('TreeStoreModel.onDataChanged', context: context);
+
+  @override
+  Future<void> onDataChanged() {
+    return _$onDataChangedAsyncAction.run(() => super.onDataChanged());
+  }
+
+  late final _$addWidgetAsyncAction =
+      AsyncAction('TreeStoreModel.addWidget', context: context);
+
+  @override
+  Future<void> addWidget(Map<String, dynamic> map) {
+    return _$addWidgetAsyncAction.run(() => super.addWidget(map));
+  }
+
   late final _$TreeStoreModelActionController =
       ActionController(name: 'TreeStoreModel', context: context);
-
-  @override
-  dynamic onInputChanged() {
-    final _$actionInfo = _$TreeStoreModelActionController.startAction(
-        name: 'TreeStoreModel.onInputChanged');
-    try {
-      return super.onInputChanged();
-    } finally {
-      _$TreeStoreModelActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic onDataChanged() {
-    final _$actionInfo = _$TreeStoreModelActionController.startAction(
-        name: 'TreeStoreModel.onDataChanged');
-    try {
-      return super.onDataChanged();
-    } finally {
-      _$TreeStoreModelActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic addWidget(Map<String, dynamic> map) {
-    final _$actionInfo = _$TreeStoreModelActionController.startAction(
-        name: 'TreeStoreModel.addWidget');
-    try {
-      return super.addWidget(map);
-    } finally {
-      _$TreeStoreModelActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   dynamic reformat(CodeController controller) {

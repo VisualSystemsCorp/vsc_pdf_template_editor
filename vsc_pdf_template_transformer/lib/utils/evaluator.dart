@@ -391,16 +391,6 @@ List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
   return res;
 }
 
-List<TableRow> getTableRows(
-    List<TplTableRow> children, Map<String, dynamic> data) {
-  final List<TableRow> res = [];
-
-  for (final e in children) {
-    res.add(e.buildRow(data));
-  }
-  return res;
-}
-
 List<TableColumnWidth> getTableColumnWidths(
         List<tcw.TableColumnWidth?> children, Map<String, dynamic> data) =>
     children

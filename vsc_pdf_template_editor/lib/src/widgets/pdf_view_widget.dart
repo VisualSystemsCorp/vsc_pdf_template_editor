@@ -22,6 +22,8 @@ class PdfViewWidget extends StatelessWidget {
         );
       } else {
         return PdfPreview(
+          canChangePageFormat: false,
+          canChangeOrientation: false,
           build: (PdfPageFormat format) {
             return viewModel.pdfBytes!;
           },

@@ -15,7 +15,6 @@ part 'tpl_theme_data.g.dart';
 class TplThemeData {
   TplThemeData();
 
-  String className = 'TplThemeData';
   TplTextStyle? defaultTextStyle;
   TplTextStyle? paragraphStyle;
   TplTextStyle? header0;

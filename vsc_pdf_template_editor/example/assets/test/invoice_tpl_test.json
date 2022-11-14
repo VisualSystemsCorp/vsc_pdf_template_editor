@@ -1,30 +1,703 @@
-
 {
   "className": "TplDocument",
-  "pageMode": "none",
+  "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "className": "TplMultiPage",
       "pageFormat": {
         "format": "'letter'"
       },
-      "child": {
+      "theme": {
+        "defaultTextStyle": {
+          "fontSize": 10
+        }
+      },
+      "margin": {
+        "all": 0
+      },
+      "maxPages": 200,
+      "header": {
         "className": "TplColumn",
         "children": [
           {
-            "className": "TplRepeater",
-            "array": "data.line_items",
-            "childTemplate": {
-              "className": "TplText",
-              "text": "data.item_description"
+            "className": "TplPadding",
+            "padding": {
+              "left": 30,
+              "right": 30,
+              "top": 30,
+              "bottom": 10
+            },
+            "child": {
+              "className": "TplRow",
+              "crossAxisAlignment": "'start'",
+              "children": [
+                {
+                  "className": "TplExpanded",
+                  "child": {
+                    "className": "TplColumn",
+                    "mainAxisSize": "'min'",
+                    "mainAxisAlignment": "'start'",
+                    "crossAxisAlignment": "'start'",
+                    "children": [
+                      {
+                        "className": "TplSvgImage",
+                        "svg": "'<svg id=\"logo-16\" width=\"109\" height=\"43\" viewBox=\"0 0 109 43\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M64.9315 11.4284C62.1883 8.6852 58.9316 6.5091 55.3475 5.0245C51.7633 3.5399 47.9219 2.7758 44.0424 2.7758C40.1629 2.7758 36.3215 3.5399 32.7373 5.0245C29.1532 6.5091 25.8965 8.6852 23.1533 11.4284L44.0424 32.3174L64.9315 11.4284Z\" class=\"ccompli1\" fill=\"#FFD200\"></path> <path d=\"M44.0686 32.3475C46.8118 35.0907 50.0684 37.2667 53.6526 38.7513C57.2367 40.2359 61.0782 41 64.9577 41C68.837 41 72.679 40.2359 76.263 38.7513C79.847 37.2667 83.104 35.0907 85.847 32.3475L64.9577 11.4584L44.0686 32.3475Z\" class=\"ccompli2\" fill=\"#06E07F\"></path> <path d=\"M44.017 32.3429C41.2738 35.0861 38.0171 37.2621 34.433 38.7467C30.8488 40.2313 27.0074 40.9954 23.1279 40.9954C19.2484 40.9954 15.407 40.2313 11.8228 38.7467C8.2387 37.2621 4.982 35.0861 2.2388 32.3429L23.1279 11.4538L44.017 32.3429Z\" class=\"ccustom\" fill=\"#E3073C\"></path> <path d=\"M64.9831 11.433C67.726 8.6898 70.983 6.5138 74.567 5.0292C78.151 3.5446 81.993 2.7805 85.872 2.7805C89.752 2.7805 93.593 3.5446 97.177 5.0292C100.761 6.5138 104.018 8.6898 106.761 11.433L85.872 32.3221L64.9831 11.433Z\" class=\"ccustom\" fill=\"#1F84EF\"></path> </svg>'"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "className": "TplExpanded",
+                  "child": {
+                    "className": "TplColumn",
+                    "mainAxisSize": "'min'",
+                    "mainAxisAlignment": "'start'",
+                    "crossAxisAlignment": "'end'",
+                    "children": [
+                      {
+                        "className": "TplText",
+                        "text": "data.heading",
+                        "style": {
+                          "fontSize": 30,
+                          "fontWeight": "'bold'"
+                        }
+                      },
+                      {
+                        "className": "TplText",
+                        "text": "data.invoice_summary",
+                        "style": {
+                          "color": "'#7f7f7f'",
+                          "fontSize": 9
+                        }
+                      },
+                      {
+                        "className": "TplSizedBox",
+                        "height": 10
+                      },
+                      {
+                        "className": "TplText",
+                        "text": "data.remit_to.company_name",
+                        "style": {
+                          "fontWeight": "'bold'"
+                        }
+                      },
+                      {
+                        "className": "TplText",
+                        "text": "data.remit_to.street_address_1"
+                      },
+                      {
+                        "className": "TplText",
+                        "text": "data.remit_to.street_address_2"
+                      },
+                      {
+                        "className": "TplText",
+                        "text": "data.remit_to.city + ', ' + data.remit_to.state + ' ' + data.remit_to.postal_code"
+                      },
+                      {
+                        "className": "TplText",
+                        "text": "data.remit_to.country"
+                      },
+                      {
+                        "className": "TplSizedBox",
+                        "height": 10
+                      },
+                      {
+                        "className": "TplText",
+                        "text": "data.remit_to.phone_numbers[0].phone"
+                      },
+                      {
+                        "className": "TplText",
+                        "text": "data.remit_to.email"
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           },
           {
-            "className": "TplText",
-            "text": "'...some text outside of the repeater, but in the same column...'"
+            "className": "TplDivider",
+            "color": "'#bbbbbb'"
           }
         ]
-      }
+      },
+      "footer": {
+        "className": "TplPadding",
+        "padding": {
+          "left": 30,
+          "right": 30,
+          "top": 10,
+          "bottom": 30
+        },
+        "child": {
+          "className": "TplText",
+          "text": "'Footer'",
+          "style": {
+            "color": "'#000000'"
+          }
+        }
+      },
+      "children": [
+        {
+          "className": "TplPadding",
+          "padding": {
+            "left": 30,
+            "right": 30,
+            "top": 10,
+            "bottom": 10
+          },
+          "child": {
+            "className": "TplRow",
+            "crossAxisAlignment": "'start'",
+            "children": [
+              {
+                "className": "TplExpanded",
+                "child": {
+                  "className": "TplColumn",
+                  "mainAxisSize": "'min'",
+                  "mainAxisAlignment": "'start'",
+                  "crossAxisAlignment": "'start'",
+                  "children": [
+                    {
+                      "className": "TplColumn",
+                      "mainAxisSize": "'min'",
+                      "mainAxisAlignment": "'start'",
+                      "crossAxisAlignment": "'start'",
+                      "children": [
+                        {
+                          "className": "TplText",
+                          "text": "'Bill To'",
+                          "style": {
+                            "color": "'#7f7f7f'"
+                          }
+                        },
+                        {
+                          "className": "TplText",
+                          "text": "data.bill_to.first_name + ' ' + data.bill_to.last_name",
+                          "style": {
+                            "fontWeight": "'bold'"
+                          }
+                        },
+                        {
+                          "className": "TplText",
+                          "text": "data.bill_to.street_address_1"
+                        },
+                        {
+                          "className": "TplText",
+                          "text": "data.bill_to.street_address_2"
+                        },
+                        {
+                          "className": "TplText",
+                          "text": "data.bill_to.city + ', ' + data.bill_to.state + ' ' + data.bill_to.postal_code"
+                        },
+                        {
+                          "className": "TplText",
+                          "text": "data.bill_to.country"
+                        },
+                        {
+                          "className": "TplSizedBox",
+                          "height": 10
+                        },
+                        {
+                          "className": "TplText",
+                          "text": "data.bill_to.phone_numbers[0].phone"
+                        },
+                        {
+                          "className": "TplText",
+                          "text": "data.bill_to.email"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "className": "TplExpanded",
+                "child": {
+                  "className": "TplTable",
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "className": "TplText",
+                          "text": "'Invoice Number: '",
+                          "style": {
+                            "fontWeight": "'bold'"
+                          },
+                          "textAlign": "'right'"
+                        },
+                        {
+                          "className": "TplText",
+                          "text": "data.invoice_number"
+                        }
+                      ]
+                    },
+                    {
+                      "children": [
+                        {
+                          "className": "TplSizedBox",
+                          "height": 10
+                        }
+                      ]
+                    },
+                    {
+                      "children": [
+                        {
+                          "className": "TplText",
+                          "text": "'Invoice Date: '",
+                          "style": {
+                            "fontWeight": "'bold'"
+                          },
+                          "textAlign": "'right'"
+                        },
+                        {
+                          "className": "TplText",
+                          "text": "data.invoice_date"
+                        }
+                      ]
+                    },
+                    {
+                      "children": [
+                        {
+                          "className": "TplSizedBox",
+                          "height": 10
+                        }
+                      ]
+                    },
+                    {
+                      "children": [
+                        {
+                          "className": "TplText",
+                          "text": "'Due Date: '",
+                          "style": {
+                            "fontWeight": "'bold'"
+                          },
+                          "textAlign": "'right'"
+                        },
+                        {
+                          "className": "TplText",
+                          "text": "data.due_date"
+                        }
+                      ]
+                    },
+                    {
+                      "children": [
+                        {
+                          "className": "TplSizedBox",
+                          "height": 10
+                        }
+                      ]
+                    },
+                    {
+                      "children": [
+                        {
+                          "className": "TplText",
+                          "text": "'Amount Due: '",
+                          "style": {
+                            "fontWeight": "'bold'"
+                          },
+                          "textAlign": "'right'"
+                        },
+                        {
+                          "className": "TplText",
+                          "text": "data.total_price"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "className": "TplTable",
+          "columnWidths": [
+            {
+              "className": "TplFixedColumnWidth",
+              "width": 20
+            },
+            {
+              "className": "TplFixedColumnWidth",
+              "width": 200
+            },
+            {
+              "className": "TplIntrinsicColumnWidth"
+            },
+            {
+              "className": "TplIntrinsicColumnWidth"
+            },
+            {
+              "className": "TplIntrinsicColumnWidth"
+            },
+            {
+              "className": "TplIntrinsicColumnWidth"
+            },
+            {
+              "className": "TplFixedColumnWidth",
+              "width": 20
+            }
+          ],
+          "children": [
+            {
+              "comment": "Header row repeats on every page",
+              "repeat": true,
+              "decoration": {
+                "color": "'#31529b'"
+              },
+              "verticalAlignment": "'middle'",
+              "children": [
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplContainer",
+                  "padding": {
+                    "top": 8,
+                    "bottom": 8
+                  },
+                  "child": {
+                    "className": "TplText",
+                    "text": "'Description'",
+                    "style": {
+                      "fontWeight": "'bold'",
+                      "color": "'#ffffff'"
+                    },
+                    "textAlign": "'left'"
+                  }
+                },
+                {
+                  "className": "TplText",
+                  "text": "'Quantity'",
+                  "style": {
+                    "fontWeight": "'bold'",
+                    "color": "'#ffffff'"
+                  },
+                  "textAlign": "'right'"
+                },
+                {
+                  "className": "TplText",
+                  "text": "' / Units'",
+                  "style": {
+                    "fontWeight": "'bold'",
+                    "color": "'#ffffff'"
+                  },
+                  "textAlign": "'left'"
+                },
+                {
+                  "className": "TplText",
+                  "text": "'Unit Price'",
+                  "style": {
+                    "fontWeight": "'bold'",
+                    "color": "'#ffffff'"
+                  },
+                  "textAlign": "'right'"
+                },
+                {
+                  "className": "TplText",
+                  "text": "'Ext. Price'",
+                  "style": {
+                    "fontWeight": "'bold'",
+                    "color": "'#ffffff'"
+                  },
+                  "textAlign": "'right'"
+                },
+                {
+                  "className": "TplSizedBox"
+                }
+              ]
+            },
+            {
+              "comment": "Detail row repeats for each data.line_items",
+              "array": "data.line_items",
+              "verticalAlignment": "'middle'",
+              "children": [
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplContainer",
+                  "padding": {
+                    "top": 8,
+                    "bottom": 8
+                  },
+                  "child": {
+                    "className": "TplColumn",
+                    "crossAxisAlignment": "'start'",
+                    "children": [
+                      {
+                        "className": "TplText",
+                        "text": "data.item_description",
+                        "style": {
+                          "fontWeight": "'bold'"
+                        },
+                        "textAlign": "'left'"
+                      },
+                      {
+                        "className": "TplText",
+                        "text": "data.trade",
+                        "textAlign": "'left'"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "className": "TplText",
+                  "text": "data.quantity",
+                  "textAlign": "'right'"
+                },
+                {
+                  "className": "TplText",
+                  "text": "' / ' + data.uom_code"
+                },
+                {
+                  "className": "TplText",
+                  "text": "data.unit_price",
+                  "textAlign": "'right'"
+                },
+                {
+                  "className": "TplText",
+                  "text": "data.extended_price",
+                  "textAlign": "'right'"
+                },
+                {
+                  "className": "TplSizedBox"
+                }
+              ]
+            },
+            {
+              "comment": "Total rows start here",
+              "children": [
+                {
+                  "className": "TplDivider",
+                  "color": "'#bbbbbb'"
+                },
+                {
+                  "className": "TplDivider",
+                  "color": "'#bbbbbb'"
+                },
+                {
+                  "className": "TplDivider",
+                  "color": "'#bbbbbb'"
+                },
+                {
+                  "className": "TplDivider",
+                  "color": "'#bbbbbb'"
+                },
+                {
+                  "className": "TplDivider",
+                  "color": "'#bbbbbb'"
+                },
+                {
+                  "className": "TplDivider",
+                  "color": "'#bbbbbb'"
+                },
+                {
+                  "className": "TplDivider",
+                  "color": "'#bbbbbb'"
+                }
+              ]
+            },
+            {
+              "verticalAlignment": "'middle'",
+              "children": [
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplContainer",
+                  "padding": {
+                    "top": 8,
+                    "bottom": 8
+                  },
+                  "child": {
+                    "className": "TplText",
+                    "text": "'Total:'",
+                    "style": {
+                      "fontWeight": "'bold'"
+                    },
+                    "textAlign": "'right'"
+                  }
+                },
+                {
+                  "className": "TplText",
+                  "text": "data.total_price",
+                  "textAlign": "'right'"
+                },
+                {
+                  "className": "TplSizedBox"
+                }
+              ]
+            },
+            {
+              "verticalAlignment": "'middle'",
+              "children": [
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplContainer",
+                  "padding": {
+                    "top": 8,
+                    "bottom": 8
+                  },
+                  "child": {
+                    "className": "TplText",
+                    "text": "data.tax_rate + ':'",
+                    "style": {
+                      "fontWeight": "'bold'"
+                    },
+                    "textAlign": "'right'"
+                  }
+                },
+                {
+                  "className": "TplText",
+                  "text": "data.tax_amount",
+                  "textAlign": "'right'"
+                },
+                {
+                  "className": "TplSizedBox"
+                }
+              ]
+            },
+            {
+              "children": [
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplDivider",
+                  "color": "'#bbbbbb'"
+                },
+                {
+                  "className": "TplDivider",
+                  "color": "'#bbbbbb'"
+                },
+                {
+                  "className": "TplSizedBox"
+                }
+              ]
+            },
+            {
+              "verticalAlignment": "'middle'",
+              "children": [
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplSizedBox"
+                },
+                {
+                  "className": "TplContainer",
+                  "padding": {
+                    "top": 8,
+                    "bottom": 8
+                  },
+                  "child": {
+                    "className": "TplText",
+                    "text": "'Amount Due:'",
+                    "style": {
+                      "fontWeight": "'bold'"
+                    },
+                    "textAlign": "'right'"
+                  }
+                },
+                {
+                  "className": "TplText",
+                  "text": "data.total_price",
+                  "style": {
+                    "fontWeight": "'bold'"
+                  },
+                  "textAlign": "'right'"
+                },
+                {
+                  "className": "TplSizedBox"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "comment": "Force notes to overflow",
+          "className": "TplSizedBox",
+          "height": 148
+        },
+        {
+          "className": "TplContainer",
+          "padding": {
+            "left": 30,
+            "right": 30,
+            "top": 10
+          },
+          "child": {
+            "comment": "This row forces the column not to split between pages",
+            "className": "TplRow",
+            "children": [
+              {
+                "className": "TplExpanded",
+                "child": {
+                  "className": "TplColumn",
+                  "mainAxisAlignment": "'start'",
+                  "crossAxisAlignment": "'start'",
+                  "children": [
+                    {
+                      "className": "TplText",
+                      "text": "'Notes / Terms'",
+                      "style": {
+                        "fontWeight": "'bold'"
+                      }
+                    },
+                    {
+                      "className": "TplParagraph",
+                      "text": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Et magnis dis parturient montes nascetur ridiculus mus mauris vitae. Elit duis tristique sollicitudin nibh sit. Purus faucibus ornare suspendisse sed. Aliquam purus sit amet luctus venenatis lectus magna. Enim diam vulputate ut pharetra. Elementum tempus egestas sed sed risus pretium. Adipiscing diam donec adipiscing tristique. Sed tempus urna et pharetra pharetra massa massa ultricies mi. Senectus et netus et malesuada. Cursus vitae congue mauris rhoncus aenean vel elit scelerisque. Neque sodales ut etiam sit amet nisl purus in mollis. Lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis. Et odio pellentesque diam volutpat. Mauris vitae ultricies leo integer malesuada nunc. Rutrum quisque non tellus orci ac. Urna nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Lectus nulla at volutpat diam ut.'",
+                      "Xtext": "data.notes + 'sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sasafdsdfdfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf '",
+                      "padding": {
+                        "top": 4
+                      },
+                      "style": {
+                        "fontSize": 8
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }
