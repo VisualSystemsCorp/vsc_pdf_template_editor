@@ -25,6 +25,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_flex.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_flexible.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_footer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_full_page.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_grid_paper.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_icon.dart';
@@ -55,6 +56,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_stack.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_svg_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_theme.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_transform.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_url_link.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
@@ -156,7 +158,9 @@ class Transformer {
       'TplPolygon': TplPolygon.fromJson,
       'TplTransform': TplTransform.fromJson,
       'TplBarcodeWidget': TplBarcodeWidget.fromJson,
-      'TplShape': TplShape.fromJson
+      'TplShape': TplShape.fromJson,
+      'TplGridPaper': TplGridPaper.fromJson,
+      'TplTheme': TplTheme.fromJson
     };
 
     final fromJson = widgetClassFromJson[valueMap['className']];
