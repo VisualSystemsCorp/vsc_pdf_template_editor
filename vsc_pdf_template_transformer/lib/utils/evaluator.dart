@@ -7,7 +7,6 @@ import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_point_chart_value.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_table_row.dart';
 import '../utils/table_column_width.dart' as tcw;
 import '../vsc_pdf_template_transformer.dart';
 import '../utils/inline_span.dart' as ins;
@@ -498,4 +497,18 @@ List<Dataset> getDatasets(
     }
   }
   return res;
+}
+
+/// Copies [data] and adds `$pageCount` and `$pageNumber` as integers from [context].
+/// It also adds `$pageCountString` and `$pageNumberString` as strings. [data] is _not_
+/// modified, instead a new data object is returned.
+Map<String, dynamic> addPageInfoToData(
+    Context context, Map<String, dynamic> data) {
+  return {
+    ...data,
+    r'$pageNumber': context.pageNumber,
+    r'$pageCount': context.pagesCount,
+    r'$pageNumberString': context.pageNumber.toString(),
+    r'$pageCountString': context.pagesCount.toString(),
+  };
 }

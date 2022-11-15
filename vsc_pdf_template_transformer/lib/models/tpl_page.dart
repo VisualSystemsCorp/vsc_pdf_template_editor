@@ -36,15 +36,17 @@ class TplPage {
 
   pw.Page toPdf(Map<String, dynamic> data) {
     return pw.Page(
-        pageTheme: pageTheme?.toPdf(data),
-        theme: theme?.toPdf(data),
-        pageFormat: pageFormat?.toPdf(data),
-        orientation: evaluatePageOrientation(orientation, data),
-        margin: margin?.toPdf(data),
-        textDirection: evaluateTextDirection(textDirection, data),
-        clip: evaluateBool(clip, data) ?? false,
-        build: (pw.Context context) {
-          return child?.buildWidget(data) ?? pw.SizedBox();
-        });
+      pageTheme: pageTheme?.toPdf(data),
+      theme: theme?.toPdf(data),
+      pageFormat: pageFormat?.toPdf(data),
+      orientation: evaluatePageOrientation(orientation, data),
+      margin: margin?.toPdf(data),
+      textDirection: evaluateTextDirection(textDirection, data),
+      clip: evaluateBool(clip, data) ?? false,
+      build: (pw.Context context) {
+        return child?.buildWidget(addPageInfoToData(context, data)) ??
+            pw.SizedBox();
+      },
+    );
   }
 }

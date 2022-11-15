@@ -130,10 +130,13 @@
           "bottom": 20
         },
         "child": {
-          "className": "TplText",
-          "text": "'Footer'",
-          "style": {
-            "color": "'#000000'"
+          "className": "TplCenter",
+          "child": {
+            "className": "TplText",
+            "text": "'Page ' + data.$pageNumberString + ' of ' + data.$pageCountString + ' for invoice #' + data.invoice_number",
+            "style": {
+              "color": "'#000000'"
+            }
           }
         }
       },

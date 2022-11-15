@@ -57,10 +57,12 @@ class TplMultiPage {
             evaluateCrossAxisAlignment(crossAxisAlignment, data) ??
                 pw.CrossAxisAlignment.start,
         header: header != null
-            ? (pw.Context context) => header!.buildWidget(data)
+            ? (pw.Context context) =>
+                header!.buildWidget(addPageInfoToData(context, data))
             : null,
         footer: footer != null
-            ? (pw.Context context) => footer!.buildWidget(data)
+            ? (pw.Context context) =>
+                footer!.buildWidget(addPageInfoToData(context, data))
             : null,
         build: (pw.Context context) {
           return children == null
