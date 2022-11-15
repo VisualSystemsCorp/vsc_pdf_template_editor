@@ -2,9 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
-import 'package:vsc_pdf_template_transformer/utils/image_provider_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
-import '../utils/image_provider.dart' as ip;
 import '../utils/alignment.dart' as a;
 
 part 'tpl_image.g.dart';
@@ -18,8 +16,7 @@ class TplImage implements wb.WidgetBuilder {
   TplImage();
 
   String className = 'TplImage';
-  @ImageProviderJsonConverter()
-  ip.ImageProvider? image;
+  dynamic image;
   dynamic fit;
   @AlignmentJsonConverter()
   a.Alignment? alignment;
@@ -35,7 +32,12 @@ class TplImage implements wb.WidgetBuilder {
 
   @override
   Widget buildWidget(Map<String, dynamic> data) {
-    return Image(image!.buildImage(data),
+    final imageProvider = evaluateImageProvider(image, data);
+    if (imageProvider == null) {
+      throw Exception('"image" attribute is required');
+    }
+
+    return Image(imageProvider,
         fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
         alignment: alignment?.buildAlignment(data) ?? Alignment.center,
         width: evaluateDouble(width, data),

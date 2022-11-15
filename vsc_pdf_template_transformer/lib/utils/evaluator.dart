@@ -3,27 +3,38 @@ import 'dart:typed_data';
 import 'package:expressions/expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_point_chart_value.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_table_row.dart';
 import '../utils/table_column_width.dart' as tcw;
 import '../vsc_pdf_template_transformer.dart';
 import '../utils/inline_span.dart' as ins;
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
 
-dynamic _evaluateDynamic(dynamic expression, Map<String, dynamic> data) {
+ExpressionEvaluator createExpressionEvaluator() {
+  return ExpressionEvaluator(memberAccessors: [
+    MemberAccessor.mapAccessor,
+  ]);
+}
+
+/// Evaluate a dynamic expression, or constant non-string value. [addlContext] will
+/// be added to the evaluation context. [data] will be in the context under the key
+/// `data`.
+dynamic evaluateDynamic(
+  dynamic expression,
+  Map<String, dynamic> data, {
+  Map<String, dynamic> addlContext = const {},
+}) {
   if (expression is! String) {
     return expression;
   }
 
-  final evaluator = ExpressionEvaluator(memberAccessors: [
-    MemberAccessor.mapAccessor,
-  ]);
-
-  return evaluator.eval(Expression.parse(expression.trim()), {
+  return createExpressionEvaluator().eval(Expression.parse(expression.trim()), {
     'data': data,
+    ...addlContext,
   });
 }
 
@@ -39,13 +50,13 @@ String? evaluateString(dynamic expression, Map<String, dynamic> data) {
   // Note expression strings containing a single word, such as "hello", return a null from the evaluator,
   // where "hello world" throws an exception.
   // Thus, all strings must be a valid expression and must be quoted.
-  final result = _evaluateDynamic(expression, data);
+  final result = evaluateDynamic(expression, data);
   return result?.toString();
 }
 
 double? evaluateDouble(dynamic expression, Map<String, dynamic> data) {
   // Allow exceptions for invalid expressions to be thrown.
-  final result = _evaluateDynamic(expression, data);
+  final result = evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -58,7 +69,7 @@ double? evaluateDouble(dynamic expression, Map<String, dynamic> data) {
 
 int? evaluateInt(dynamic expression, Map<String, dynamic> data) {
   // Allow exceptions for invalid expressions to be thrown.
-  final result = _evaluateDynamic(expression, data);
+  final result = evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -70,7 +81,7 @@ int? evaluateInt(dynamic expression, Map<String, dynamic> data) {
 }
 
 num? evaluateNum(dynamic expression, Map<String, dynamic> data) {
-  final result = _evaluateDynamic(expression, data);
+  final result = evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -83,7 +94,7 @@ num? evaluateNum(dynamic expression, Map<String, dynamic> data) {
 
 bool? evaluateBool(dynamic expression, Map<String, dynamic> data) {
   // Allow exceptions for invalid expressions to be thrown.
-  final result = _evaluateDynamic(expression, data);
+  final result = evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -96,7 +107,7 @@ bool? evaluateBool(dynamic expression, Map<String, dynamic> data) {
 
 PdfColor? evaluateColor(dynamic expression, Map<String, dynamic> data) {
   // Allow exceptions for invalid expressions to be thrown.
-  final result = _evaluateDynamic(expression, data);
+  final result = evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -114,7 +125,7 @@ Uint8List? evaluateBase64(dynamic expression, Map<String, dynamic> data) {
 }
 
 List<T>? evaluateList<T>(dynamic expression, Map<String, dynamic> data) {
-  final result = _evaluateDynamic(expression, data);
+  final result = evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -123,9 +134,17 @@ List<T>? evaluateList<T>(dynamic expression, Map<String, dynamic> data) {
 }
 
 T? evaluateEnum<T extends Enum>(
-    List<T> values, dynamic expression, Map<String, dynamic> data) {
-  final result = _evaluateDynamic(expression, data);
-  if (result == null) {
+  List<T> values,
+  dynamic expression,
+  Map<String, dynamic> data, {
+  bool throwIfNotFound = true,
+}) {
+  final result = evaluateDynamic(expression, data);
+  if (result == null || result is! String) {
+    if (throwIfNotFound && expression != null) {
+      throw Exception(
+          'Unknown enum value for $expression. Valid values are $values');
+    }
     return null;
   }
 
@@ -133,9 +152,19 @@ T? evaluateEnum<T extends Enum>(
 }
 
 Font? evaluateFont(dynamic expression, Map<String, dynamic> data) {
-  final fontEnum = evaluateEnum(Type1Fonts.values, expression, data);
+  final fontEnum =
+      evaluateEnum(Type1Fonts.values, expression, data, throwIfNotFound: false);
   if (fontEnum == null) {
-    return null;
+    final maybePdfFont = evaluateDynamic(expression, data);
+    if (maybePdfFont == null) {
+      return null;
+    }
+
+    if (maybePdfFont is Font) {
+      return maybePdfFont;
+    }
+
+    throw Exception('Unrecognized font name $expression');
   }
 
   return Font.type1(fontEnum);
@@ -167,7 +196,7 @@ TextDecoration? evaluateTextDecoration(
     }
     return TextDecoration.combine(list);
   }
-  final result = _evaluateDynamic(expression, data);
+  final result = evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -240,7 +269,7 @@ BoxShape? evaluateBoxShape(dynamic expression, Map<String, dynamic> data) {
 
 PdfPageFormat? evaluatePageFormat(
     dynamic expression, Map<String, dynamic> data) {
-  final result = _evaluateDynamic(expression, data);
+  final result = evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -375,6 +404,32 @@ BarcodeType? evaluateBarcodeType(
   return evaluateEnum(BarcodeType.values, expression, data);
 }
 
+ImageProvider? evaluateImageProvider(
+    dynamic expression, Map<String, dynamic> data) {
+  if (expression == null) {
+    return null;
+  }
+
+  if (expression is Map<String, dynamic>) {
+    switch (expression['className']) {
+      case 'TplMemoryImage':
+        return TplMemoryImage.fromJson(expression).buildImage(data);
+      case 'TplRawImage':
+        return TplRawImage.fromJson(expression).buildImage(data);
+    }
+    throw Exception('No ImageProvider className or unknown image className');
+  }
+
+  final result = evaluateDynamic(expression, data);
+
+  // It could be a concrete ImageProvider initialized from a variable.
+  if (result is ImageProvider) {
+    return result;
+  }
+
+  throw Exception('Invalid image provider');
+}
+
 List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
   final List<Widget> res = [];
 
@@ -498,4 +553,18 @@ List<Dataset> getDatasets(
     }
   }
   return res;
+}
+
+/// Copies [data] and adds `$pageCount` and `$pageNumber` as integers from [context].
+/// It also adds `$pageCountString` and `$pageNumberString` as strings. [data] is _not_
+/// modified, instead a new data object is returned.
+Map<String, dynamic> addPageInfoToData(
+    Context context, Map<String, dynamic> data) {
+  return {
+    ...data,
+    r'$pageNumber': context.pageNumber,
+    r'$pageCount': context.pagesCount,
+    r'$pageNumberString': context.pageNumber.toString(),
+    r'$pageCountString': context.pagesCount.toString(),
+  };
 }

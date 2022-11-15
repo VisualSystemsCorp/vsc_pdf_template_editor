@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:printing/printing.dart';
 import '../utils/evaluator.dart';
 
 part 'tpl_document.g.dart';
@@ -11,37 +12,31 @@ part 'tpl_document.g.dart';
   explicitToJson: true,
 )
 class TplDocument {
-  TplDocument({
-    this.pageMode = PdfPageMode.none,
-    this.compress = true,
-    this.verbose = false,
-    this.title,
-    this.author,
-    this.creator,
-    this.subject,
-    this.keywords,
-    this.producer,
-    this.children,
-  });
+  TplDocument();
 
   String className = 'TplDocument';
-  final dynamic pageMode;
-  final dynamic compress;
-  final dynamic verbose;
-  final dynamic title;
-  final dynamic author;
-  final dynamic creator;
-  final dynamic subject;
-  final dynamic keywords;
-  final dynamic producer;
-  final List<dynamic>? children;
+
+  @JsonKey(defaultValue: [])
+  List<VariableInitialization> variables = [];
+
+  dynamic pageMode;
+  dynamic compress;
+  dynamic verbose;
+  dynamic title;
+  dynamic author;
+  dynamic creator;
+  dynamic subject;
+  dynamic keywords;
+  dynamic producer;
+  List<dynamic>? children;
 
   factory TplDocument.fromJson(Map<String, dynamic> json) =>
       _$TplDocumentFromJson(json);
 
   Map<String, dynamic> toJson() => _$TplDocumentToJson(this);
 
-  Document toPdf(Map<String, dynamic> data) {
+  Future<Document> toPdf(Map<String, dynamic> data) async {
+    await _initializeVariables(data);
     return Document(
       pageMode: evaluatePdfPageMode(pageMode, data) ?? PdfPageMode.none,
       compress: evaluateBool(compress, data) ?? true,
@@ -54,4 +49,50 @@ class TplDocument {
       producer: evaluateString(producer, data),
     );
   }
+
+  /// Initializes the given variables into [data].  A variable expression may return a Future, in
+  /// which case it is awaited to get its final value.
+  /// Variables may be referenced in later expressions with the expression syntax `data.$varName`.
+  Future<void> _initializeVariables(Map<String, dynamic> data) async {
+    for (final varInit in variables) {
+      final varName = varInit.variable;
+      if (varName == null) {
+        throw Exception('variableName was null in variables');
+      }
+
+      var result = evaluateDynamic(varInit.expression, data, addlContext: {
+        'networkImage': (url) => networkImage(url),
+        'googleFont': (fontName) {
+          // TODO When the font map is ready, use the following code:
+          // return googleFonts[fontName]();
+
+          // ...And then remove this...
+          return PdfGoogleFonts.ooohBabyRegular();
+        }
+      });
+      // Await the result, if necessary.
+      while (result is Future) {
+        result = await result;
+      }
+
+      data[r'$' + varName] = result;
+    }
+  }
+}
+
+@JsonSerializable(
+  checked: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class VariableInitialization {
+  VariableInitialization();
+
+  factory VariableInitialization.fromJson(Map<String, dynamic> json) =>
+      _$VariableInitializationFromJson(json);
+
+  String? variable;
+  dynamic expression;
+
+  Map<String, dynamic> toJson() => _$VariableInitializationToJson(this);
 }

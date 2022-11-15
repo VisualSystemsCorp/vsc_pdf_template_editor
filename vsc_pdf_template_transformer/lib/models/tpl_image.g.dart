@@ -12,10 +12,7 @@ TplImage _$TplImageFromJson(Map<String, dynamic> json) => $checkedCreate(
       ($checkedConvert) {
         final val = TplImage();
         $checkedConvert('className', (v) => val.className = v as String);
-        $checkedConvert(
-            'image',
-            (v) => val.image = const ImageProviderJsonConverter()
-                .fromJson(v as Map<String, dynamic>?));
+        $checkedConvert('image', (v) => val.image = v);
         $checkedConvert('fit', (v) => val.fit = v);
         $checkedConvert(
             'alignment',
@@ -30,7 +27,7 @@ TplImage _$TplImageFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplImageToJson(TplImage instance) => <String, dynamic>{
       'className': instance.className,
-      'image': const ImageProviderJsonConverter().toJson(instance.image),
+      'image': instance.image,
       'fit': instance.fit,
       'alignment': const AlignmentJsonConverter().toJson(instance.alignment),
       'width': instance.width,

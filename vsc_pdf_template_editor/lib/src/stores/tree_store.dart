@@ -1,7 +1,13 @@
 import 'dart:convert';
 import 'dart:typed_data';
+
+import 'package:code_text_field/code_text_field.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_highlight/themes/atom-one-dark-reasonable.dart';
+import 'package:highlight/languages/json.dart';
+import 'package:mobx/mobx.dart';
+import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
@@ -12,19 +18,35 @@ import 'package:vsc_pdf_template_transformer/models/tpl_annotation_square.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_annotation_text_field.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_annotation_url.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_aspect_ratio.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_bar_data_set.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_barcode_widget.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_radius.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_side.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_border_style.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_border.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_constraints.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_decoration.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_bullet.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_cartesian_grid.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_center.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_chart.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_chart_legend.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_checkbox.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_circle.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_clip_oval.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_clip_rect.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_clip_rrect.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_constrained_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_decorated_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_decoration_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_decoration_svg_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_expanded.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fitted_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_fitted_sizes.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fixed_axis.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fixed_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_flat_button.dart';
@@ -33,90 +55,69 @@ import 'package:vsc_pdf_template_transformer/models/tpl_flex_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_flexible.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_footer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fraction_column_width.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_fractional_offset.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_full_page.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_grid_paper.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_icon.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_icon_data.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_icon_theme_data.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_intrinsic_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_line_data_set.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_linear_gradient.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_link.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_listview.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_new_page.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_opacity.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_padding.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_paragraph.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_partitions.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_pie_data_set.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_pie_grid.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_point_chart_value.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_point_data_set.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_polygon.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_positioned.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radial_gradient.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_radial_grid.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radius.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_rectangle.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_rich_text.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_shape.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_sized_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_spacer.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_stack.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_svg_image.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_table.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table_border.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_table_of_content.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table_row.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_container.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_column.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_row.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_text_field.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_span.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_new_page.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_divider.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_full_page.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_padding.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_placeholder.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_svg_image.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_decoration_image.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_decoration_svg_image.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_stack.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_listview.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_link.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_theme.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_theme_data.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_transform.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_url_link.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_paragraph.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_watermark.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_widget_span.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_wrap.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_table.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_fractional_offset.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_fitted_sizes.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_bullet.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_icon.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_icon_data.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_opacity.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_partitions.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_table_of_content.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_text_field.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_chart.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_cartesian_grid.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_pie_grid.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_radial_grid.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_bar_data_set.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_pie_data_set.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_point_data_set.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_line_data_set.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_chart_legend.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_circle.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_clip_oval.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_clip_rect.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_clip_rrect.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_rectangle.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_polygon.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_transform.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_barcode_widget.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_shape.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_grid_paper.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_theme.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
-import 'package:mobx/mobx.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:code_text_field/code_text_field.dart';
-import 'package:highlight/languages/json.dart';
-import 'package:flutter_highlight/themes/atom-one-dark-reasonable.dart';
 
 part 'tree_store.g.dart';
 
@@ -158,10 +159,16 @@ abstract class TreeStoreModel with Store {
 
   CodeController get dataController => _dataController;
 
+  String? _lastTemplateText;
+  String? _lastDataText;
+
   @action
   Future<void> onInputChanged() async {
+    final newText = _templateController.rawText;
+    if (newText == _lastTemplateText) return;
+    _lastTemplateText = newText;
     try {
-      _template = jsonDecode(_templateController.rawText);
+      _template = jsonDecode(newText);
       await _buildPdf();
       buildErrorText = '';
     } catch (e, s) {
@@ -172,6 +179,9 @@ abstract class TreeStoreModel with Store {
 
   @action
   Future<void> onDataChanged() async {
+    final newText = _dataController.rawText;
+    if (newText == _lastDataText) return;
+    _lastDataText = newText;
     try {
       _data = jsonDecode(_dataController.rawText);
       await _buildPdf();
@@ -550,7 +560,7 @@ abstract class TreeStoreModel with Store {
   }
 
   Future<void> _buildPdf() async {
-    _doc = transformer.Transformer.buildPdf(_template, _data);
+    _doc = await transformer.Transformer.buildPdf(_template, _data);
     _pdfBytes = await _doc.save();
   }
 
