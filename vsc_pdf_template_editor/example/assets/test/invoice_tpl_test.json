@@ -22,9 +22,9 @@
           {
             "className": "TplPadding",
             "padding": {
-              "left": 30,
-              "right": 30,
-              "top": 30,
+              "left": 20,
+              "right": 20,
+              "top": 20,
               "bottom": 10
             },
             "child": {
@@ -124,10 +124,10 @@
       "footer": {
         "className": "TplPadding",
         "padding": {
-          "left": 30,
-          "right": 30,
+          "left": 20,
+          "right": 20,
           "top": 10,
-          "bottom": 30
+          "bottom": 20
         },
         "child": {
           "className": "TplText",
@@ -141,8 +141,8 @@
         {
           "className": "TplPadding",
           "padding": {
-            "left": 30,
-            "right": 30,
+            "left": 20,
+            "right": 20,
             "top": 10,
             "bottom": 10
           },
@@ -651,15 +651,10 @@
           ]
         },
         {
-          "comment": "Force notes to overflow",
-          "className": "TplSizedBox",
-          "height": 148
-        },
-        {
           "className": "TplContainer",
           "padding": {
-            "left": 30,
-            "right": 30,
+            "left": 20,
+            "right": 20,
             "top": 10
           },
           "child": {
@@ -681,12 +676,14 @@
                       }
                     },
                     {
-                      "className": "TplParagraph",
-                      "text": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Et magnis dis parturient montes nascetur ridiculus mus mauris vitae. Elit duis tristique sollicitudin nibh sit. Purus faucibus ornare suspendisse sed. Aliquam purus sit amet luctus venenatis lectus magna. Enim diam vulputate ut pharetra. Elementum tempus egestas sed sed risus pretium. Adipiscing diam donec adipiscing tristique. Sed tempus urna et pharetra pharetra massa massa ultricies mi. Senectus et netus et malesuada. Cursus vitae congue mauris rhoncus aenean vel elit scelerisque. Neque sodales ut etiam sit amet nisl purus in mollis. Lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis. Et odio pellentesque diam volutpat. Mauris vitae ultricies leo integer malesuada nunc. Rutrum quisque non tellus orci ac. Urna nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Lectus nulla at volutpat diam ut.'",
-                      "Xtext": "data.notes + 'sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sasafdsdfdfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf sadfasdf '",
-                      "padding": {
-                        "top": 4
-                      },
+                      "className": "TplSizedBox",
+                      "height": 4
+                    },
+                    {
+                      "className": "TplText",
+                      "xtext": "'Lorem \nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Et magnis dis parturient montes nascetur ridiculus mus mauris vitae. Elit duis tristique sollicitudin nibh sit. Purus faucibus ornare suspendisse sed. Aliquam purus sit amet luctus venenatis lectus magna. Enim diam vulputate ut pharetra. Elementum tempus egestas sed sed risus pretium. Adipiscing diam donec adipiscing tristique. Sed tempus urna et pharetra pharetra massa massa ultricies mi. Senectus et netus et malesuada. Cursus vitae congue mauris rhoncus aenean vel elit scelerisque. Neque sodales ut etiam sit amet nisl purus in mollis. Lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis. Et odio pellentesque diam volutpat. Mauris vitae ultricies leo integer malesuada nunc. Rutrum quisque non tellus orci ac. Urna nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Lectus nulla at volutpat diam ut.'",
+                      "text": "data.notes",
+                      "maxLines": 30,
                       "style": {
                         "fontSize": 8
                       }
