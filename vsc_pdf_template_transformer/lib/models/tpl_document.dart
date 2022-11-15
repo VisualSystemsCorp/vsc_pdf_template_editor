@@ -62,9 +62,13 @@ class TplDocument {
 
       var result = evaluateDynamic(varInit.expression, data, addlContext: {
         'networkImage': (url) => networkImage(url),
-        'googleFont': (fontName) {
+        'googleFont': (fontName) async {
           // TODO When the font map is ready, use the following code:
-          // return googleFonts[fontName]();
+          // final googleFontFunction = googleFonts[fontName];
+          // if (googleFontFunction == null) {
+          //   throw Exception('Unrecognized font name $fontName');
+          // }
+          // return googleFontFunction();
 
           // ...And then remove this...
           return PdfGoogleFonts.ooohBabyRegular();
