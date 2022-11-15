@@ -13,10 +13,7 @@ TplDecorationImage _$TplDecorationImageFromJson(Map<String, dynamic> json) =>
       ($checkedConvert) {
         final val = TplDecorationImage();
         $checkedConvert('className', (v) => val.className = v as String);
-        $checkedConvert(
-            'image',
-            (v) => val.image = const ImageProviderJsonConverter()
-                .fromJson(v as Map<String, dynamic>?));
+        $checkedConvert('image', (v) => val.image = v);
         $checkedConvert('fit', (v) => val.fit = v);
         $checkedConvert(
             'alignment',
@@ -30,7 +27,7 @@ TplDecorationImage _$TplDecorationImageFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TplDecorationImageToJson(TplDecorationImage instance) =>
     <String, dynamic>{
       'className': instance.className,
-      'image': const ImageProviderJsonConverter().toJson(instance.image),
+      'image': instance.image,
       'fit': instance.fit,
       'alignment': const AlignmentJsonConverter().toJson(instance.alignment),
       'dpi': instance.dpi,

@@ -2,8 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
-import 'package:vsc_pdf_template_transformer/utils/image_provider_json_converter.dart';
-import '../utils/image_provider.dart' as ip;
 import '../utils/decoration_graphic.dart' as dg;
 import '../utils/alignment.dart' as a;
 
@@ -18,8 +16,7 @@ class TplDecorationImage implements dg.DecorationGraphic {
   TplDecorationImage();
 
   String className = 'TplDecorationImage';
-  @ImageProviderJsonConverter()
-  ip.ImageProvider? image;
+  dynamic image;
   dynamic fit;
   @AlignmentJsonConverter()
   a.Alignment? alignment;
@@ -33,8 +30,13 @@ class TplDecorationImage implements dg.DecorationGraphic {
 
   @override
   DecorationGraphic buildDecorationImage(Map<String, dynamic> data) {
+    final imageProvider = evaluateImageProvider(image, data);
+    if (imageProvider == null) {
+      throw Exception('"image" attribute is required');
+    }
+
     return DecorationImage(
-        image: image!.buildImage(data),
+        image: imageProvider,
         fit: evaluateBoxFit(fit, data) ?? BoxFit.cover,
         alignment: alignment?.buildAlignment(data) ?? Alignment.center,
         dpi: evaluateDouble(dpi, data));

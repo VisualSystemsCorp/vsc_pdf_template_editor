@@ -1,0 +1,26 @@
+{
+  "className": "TplDocument",
+  "variables": [
+    {
+      "variable": "testFont",
+      "expression": "googleFont('ooohBabyRegular')"
+    }
+  ],
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplText",
+        "text": "'Sample of ooohBaby Font'",
+        "style": {
+          "font": "data.$testFont",
+          "fontSize": 32
+        }
+      }
+    }
+  ]
+}

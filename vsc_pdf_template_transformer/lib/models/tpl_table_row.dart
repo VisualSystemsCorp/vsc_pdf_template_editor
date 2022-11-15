@@ -21,6 +21,7 @@ class TplTableRow {
   TplBoxDecoration? decoration;
 
   /// If set, this row is repeated over the given array and this row serves as a template.
+  /// It sets variables in the `data` just like [TplRepeater].
   dynamic array;
 
   factory TplTableRow.fromJson(Map<String, dynamic> json) =>

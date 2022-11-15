@@ -71,10 +71,10 @@ import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
 
 class Transformer {
-  static pw.Document buildPdf(
-      Map<String, dynamic> template, Map<String, dynamic> data) {
+  static Future<pw.Document> buildPdf(
+      Map<String, dynamic> template, Map<String, dynamic> data) async {
     final tplDocument = TplDocument.fromJson(template);
-    final document = tplDocument.toPdf(data);
+    final document = await tplDocument.toPdf(data);
 
     final documentChildren = tplDocument.children ?? [];
     for (int i = 0; i < documentChildren.length; i++) {
