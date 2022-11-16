@@ -117,7 +117,7 @@ class VscPdfTemplateEditor extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.3,
               height: MediaQuery.of(context).size.height * 0.9,
               child: AddWidgetDialog(
-                items: AppConstants.supportedWidgets,
+                items: viewModel.supportedWidgets,
               ),
             ),
           ));
@@ -131,7 +131,7 @@ class VscPdfTemplateEditor extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.3,
               height: MediaQuery.of(context).size.height * 0.9,
               child: AddWidgetDialog(
-                items: AppConstants.supportedProperties,
+                items: viewModel.supportedProperties,
               ),
             ),
           ));

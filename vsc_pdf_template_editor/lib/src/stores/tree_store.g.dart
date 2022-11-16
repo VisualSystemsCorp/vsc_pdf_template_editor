@@ -94,6 +94,43 @@ mixin _$TreeStore on TreeStoreModel, Store {
     });
   }
 
+  late final _$_supportedWidgetsAtom =
+      Atom(name: 'TreeStoreModel._supportedWidgets', context: context);
+
+  List<String> get supportedWidgets {
+    _$_supportedWidgetsAtom.reportRead();
+    return super._supportedWidgets;
+  }
+
+  @override
+  List<String> get _supportedWidgets => supportedWidgets;
+
+  @override
+  set _supportedWidgets(List<String> value) {
+    _$_supportedWidgetsAtom.reportWrite(value, super._supportedWidgets, () {
+      super._supportedWidgets = value;
+    });
+  }
+
+  late final _$_supportedPropertiesAtom =
+      Atom(name: 'TreeStoreModel._supportedProperties', context: context);
+
+  List<String> get supportedProperties {
+    _$_supportedPropertiesAtom.reportRead();
+    return super._supportedProperties;
+  }
+
+  @override
+  List<String> get _supportedProperties => supportedProperties;
+
+  @override
+  set _supportedProperties(List<String> value) {
+    _$_supportedPropertiesAtom.reportWrite(value, super._supportedProperties,
+        () {
+      super._supportedProperties = value;
+    });
+  }
+
   late final _$onInputChangedAsyncAction =
       AsyncAction('TreeStoreModel.onInputChanged', context: context);
 
@@ -110,12 +147,12 @@ mixin _$TreeStore on TreeStoreModel, Store {
     return _$onDataChangedAsyncAction.run(() => super.onDataChanged());
   }
 
-  late final _$addWidgetAsyncAction =
-      AsyncAction('TreeStoreModel.addWidget', context: context);
+  late final _$addObjectAsyncAction =
+      AsyncAction('TreeStoreModel.addObject', context: context);
 
   @override
-  Future<void> addWidget(Map<String, dynamic> map) {
-    return _$addWidgetAsyncAction.run(() => super.addWidget(map));
+  Future<void> addObject(Map<String, dynamic> map) {
+    return _$addObjectAsyncAction.run(() => super.addObject(map));
   }
 
   late final _$TreeStoreModelActionController =
