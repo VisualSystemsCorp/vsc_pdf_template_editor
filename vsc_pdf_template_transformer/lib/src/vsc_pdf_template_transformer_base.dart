@@ -1,4 +1,7 @@
 import 'package:pdf/widgets.dart' as pw;
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:intl/date_symbol_data_local.dart' as intl_date_data;
+
 import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_aspect_ratio.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_bar_data_set.dart';
@@ -67,12 +70,21 @@ import 'package:vsc_pdf_template_transformer/models/tpl_text_field.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_cartesian_grid.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pie_grid.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_radial_grid.dart';
+
 import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
+
+var _tzInited = false;
 
 class Transformer {
   static Future<pw.Document> buildPdf(
       Map<String, dynamic> template, Map<String, dynamic> data) async {
+    if (!_tzInited) {
+      tz.initializeTimeZones();
+      await intl_date_data.initializeDateFormatting();
+      _tzInited = true;
+    }
+
     final tplDocument = TplDocument.fromJson(template);
     final document = await tplDocument.toPdf(data);
 
