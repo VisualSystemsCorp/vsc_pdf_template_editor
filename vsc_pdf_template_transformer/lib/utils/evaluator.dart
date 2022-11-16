@@ -4,6 +4,7 @@ import 'package:decimal/decimal.dart';
 import 'package:decimal/intl.dart';
 import 'package:expressions/expressions.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:timezone/timezone.dart' as tz;
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
@@ -44,7 +45,75 @@ dynamic evaluateDynamic(
         _formatPercent(value, scale, data),
     'formatNumber': (String? pattern, dynamic value) =>
         _formatNumber(pattern, value, data),
+    'formatDateTime': (dynamic pattern, dynamic value, [bool useTz = false]) =>
+        _formatDateTime(pattern, value, useTz, data),
   });
+}
+
+/// Formats [value] into a date/time string using the given [pattern], and possibly
+/// `data.$locale`. If [useTz] is true, the date/time will be formatted
+/// with respect to the timezone specified in `data.$tz`. [pattern] can either be
+/// a pattern format String, or an array of Strings whose formats are concatenated
+/// with a space separator. The patterns must match https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html.
+/// If you use multiple "skeleton" patterns, you must use an array. Because of
+/// limitations with the intl package, you cannot say `'yMd jm'`. Instead you must
+/// say `['ymd', 'jm']`.
+String _formatDateTime(
+    dynamic pattern, value, bool useTz, Map<String, dynamic> data) {
+  if (value == null ||
+      pattern == null ||
+      (pattern is! String && pattern is! List)) {
+    return '';
+  }
+
+  if (value is String) {
+    // Convert ISO date to DateTime
+    final parsedDateTime = DateTime.tryParse(value);
+    if (parsedDateTime == null) {
+      // Can't parse it, so just return the string value.
+      return value.toString();
+    }
+
+    // Make sure DateTime value is expressed as isUtc == true. This can happen if
+    // the string that was parsed did not contain a TZ. We want to assume that these values
+    // are in UTC.
+    if (parsedDateTime.isUtc) {
+      value = parsedDateTime;
+    } else {
+      value = DateTime.utc(
+        parsedDateTime.year,
+        parsedDateTime.month,
+        parsedDateTime.day,
+        parsedDateTime.hour,
+        parsedDateTime.minute,
+        parsedDateTime.second,
+        parsedDateTime.millisecond,
+        parsedDateTime.microsecond,
+      );
+    }
+  }
+
+  if (value is DateTime) {
+    if (useTz) {
+      final location = _getTzLocation(data);
+      // Convert DateTime (UTC) to TZDateTime in the given TZ.
+      value = tz.TZDateTime.from(value, location);
+    }
+  } else {
+    return value.toString();
+  }
+
+  final locale = _getLocale(data);
+  final intl.DateFormat formatter;
+  if (pattern is List) {
+    formatter = intl.DateFormat(pattern[0], locale);
+    for (var i = 1; i < pattern.length; i++) {
+      formatter.addPattern(pattern[i]);
+    }
+  } else {
+    formatter = intl.DateFormat(pattern, locale);
+  }
+  return formatter.format(value);
 }
 
 dynamic _maybeConvertStringToDecimal(dynamic value) {
@@ -89,6 +158,11 @@ String _formatNumber(
 String _getLocale(Map<String, dynamic> data) {
   final locale = data[r'$locale'] as String?;
   return locale ?? 'en-US';
+}
+
+tz.Location _getTzLocation(Map<String, dynamic> data) {
+  final zone = data[r'$tz'] as String?;
+  return tz.getLocation(zone ?? 'UTC');
 }
 
 T nonNull<T>(T? value) {

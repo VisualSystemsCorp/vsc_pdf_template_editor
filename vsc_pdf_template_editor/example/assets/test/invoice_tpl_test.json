@@ -265,7 +265,7 @@
                         },
                         {
                           "className": "TplText",
-                          "text": "data.invoice_date"
+                          "text": "formatDateTime('yMd', data.invoice_date)"
                         }
                       ]
                     },
@@ -289,7 +289,7 @@
                         },
                         {
                           "className": "TplText",
-                          "text": "data.due_date"
+                          "text": "formatDateTime('yMd', data.due_date)"
                         }
                       ]
                     },
