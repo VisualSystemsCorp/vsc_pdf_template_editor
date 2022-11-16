@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:decimal/decimal.dart';
+import 'package:decimal/intl.dart';
 import 'package:expressions/expressions.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
@@ -35,7 +38,57 @@ dynamic evaluateDynamic(
   return createExpressionEvaluator().eval(Expression.parse(expression.trim()), {
     'data': data,
     ...addlContext,
+    'formatLongCurrency': (dynamic value) => _formatLongCurrency(value, data),
+    'formatCurrency': (dynamic value) => _formatCurrency(value, data),
+    'formatPercent': (dynamic value, dynamic scale) =>
+        _formatPercent(value, scale, data),
+    'formatNumber': (String? pattern, dynamic value) =>
+        _formatNumber(pattern, value, data),
   });
+}
+
+dynamic _maybeConvertStringToDecimal(dynamic value) {
+  return value is String ? DecimalIntl(Decimal.parse(value)) : value;
+}
+
+String _formatLongCurrency(dynamic value, Map<String, dynamic> data) {
+  if (value == null) return '';
+
+  value = _maybeConvertStringToDecimal(value);
+  final formatter = intl.NumberFormat.currency(locale: _getLocale(data));
+  return formatter.format(value);
+}
+
+String _formatCurrency(dynamic value, Map<String, dynamic> data) {
+  if (value == null) return '';
+
+  value = _maybeConvertStringToDecimal(value);
+  final formatter = intl.NumberFormat.simpleCurrency(locale: _getLocale(data));
+  return formatter.format(value);
+}
+
+String _formatPercent(dynamic value, dynamic scale, Map<String, dynamic> data) {
+  if (value == null) return '';
+
+  value = _maybeConvertStringToDecimal(value);
+  if (scale is num) scale = scale.toInt();
+  final formatter = intl.NumberFormat.decimalPercentPattern(
+      locale: _getLocale(data), decimalDigits: scale ?? 0);
+  return formatter.format(value);
+}
+
+String _formatNumber(
+    String? pattern, dynamic value, Map<String, dynamic> data) {
+  if (value == null) return '';
+
+  value = _maybeConvertStringToDecimal(value);
+  final formatter = intl.NumberFormat(pattern, _getLocale(data));
+  return formatter.format(value);
+}
+
+String _getLocale(Map<String, dynamic> data) {
+  final locale = data[r'$locale'] as String?;
+  return locale ?? 'en-US';
 }
 
 T nonNull<T>(T? value) {
@@ -567,4 +620,24 @@ Map<String, dynamic> addPageInfoToData(
     r'$pageNumberString': context.pageNumber.toString(),
     r'$pageCountString': context.pagesCount.toString(),
   };
+}
+
+Map<String, dynamic> createDataForRepeatedItem({
+  required Map<String, dynamic> itemData,
+  required Map<String, dynamic> parentData,
+  required int index,
+}) {
+  final newData = {
+    ...itemData,
+  };
+
+  // Copy variables from parent.
+  newData.addEntries(
+      parentData.entries.where((entry) => entry.key.startsWith(r'$')));
+
+  // Set these AFTER copying parent variables
+  newData[r'$parentData'] = parentData;
+  newData[r'$index'] = index;
+
+  return newData;
 }

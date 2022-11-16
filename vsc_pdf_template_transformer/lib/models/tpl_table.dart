@@ -69,11 +69,8 @@ class TplTable implements wb.WidgetBuilder {
     if (resultArray == null) return [];
     final List<TableRow> rows = [];
     for (int i = 0; i < resultArray.length; i++) {
-      final Map<String, dynamic> dataForChildRow = {
-        ...resultArray[i],
-        r'$parentData': data,
-        r'$index': i,
-      };
+      final dataForChildRow = createDataForRepeatedItem(
+          itemData: resultArray[i], parentData: data, index: i);
       rows.add(row.buildRow(dataForChildRow));
     }
 

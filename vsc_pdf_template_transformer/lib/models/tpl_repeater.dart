@@ -30,11 +30,8 @@ class TplRepeater {
     if (resultArray == null) return [];
     final List<Widget> widgets = [];
     for (int i = 0; i < resultArray.length; i++) {
-      final Map<String, dynamic> dataForChildWidget = {
-        ...resultArray[i],
-        r'$parentData': data,
-        r'$index': i,
-      };
+      final dataForChildWidget = createDataForRepeatedItem(
+          itemData: resultArray[i], parentData: data, index: i);
       final widget = childTemplate?.buildWidget(dataForChildWidget);
       if (widget != null) widgets.add(widget);
     }
