@@ -2,25 +2,52 @@
   "className": "TplDocument",
   "variables": [
     {
-      "variable": "testFont",
+      "variable": "ooohBabyRegularFont",
       "expression": "googleFont('ooohBabyRegular')"
+    },
+    {
+      "variable": "bangersRegularFont",
+      "expression": "googleFont('bangersRegular')"
+    },
+    {
+      "variable": "openSansRegularFont",
+      "expression": "googleFont('openSansRegular')"
     }
   ],
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "className": "TplMultiPage",
       "pageFormat": {
         "format": "'letter'"
       },
-      "child": {
-        "className": "TplText",
-        "text": "'Sample of ooohBaby Font'",
-        "style": {
-          "font": "data.$testFont",
-          "fontSize": 32
+      "children": [
+        {
+          "className": "TplText",
+          "text": "'Sample of ooohBabyRegular Font'",
+          "style": {
+            "font": "data.$ooohBabyRegularFont",
+            "fontSize": 32
+          }
+        },
+        {
+          "className": "TplText",
+          "text": "'Sample of bangersRegular Font'",
+          "style": {
+            "font": "data.$bangersRegularFont",
+            "fontSize": 32
+          }
+        },
+        {
+          "className": "TplText",
+          "text": "'Sample of openSansRegular Font - Αυτό είναι κείμενο άλλης γλώσσας - Бирләшмиш Милләтләрин халгларынын БМТ Низамнамәсиндә'",
+          "style": {
+            "font": "data.$openSansRegularFont",
+            "fontSize": 32
+          },
+          "maxLines": 4
         }
-      }
+      ]
     }
   ]
 }

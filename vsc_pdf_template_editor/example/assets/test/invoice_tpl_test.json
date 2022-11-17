@@ -9,6 +9,10 @@
     {
       "variable": "tz",
       "expression": "'America/Chicago'"
+    },
+    {
+      "variable": "openSansRegularFont",
+      "expression": "googleFont('openSansRegular')"
     }
   ],
   "children": [
@@ -19,7 +23,8 @@
       },
       "theme": {
         "defaultTextStyle": {
-          "fontSize": 10
+          "fontSize": 10,
+          "font": "data.$openSansRegularFont"
         }
       },
       "margin": {

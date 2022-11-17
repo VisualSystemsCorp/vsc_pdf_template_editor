@@ -68,7 +68,7 @@ class TplDocument {
           if (googleFontFunction == null) {
             throw Exception('Unrecognized font name $fontName');
           }
-          return googleFontFunction;
+          return googleFontFunction();
         }
       });
       // Await the result, if necessary.
