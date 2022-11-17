@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
+import 'package:vsc_pdf_template_transformer/utils/google_fonts.dart';
 import '../utils/evaluator.dart';
 
 part 'tpl_document.g.dart';
@@ -63,15 +64,11 @@ class TplDocument {
       var result = evaluateDynamic(varInit.expression, data, addlContext: {
         'networkImage': (url) => networkImage(url),
         'googleFont': (fontName) async {
-          // TODO When the font map is ready, use the following code:
-          // final googleFontFunction = googleFonts[fontName];
-          // if (googleFontFunction == null) {
-          //   throw Exception('Unrecognized font name $fontName');
-          // }
-          // return googleFontFunction();
-
-          // ...And then remove this...
-          return PdfGoogleFonts.ooohBabyRegular();
+          final googleFontFunction = googleFonts[fontName];
+          if (googleFontFunction == null) {
+            throw Exception('Unrecognized font name $fontName');
+          }
+          return googleFontFunction();
         }
       });
       // Await the result, if necessary.
