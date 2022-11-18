@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+
 import '../utils/annotation_builder.dart' as ab;
 
 part 'tpl_annotation_polygon.g.dart';
@@ -34,9 +35,7 @@ class TplAnnotationPolygon implements ab.AnnotationBuilder {
     return AnnotationPolygon(getPdfPoints(points!, data),
         color: evaluateColor(color, data),
         interiorColor: evaluateColor(interiorColor, data),
-        date: date != null
-            ? DateTime.parse(evaluateString(date, data) ?? '')
-            : null,
+        date: evaluateDateTime(date, data),
         subject: evaluateString(subject, data),
         author: evaluateString(author, data),
         content: evaluateString(content, data));

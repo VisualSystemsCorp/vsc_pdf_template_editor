@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+
 import '../utils/annotation_builder.dart' as ab;
 
 part 'tpl_annotation_url.g.dart';
@@ -28,9 +29,7 @@ class TplAnnotationUrl implements ab.AnnotationBuilder {
   @override
   AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
     return AnnotationUrl(evaluateString(destination, data) ?? '',
-        date: date != null
-            ? DateTime.parse(evaluateString(date, data) ?? '')
-            : null,
+        date: evaluateDateTime(date, data),
         subject: evaluateString(subject, data),
         author: evaluateString(author, data));
   }

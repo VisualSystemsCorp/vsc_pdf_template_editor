@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_icon_data.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+
 import '../utils/widget_builder.dart' as wb;
 
 part 'tpl_icon.g.dart';

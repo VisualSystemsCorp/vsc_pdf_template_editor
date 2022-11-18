@@ -308,42 +308,6 @@
       "unit_price": 27.98,
       "extended_price": 419.70,
       "taxable": true
-    },
-    {
-      "item_description": "Vinyl Siding",
-      "trade": "Siding",
-      "quantity": 1344,
-      "uom_code": "SF",
-      "unit_price": 9.22,
-      "extended_price": 12391.68,
-      "taxable": false
-    },
-    {
-      "item_description": "Asphalt Singles",
-      "trade": "Roof",
-      "quantity": 10,
-      "uom_code": "BD",
-      "unit_price": 34.50,
-      "extended_price": 345.00,
-      "taxable": false
-    },
-    {
-      "item_description": "Felt",
-      "trade": "Roof",
-      "quantity": 15,
-      "uom_code": "EA",
-      "unit_price": 27.98,
-      "extended_price": 419.70,
-      "taxable": true
-    },
-    {
-      "item_description": "Vinyl Siding",
-      "trade": "Siding",
-      "quantity": 1344,
-      "uom_code": "SF",
-      "unit_price": 9.22,
-      "extended_price": 12391.68,
-      "taxable": false
     }
   ]
 }

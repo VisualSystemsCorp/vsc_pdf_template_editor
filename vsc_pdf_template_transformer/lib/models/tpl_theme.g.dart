@@ -12,11 +12,7 @@ TplTheme _$TplThemeFromJson(Map<String, dynamic> json) => $checkedCreate(
       ($checkedConvert) {
         final val = TplTheme();
         $checkedConvert('className', (v) => val.className = v as String);
-        $checkedConvert(
-            'data',
-            (v) => val.data = v == null
-                ? null
-                : TplThemeData.fromJson(v as Map<String, dynamic>));
+        $checkedConvert('data', (v) => val.data = v);
         $checkedConvert(
             'child',
             (v) => val.child = const WidgetJsonConverter()
@@ -27,6 +23,6 @@ TplTheme _$TplThemeFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplThemeToJson(TplTheme instance) => <String, dynamic>{
       'className': instance.className,
-      'data': instance.data?.toJson(),
+      'data': instance.data,
       'child': const WidgetJsonConverter().toJson(instance.child),
     };

@@ -1,22 +1,25 @@
 import 'dart:convert';
 import 'dart:typed_data';
+
 import 'package:decimal/decimal.dart';
 import 'package:decimal/intl.dart';
 import 'package:expressions/expressions.dart';
 import 'package:intl/intl.dart' as intl;
-import 'package:timezone/timezone.dart' as tz;
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:timezone/timezone.dart' as tz;
 import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_point_chart_value.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_theme_data.dart';
+import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
+
+import '../utils/inline_span.dart' as ins;
 import '../utils/table_column_width.dart' as tcw;
 import '../vsc_pdf_template_transformer.dart';
-import '../utils/inline_span.dart' as ins;
-import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
 
 ExpressionEvaluator createExpressionEvaluator() {
   return ExpressionEvaluator(memberAccessors: [
@@ -47,6 +50,12 @@ dynamic evaluateDynamic(
         _formatNumber(pattern, value, data),
     'formatDateTime': (dynamic pattern, dynamic value, [bool useTz = false]) =>
         _formatDateTime(pattern, value, useTz, data),
+    'newThemeWithFontSize': (ThemeData themeData, double fontSize) {
+      return themeData.copyWith(
+        defaultTextStyle:
+            themeData.defaultTextStyle.copyWith(fontSize: fontSize),
+      );
+    }
   });
 }
 
@@ -181,6 +190,11 @@ String? evaluateString(dynamic expression, Map<String, dynamic> data) {
   return result?.toString();
 }
 
+/// Like [evaluateString], but returns an empty string if the result is `null`.
+String evaluateText(dynamic expression, Map<String, dynamic> data) {
+  return evaluateString(expression, data) ?? '';
+}
+
 double? evaluateDouble(dynamic expression, Map<String, dynamic> data) {
   // Allow exceptions for invalid expressions to be thrown.
   final result = evaluateDynamic(expression, data);
@@ -230,6 +244,11 @@ bool? evaluateBool(dynamic expression, Map<String, dynamic> data) {
   }
 
   return result.toString().toLowerCase() == 'true';
+}
+
+DateTime? evaluateDateTime(dynamic expression, Map<String, dynamic> data) {
+  final dateStr = evaluateString(expression, data);
+  return dateStr != null ? DateTime.parse(dateStr) : null;
 }
 
 PdfColor? evaluateColor(dynamic expression, Map<String, dynamic> data) {
@@ -555,6 +574,28 @@ ImageProvider? evaluateImageProvider(
   }
 
   throw Exception('Invalid image provider');
+}
+
+ThemeData? evaluateThemeData(dynamic expression, Map<String, dynamic> data) {
+  final result = evaluateDynamic(expression, data);
+  if (result == null) {
+    return null;
+  }
+
+  if (result is Map<String, dynamic>) {
+    final className = expression['className'];
+    if (className == 'TplThemeData') {
+      return TplThemeData.fromJson(expression).toPdf(data);
+    }
+
+    throw Exception('Unknown ThemeData className: $className');
+  }
+
+  if (result is ThemeData) {
+    return result;
+  }
+
+  throw Exception('Invalid ThemeData');
 }
 
 List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {

@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_decoration_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_decoration_svg_image.dart';
+
 import '../utils/decoration_graphic.dart' as dg;
 
 class DecorationGraphicJsonConverter

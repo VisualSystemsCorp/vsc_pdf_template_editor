@@ -28,7 +28,7 @@ class TplLink implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return Link(
-        destination: evaluateString(destination, data) ?? '',
+        destination: evaluateText(destination, data),
         child: child?.buildWidget(data) ?? SizedBox());
   }
 }

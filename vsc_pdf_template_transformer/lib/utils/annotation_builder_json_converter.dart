@@ -5,6 +5,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_annotation_polygon.dart'
 import 'package:vsc_pdf_template_transformer/models/tpl_annotation_square.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_annotation_text_field.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_annotation_url.dart';
+
 import '../utils/annotation_builder.dart' as ab;
 
 class AnnotationBuilderJsonConverter

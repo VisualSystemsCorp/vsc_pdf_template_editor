@@ -2,8 +2,9 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
-import '../utils/gradient.dart' as g;
+
 import '../utils/alignment.dart' as a;
+import '../utils/gradient.dart' as g;
 
 part 'tpl_linear_gradient.g.dart';
 

@@ -3,6 +3,7 @@ import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
+
 import '../utils/alignment.dart' as a;
 
 part 'tpl_image.g.dart';

@@ -5,6 +5,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_box_decoration.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+
 import '../utils/widget_builder.dart' as wb;
 
 part 'tpl_barcode_widget.g.dart';
@@ -41,7 +42,7 @@ class TplBarcodeWidget implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return BarcodeWidget(
-        data: evaluateString(this.data, data)!,
+        data: evaluateText(this.data, data),
         barcode: _buildBarcode(data),
         color: evaluateColor(color, data) ?? PdfColors.black,
         backgroundColor: evaluateColor(backgroundColor, data),

@@ -1,8 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
+
+import '../utils/evaluator.dart';
 import '../utils/widget_builder.dart' as wb;
 import 'tpl_text_style.dart';
-import '../utils/evaluator.dart';
 
 part 'tpl_text.g.dart';
 
@@ -38,7 +39,7 @@ class TplText implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return Text(
-      evaluateString(text, data).toString(),
+      evaluateText(text, data),
       style: style?.toPdf(data),
       textAlign: evaluateTextAlign(textAlign, data),
       textDirection: evaluateTextDirection(textDirection, data),

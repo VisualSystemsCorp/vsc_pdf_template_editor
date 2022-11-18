@@ -22,11 +22,7 @@ TplPageTheme _$TplPageThemeFromJson(Map<String, dynamic> json) =>
                 : TplEdgeInsets.fromJson(v as Map<String, dynamic>));
         $checkedConvert('clip', (v) => val.clip = v);
         $checkedConvert('textDirection', (v) => val.textDirection = v);
-        $checkedConvert(
-            'theme',
-            (v) => val.theme = v == null
-                ? null
-                : TplThemeData.fromJson(v as Map<String, dynamic>));
+        $checkedConvert('theme', (v) => val.theme = v);
         return val;
       },
     );
@@ -39,5 +35,5 @@ Map<String, dynamic> _$TplPageThemeToJson(TplPageTheme instance) =>
       'margin': instance.margin?.toJson(),
       'clip': instance.clip,
       'textDirection': instance.textDirection,
-      'theme': instance.theme?.toJson(),
+      'theme': instance.theme,
     };

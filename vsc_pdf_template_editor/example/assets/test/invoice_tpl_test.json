@@ -13,6 +13,10 @@
     {
       "variable": "openSansRegularFont",
       "expression": "googleFont('openSansRegular')"
+    },
+    {
+      "variable": "defaultTheme",
+      "expression": "defaultTheme()"
     }
   ],
   "children": [
@@ -21,12 +25,7 @@
       "pageFormat": {
         "format": "'letter'"
       },
-      "theme": {
-        "defaultTextStyle": {
-          "fontSize": 10,
-          "font": "data.$openSansRegularFont"
-        }
-      },
+      "theme": "newThemeWithFontSize(data.$defaultTheme, 10)",
       "margin": {
         "all": 0
       },

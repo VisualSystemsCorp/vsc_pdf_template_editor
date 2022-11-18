@@ -40,7 +40,7 @@ class TplCheckbox implements wb.WidgetBuilder {
         checkColor: evaluateColor(checkColor, data) ?? PdfColors.white,
         width: evaluateDouble(width, data) ?? 13,
         height: evaluateDouble(width, data) ?? 13,
-        name: evaluateString(name, data) ?? '',
+        name: evaluateText(name, data),
         decoration: decoration?.toPdf(data));
   }
 }

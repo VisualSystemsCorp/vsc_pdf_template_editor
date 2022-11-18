@@ -47,7 +47,7 @@ class TplFlatButton implements wb.WidgetBuilder {
       decoration: decoration?.toPdf(data),
       flags: flags,
       child: child != null ? child!.buildWidget(data) : SizedBox(),
-      name: evaluateString(name, data) ?? '',
+      name: evaluateText(name, data),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
+
 import '../utils/widget_builder.dart' as wb;
 
 part 'tpl_table_of_content.g.dart';

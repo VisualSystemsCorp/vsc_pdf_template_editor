@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+
 import '../utils/annotation_builder.dart' as ab;
 
 part 'tpl_annotation_circle.g.dart';
@@ -32,9 +33,7 @@ class TplAnnotationCircle implements ab.AnnotationBuilder {
     return AnnotationCircle(
         color: evaluateColor(color, data),
         interiorColor: evaluateColor(interiorColor, data),
-        date: date != null
-            ? DateTime.parse(evaluateString(date, data) ?? '')
-            : null,
+        date: evaluateDateTime(date, data),
         subject: evaluateString(subject, data),
         author: evaluateString(author, data),
         content: evaluateString(content, data));

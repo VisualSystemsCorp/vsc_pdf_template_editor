@@ -1,5 +1,5 @@
-import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart';
 import 'package:test/test.dart';
+import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart';
 
 void main() {
   group('A group of tests', () {

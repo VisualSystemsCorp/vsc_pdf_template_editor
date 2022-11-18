@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_alignment.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_fractional_offset.dart';
+
 import '../utils/alignment.dart' as a;
 
 class AlignmentJsonConverter

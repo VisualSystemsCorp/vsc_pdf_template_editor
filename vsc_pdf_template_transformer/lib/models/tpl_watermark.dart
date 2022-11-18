@@ -1,9 +1,11 @@
 import 'dart:math' as math;
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
+
 import '../utils/widget_json_converter.dart';
 
 part 'tpl_watermark.g.dart';

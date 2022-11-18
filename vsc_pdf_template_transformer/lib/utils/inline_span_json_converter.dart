@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_span.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_widget_span.dart';
+
 import '../utils/inline_span.dart' as ins;
 
 class InlineSpanJsonConverter

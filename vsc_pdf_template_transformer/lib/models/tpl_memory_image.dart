@@ -1,7 +1,9 @@
 import 'dart:typed_data';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+
 import '../utils/image_provider.dart' as ip;
 
 part 'tpl_memory_image.g.dart';

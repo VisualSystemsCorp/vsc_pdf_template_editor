@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_point.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+
 import '../utils/annotation_builder.dart' as ab;
 
 part 'tpl_annotation_ink.g.dart';
@@ -32,9 +33,7 @@ class TplAnnotationInk implements ab.AnnotationBuilder {
   AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
     return AnnotationInk(getListOfPdfPoints(points!, data),
         color: evaluateColor(color, data),
-        date: date != null
-            ? DateTime.parse(evaluateString(date, data) ?? '')
-            : null,
+        date: evaluateDateTime(date, data),
         subject: evaluateString(subject, data),
         author: evaluateString(author, data),
         content: evaluateString(content, data));

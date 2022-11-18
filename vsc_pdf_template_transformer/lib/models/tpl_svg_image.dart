@@ -3,6 +3,7 @@ import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
+
 import '../utils/alignment.dart' as a;
 
 part 'tpl_svg_image.g.dart';
@@ -34,7 +35,7 @@ class TplSvgImage implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return SvgImage(
-        svg: evaluateString(svg, data) ?? '',
+        svg: evaluateText(svg, data),
         fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
         alignment: alignment?.buildAlignment(data) ?? Alignment.center,
         clip: evaluateBool(clip, data) ?? true,

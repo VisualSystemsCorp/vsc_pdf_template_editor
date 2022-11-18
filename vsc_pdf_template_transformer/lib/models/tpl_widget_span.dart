@@ -4,9 +4,10 @@ import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/utils/annotation_builder_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
-import '../utils/widget_builder.dart' as wb;
-import '../utils/inline_span.dart' as ins;
+
 import '../utils/annotation_builder.dart' as ab;
+import '../utils/inline_span.dart' as ins;
+import '../utils/widget_builder.dart' as wb;
 
 part 'tpl_widget_span.g.dart';
 

@@ -2,8 +2,9 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/utils/alignment_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
-import '../utils/decoration_graphic.dart' as dg;
+
 import '../utils/alignment.dart' as a;
+import '../utils/decoration_graphic.dart' as dg;
 
 part 'tpl_decoration_image.g.dart';
 

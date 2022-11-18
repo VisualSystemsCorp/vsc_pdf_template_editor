@@ -5,6 +5,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_box_border.dart';
 import 'package:vsc_pdf_template_transformer/utils/decoration_graphic_json_converter.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/gradient_json_converter.dart';
+
 import '../utils/decoration_graphic.dart' as dg;
 import '../utils/gradient.dart' as g;
 

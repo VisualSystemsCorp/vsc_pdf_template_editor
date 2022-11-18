@@ -3,9 +3,9 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
-import 'package:vsc_pdf_template_transformer/models/tpl_theme_data.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
+
 import '../utils/widget_builder.dart';
 
 part 'tpl_multi_page.g.dart';
@@ -20,7 +20,7 @@ class TplMultiPage {
 
   String className = 'TplMultiPage';
   TplPageTheme? pageTheme;
-  TplThemeData? theme;
+  dynamic theme;
   TplPdfPageFormat? pageFormat;
   dynamic orientation;
   TplEdgeInsets? margin;
@@ -44,7 +44,7 @@ class TplMultiPage {
   pw.Page toPdf(Map<String, dynamic> data) {
     return pw.MultiPage(
         pageTheme: pageTheme?.toPdf(data),
-        theme: theme?.toPdf(data),
+        theme: evaluateThemeData(theme, data),
         pageFormat: pageFormat?.toPdf(data),
         orientation: evaluatePageOrientation(orientation, data),
         margin: margin?.toPdf(data),

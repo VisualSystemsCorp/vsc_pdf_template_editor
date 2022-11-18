@@ -4,8 +4,9 @@ import 'package:vsc_pdf_template_transformer/models/tpl_table_border.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_table_row.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/table_column_width_json_converter.dart';
-import '../utils/widget_builder.dart' as wb;
+
 import '../utils/table_column_width.dart' as tcw;
+import '../utils/widget_builder.dart' as wb;
 
 part 'tpl_table.g.dart';
 

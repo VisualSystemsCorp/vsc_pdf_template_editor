@@ -3,6 +3,7 @@ import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
+
 import '../utils/widget_builder.dart' as wb;
 
 part 'tpl_text_field.g.dart';
@@ -43,14 +44,12 @@ class TplTextField implements wb.WidgetBuilder {
   @override
   Widget buildWidget(Map<String, dynamic> data) {
     return TextField(
-        name: evaluateString(name, data) ?? '',
+        name: evaluateText(name, data),
         child: child?.buildWidget(data),
         width: evaluateDouble(width, data) ?? 120,
         height: evaluateDouble(height, data) ?? 13,
         flags: flags != null ? getPdfAnnotFlags(flags!, data) : {},
-        date: date != null
-            ? DateTime.parse(evaluateString(date, data) ?? '')
-            : null,
+        date: evaluateDateTime(date, data),
         color: evaluateColor(color, data),
         backgroundColor: evaluateColor(backgroundColor, data),
         highlighting: evaluatePdfAnnotHighlighting(highlighting, data),

@@ -29,7 +29,7 @@ class TplShape implements wb.WidgetBuilder {
 
   @override
   Widget buildWidget(Map<String, dynamic> data) {
-    return Shape(evaluateString(shape, data)!,
+    return Shape(evaluateText(shape, data),
         fillColor: evaluateColor(fillColor, data),
         strokeColor: evaluateColor(strokeColor, data),
         width: evaluateDouble(width, data),

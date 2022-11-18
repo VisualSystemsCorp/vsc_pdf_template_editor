@@ -1,0 +1,64 @@
+{
+  "className": "TplDocument",
+  "variables": [
+    {
+      "variable": "defaultTheme",
+      "expression": "defaultTheme()"
+    }
+  ],
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplMultiPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "theme": "newThemeWithFontSize(data.$defaultTheme, 18)",
+      "children": [
+        {
+          "className": "TplText",
+          "text": "'Sample of default theme - regular'"
+        },
+        {
+          "className": "TplText",
+          "text": "'Sample of default theme - bold'",
+          "style": {
+            "fontWeight": "'bold'"
+          }
+        },
+        {
+          "className": "TplText",
+          "text": "'Sample of default theme - italic'",
+          "style": {
+            "fontStyle": "'italic'"
+          }
+        },
+        {
+          "className": "TplText",
+          "text": "'Sample of default theme - bold-italic'",
+          "style": {
+            "fontWeight": "'bold'",
+            "fontStyle": "'italic'"
+          }
+        },
+        {
+          "className": "TplText",
+          "text": "'Sample of default theme - emoji - \uD83D\uDC31\uD83D\uDC08 \uD83D\uDC83\uD83C\uDFC3'"
+        },
+        {
+          "className": "TplText",
+          "text": "'Sample of icons:'"
+        },
+        {
+          "className": "TplIcon",
+          "iconData": {
+            "className": "TplIconData",
+            "codePoint": 59475
+          },
+          "size": 18,
+          "color": "'#ebc034'"
+        }
+      ]
+    }
+  ]
+}

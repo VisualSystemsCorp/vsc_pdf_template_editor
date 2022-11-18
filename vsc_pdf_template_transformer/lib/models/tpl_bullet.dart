@@ -4,6 +4,7 @@ import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_text_style.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+
 import '../utils/widget_builder.dart' as wb;
 
 part 'tpl_bullet.g.dart';
@@ -14,7 +15,6 @@ part 'tpl_bullet.g.dart';
   explicitToJson: true,
 )
 class TplBullet implements wb.WidgetBuilder {
-
   TplBullet();
 
   String className = 'TplBullet';

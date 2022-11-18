@@ -1,7 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/widgets.dart';
-import '../utils/alignment.dart' as a;
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
+
+import '../utils/alignment.dart' as a;
 
 part 'tpl_fractional_offset.g.dart';
 

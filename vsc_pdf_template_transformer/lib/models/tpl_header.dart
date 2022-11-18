@@ -4,9 +4,10 @@ import 'package:pdf/widgets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_box_decoration.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
+
+import '../utils/evaluator.dart';
 import '../utils/widget_builder.dart' as wb;
 import 'tpl_text_style.dart';
-import '../utils/evaluator.dart';
 
 part 'tpl_header.g.dart';
 
