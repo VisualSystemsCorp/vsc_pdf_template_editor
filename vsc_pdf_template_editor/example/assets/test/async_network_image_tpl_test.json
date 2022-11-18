@@ -4,7 +4,7 @@
   "variables": [
     {
       "variable": "imageFromUrl",
-      "expression": "networkImage('https://lh3.googleusercontent.com/a/ALm5wu0jaYRrkULYehiCw8jD5LfbpwrUgf5ZUus-mYy5EA=s288-p-rw-no')"
+      "expression": "downloadImage('https://lh3.googleusercontent.com/a/ALm5wu0jaYRrkULYehiCw8jD5LfbpwrUgf5ZUus-mYy5EA=s288-p-rw-no')"
     }
   ],
   "pageMode": "'none'",

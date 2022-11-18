@@ -50,10 +50,10 @@ dynamic evaluateDynamic(
         _formatNumber(pattern, value, data),
     'formatDateTime': (dynamic pattern, dynamic value, [bool useTz = false]) =>
         _formatDateTime(pattern, value, useTz, data),
-    'newThemeWithFontSize': (ThemeData themeData, double fontSize) {
+    'newThemeWithFontSize': (ThemeData themeData, num fontSize) {
       return themeData.copyWith(
         defaultTextStyle:
-            themeData.defaultTextStyle.copyWith(fontSize: fontSize),
+            themeData.defaultTextStyle.copyWith(fontSize: fontSize.toDouble()),
       );
     }
   });

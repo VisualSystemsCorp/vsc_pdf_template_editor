@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
-import 'package:printing/printing.dart';
-import 'package:vsc_pdf_template_transformer/utils/google_fonts.dart';
+import 'package:vsc_pdf_template_transformer/src/fonts/gfonts.dart';
+import 'package:vsc_pdf_template_transformer/src/network/cache.dart';
 
 import '../utils/evaluator.dart';
 
@@ -63,15 +63,24 @@ class TplDocument {
       }
 
       var result = evaluateDynamic(varInit.expression, data, addlContext: {
-        'networkImage': (url) => networkImage(url),
-        'googleFont': (fontName) async {
+        'downloadImage': (url) => downloadImage(url),
+        'downloadUtf8String': (url) => downloadUtf8String(url),
+        'getGoogleFont': (fontName) async {
           final googleFontFunction = googleFonts[fontName];
           if (googleFontFunction == null) {
             throw Exception('Unrecognized font name $fontName');
           }
           return googleFontFunction();
         },
-        'defaultTheme': () => _defaultTheme(),
+        'defaultTheme': () => defaultTheme(),
+        'getThemeFromGoogleFont': (fontFamilyName) async {
+          final themeFunction = googleFontThemes[fontFamilyName];
+          if (themeFunction == null) {
+            throw Exception(
+                'Unrecognized theme font family name $fontFamilyName');
+          }
+          return themeFunction();
+        },
       });
 
       // Await the result, if necessary.
@@ -81,26 +90,6 @@ class TplDocument {
 
       data[r'$' + varName] = result;
     }
-  }
-
-  Future<ThemeData> _defaultTheme() async {
-    // Do NOT use pdfDefaultTheme() because it sets a static builder which can affect later template
-    // transformations.
-    final base = await PdfGoogleFonts.openSansRegular();
-    final bold = await PdfGoogleFonts.openSansBold();
-    final italic = await PdfGoogleFonts.openSansItalic();
-    final boldItalic = await PdfGoogleFonts.openSansBoldItalic();
-    final emoji = await PdfGoogleFonts.notoColorEmoji();
-    final icons = await PdfGoogleFonts.materialIcons();
-
-    return ThemeData.withFont(
-      base: base,
-      bold: bold,
-      italic: italic,
-      boldItalic: boldItalic,
-      icons: icons,
-      fontFallback: [emoji, base],
-    );
   }
 }
 
