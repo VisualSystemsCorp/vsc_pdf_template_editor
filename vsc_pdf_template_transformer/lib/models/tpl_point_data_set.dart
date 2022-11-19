@@ -30,13 +30,13 @@ class TplPointDataSet implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplPointDataSetToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return PointDataSet(
         data: getPointChartValues(this.data!, data),
-        legend: evaluateString(legend, data),
-        pointSize: evaluateDouble(pointSize, data) ?? 3,
-        color: evaluateColor(color, data) ?? PdfColors.blue,
-        drawPoints: evaluateBool(drawPoints, data) ?? true,
+        legend: await evaluateString(legend, data),
+        pointSize: await evaluateDouble(pointSize, data) ?? 3,
+        color: await evaluateColor(color, data) ?? PdfColors.blue,
+        drawPoints: await evaluateBool(drawPoints, data) ?? true,
         valuePosition:
             evaluateValuePosition(valuePosition, data) ?? ValuePosition.auto);
   }

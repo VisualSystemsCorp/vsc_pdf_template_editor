@@ -31,7 +31,7 @@ class TplChartLegend implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplChartLegendToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return ChartLegend(
         textStyle: textStyle?.toPdf(data),
         position: position?.buildAlignment(data) ?? Alignment.topRight,

@@ -24,9 +24,9 @@ class TplIconThemeData {
 
   pw.IconThemeData toPdf(Map<String, dynamic> data) {
     return pw.IconThemeData(
-        color: evaluateColor(color, data),
-        opacity: evaluateDouble(opacity, data),
-        size: evaluateDouble(size, data),
+        color: await evaluateColor(color, data),
+        opacity: await evaluateDouble(opacity, data),
+        size: await evaluateDouble(size, data),
         font: evaluateFont(font, data));
   }
 }

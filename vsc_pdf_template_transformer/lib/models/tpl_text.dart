@@ -37,16 +37,16 @@ class TplText implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplTextToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Text(
-      evaluateText(text, data),
+      await evaluateText(text, data),
       style: style?.toPdf(data),
       textAlign: evaluateTextAlign(textAlign, data),
       textDirection: evaluateTextDirection(textDirection, data),
-      softWrap: evaluateBool(softWrap, data),
-      tightBounds: evaluateBool(tightBounds, data) ?? false,
-      textScaleFactor: evaluateDouble(textScaleFactor, data) ?? 1,
-      maxLines: evaluateInt(maxLines, data),
+      softWrap: await evaluateBool(softWrap, data),
+      tightBounds: await evaluateBool(tightBounds, data) ?? false,
+      textScaleFactor: await evaluateDouble(textScaleFactor, data) ?? 1,
+      maxLines: await evaluateInt(maxLines, data),
       overflow: evaluateTextOverflow(overflow, data),
     );
   }

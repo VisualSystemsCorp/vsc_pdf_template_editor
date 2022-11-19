@@ -31,11 +31,11 @@ class TplFittedBox implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplFittedBoxToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return FittedBox(
       fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
       alignment: alignment?.buildAlignment(data) ?? Alignment.center,
-      child: child?.buildWidget(data),
+      child: await child?.buildWidget(data),
     );
   }
 }

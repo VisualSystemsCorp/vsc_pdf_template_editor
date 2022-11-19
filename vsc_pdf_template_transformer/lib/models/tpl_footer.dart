@@ -33,7 +33,7 @@ class TplFooter implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplFooterToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Footer(
         leading: leading?.buildWidget(data),
         title: title?.buildWidget(data),

@@ -34,12 +34,13 @@ class TplTextSpan implements ins.InlineSpan {
   Map<String, dynamic> toJson() => _$TplTextSpanToJson(this);
 
   @override
-  InlineSpan buildInlineSpan(Map<String, dynamic> data) {
+  Future<InlineSpan> buildInlineSpan(Map<String, dynamic> data) async {
     return TextSpan(
-        children:
-            children == null ? [] : getInlineSpanChildren(children!, data),
-        baseline: evaluateDouble(baseline, data) ?? 0,
-        text: evaluateString(text, data),
+        children: children == null
+            ? []
+            : await getInlineSpanChildren(children!, data),
+        baseline: await await evaluateDouble(baseline, data) ?? 0,
+        text: await await evaluateString(text, data),
         style: style?.toPdf(data),
         annotation: annotation?.buildAnnotation(data));
   }

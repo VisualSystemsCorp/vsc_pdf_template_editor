@@ -27,21 +27,21 @@ class TplEdgeInsets {
 
   ws.EdgeInsets toPdf(Map<String, dynamic> data) {
     if (all != null) {
-      return ws.EdgeInsets.all(evaluateDouble(all, data) ?? 0);
+      return ws.EdgeInsets.all(await evaluateDouble(all, data) ?? 0);
     }
 
     if (vertical != null || horizontal != null) {
       return ws.EdgeInsets.symmetric(
-        vertical: evaluateDouble(vertical, data) ?? 0,
-        horizontal: evaluateDouble(horizontal, data) ?? 0,
+        vertical: await evaluateDouble(vertical, data) ?? 0,
+        horizontal: await evaluateDouble(horizontal, data) ?? 0,
       );
     }
 
     return ws.EdgeInsets.fromLTRB(
-      evaluateDouble(left, data) ?? 0,
-      evaluateDouble(top, data) ?? 0,
-      evaluateDouble(right, data) ?? 0,
-      evaluateDouble(bottom, data) ?? 0,
+      await evaluateDouble(left, data) ?? 0,
+      await evaluateDouble(top, data) ?? 0,
+      await evaluateDouble(right, data) ?? 0,
+      await evaluateDouble(bottom, data) ?? 0,
     );
   }
 }

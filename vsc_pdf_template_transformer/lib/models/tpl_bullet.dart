@@ -36,9 +36,9 @@ class TplBullet implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplBulletToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Bullet(
-        text: evaluateString(text, data),
+        text: await evaluateString(text, data),
         textAlign: evaluateTextAlign(textAlign, data) ?? TextAlign.left,
         style: style?.toPdf(data),
         margin: margin?.toPdf(data) ??
@@ -50,8 +50,8 @@ class TplBullet implements wb.WidgetBuilder {
               left: 5.0 * PdfPageFormat.mm,
               right: 2.0 * PdfPageFormat.mm,
             ),
-        bulletSize: evaluateDouble(bulletSize, data) ?? 2.0 * PdfPageFormat.mm,
+        bulletSize: await evaluateDouble(bulletSize, data) ?? 2.0 * PdfPageFormat.mm,
         bulletShape: evaluateBoxShape(bulletShape, data) ?? BoxShape.circle,
-        bulletColor: evaluateColor(bulletColor, data) ?? PdfColors.black);
+        bulletColor: await evaluateColor(bulletColor, data) ?? PdfColors.black);
   }
 }

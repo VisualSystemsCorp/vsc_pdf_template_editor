@@ -34,7 +34,7 @@ class TplPageTheme {
       orientation: evaluatePageOrientation(orientation, data),
       margin: margin?.toPdf(data),
       textDirection: evaluateTextDirection(textDirection, data),
-      clip: evaluateBool(clip, data) ?? false,
+      clip: await evaluateBool(clip, data) ?? false,
       theme: evaluateThemeData(theme, data),
     );
   }

@@ -37,32 +37,32 @@ class TplTransform implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplTransformToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    final transformStr = evaluateString(transform, data);
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    final transformStr = await evaluateString(transform, data);
     switch (transformStr) {
       case 'rotate':
         return Transform.rotate(
             angle: angle,
             origin: origin?.toPdf(data),
             alignment: alignment?.buildAlignment(data),
-            child: child?.buildWidget(data));
+            child: await child?.buildWidget(data));
 
       case 'rotateBox':
         return Transform.rotateBox(
             angle: angle,
-            child: child?.buildWidget(data),
+            child: await child?.buildWidget(data),
             unconstrained: false);
 
       case 'translate':
         return Transform.translate(
-            offset: offset!.toPdf(data), child: child?.buildWidget(data));
+            offset: offset!.toPdf(data), child: await child?.buildWidget(data));
 
       case 'scale':
         return Transform.scale(
             scale: scale,
             origin: origin?.toPdf(data),
             alignment: alignment?.buildAlignment(data),
-            child: child?.buildWidget(data));
+            child: await child?.buildWidget(data));
       default:
         throw Exception('Invalid transform: $transformStr');
     }

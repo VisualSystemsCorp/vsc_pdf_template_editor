@@ -32,15 +32,15 @@ class TplCheckbox implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplCheckboxToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Checkbox(
-        value: evaluateBool(value, data) ?? false,
-        tristate: evaluateBool(tristate, data) ?? false,
-        activeColor: evaluateColor(activeColor, data) ?? PdfColors.blue,
-        checkColor: evaluateColor(checkColor, data) ?? PdfColors.white,
-        width: evaluateDouble(width, data) ?? 13,
-        height: evaluateDouble(width, data) ?? 13,
-        name: evaluateText(name, data),
+        value: await evaluateBool(value, data) ?? false,
+        tristate: await evaluateBool(tristate, data) ?? false,
+        activeColor: await evaluateColor(activeColor, data) ?? PdfColors.blue,
+        checkColor: await evaluateColor(checkColor, data) ?? PdfColors.white,
+        width: await evaluateDouble(width, data) ?? 13,
+        height: await evaluateDouble(width, data) ?? 13,
+        name: await evaluateText(name, data),
         decoration: decoration?.toPdf(data));
   }
 }

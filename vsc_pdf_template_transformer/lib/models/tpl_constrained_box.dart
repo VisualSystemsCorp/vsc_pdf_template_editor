@@ -26,10 +26,10 @@ class TplConstrainedBox implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplConstrainedBoxToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return ConstrainedBox(
       constraints: constraints?.toPdf(data) ?? BoxConstraints(),
-      child: child?.buildWidget(data),
+      child: await child?.buildWidget(data),
     );
   }
 }

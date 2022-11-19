@@ -24,7 +24,7 @@ class TplCartesianGrid implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplCartesianGridToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return CartesianGrid(xAxis: xAxis!.toPdf(data), yAxis: yAxis!.toPdf(data));
   }
 }

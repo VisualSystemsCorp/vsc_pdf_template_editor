@@ -30,7 +30,7 @@ class TplColumn implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplColumnToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Column(
       mainAxisAlignment: evaluateMainAxisAlignment(mainAxisAlignment, data) ??
           MainAxisAlignment.start,

@@ -28,12 +28,12 @@ class TplShape implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplShapeToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    return Shape(evaluateText(shape, data),
-        fillColor: evaluateColor(fillColor, data),
-        strokeColor: evaluateColor(strokeColor, data),
-        width: evaluateDouble(width, data),
-        height: evaluateDouble(height, data),
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+    return Shape(await evaluateText(shape, data),
+        fillColor: await evaluateColor(fillColor, data),
+        strokeColor: await evaluateColor(strokeColor, data),
+        width: await evaluateDouble(width, data),
+        height: await evaluateDouble(height, data),
         fit: evaluateBoxFit(fit, data) ?? BoxFit.contain);
   }
 }

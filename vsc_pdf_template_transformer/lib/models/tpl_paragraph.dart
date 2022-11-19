@@ -30,9 +30,9 @@ class TplParagraph implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplParagraphToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Paragraph(
-        text: evaluateString(text, data),
+        text: await evaluateString(text, data),
         textAlign: evaluateTextAlign(textAlign, data) ?? TextAlign.justify,
         style: style?.toPdf(data),
         margin: margin?.toPdf(data) ??

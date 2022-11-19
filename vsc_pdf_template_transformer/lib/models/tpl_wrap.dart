@@ -33,14 +33,14 @@ class TplWrap implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplWrapToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Wrap(
       direction: evaluateAxis(direction, data) ?? Axis.horizontal,
       alignment: evaluateWrapAlignment(alignment, data) ?? WrapAlignment.start,
-      spacing: evaluateDouble(spacing, data) ?? 0,
+      spacing: await evaluateDouble(spacing, data) ?? 0,
       runAlignment:
           evaluateWrapAlignment(runAlignment, data) ?? WrapAlignment.start,
-      runSpacing: evaluateDouble(runSpacing, data) ?? 0,
+      runSpacing: await evaluateDouble(runSpacing, data) ?? 0,
       crossAxisAlignment:
           evaluateWrapCrossAlignment(crossAxisAlignment, data) ??
               WrapCrossAlignment.start,

@@ -40,6 +40,6 @@ class TplDecorationImage implements dg.DecorationGraphic {
         image: imageProvider,
         fit: evaluateBoxFit(fit, data) ?? BoxFit.cover,
         alignment: alignment?.buildAlignment(data) ?? Alignment.center,
-        dpi: evaluateDouble(dpi, data));
+        dpi: await evaluateDouble(dpi, data));
   }
 }

@@ -31,11 +31,11 @@ class TplAnnotationSquare implements ab.AnnotationBuilder {
   @override
   AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
     return AnnotationSquare(
-        color: evaluateColor(color, data),
-        interiorColor: evaluateColor(interiorColor, data),
+        color: await evaluateColor(color, data),
+        interiorColor: await evaluateColor(interiorColor, data),
         date: evaluateDateTime(date, data),
-        subject: evaluateString(subject, data),
-        author: evaluateString(author, data),
-        content: evaluateString(content, data));
+        subject: await evaluateString(subject, data),
+        author: await evaluateString(author, data),
+        content: await evaluateString(content, data));
   }
 }

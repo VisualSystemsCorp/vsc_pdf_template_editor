@@ -25,8 +25,8 @@ class TplBorderSide {
 
   ws.BorderSide toPdf(Map<String, dynamic> data) {
     return ws.BorderSide(
-        width: evaluateDouble(width, data) ?? 1.0,
-        color: evaluateColor(color, data) ?? PdfColors.black,
+        width: await evaluateDouble(width, data) ?? 1.0,
+        color: await evaluateColor(color, data) ?? PdfColors.black,
         style: style?.toPdf(data) ?? const ws.BorderStyle());
   }
 }

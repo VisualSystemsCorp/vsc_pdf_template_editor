@@ -23,7 +23,7 @@ class TplPieGrid implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplPieGridToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    return PieGrid(startAngle: evaluateDouble(startAngle, data) ?? 0);
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+    return PieGrid(startAngle: await evaluateDouble(startAngle, data) ?? 0);
   }
 }

@@ -27,10 +27,10 @@ class TplCenter implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplCenterToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Center(
-        widthFactor: evaluateDouble(widthFactor, data),
-        heightFactor: evaluateDouble(heightFactor, data),
-        child: child?.buildWidget(data));
+        widthFactor: await evaluateDouble(widthFactor, data),
+        heightFactor: await evaluateDouble(heightFactor, data),
+        child: await child?.buildWidget(data));
   }
 }

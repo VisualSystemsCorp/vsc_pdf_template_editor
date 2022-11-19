@@ -27,10 +27,10 @@ class TplAlignment extends a.Alignment {
 
   @override
   ws.Alignment buildAlignment(Map<String, dynamic> data) {
-    final alignmentStr = evaluateString(alignment, data);
+    final alignmentStr = await evaluateString(alignment, data);
     if (alignmentStr == null) {
-      return ws.Alignment(
-          evaluateDouble(x, data) ?? 0.0, evaluateDouble(y, data) ?? 0.0);
+      return ws.Alignment(await evaluateDouble(x, data) ?? 0.0,
+          await evaluateDouble(y, data) ?? 0.0);
     }
 
     switch (alignmentStr) {

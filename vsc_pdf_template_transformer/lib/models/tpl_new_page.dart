@@ -21,7 +21,7 @@ class TplNewPage implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplNewPageToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return NewPage();
   }
 }

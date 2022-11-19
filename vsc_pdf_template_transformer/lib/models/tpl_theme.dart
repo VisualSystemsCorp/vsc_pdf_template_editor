@@ -28,7 +28,7 @@ class TplTheme implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplThemeToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Theme(
       data: evaluateThemeData(this.data, data)!,
       child: child!.buildWidget(data),

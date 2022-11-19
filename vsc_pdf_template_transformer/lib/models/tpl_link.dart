@@ -26,9 +26,9 @@ class TplLink implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplLinkToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Link(
-        destination: evaluateText(destination, data),
-        child: child?.buildWidget(data) ?? SizedBox());
+        destination: await evaluateText(destination, data),
+        child: await child?.buildWidget(data) ?? SizedBox());
   }
 }

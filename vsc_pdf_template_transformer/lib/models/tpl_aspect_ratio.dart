@@ -26,9 +26,9 @@ class TplAspectRatio implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplAspectRatioToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return AspectRatio(
-        aspectRatio: evaluateDouble(aspectRatio, data) ?? 1.0,
-        child: child?.buildWidget(data));
+        aspectRatio: await evaluateDouble(aspectRatio, data) ?? 1.0,
+        child: await child?.buildWidget(data));
   }
 }

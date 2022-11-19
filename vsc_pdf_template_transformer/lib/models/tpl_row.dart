@@ -29,7 +29,7 @@ class TplRow implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplRowToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Row(
       mainAxisAlignment: evaluateMainAxisAlignment(mainAxisAlignment, data) ??
           MainAxisAlignment.start,

@@ -41,17 +41,17 @@ class TplContainer implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplContainerToJson(this);
 
   @override
-  pw.Widget buildWidget(Map<String, dynamic> data) {
+  pw.Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return pw.Container(
         alignment: alignment?.buildAlignment(data),
         padding: padding?.toPdf(data),
-        color: evaluateColor(color, data),
+        color: await evaluateColor(color, data),
         decoration: decoration?.toPdf(data),
         foregroundDecoration: foregroundDecoration?.toPdf(data),
-        width: evaluateDouble(width, data),
-        height: evaluateDouble(height, data),
+        width: await evaluateDouble(width, data),
+        height: await evaluateDouble(height, data),
         constraints: constraints?.toPdf(data),
         margin: margin?.toPdf(data),
-        child: child?.buildWidget(data));
+        child: await child?.buildWidget(data));
   }
 }

@@ -24,7 +24,7 @@ class TplClipRect implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplClipRectToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    return ClipRect(child: child?.buildWidget(data));
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    return ClipRect(child: await child?.buildWidget(data));
   }
 }

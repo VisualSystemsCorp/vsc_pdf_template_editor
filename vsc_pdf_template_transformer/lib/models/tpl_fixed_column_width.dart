@@ -25,6 +25,6 @@ class TplFixedColumnWidth implements tcw.TableColumnWidth {
 
   @override
   TableColumnWidth buildTableColumnWidth(Map<String, dynamic> data) {
-    return FixedColumnWidth(evaluateDouble(width, data) ?? 0);
+    return FixedColumnWidth(await evaluateDouble(width, data) ?? 0);
   }
 }

@@ -31,7 +31,7 @@ class TplBorderRadius {
     }
 
     if (circular) {
-      return ws.BorderRadius.circular(evaluateDouble(circular, data) ?? 0);
+      return ws.BorderRadius.circular(await evaluateDouble(circular, data) ?? 0);
     }
 
     return ws.BorderRadius.only(

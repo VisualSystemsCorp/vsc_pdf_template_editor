@@ -21,6 +21,6 @@ class TplPdfPoint {
   Map<String, dynamic> toJson() => _$TplPdfPointToJson(this);
 
   PdfPoint toPdf(Map<String, dynamic> data) {
-    return PdfPoint(evaluateDouble(x, data) ?? 0, evaluateDouble(y, data) ?? 0);
+    return PdfPoint(await evaluateDouble(x, data) ?? 0, await evaluateDouble(y, data) ?? 0);
   }
 }

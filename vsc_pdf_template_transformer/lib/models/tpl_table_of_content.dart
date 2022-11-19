@@ -22,7 +22,7 @@ class TplTableOfContent implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplTableOfContentToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return TableOfContent();
   }
 }

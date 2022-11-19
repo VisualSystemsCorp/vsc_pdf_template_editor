@@ -27,8 +27,8 @@ class TplPdfPageFormat {
   Map<String, dynamic> toJson() => _$TplPdfPageFormatToJson(this);
 
   PdfPageFormat? toPdf(Map<String, dynamic> data) {
-    final widthRes = evaluateDouble(width, data);
-    final heightRes = evaluateDouble(height, data);
+    final widthRes = await evaluateDouble(width, data);
+    final heightRes = await evaluateDouble(height, data);
     if (widthRes != null &&
         heightRes != null &&
         widthRes > 0 &&
@@ -36,11 +36,11 @@ class TplPdfPageFormat {
       return PdfPageFormat(
         widthRes,
         heightRes,
-        marginTop: evaluateDouble(marginTop, data) ?? 0,
-        marginBottom: evaluateDouble(marginBottom, data) ?? 0,
-        marginLeft: evaluateDouble(marginLeft, data) ?? 0,
-        marginRight: evaluateDouble(marginRight, data) ?? 0,
-        marginAll: evaluateDouble(marginTop, data),
+        marginTop: await evaluateDouble(marginTop, data) ?? 0,
+        marginBottom: await evaluateDouble(marginBottom, data) ?? 0,
+        marginLeft: await evaluateDouble(marginLeft, data) ?? 0,
+        marginRight: await evaluateDouble(marginRight, data) ?? 0,
+        marginAll: await evaluateDouble(marginTop, data),
       );
     }
     return evaluatePageFormat(format, data);

@@ -28,9 +28,9 @@ class TplAnnotationUrl implements ab.AnnotationBuilder {
 
   @override
   AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
-    return AnnotationUrl(evaluateString(destination, data) ?? '',
+    return AnnotationUrl(await evaluateString(destination, data) ?? '',
         date: evaluateDateTime(date, data),
-        subject: evaluateString(subject, data),
-        author: evaluateString(author, data));
+        subject: await evaluateString(subject, data),
+        author: await evaluateString(author, data));
   }
 }

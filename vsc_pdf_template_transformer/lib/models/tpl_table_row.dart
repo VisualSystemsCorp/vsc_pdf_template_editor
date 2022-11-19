@@ -33,7 +33,7 @@ class TplTableRow {
   TableRow buildRow(Map<String, dynamic> data) {
     return TableRow(
         children: children == null ? [] : getChildren(children!, data),
-        repeat: evaluateBool(repeat, data) ?? false,
+        repeat: await evaluateBool(repeat, data) ?? false,
         verticalAlignment:
             evaluateTableCellVerticalAlignment(verticalAlignment, data),
         decoration: decoration?.toPdf(data));

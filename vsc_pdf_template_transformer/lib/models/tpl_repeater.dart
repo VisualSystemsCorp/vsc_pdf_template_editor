@@ -26,16 +26,18 @@ class TplRepeater {
 
   Map<String, dynamic> toJson() => _$TplRepeaterToJson(this);
 
-  List<Widget> toPdf(Map<String, dynamic> data) {
-    final resultArray = evaluateList(array, data);
+  Future<List<Widget>> toPdf(Map<String, dynamic> data) async {
+    final resultArray = await evaluateList(array, data);
     if (resultArray == null) return [];
-    final List<Widget> widgets = [];
+
+    final widgets = <Widget>[];
     for (int i = 0; i < resultArray.length; i++) {
       final dataForChildWidget = createDataForRepeatedItem(
           itemData: resultArray[i], parentData: data, index: i);
-      final widget = childTemplate?.buildWidget(dataForChildWidget);
+      final widget = await childTemplate?.buildWidget(dataForChildWidget);
       if (widget != null) widgets.add(widget);
     }
+
     return widgets;
   }
 }

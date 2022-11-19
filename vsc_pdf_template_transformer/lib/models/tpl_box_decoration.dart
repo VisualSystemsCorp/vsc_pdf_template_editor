@@ -34,7 +34,7 @@ class TplBoxDecoration {
 
   ws.BoxDecoration toPdf(Map<String, dynamic> data) {
     final result = ws.BoxDecoration(
-        color: evaluateColor(color, data),
+        color: await evaluateColor(color, data),
         border: border?.toPdf(data),
         borderRadius: borderRadius?.toPdf(data),
         gradient: gradient?.buildGradient(data),

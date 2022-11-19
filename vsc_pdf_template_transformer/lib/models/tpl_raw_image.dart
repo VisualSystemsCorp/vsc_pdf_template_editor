@@ -33,10 +33,10 @@ class TplRawImage implements ip.ImageProvider {
   buildImage(Map<String, dynamic> data) {
     return RawImage(
       bytes: evaluateBase64(imageData, data) ?? Uint8List(0),
-      width: evaluateInt(width, data) ?? 0,
-      height: evaluateInt(height, data) ?? 0,
+      width: await evaluateInt(width, data) ?? 0,
+      height: await evaluateInt(height, data) ?? 0,
       orientation: evaluatePdfImageOrientation(orientation, data),
-      dpi: evaluateDouble(dpi, data),
+      dpi: await evaluateDouble(dpi, data),
     );
   }
 }

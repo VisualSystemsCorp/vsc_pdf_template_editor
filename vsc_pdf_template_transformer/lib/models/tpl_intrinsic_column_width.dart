@@ -25,6 +25,6 @@ class TplIntrinsicColumnWidth implements tcw.TableColumnWidth {
 
   @override
   TableColumnWidth buildTableColumnWidth(Map<String, dynamic> data) {
-    return IntrinsicColumnWidth(flex: evaluateDouble(flex, data));
+    return IntrinsicColumnWidth(flex: await evaluateDouble(flex, data));
   }
 }

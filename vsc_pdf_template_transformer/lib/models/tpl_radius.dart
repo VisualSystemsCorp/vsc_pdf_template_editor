@@ -23,12 +23,12 @@ class TplRadius {
 
   ws.Radius toPdf(Map<String, dynamic> data) {
     if (circular != null) {
-      return ws.Radius.circular(evaluateDouble(circular, data) ?? 0);
+      return ws.Radius.circular(await evaluateDouble(circular, data) ?? 0);
     }
 
     return ws.Radius.elliptical(
-      evaluateDouble(x, data) ?? 0,
-      evaluateDouble(y, data) ?? 0,
+      await evaluateDouble(x, data) ?? 0,
+      await evaluateDouble(y, data) ?? 0,
     );
   }
 }

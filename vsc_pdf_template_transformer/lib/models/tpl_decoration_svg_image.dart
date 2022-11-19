@@ -31,7 +31,7 @@ class TplDecorationSvgImage implements dg.DecorationGraphic {
   @override
   DecorationGraphic buildDecorationImage(Map<String, dynamic> data) {
     return DecorationSvgImage(
-      svg: evaluateText(svg, data),
+      svg: await evaluateText(svg, data),
       fit: evaluateBoxFit(fit, data) ?? BoxFit.cover,
       alignment: alignment?.buildAlignment(data) ?? Alignment.center,
     );

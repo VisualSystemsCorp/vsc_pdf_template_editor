@@ -34,10 +34,10 @@ class TplWidgetSpan implements ins.InlineSpan {
   Map<String, dynamic> toJson() => _$TplWidgetSpanToJson(this);
 
   @override
-  InlineSpan buildInlineSpan(Map<String, dynamic> data) {
+  Future<InlineSpan> buildInlineSpan(Map<String, dynamic> data) async {
     return WidgetSpan(
-        child: child!.buildWidget(data),
-        baseline: evaluateDouble(baseline, data) ?? 0,
+        child: await child!.buildWidget(data),
+        baseline: await await evaluateDouble(baseline, data) ?? 0,
         style: style?.toPdf(data),
         annotation: annotation?.buildAnnotation(data));
   }

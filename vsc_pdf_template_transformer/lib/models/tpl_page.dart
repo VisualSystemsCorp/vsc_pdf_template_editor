@@ -3,6 +3,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
+import 'package:vsc_pdf_template_transformer/src/async_pdf_widgets/async_page.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 
@@ -34,17 +35,18 @@ class TplPage {
 
   Map<String, dynamic> toJson() => _$TplPageToJson(this);
 
-  pw.Page toPdf(Map<String, dynamic> data) {
-    return pw.Page(
+  Future<AsyncPage> toPdf(Map<String, dynamic> data) async {
+    return AsyncPage(
       pageTheme: pageTheme?.toPdf(data),
-      theme: evaluateThemeData(theme, data),
+      theme: await evaluateThemeData(theme, data),
       pageFormat: pageFormat?.toPdf(data),
-      orientation: evaluatePageOrientation(orientation, data),
+      orientation: await evaluatePageOrientation(orientation, data),
       margin: margin?.toPdf(data),
-      textDirection: evaluateTextDirection(textDirection, data),
-      clip: evaluateBool(clip, data) ?? false,
-      build: (pw.Context context) {
-        return child?.buildWidget(addPageInfoToData(context, data)) ??
+      textDirection: await evaluateTextDirection(textDirection, data),
+      clip: await await evaluateBool(clip, data) ?? false,
+      build: (pw.Context context) async {
+        return await await child
+                ?.buildWidget(addPageInfoToData(context, data)) ??
             pw.SizedBox();
       },
     );

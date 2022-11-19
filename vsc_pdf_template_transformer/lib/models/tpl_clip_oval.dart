@@ -24,7 +24,7 @@ class TplClipOval implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplClipOvalToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    return ClipOval(child: child?.buildWidget(data));
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    return ClipOval(child: await child?.buildWidget(data));
   }
 }

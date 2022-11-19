@@ -1,5 +1,4 @@
 import 'package:intl/date_symbol_data_local.dart' as intl_date_data;
-import 'package:pdf/widgets.dart' as pw;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_aspect_ratio.dart';
@@ -69,6 +68,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_url_link.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_vertical_divider.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_watermark.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_wrap.dart';
+import 'package:vsc_pdf_template_transformer/src/async_pdf_widgets/async_document.dart';
 
 import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
@@ -76,7 +76,7 @@ import '../utils/widget_builder.dart';
 var _tzInited = false;
 
 class Transformer {
-  static Future<pw.Document> buildPdf(
+  static Future<AsyncDocument> buildPdf(
       Map<String, dynamic> template, Map<String, dynamic> data) async {
     if (!_tzInited) {
       tz.initializeTimeZones();
@@ -91,9 +91,9 @@ class Transformer {
     for (int i = 0; i < documentChildren.length; i++) {
       final childJson = documentChildren[i];
       if (childJson['className'] == 'TplMultiPage') {
-        document.addPage(TplMultiPage.fromJson(childJson).toPdf(data));
+        await document.addPage(await TplMultiPage.fromJson(childJson).toPdf(data));
       } else if (childJson['className'] == 'TplPage') {
-        document.addPage(TplPage.fromJson(childJson).toPdf(data));
+        await document.addPage(await TplPage.fromJson(childJson).toPdf(data));
       } else {
         throw Exception(
             '${childJson['className']} is not a recognized Page type');

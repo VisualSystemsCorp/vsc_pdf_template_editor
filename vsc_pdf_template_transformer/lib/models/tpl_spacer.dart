@@ -23,7 +23,7 @@ class TplSpacer implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplSpacerToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    return Spacer(flex: evaluateInt(flex, data) ?? 1);
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+    return Spacer(flex: await evaluateInt(flex, data) ?? 1);
   }
 }

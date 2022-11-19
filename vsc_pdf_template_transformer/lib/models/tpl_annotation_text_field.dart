@@ -38,17 +38,17 @@ class TplAnnotationTextField implements ab.AnnotationBuilder {
   @override
   AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
     return AnnotationTextField(
-        name: evaluateString(name, data),
-        color: evaluateColor(color, data),
+        name: await evaluateString(name, data),
+        color: await evaluateColor(color, data),
         date: evaluateDateTime(date, data),
-        backgroundColor: evaluateColor(backgroundColor, data),
-        maxLength: evaluateInt(maxLength, data),
-        alternateName: evaluateString(alternateName, data),
-        mappingName: evaluateString(mappingName, data),
-        subject: evaluateString(subject, data),
-        author: evaluateString(author, data),
-        value: evaluateString(value, data),
-        defaultValue: evaluateString(defaultValue, data),
+        backgroundColor: await evaluateColor(backgroundColor, data),
+        maxLength: await evaluateInt(maxLength, data),
+        alternateName: await evaluateString(alternateName, data),
+        mappingName: await evaluateString(mappingName, data),
+        subject: await evaluateString(subject, data),
+        author: await evaluateString(author, data),
+        value: await evaluateString(value, data),
+        defaultValue: await evaluateString(defaultValue, data),
         textStyle: textStyle?.toPdf(data));
   }
 }

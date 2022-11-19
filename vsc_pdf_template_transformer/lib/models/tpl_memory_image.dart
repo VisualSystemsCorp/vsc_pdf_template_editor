@@ -31,6 +31,6 @@ class TplMemoryImage implements ip.ImageProvider {
   buildImage(Map<String, dynamic> data) {
     return MemoryImage(evaluateBase64(imageData, data) ?? Uint8List(0),
         orientation: evaluatePdfImageOrientation(orientation, data),
-        dpi: evaluateDouble(dpi, data));
+        dpi: await evaluateDouble(dpi, data));
   }
 }

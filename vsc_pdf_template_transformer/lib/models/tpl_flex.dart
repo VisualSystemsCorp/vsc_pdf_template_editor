@@ -30,7 +30,7 @@ class TplFlex implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplFlexToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Flex(
       direction: evaluateAxis(direction, data) ?? Axis.vertical,
       mainAxisAlignment: evaluateMainAxisAlignment(mainAxisAlignment, data) ??

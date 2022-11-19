@@ -53,9 +53,9 @@ class TplThemeData {
         bulletStyle: bulletStyle?.toPdf(data),
         tableHeader: tableHeader?.toPdf(data),
         tableCell: tableCell?.toPdf(data),
-        softWrap: evaluateBool(softWrap, data),
+        softWrap: await evaluateBool(softWrap, data),
         textAlign: evaluateTextAlign(textAlign, data),
-        maxLines: evaluateInt(maxLines, data),
+        maxLines: await evaluateInt(maxLines, data),
         overflow: evaluateTextOverflow(overflow, data),
         iconTheme: iconTheme?.toPdf(data));
   }

@@ -35,7 +35,7 @@ class TplTable implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplTableToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Table(
       children: _getTableRows(data),
       border: border?.toPdf(data),

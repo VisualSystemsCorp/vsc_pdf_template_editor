@@ -21,16 +21,15 @@ import '../utils/inline_span.dart' as ins;
 import '../utils/table_column_width.dart' as tcw;
 import '../vsc_pdf_template_transformer.dart';
 
-ExpressionEvaluator createExpressionEvaluator() {
-  return ExpressionEvaluator(memberAccessors: [
+ExpressionEvaluator _createAsyncExpressionEvaluator() {
+  return ExpressionEvaluator.async(memberAccessors: [
     MemberAccessor.mapAccessor,
   ]);
 }
 
-/// Evaluate a dynamic expression, or constant non-string value. [addlContext] will
-/// be added to the evaluation context. [data] will be in the context under the key
-/// `data`.
-dynamic evaluateDynamic(
+/// Evaluate a dynamic expression, or constant non-string value (like a bool or num that was a literal in the JSON).
+/// [addlContext] will be added to the evaluation context. [data] will be in the context under the key `data`.
+Future<dynamic> evaluateDynamic(
   dynamic expression,
   Map<String, dynamic> data, {
   Map<String, dynamic> addlContext = const {},
@@ -39,7 +38,8 @@ dynamic evaluateDynamic(
     return expression;
   }
 
-  return createExpressionEvaluator().eval(Expression.parse(expression.trim()), {
+  final parsedExpr = Expression.parse(expression.trim());
+  final Stream result = _createAsyncExpressionEvaluator().eval(parsedExpr, {
     'data': data,
     ...addlContext,
     'formatLongCurrency': (dynamic value) => _formatLongCurrency(value, data),
@@ -55,8 +55,11 @@ dynamic evaluateDynamic(
         defaultTextStyle:
             themeData.defaultTextStyle.copyWith(fontSize: fontSize.toDouble()),
       );
-    }
+    },
+    'toString': (dynamic value) => value.toString(),
   });
+
+  return result.single;
 }
 
 /// Formats [value] into a date/time string using the given [pattern], and possibly
@@ -182,22 +185,27 @@ T nonNull<T>(T? value) {
   return value;
 }
 
-String? evaluateString(dynamic expression, Map<String, dynamic> data) {
+/// Evaluates [expression] into a String or null. If [expression] wants to return a literal string,
+/// it must be quoted, e.g., [expression] would be `"'test'"` to return the literal string "test".
+Future<String?> await evaluateString(
+    dynamic expression, Map<String, dynamic> data) async {
   // Note expression strings containing a single word, such as "hello", return a null from the evaluator,
   // where "hello world" throws an exception.
   // Thus, all strings must be a valid expression and must be quoted.
-  final result = evaluateDynamic(expression, data);
+  final result = await evaluateDynamic(expression, data);
   return result?.toString();
 }
 
 /// Like [evaluateString], but returns an empty string if the result is `null`.
-String evaluateText(dynamic expression, Map<String, dynamic> data) {
-  return evaluateString(expression, data) ?? '';
+Future<String> await evaluateText(
+    dynamic expression, Map<String, dynamic> data) async {
+  return (await await evaluateString(expression, data)) ?? '';
 }
 
-double? evaluateDouble(dynamic expression, Map<String, dynamic> data) {
+Future<double?> await evaluateDouble(
+    dynamic expression, Map<String, dynamic> data) async {
   // Allow exceptions for invalid expressions to be thrown.
-  final result = evaluateDynamic(expression, data);
+  final result = await evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -208,9 +216,9 @@ double? evaluateDouble(dynamic expression, Map<String, dynamic> data) {
   return double.tryParse(result.toString());
 }
 
-int? evaluateInt(dynamic expression, Map<String, dynamic> data) {
+Future<int?> await evaluateInt(dynamic expression, Map<String, dynamic> data) async {
   // Allow exceptions for invalid expressions to be thrown.
-  final result = evaluateDynamic(expression, data);
+  final result = await evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -221,8 +229,8 @@ int? evaluateInt(dynamic expression, Map<String, dynamic> data) {
   return int.tryParse(result.toString());
 }
 
-num? evaluateNum(dynamic expression, Map<String, dynamic> data) {
-  final result = evaluateDynamic(expression, data);
+Future<num?> evaluateNum(dynamic expression, Map<String, dynamic> data) async {
+  final result = await evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -233,9 +241,10 @@ num? evaluateNum(dynamic expression, Map<String, dynamic> data) {
   return num.tryParse(result.toString());
 }
 
-bool? evaluateBool(dynamic expression, Map<String, dynamic> data) {
+Future<bool?> await evaluateBool(
+    dynamic expression, Map<String, dynamic> data) async {
   // Allow exceptions for invalid expressions to be thrown.
-  final result = evaluateDynamic(expression, data);
+  final result = await evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -246,14 +255,16 @@ bool? evaluateBool(dynamic expression, Map<String, dynamic> data) {
   return result.toString().toLowerCase() == 'true';
 }
 
-DateTime? evaluateDateTime(dynamic expression, Map<String, dynamic> data) {
-  final dateStr = evaluateString(expression, data);
+Future<DateTime?> evaluateDateTime(
+    dynamic expression, Map<String, dynamic> data) async {
+  final dateStr = await await evaluateString(expression, data);
   return dateStr != null ? DateTime.parse(dateStr) : null;
 }
 
-PdfColor? evaluateColor(dynamic expression, Map<String, dynamic> data) {
+Future<PdfColor?> await evaluateColor(
+    dynamic expression, Map<String, dynamic> data) async {
   // Allow exceptions for invalid expressions to be thrown.
-  final result = evaluateDynamic(expression, data);
+  final result = await evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -261,8 +272,9 @@ PdfColor? evaluateColor(dynamic expression, Map<String, dynamic> data) {
   return PdfColor.fromHex(result.toString());
 }
 
-Uint8List? evaluateBase64(dynamic expression, Map<String, dynamic> data) {
-  final result = evaluateString(expression, data);
+Future<Uint8List?> evaluateBase64(
+    dynamic expression, Map<String, dynamic> data) async {
+  final result = await await evaluateString(expression, data);
   if (result == null) {
     return null;
   }
@@ -270,8 +282,9 @@ Uint8List? evaluateBase64(dynamic expression, Map<String, dynamic> data) {
   return Base64Decoder().convert(result);
 }
 
-List<T>? evaluateList<T>(dynamic expression, Map<String, dynamic> data) {
-  final result = evaluateDynamic(expression, data);
+Future<List<T>?> evaluateList<T>(
+    dynamic expression, Map<String, dynamic> data) async {
+  final result = await evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -279,13 +292,13 @@ List<T>? evaluateList<T>(dynamic expression, Map<String, dynamic> data) {
   return List<T>.from(result, growable: false);
 }
 
-T? evaluateEnum<T extends Enum>(
+Future<T?> evaluateEnum<T extends Enum>(
   List<T> values,
   dynamic expression,
   Map<String, dynamic> data, {
   bool throwIfNotFound = true,
-}) {
-  final result = evaluateDynamic(expression, data);
+}) async {
+  final result = await evaluateDynamic(expression, data);
   if (result == null || result is! String) {
     if (throwIfNotFound && expression != null) {
       throw Exception(
@@ -297,11 +310,12 @@ T? evaluateEnum<T extends Enum>(
   return values.byName(result.toString());
 }
 
-Font? evaluateFont(dynamic expression, Map<String, dynamic> data) {
-  final fontEnum =
-      evaluateEnum(Type1Fonts.values, expression, data, throwIfNotFound: false);
+Future<Font?> evaluateFont(
+    dynamic expression, Map<String, dynamic> data) async {
+  final fontEnum = await evaluateEnum(Type1Fonts.values, expression, data,
+      throwIfNotFound: false);
   if (fontEnum == null) {
-    final maybePdfFont = evaluateDynamic(expression, data);
+    final maybePdfFont = await evaluateDynamic(expression, data);
     if (maybePdfFont == null) {
       return null;
     }
@@ -316,12 +330,12 @@ Font? evaluateFont(dynamic expression, Map<String, dynamic> data) {
   return Font.type1(fontEnum);
 }
 
-List<Font> evaluateFontList(
-    List<dynamic>? expressions, Map<String, dynamic> data) {
+Future<List<Font>> evaluateFontList(
+    List<dynamic>? expressions, Map<String, dynamic> data) async {
   final List<Font> list = [];
   if (expressions != null && expressions.isNotEmpty) {
     for (final e in expressions) {
-      final result = evaluateFont(e, data);
+      final result = await evaluateFont(e, data);
       if (result != null) {
         list.add(result);
       }
@@ -330,22 +344,20 @@ List<Font> evaluateFontList(
   return list;
 }
 
-TextDecoration? evaluateTextDecoration(
-    dynamic expression, Map<String, dynamic> data) {
+Future<TextDecoration?> evaluateTextDecoration(
+    dynamic expression, Map<String, dynamic> data) async {
   if (expression is List && expression.isNotEmpty) {
     final List<TextDecoration> list = [];
     for (final e in expression) {
-      final result = evaluateTextDecoration(e, data);
+      final result = await evaluateTextDecoration(e, data);
       if (result != null) {
         list.add(result);
       }
     }
     return TextDecoration.combine(list);
   }
-  final result = evaluateDynamic(expression, data);
-  if (result == null) {
-    return null;
-  }
+
+  final result = await evaluateDynamic(expression, data);
   switch (result) {
     case 'none':
       return TextDecoration.none;
@@ -355,70 +367,76 @@ TextDecoration? evaluateTextDecoration(
       return TextDecoration.overline;
     case 'lineThrough':
       return TextDecoration.lineThrough;
+    case null:
+      return null;
     default:
       throw Exception('Invalid text decoration: $result');
   }
 }
 
-FontWeight? evaluateFontWeight(dynamic expression, Map<String, dynamic> data) {
+Future<FontWeight?> evaluateFontWeight(
+    dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(FontWeight.values, expression, data);
 }
 
-FontStyle? evaluateFontStyle(dynamic expression, Map<String, dynamic> data) {
+Future<FontStyle?> evaluateFontStyle(
+    dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(FontStyle.values, expression, data);
 }
 
-PdfTextRenderingMode? evaluatePdfTextRenderingMode(
+Future<PdfTextRenderingMode?> evaluatePdfTextRenderingMode(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(PdfTextRenderingMode.values, expression, data);
 }
 
-TextAlign? evaluateTextAlign(dynamic expression, Map<String, dynamic> data) {
+Future<TextAlign?> evaluateTextAlign(
+    dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(TextAlign.values, expression, data);
 }
 
-TextDirection? evaluateTextDirection(
+Future<TextDirection?> evaluateTextDirection(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(TextDirection.values, expression, data);
 }
 
-TextOverflow? evaluateTextOverflow(
+Future<TextOverflow?> evaluateTextOverflow(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(TextOverflow.values, expression, data);
 }
 
-PageOrientation? evaluatePageOrientation(
+Future<PageOrientation?> evaluatePageOrientation(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(PageOrientation.values, expression, data);
 }
 
-FlexFit? evaluateFlexFit(dynamic expression, Map<String, dynamic> data) {
+Future<FlexFit?> evaluateFlexFit(
+    dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(FlexFit.values, expression, data);
 }
 
-PdfImageOrientation? evaluatePdfImageOrientation(
+Future<PdfImageOrientation?> evaluatePdfImageOrientation(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(PdfImageOrientation.values, expression, data);
 }
 
-StackFit? evaluateStackFit(dynamic expression, Map<String, dynamic> data) {
+Future<StackFit?> evaluateStackFit(
+    dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(StackFit.values, expression, data);
 }
 
-Overflow? evaluateOverflow(dynamic expression, Map<String, dynamic> data) {
+Future<Overflow?> evaluateOverflow(
+    dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(Overflow.values, expression, data);
 }
 
-BoxShape? evaluateBoxShape(dynamic expression, Map<String, dynamic> data) {
+Future<BoxShape?> evaluateBoxShape(
+    dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(BoxShape.values, expression, data);
 }
 
-PdfPageFormat? evaluatePageFormat(
-    dynamic expression, Map<String, dynamic> data) {
-  final result = evaluateDynamic(expression, data);
-  if (result == null) {
-    return null;
-  }
+Future<PdfPageFormat?> evaluatePageFormat(
+    dynamic expression, Map<String, dynamic> data) async {
+  final result = await evaluateDynamic(expression, data);
   switch (result) {
     case 'a3':
       return PdfPageFormat.a3;
@@ -440,133 +458,139 @@ PdfPageFormat? evaluatePageFormat(
       return PdfPageFormat.undefined;
     case 'standard':
       return PdfPageFormat.standard;
+    case null:
+      return null;
     default:
       throw Exception('Invalid page format: $result');
   }
 }
 
-MainAxisAlignment? evaluateMainAxisAlignment(
+Future<MainAxisAlignment?> evaluateMainAxisAlignment(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(MainAxisAlignment.values, expression, data);
 }
 
-CrossAxisAlignment? evaluateCrossAxisAlignment(
+Future<CrossAxisAlignment?> evaluateCrossAxisAlignment(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(CrossAxisAlignment.values, expression, data);
 }
 
-PdfOutlineStyle? evaluateOutlineStyle(
+Future<PdfOutlineStyle?> evaluateOutlineStyle(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(PdfOutlineStyle.values, expression, data);
 }
 
-DecorationPosition? evaluateDecorationPosition(
+Future<DecorationPosition?> evaluateDecorationPosition(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(DecorationPosition.values, expression, data);
 }
 
-BoxFit? evaluateBoxFit(dynamic expression, Map<String, dynamic> data) {
+Future<BoxFit?> evaluateBoxFit(dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(BoxFit.values, expression, data);
 }
 
-Axis? evaluateAxis(dynamic expression, Map<String, dynamic> data) {
+Future<Axis?> evaluateAxis(dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(Axis.values, expression, data);
 }
 
-MainAxisSize? evaluateMainAxisSize(
+Future<MainAxisSize?> evaluateMainAxisSize(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(MainAxisSize.values, expression, data);
 }
 
-VerticalDirection? evaluateVerticalDirection(
+Future<VerticalDirection?> evaluateVerticalDirection(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(VerticalDirection.values, expression, data);
 }
 
-WrapAlignment? evaluateWrapAlignment(
+Future<WrapAlignment?> evaluateWrapAlignment(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(WrapAlignment.values, expression, data);
 }
 
-WrapCrossAlignment? evaluateWrapCrossAlignment(
+Future<WrapCrossAlignment?> evaluateWrapCrossAlignment(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(WrapCrossAlignment.values, expression, data);
 }
 
-TableCellVerticalAlignment? evaluateTableCellVerticalAlignment(
+Future<TableCellVerticalAlignment?> evaluateTableCellVerticalAlignment(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(TableCellVerticalAlignment.values, expression, data);
 }
 
-TableWidth? evaluateTableWidth(dynamic expression, Map<String, dynamic> data) {
+Future<TableWidth?> evaluateTableWidth(
+    dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(TableWidth.values, expression, data);
 }
 
-TileMode? evaluateTileMode(dynamic expression, Map<String, dynamic> data) {
+Future<TileMode?> evaluateTileMode(
+    dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(TileMode.values, expression, data);
 }
 
-PdfFieldFlags? evaluatePdfFieldFlags(
+Future<PdfFieldFlags?> evaluatePdfFieldFlags(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(PdfFieldFlags.values, expression, data);
 }
 
-PdfAnnotHighlighting? evaluatePdfAnnotHighlighting(
+Future<PdfAnnotHighlighting?> evaluatePdfAnnotHighlighting(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(PdfAnnotHighlighting.values, expression, data);
 }
 
-PdfAnnotFlags? evaluatePdfAnnotFlags(
+Future<PdfAnnotFlags?> evaluatePdfAnnotFlags(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(PdfAnnotFlags.values, expression, data);
 }
 
-PdfBorderStyle? evaluatePdfBorderStyle(
+Future<PdfBorderStyle?> evaluatePdfBorderStyle(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(PdfBorderStyle.values, expression, data);
 }
 
-PdfVersion? evaluatePdfVersion(dynamic expression, Map<String, dynamic> data) {
+Future<PdfVersion?> evaluatePdfVersion(
+    dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(PdfVersion.values, expression, data);
 }
 
-PdfPageMode? evaluatePdfPageMode(
+Future<PdfPageMode?> evaluatePdfPageMode(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(PdfPageMode.values, expression, data);
 }
 
-PieLegendPosition? evaluatePieLegendPosition(
+Future<PieLegendPosition?> evaluatePieLegendPosition(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(PieLegendPosition.values, expression, data);
 }
 
-ValuePosition? evaluateValuePosition(
+Future<ValuePosition?> evaluateValuePosition(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(ValuePosition.values, expression, data);
 }
 
-BarcodeType? evaluateBarcodeType(
+Future<BarcodeType?> evaluateBarcodeType(
     dynamic expression, Map<String, dynamic> data) {
   return evaluateEnum(BarcodeType.values, expression, data);
 }
 
-ImageProvider? evaluateImageProvider(
-    dynamic expression, Map<String, dynamic> data) {
+Future<ImageProvider?> evaluateImageProvider(
+    dynamic expression, Map<String, dynamic> data) async {
   if (expression == null) {
     return null;
   }
 
   if (expression is Map<String, dynamic>) {
-    switch (expression['className']) {
+    final className = expression['className'];
+    switch (className) {
       case 'TplMemoryImage':
         return TplMemoryImage.fromJson(expression).buildImage(data);
       case 'TplRawImage':
         return TplRawImage.fromJson(expression).buildImage(data);
     }
-    throw Exception('No ImageProvider className or unknown image className');
+    throw Exception('Unknown image provider className: $className');
   }
 
-  final result = evaluateDynamic(expression, data);
+  final result = await evaluateDynamic(expression, data);
 
   // It could be a concrete ImageProvider initialized from a variable.
   if (result is ImageProvider) {
@@ -576,8 +600,9 @@ ImageProvider? evaluateImageProvider(
   throw Exception('Invalid image provider');
 }
 
-ThemeData? evaluateThemeData(dynamic expression, Map<String, dynamic> data) {
-  final result = evaluateDynamic(expression, data);
+Future<ThemeData?> evaluateThemeData(
+    dynamic expression, Map<String, dynamic> data) async {
+  final result = await evaluateDynamic(expression, data);
   if (result == null) {
     return null;
   }
@@ -598,34 +623,37 @@ ThemeData? evaluateThemeData(dynamic expression, Map<String, dynamic> data) {
   throw Exception('Invalid ThemeData');
 }
 
-List<Widget> getChildren(List<dynamic> children, Map<String, dynamic> data) {
+Future<List<Widget>> getChildren(
+    List<dynamic> children, Map<String, dynamic> data) async {
   final List<Widget> res = [];
 
   for (final e in children) {
     if (e['className'] == 'TplRepeater') {
-      final arr = TplRepeater.fromJson(e).toPdf(data);
+      final arr = await TplRepeater.fromJson(e).toPdf(data);
       res.addAll(arr);
     } else {
-      final widget = Transformer.getWidgetBuilder(e);
-
-      res.add(widget.buildWidget(data));
+      final widgetBuilder = Transformer.getWidgetBuilder(e);
+      res.add(await widgetBuilder.buildWidget(data));
     }
   }
   return res;
 }
 
-List<TableColumnWidth> getTableColumnWidths(
-        List<tcw.TableColumnWidth?> children, Map<String, dynamic> data) =>
-    children
-        .map((tplWidth) =>
-            tplWidth?.buildTableColumnWidth(data) ?? IntrinsicColumnWidth())
-        .toList(growable: false);
+Future<List<TableColumnWidth>> getTableColumnWidths(
+    List<tcw.TableColumnWidth?> children, Map<String, dynamic> data) async {
+  // TODO
+  return children
+      .map((tplWidth) =>
+          tplWidth?.buildTableColumnWidth(data) ?? IntrinsicColumnWidth())
+      .toList(growable: false);
+}
 
-List<PdfColor> getColors(List<dynamic> colors, Map<String, dynamic> data) {
+Future<List<PdfColor>> getColors(
+    List<dynamic> colors, Map<String, dynamic> data) async {
   final List<PdfColor> res = [];
 
   for (final e in colors) {
-    final color = evaluateColor(e, data);
+    final color = await await evaluateColor(e, data);
     if (color != null) {
       res.add(color);
     }
@@ -633,54 +661,55 @@ List<PdfColor> getColors(List<dynamic> colors, Map<String, dynamic> data) {
   return res;
 }
 
-List<Partition> getPartitions(
-    List<TplPartition> children, Map<String, dynamic> data) {
+Future<List<Partition>> getPartitions(
+    List<TplPartition> children, Map<String, dynamic> data) async {
   final List<Partition> res = [];
 
-  for (final e in children) {
-    res.add(e.buildWidget(data) as Partition);
+  for (final child in children) {
+    res.add(await child.buildWidget(data) as Partition);
   }
   return res;
 }
 
-List<InlineSpan> getInlineSpanChildren(
-    List<ins.InlineSpan?> children, Map<String, dynamic> data) {
+Future<List<InlineSpan>> getInlineSpanChildren(
+    List<ins.InlineSpan?> children, Map<String, dynamic> data) async {
   final List<InlineSpan> res = [];
 
-  for (final e in children) {
-    if (e != null) {
-      res.add(e.buildInlineSpan(data));
+  for (final child in children) {
+    if (child != null) {
+      res.add(await child.buildInlineSpan(data));
     }
   }
   return res;
 }
 
-List<PdfPoint> getPdfPoints(
-    List<TplPdfPoint> children, Map<String, dynamic> data) {
+Future<List<PdfPoint>> getPdfPoints(
+    List<TplPdfPoint> children, Map<String, dynamic> data) async {
   final List<PdfPoint> res = [];
 
+// TODO
   for (final e in children) {
     res.add(e.toPdf(data));
   }
   return res;
 }
 
-List<List<PdfPoint>> getListOfPdfPoints(
-    List<List<TplPdfPoint>> children, Map<String, dynamic> data) {
+Future<List<List<PdfPoint>>> getListOfPdfPoints(
+    List<List<TplPdfPoint>> children, Map<String, dynamic> data) async {
   final List<List<PdfPoint>> res = [];
 
   for (final e in children) {
-    res.add(getPdfPoints(e, data));
+    res.add(await getPdfPoints(e, data));
   }
   return res;
 }
 
-Set<PdfFieldFlags> getPdfFieldFlags(
-    List<dynamic> children, Map<String, dynamic> data) {
+Future<Set<PdfFieldFlags>> getPdfFieldFlags(
+    List<dynamic> children, Map<String, dynamic> data) async {
   final Set<PdfFieldFlags> flags = {};
 
   for (final e in children) {
-    final res = evaluatePdfFieldFlags(e, data);
+    final res = await evaluatePdfFieldFlags(e, data);
     if (res != null) {
       flags.add(res);
     }
@@ -688,12 +717,12 @@ Set<PdfFieldFlags> getPdfFieldFlags(
   return flags;
 }
 
-Set<PdfAnnotFlags> getPdfAnnotFlags(
-    List<dynamic> children, Map<String, dynamic> data) {
+Future<Set<PdfAnnotFlags>> getPdfAnnotFlags(
+    List<dynamic> children, Map<String, dynamic> data) async {
   final Set<PdfAnnotFlags> flags = {};
 
-  for (final e in children) {
-    final res = evaluatePdfAnnotFlags(e, data);
+  for (final child in children) {
+    final res = await evaluatePdfAnnotFlags(child, data);
     if (res != null) {
       flags.add(res);
     }
@@ -705,19 +734,19 @@ List<PointChartValue> getPointChartValues(
     List<TplPointChartValue> children, Map<String, dynamic> data) {
   final List<PointChartValue> res = [];
 
-  for (final e in children) {
-    res.add(e.toPdf(data));
+  for (final child in children) {
+    res.add(child.toPdf(data));
   }
   return res;
 }
 
-List<Dataset> getDatasets(
-    List<wb.WidgetBuilder?> children, Map<String, dynamic> data) {
+Future<List<Dataset>> getDatasets(
+    List<wb.WidgetBuilder?> children, Map<String, dynamic> data) async {
   final List<Dataset> res = [];
 
-  for (final e in children) {
-    if (e != null) {
-      res.add(e.buildWidget(data) as Dataset);
+  for (final child in children) {
+    if (child != null) {
+      res.add(await child.buildWidget(data) as Dataset);
     }
   }
   return res;

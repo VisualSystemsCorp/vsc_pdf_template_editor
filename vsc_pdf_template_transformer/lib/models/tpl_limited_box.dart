@@ -27,11 +27,11 @@ class TplLimitedBox implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplLimitedBoxToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return LimitedBox(
-      maxWidth: evaluateDouble(maxWidth, data) ?? double.infinity,
-      maxHeight: evaluateDouble(maxHeight, data) ?? double.infinity,
-      child: child?.buildWidget(data),
+      maxWidth: await evaluateDouble(maxWidth, data) ?? double.infinity,
+      maxHeight: await evaluateDouble(maxHeight, data) ?? double.infinity,
+      child: await child?.buildWidget(data),
     );
   }
 }

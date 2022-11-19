@@ -37,17 +37,17 @@ class TplFlatButton implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplFlatButtonToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return FlatButton(
-      textColor: evaluateColor(color, data) ?? PdfColors.white,
-      color: evaluateColor(color, data) ?? PdfColors.blue,
-      colorDown: evaluateColor(color, data) ?? PdfColors.red,
-      colorRollover: evaluateColor(color, data) ?? PdfColors.blueAccent,
+      textColor: await evaluateColor(color, data) ?? PdfColors.white,
+      color: await evaluateColor(color, data) ?? PdfColors.blue,
+      colorDown: await evaluateColor(color, data) ?? PdfColors.red,
+      colorRollover: await evaluateColor(color, data) ?? PdfColors.blueAccent,
       padding: padding?.toPdf(data),
       decoration: decoration?.toPdf(data),
       flags: flags,
       child: child != null ? child!.buildWidget(data) : SizedBox(),
-      name: evaluateText(name, data),
+      name: await evaluateText(name, data),
     );
   }
 }

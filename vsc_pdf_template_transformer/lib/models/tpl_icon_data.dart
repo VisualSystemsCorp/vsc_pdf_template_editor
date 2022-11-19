@@ -22,7 +22,7 @@ class TplIconData {
   Map<String, dynamic> toJson() => _$TplIconDataToJson(this);
 
   IconData toPdf(Map<String, dynamic> data) {
-    return IconData(evaluateInt(codePoint, data)!,
-        matchTextDirection: evaluateBool(matchTextDirection, data) ?? false);
+    return IconData(await evaluateInt(codePoint, data)!,
+        matchTextDirection: await evaluateBool(matchTextDirection, data) ?? false);
   }
 }

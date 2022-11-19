@@ -32,10 +32,10 @@ class TplAnnotationInk implements ab.AnnotationBuilder {
   @override
   AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
     return AnnotationInk(getListOfPdfPoints(points!, data),
-        color: evaluateColor(color, data),
+        color: await evaluateColor(color, data),
         date: evaluateDateTime(date, data),
-        subject: evaluateString(subject, data),
-        author: evaluateString(author, data),
-        content: evaluateString(content, data));
+        subject: await evaluateString(subject, data),
+        author: await evaluateString(author, data),
+        content: await evaluateString(content, data));
   }
 }

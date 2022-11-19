@@ -37,10 +37,10 @@ class TplSizedBox implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplSizedBoxToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return SizedBox(
-        width: evaluateDouble(width, data),
-        height: evaluateDouble(height, data),
-        child: child?.buildWidget(data));
+        width: await evaluateDouble(width, data),
+        height: await evaluateDouble(height, data),
+        child: await child?.buildWidget(data));
   }
 }

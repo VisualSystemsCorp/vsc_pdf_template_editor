@@ -28,7 +28,7 @@ class TplPartitions implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplPartitionsToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Partitions(
         children: children == null ? [] : getPartitions(children!, data),
         mainAxisSize:

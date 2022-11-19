@@ -23,8 +23,8 @@ class TplBorderStyle {
 
   ws.BorderStyle toPdf(Map<String, dynamic> data) {
     return ws.BorderStyle(
-        paint: evaluateBool(paint, data) ?? true,
+        paint: await evaluateBool(paint, data) ?? true,
         pattern: evaluateList(pattern, data),
-        phase: evaluateInt(phase, data) ?? 0);
+        phase: await evaluateInt(phase, data) ?? 0);
   }
 }

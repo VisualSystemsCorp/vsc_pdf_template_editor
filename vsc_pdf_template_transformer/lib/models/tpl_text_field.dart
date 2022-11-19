@@ -42,24 +42,24 @@ class TplTextField implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplTextFieldToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return TextField(
-        name: evaluateText(name, data),
-        child: child?.buildWidget(data),
-        width: evaluateDouble(width, data) ?? 120,
-        height: evaluateDouble(height, data) ?? 13,
+        name: await evaluateText(name, data),
+        child: await child?.buildWidget(data),
+        width: await evaluateDouble(width, data) ?? 120,
+        height: await evaluateDouble(height, data) ?? 13,
         flags: flags != null ? getPdfAnnotFlags(flags!, data) : {},
         date: evaluateDateTime(date, data),
-        color: evaluateColor(color, data),
-        backgroundColor: evaluateColor(backgroundColor, data),
+        color: await evaluateColor(color, data),
+        backgroundColor: await evaluateColor(backgroundColor, data),
         highlighting: evaluatePdfAnnotHighlighting(highlighting, data),
-        maxLength: evaluateInt(maxLength, data),
-        alternateName: evaluateString(alternateName, data),
-        mappingName: evaluateString(mappingName, data),
+        maxLength: await evaluateInt(maxLength, data),
+        alternateName: await evaluateString(alternateName, data),
+        mappingName: await evaluateString(mappingName, data),
         fieldFlags:
             fieldFlags != null ? getPdfFieldFlags(fieldFlags!, data) : {},
-        value: evaluateString(value, data),
-        defaultValue: evaluateString(defaultValue, data),
+        value: await evaluateString(value, data),
+        defaultValue: await evaluateString(defaultValue, data),
         textStyle: textStyle?.toPdf(data));
   }
 }

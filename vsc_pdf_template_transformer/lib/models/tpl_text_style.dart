@@ -42,9 +42,9 @@ class TplTextStyle {
 
   TextStyle toPdf(Map<String, dynamic> data) {
     return TextStyle(
-      inherit: evaluateBool(inherit, data) ?? true,
-      color: evaluateColor(color, data),
-      fontSize: evaluateDouble(fontSize, data),
+      inherit: await evaluateBool(inherit, data) ?? true,
+      color: await evaluateColor(color, data),
+      fontSize: await evaluateDouble(fontSize, data),
       font: evaluateFont(font, data),
       fontNormal: evaluateFont(fontNormal, data),
       fontBold: evaluateFont(fontBold, data),
@@ -53,15 +53,15 @@ class TplTextStyle {
       fontWeight: evaluateFontWeight(fontWeight, data),
       fontStyle: evaluateFontStyle(fontStyle, data),
       fontFallback: evaluateFontList(fontFallback, data),
-      letterSpacing: evaluateDouble(letterSpacing, data),
-      wordSpacing: evaluateDouble(wordSpacing, data),
-      lineSpacing: evaluateDouble(lineSpacing, data),
-      height: evaluateDouble(height, data),
+      letterSpacing: await evaluateDouble(letterSpacing, data),
+      wordSpacing: await evaluateDouble(wordSpacing, data),
+      lineSpacing: await evaluateDouble(lineSpacing, data),
+      height: await evaluateDouble(height, data),
       background: background?.toPdf(data),
       decoration: evaluateTextDecoration(decoration, data),
-      decorationColor: evaluateColor(decorationColor, data),
+      decorationColor: await evaluateColor(decorationColor, data),
       decorationStyle: decorationStyle,
-      decorationThickness: evaluateDouble(decorationThickness, data),
+      decorationThickness: await evaluateDouble(decorationThickness, data),
       renderingMode: evaluatePdfTextRenderingMode(renderingMode, data),
     );
   }

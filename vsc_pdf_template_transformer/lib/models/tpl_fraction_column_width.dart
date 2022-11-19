@@ -25,6 +25,6 @@ class TplFractionColumnWidth implements tcw.TableColumnWidth {
 
   @override
   TableColumnWidth buildTableColumnWidth(Map<String, dynamic> data) {
-    return FractionColumnWidth(evaluateDouble(value, data) ?? 0);
+    return FractionColumnWidth(await evaluateDouble(value, data) ?? 0);
   }
 }

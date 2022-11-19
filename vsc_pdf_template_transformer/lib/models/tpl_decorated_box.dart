@@ -28,12 +28,12 @@ class TplDecoratedBox implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplDecoratedBoxToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return DecoratedBox(
       decoration: decoration?.toPdf(data) ?? BoxDecoration(),
       position: evaluateDecorationPosition(position, data) ??
           DecorationPosition.background,
-      child: child?.buildWidget(data),
+      child: await child?.buildWidget(data),
     );
   }
 }

@@ -28,12 +28,12 @@ class TplPolygon implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplPolygonToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Polygon(
         points: getPdfPoints(points!, data),
-        fillColor: evaluateColor(fillColor, data),
-        strokeColor: evaluateColor(strokeColor, data),
-        strokeWidth: evaluateDouble(strokeWidth, data) ?? 1.0,
-        close: evaluateBool(close, data) ?? true);
+        fillColor: await evaluateColor(fillColor, data),
+        strokeColor: await evaluateColor(strokeColor, data),
+        strokeWidth: await evaluateDouble(strokeWidth, data) ?? 1.0,
+        close: await evaluateBool(close, data) ?? true);
   }
 }

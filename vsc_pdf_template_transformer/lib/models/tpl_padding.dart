@@ -26,10 +26,10 @@ class TplPadding implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplPaddingToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Padding(
       padding: padding != null ? padding!.toPdf(data) : EdgeInsets.zero,
-      child: child?.buildWidget(data),
+      child: await child?.buildWidget(data),
     );
   }
 }

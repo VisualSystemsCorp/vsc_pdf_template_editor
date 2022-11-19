@@ -37,7 +37,7 @@ class TplChart implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplChartToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Chart(
         grid: grid!.buildWidget(data) as ChartGrid,
         datasets: getDatasets(datasets!, data),

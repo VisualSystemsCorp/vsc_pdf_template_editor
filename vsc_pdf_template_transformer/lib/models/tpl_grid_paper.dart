@@ -31,31 +31,31 @@ class TplGridPaper implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplGridPaperToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    final gridStr = evaluateString(type, data);
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    final gridStr = await evaluateString(type, data);
     switch (gridStr) {
       case 'millimeter':
         return GridPaper.millimeter(
-            color: evaluateColor(color, data)!,
-            child: child?.buildWidget(data));
+            color: await evaluateColor(color, data)!,
+            child: await child?.buildWidget(data));
       case 'seyes':
         return GridPaper.seyes(
           margin: margin!.toPdf(data),
-          child: child?.buildWidget(data),
+          child: await child?.buildWidget(data),
         );
       case 'collegeRuled':
         return GridPaper.collegeRuled(
           margin: margin!.toPdf(data),
-          child: child?.buildWidget(data),
+          child: await child?.buildWidget(data),
         );
       case 'quad':
         return GridPaper.quad(
-            color: evaluateColor(color, data)!,
-            child: child?.buildWidget(data));
+            color: await evaluateColor(color, data)!,
+            child: await child?.buildWidget(data));
       case 'engineering':
         return GridPaper.engineering(
-            color: evaluateColor(color, data)!,
-            child: child?.buildWidget(data));
+            color: await evaluateColor(color, data)!,
+            child: await child?.buildWidget(data));
       default:
         throw Exception('Invalid grid paper type: $gridStr');
     }

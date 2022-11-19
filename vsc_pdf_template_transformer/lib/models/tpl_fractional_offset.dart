@@ -27,6 +27,6 @@ class TplFractionalOffset extends a.Alignment {
   @override
   Alignment buildAlignment(Map<String, dynamic> data) {
     return FractionalOffset(
-        evaluateDouble(dx, data) ?? 0, evaluateDouble(dy, data) ?? 0);
+        await evaluateDouble(dx, data) ?? 0, await evaluateDouble(dy, data) ?? 0);
   }
 }

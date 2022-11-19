@@ -37,12 +37,12 @@ class TplRadialGradient implements g.Gradient {
   Gradient buildGradient(Map<String, dynamic> data) {
     return RadialGradient(
       center: center?.buildAlignment(data) ?? Alignment.center,
-      radius: evaluateDouble(radius, data) ?? 0.5,
+      radius: await evaluateDouble(radius, data) ?? 0.5,
       colors: colors == null ? [] : getColors(colors!, data),
       stops: evaluateList(stops, data),
       tileMode: evaluateTileMode(tileMode, data) ?? TileMode.clamp,
       focal: focal?.buildAlignment(data),
-      focalRadius: evaluateDouble(focalRadius, data) ?? 0,
+      focalRadius: await evaluateDouble(focalRadius, data) ?? 0,
     );
   }
 }
