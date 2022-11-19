@@ -32,13 +32,13 @@ class TplBoxDecoration {
 
   Map<String, dynamic> toJson() => _$TplBoxDecorationToJson(this);
 
-  ws.BoxDecoration toPdf(Map<String, dynamic> data) {
+  Future<ws.BoxDecoration> toPdf(Map<String, dynamic> data) async {
     final result = ws.BoxDecoration(
         color: await evaluateColor(color, data),
-        border: border?.toPdf(data),
-        borderRadius: borderRadius?.toPdf(data),
-        gradient: gradient?.buildGradient(data),
-        image: image?.buildDecorationImage(data));
+        border: await border?.toPdf(data),
+        borderRadius: await borderRadius?.toPdf(data),
+        gradient: await gradient?.buildGradient(data),
+        image: await image?.buildDecorationImage(data));
     return result;
   }
 }

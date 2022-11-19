@@ -44,13 +44,13 @@ class TplMultiPage {
 
   Future<AsyncMultiPage> toPdf(Map<String, dynamic> data) async {
     return AsyncMultiPage(
-        pageTheme: pageTheme?.toPdf(data),
+        pageTheme: await pageTheme?.toPdf(data),
         theme: await evaluateThemeData(theme, data),
-        pageFormat: pageFormat?.toPdf(data),
+        pageFormat: await pageFormat?.toPdf(data),
         orientation: await evaluatePageOrientation(orientation, data),
-        margin: margin?.toPdf(data),
+        margin: await margin?.toPdf(data),
         textDirection: await evaluateTextDirection(textDirection, data),
-        maxPages: await await evaluateInt(maxPages, data) ?? 20,
+        maxPages: await evaluateInt(maxPages, data) ?? 20,
         mainAxisAlignment:
             await evaluateMainAxisAlignment(mainAxisAlignment, data) ??
                 pw.MainAxisAlignment.start,

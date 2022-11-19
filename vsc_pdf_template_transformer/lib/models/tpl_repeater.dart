@@ -32,8 +32,16 @@ class TplRepeater {
 
     final widgets = <Widget>[];
     for (int i = 0; i < resultArray.length; i++) {
+      var itemData = resultArray[i];
+      // If item is not a JSON object, wrap it so the user can access it with: "data.item".
+      if (itemData is! Map<String, dynamic>) {
+        itemData = <String, dynamic>{
+          'item': itemData,
+        };
+      }
+
       final dataForChildWidget = createDataForRepeatedItem(
-          itemData: resultArray[i], parentData: data, index: i);
+          itemData: itemData, parentData: data, index: i);
       final widget = await childTemplate?.buildWidget(dataForChildWidget);
       if (widget != null) widgets.add(widget);
     }

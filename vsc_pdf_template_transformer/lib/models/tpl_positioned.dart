@@ -54,8 +54,8 @@ class TplPositioned implements wb.WidgetBuilder {
             child: await child?.buildWidget(data) ?? SizedBox());
       case 'directional':
         return Positioned.directional(
-            textDirection:
-                evaluateTextDirection(textDirection, data) ?? TextDirection.ltr,
+            textDirection: await evaluateTextDirection(textDirection, data) ??
+                TextDirection.ltr,
             start: await evaluateDouble(start, data),
             top: await evaluateDouble(top, data),
             end: await evaluateDouble(end, data),

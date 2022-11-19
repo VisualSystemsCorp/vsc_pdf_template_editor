@@ -31,11 +31,11 @@ class TplDivider implements wb.WidgetBuilder {
   @override
   Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Divider(
-        height: await await evaluateDouble(height, data),
+        height: await evaluateDouble(height, data),
         thickness: await evaluateDouble(thickness, data),
         indent: await evaluateDouble(indent, data),
         endIndent: await evaluateDouble(endIndent, data),
         color: await evaluateColor(color, data),
-        borderStyle: borderStyle?.toPdf(data));
+        borderStyle: await borderStyle?.toPdf(data));
   }
 }

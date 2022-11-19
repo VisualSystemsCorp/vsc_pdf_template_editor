@@ -28,7 +28,7 @@ class TplConstrainedBox implements wb.WidgetBuilder {
   @override
   Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return ConstrainedBox(
-      constraints: constraints?.toPdf(data) ?? BoxConstraints(),
+      constraints: await constraints?.toPdf(data) ?? BoxConstraints(),
       child: await child?.buildWidget(data),
     );
   }

@@ -33,8 +33,8 @@ class TplFittedBox implements wb.WidgetBuilder {
   @override
   Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return FittedBox(
-      fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
-      alignment: alignment?.buildAlignment(data) ?? Alignment.center,
+      fit: await evaluateBoxFit(fit, data) ?? BoxFit.contain,
+      alignment: await alignment?.buildAlignment(data) ?? Alignment.center,
       child: await child?.buildWidget(data),
     );
   }

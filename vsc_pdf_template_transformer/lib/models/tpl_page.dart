@@ -37,16 +37,15 @@ class TplPage {
 
   Future<AsyncPage> toPdf(Map<String, dynamic> data) async {
     return AsyncPage(
-      pageTheme: pageTheme?.toPdf(data),
+      pageTheme: await pageTheme?.toPdf(data),
       theme: await evaluateThemeData(theme, data),
-      pageFormat: pageFormat?.toPdf(data),
+      pageFormat: await pageFormat?.toPdf(data),
       orientation: await evaluatePageOrientation(orientation, data),
-      margin: margin?.toPdf(data),
+      margin: await margin?.toPdf(data),
       textDirection: await evaluateTextDirection(textDirection, data),
-      clip: await await evaluateBool(clip, data) ?? false,
+      clip: await evaluateBool(clip, data) ?? false,
       build: (pw.Context context) async {
-        return await await child
-                ?.buildWidget(addPageInfoToData(context, data)) ??
+        return await child?.buildWidget(addPageInfoToData(context, data)) ??
             pw.SizedBox();
       },
     );

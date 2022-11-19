@@ -15,6 +15,8 @@ import 'package:vsc_pdf_template_transformer/models/tpl_point_chart_value.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_theme_data.dart';
+import 'package:vsc_pdf_template_transformer/src/fonts/gfonts.dart';
+import 'package:vsc_pdf_template_transformer/src/network/cache.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
 
 import '../utils/inline_span.dart' as ins;
@@ -33,7 +35,7 @@ Future<dynamic> evaluateDynamic(
   dynamic expression,
   Map<String, dynamic> data, {
   Map<String, dynamic> addlContext = const {},
-}) {
+}) async {
   if (expression is! String) {
     return expression;
   }
@@ -57,6 +59,23 @@ Future<dynamic> evaluateDynamic(
       );
     },
     'toString': (dynamic value) => value.toString(),
+    'downloadImage': (url) => downloadImage(url),
+    'downloadUtf8String': (url) => downloadUtf8String(url),
+    'getGoogleFont': (fontName) async {
+      final googleFontFunction = googleFonts[fontName];
+      if (googleFontFunction == null) {
+        throw Exception('Unrecognized font name $fontName');
+      }
+      return googleFontFunction();
+    },
+    'defaultTheme': () => defaultTheme(),
+    'getThemeFromGoogleFont': (fontFamilyName) async {
+      final themeFunction = googleFontThemes[fontFamilyName];
+      if (themeFunction == null) {
+        throw Exception('Unrecognized theme font family name $fontFamilyName');
+      }
+      return themeFunction();
+    },
   });
 
   return result.single;
@@ -187,7 +206,7 @@ T nonNull<T>(T? value) {
 
 /// Evaluates [expression] into a String or null. If [expression] wants to return a literal string,
 /// it must be quoted, e.g., [expression] would be `"'test'"` to return the literal string "test".
-Future<String?> await evaluateString(
+Future<String?> evaluateString(
     dynamic expression, Map<String, dynamic> data) async {
   // Note expression strings containing a single word, such as "hello", return a null from the evaluator,
   // where "hello world" throws an exception.
@@ -197,12 +216,12 @@ Future<String?> await evaluateString(
 }
 
 /// Like [evaluateString], but returns an empty string if the result is `null`.
-Future<String> await evaluateText(
+Future<String> evaluateText(
     dynamic expression, Map<String, dynamic> data) async {
-  return (await await evaluateString(expression, data)) ?? '';
+  return (await evaluateString(expression, data)) ?? '';
 }
 
-Future<double?> await evaluateDouble(
+Future<double?> evaluateDouble(
     dynamic expression, Map<String, dynamic> data) async {
   // Allow exceptions for invalid expressions to be thrown.
   final result = await evaluateDynamic(expression, data);
@@ -216,7 +235,7 @@ Future<double?> await evaluateDouble(
   return double.tryParse(result.toString());
 }
 
-Future<int?> await evaluateInt(dynamic expression, Map<String, dynamic> data) async {
+Future<int?> evaluateInt(dynamic expression, Map<String, dynamic> data) async {
   // Allow exceptions for invalid expressions to be thrown.
   final result = await evaluateDynamic(expression, data);
   if (result == null) {
@@ -241,7 +260,7 @@ Future<num?> evaluateNum(dynamic expression, Map<String, dynamic> data) async {
   return num.tryParse(result.toString());
 }
 
-Future<bool?> await evaluateBool(
+Future<bool?> evaluateBool(
     dynamic expression, Map<String, dynamic> data) async {
   // Allow exceptions for invalid expressions to be thrown.
   final result = await evaluateDynamic(expression, data);
@@ -257,11 +276,11 @@ Future<bool?> await evaluateBool(
 
 Future<DateTime?> evaluateDateTime(
     dynamic expression, Map<String, dynamic> data) async {
-  final dateStr = await await evaluateString(expression, data);
+  final dateStr = await evaluateString(expression, data);
   return dateStr != null ? DateTime.parse(dateStr) : null;
 }
 
-Future<PdfColor?> await evaluateColor(
+Future<PdfColor?> evaluateColor(
     dynamic expression, Map<String, dynamic> data) async {
   // Allow exceptions for invalid expressions to be thrown.
   final result = await evaluateDynamic(expression, data);
@@ -274,7 +293,7 @@ Future<PdfColor?> await evaluateColor(
 
 Future<Uint8List?> evaluateBase64(
     dynamic expression, Map<String, dynamic> data) async {
-  final result = await await evaluateString(expression, data);
+  final result = await evaluateString(expression, data);
   if (result == null) {
     return null;
   }
@@ -573,6 +592,11 @@ Future<BarcodeType?> evaluateBarcodeType(
   return evaluateEnum(BarcodeType.values, expression, data);
 }
 
+Future<TextDecorationStyle?> evaluateTextDecorationStyle(
+    dynamic expression, Map<String, dynamic> data) {
+  return evaluateEnum(TextDecorationStyle.values, expression, data);
+}
+
 Future<ImageProvider?> evaluateImageProvider(
     dynamic expression, Map<String, dynamic> data) async {
   if (expression == null) {
@@ -627,12 +651,12 @@ Future<List<Widget>> getChildren(
     List<dynamic> children, Map<String, dynamic> data) async {
   final List<Widget> res = [];
 
-  for (final e in children) {
-    if (e['className'] == 'TplRepeater') {
-      final arr = await TplRepeater.fromJson(e).toPdf(data);
+  for (final child in children) {
+    if (child['className'] == 'TplRepeater') {
+      final arr = await TplRepeater.fromJson(child).toPdf(data);
       res.addAll(arr);
     } else {
-      final widgetBuilder = Transformer.getWidgetBuilder(e);
+      final widgetBuilder = Transformer.getWidgetBuilder(child);
       res.add(await widgetBuilder.buildWidget(data));
     }
   }
@@ -641,19 +665,20 @@ Future<List<Widget>> getChildren(
 
 Future<List<TableColumnWidth>> getTableColumnWidths(
     List<tcw.TableColumnWidth?> children, Map<String, dynamic> data) async {
-  // TODO
-  return children
-      .map((tplWidth) =>
-          tplWidth?.buildTableColumnWidth(data) ?? IntrinsicColumnWidth())
-      .toList(growable: false);
+  final List<TableColumnWidth> result = [];
+  for (final child in children) {
+    result.add(
+        await child?.buildTableColumnWidth(data) ?? IntrinsicColumnWidth());
+  }
+  return result;
 }
 
 Future<List<PdfColor>> getColors(
     List<dynamic> colors, Map<String, dynamic> data) async {
   final List<PdfColor> res = [];
 
-  for (final e in colors) {
-    final color = await await evaluateColor(e, data);
+  for (final colorExpr in colors) {
+    final color = await evaluateColor(colorExpr, data);
     if (color != null) {
       res.add(color);
     }
@@ -686,10 +711,8 @@ Future<List<InlineSpan>> getInlineSpanChildren(
 Future<List<PdfPoint>> getPdfPoints(
     List<TplPdfPoint> children, Map<String, dynamic> data) async {
   final List<PdfPoint> res = [];
-
-// TODO
-  for (final e in children) {
-    res.add(e.toPdf(data));
+  for (final child in children) {
+    res.add(await child.toPdf(data));
   }
   return res;
 }
@@ -698,8 +721,8 @@ Future<List<List<PdfPoint>>> getListOfPdfPoints(
     List<List<TplPdfPoint>> children, Map<String, dynamic> data) async {
   final List<List<PdfPoint>> res = [];
 
-  for (final e in children) {
-    res.add(await getPdfPoints(e, data));
+  for (final child in children) {
+    res.add(await getPdfPoints(child, data));
   }
   return res;
 }
@@ -708,8 +731,8 @@ Future<Set<PdfFieldFlags>> getPdfFieldFlags(
     List<dynamic> children, Map<String, dynamic> data) async {
   final Set<PdfFieldFlags> flags = {};
 
-  for (final e in children) {
-    final res = await evaluatePdfFieldFlags(e, data);
+  for (final child in children) {
+    final res = await evaluatePdfFieldFlags(child, data);
     if (res != null) {
       flags.add(res);
     }
@@ -730,12 +753,12 @@ Future<Set<PdfAnnotFlags>> getPdfAnnotFlags(
   return flags;
 }
 
-List<PointChartValue> getPointChartValues(
-    List<TplPointChartValue> children, Map<String, dynamic> data) {
+Future<List<PointChartValue>> getPointChartValues(
+    List<TplPointChartValue> children, Map<String, dynamic> data) async {
   final List<PointChartValue> res = [];
 
   for (final child in children) {
-    res.add(child.toPdf(data));
+    res.add(await child.toPdf(data));
   }
   return res;
 }

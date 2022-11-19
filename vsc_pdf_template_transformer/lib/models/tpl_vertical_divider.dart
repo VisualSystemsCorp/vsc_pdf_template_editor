@@ -29,13 +29,13 @@ class TplVerticalDivider implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplVerticalDividerToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return VerticalDivider(
         width: await evaluateDouble(width, data),
         thickness: await evaluateDouble(thickness, data),
         indent: await evaluateDouble(indent, data),
         endIndent: await evaluateDouble(endIndent, data),
         color: await evaluateColor(color, data),
-        borderStyle: borderStyle?.toPdf(data));
+        borderStyle: await borderStyle?.toPdf(data));
   }
 }

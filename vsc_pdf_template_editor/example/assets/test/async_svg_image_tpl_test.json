@@ -2,12 +2,6 @@
   "comment": "To run this test on Flutter Web, you need an SVG image from the same origin or from a CDN that supports CORS, otherwise you'll get a CORS error.",
   "className": "TplDocument",
   "pageMode": "'none'",
-  "variables": [
-    {
-      "variable": "svgImageFromUrl",
-      "expression": "downloadUtf8String('https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg')"
-    }
-  ],
   "children": [
     {
       "className": "TplPage",
@@ -16,7 +10,7 @@
       },
       "child": {
         "className": "TplSvgImage",
-        "svg": "data.$svgImageFromUrl",
+        "svg": "downloadUtf8String('https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg')",
         "width": 300,
         "height": 300
       }

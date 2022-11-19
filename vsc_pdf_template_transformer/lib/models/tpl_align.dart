@@ -34,7 +34,7 @@ class TplAlign implements wb.WidgetBuilder {
   @override
   Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Align(
-        alignment: alignment?.buildAlignment(data) ?? Alignment.center,
+        alignment: await alignment?.buildAlignment(data) ?? Alignment.center,
         widthFactor: await evaluateDouble(widthFactor, data),
         heightFactor: await evaluateDouble(heightFactor, data),
         child: await child?.buildWidget(data));

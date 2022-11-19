@@ -30,13 +30,14 @@ class TplParagraph implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplParagraphToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Paragraph(
         text: await evaluateString(text, data),
-        textAlign: evaluateTextAlign(textAlign, data) ?? TextAlign.justify,
-        style: style?.toPdf(data),
-        margin: margin?.toPdf(data) ??
+        textAlign:
+            await evaluateTextAlign(textAlign, data) ?? TextAlign.justify,
+        style: await style?.toPdf(data),
+        margin: await margin?.toPdf(data) ??
             EdgeInsets.only(bottom: 5.0 * PdfPageFormat.mm),
-        padding: padding?.toPdf(data));
+        padding: await padding?.toPdf(data));
   }
 }

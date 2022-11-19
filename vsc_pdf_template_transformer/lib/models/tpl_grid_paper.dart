@@ -36,25 +36,25 @@ class TplGridPaper implements wb.WidgetBuilder {
     switch (gridStr) {
       case 'millimeter':
         return GridPaper.millimeter(
-            color: await evaluateColor(color, data)!,
+            color: (await evaluateColor(color, data))!,
             child: await child?.buildWidget(data));
       case 'seyes':
         return GridPaper.seyes(
-          margin: margin!.toPdf(data),
+          margin: await margin!.toPdf(data),
           child: await child?.buildWidget(data),
         );
       case 'collegeRuled':
         return GridPaper.collegeRuled(
-          margin: margin!.toPdf(data),
+          margin: await margin!.toPdf(data),
           child: await child?.buildWidget(data),
         );
       case 'quad':
         return GridPaper.quad(
-            color: await evaluateColor(color, data)!,
+            color: (await evaluateColor(color, data))!,
             child: await child?.buildWidget(data));
       case 'engineering':
         return GridPaper.engineering(
-            color: await evaluateColor(color, data)!,
+            color: (await evaluateColor(color, data))!,
             child: await child?.buildWidget(data));
       default:
         throw Exception('Invalid grid paper type: $gridStr');

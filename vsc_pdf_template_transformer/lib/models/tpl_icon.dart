@@ -30,11 +30,11 @@ class TplIcon implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplIconToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
-    return Icon(iconData!.toPdf(data),
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    return Icon(await iconData!.toPdf(data),
         size: await evaluateDouble(size, data),
         color: await evaluateColor(color, data),
-        textDirection: evaluateTextDirection(textDirection, data),
-        font: evaluateFont(font, data));
+        textDirection: await evaluateTextDirection(textDirection, data),
+        font: await evaluateFont(font, data));
   }
 }

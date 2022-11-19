@@ -39,9 +39,9 @@ class TplTextSpan implements ins.InlineSpan {
         children: children == null
             ? []
             : await getInlineSpanChildren(children!, data),
-        baseline: await await evaluateDouble(baseline, data) ?? 0,
-        text: await await evaluateString(text, data),
-        style: style?.toPdf(data),
-        annotation: annotation?.buildAnnotation(data));
+        baseline: await evaluateDouble(baseline, data) ?? 0,
+        text: await evaluateString(text, data),
+        style: await style?.toPdf(data),
+        annotation: await annotation?.buildAnnotation(data));
   }
 }

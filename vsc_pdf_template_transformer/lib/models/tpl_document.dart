@@ -1,8 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/pdf.dart';
 import 'package:vsc_pdf_template_transformer/src/async_pdf_widgets/async_document.dart';
-import 'package:vsc_pdf_template_transformer/src/fonts/gfonts.dart';
-import 'package:vsc_pdf_template_transformer/src/network/cache.dart';
 
 import '../utils/evaluator.dart';
 
@@ -41,14 +39,14 @@ class TplDocument {
     await _initializeVariables(data);
     return AsyncDocument(
       pageMode: await evaluatePdfPageMode(pageMode, data) ?? PdfPageMode.none,
-      compress: await await evaluateBool(compress, data) ?? true,
-      verbose: await await evaluateBool(verbose, data) ?? false,
-      title: await await evaluateString(title, data),
-      author: await await evaluateString(author, data),
-      creator: await await evaluateString(creator, data),
-      subject: await await evaluateString(subject, data),
-      keywords: await await evaluateString(keywords, data),
-      producer: await await evaluateString(producer, data),
+      compress: await evaluateBool(compress, data) ?? true,
+      verbose: await evaluateBool(verbose, data) ?? false,
+      title: await evaluateString(title, data),
+      author: await evaluateString(author, data),
+      creator: await evaluateString(creator, data),
+      subject: await evaluateString(subject, data),
+      keywords: await evaluateString(keywords, data),
+      producer: await evaluateString(producer, data),
     );
   }
 
@@ -61,27 +59,7 @@ class TplDocument {
         throw Exception('variableName was null in variables');
       }
 
-      var result =
-          await evaluateDynamic(varInit.expression, data, addlContext: {
-        'downloadImage': (url) => downloadImage(url),
-        'downloadUtf8String': (url) => downloadUtf8String(url),
-        'getGoogleFont': (fontName) async {
-          final googleFontFunction = googleFonts[fontName];
-          if (googleFontFunction == null) {
-            throw Exception('Unrecognized font name $fontName');
-          }
-          return googleFontFunction();
-        },
-        'defaultTheme': () => defaultTheme(),
-        'getThemeFromGoogleFont': (fontFamilyName) async {
-          final themeFunction = googleFontThemes[fontFamilyName];
-          if (themeFunction == null) {
-            throw Exception(
-                'Unrecognized theme font family name $fontFamilyName');
-          }
-          return themeFunction();
-        },
-      });
+      var result = await evaluateDynamic(varInit.expression, data);
 
       data[r'$' + varName] = result;
     }

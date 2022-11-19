@@ -33,17 +33,17 @@ class TplWatermark implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplWatermarkToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     final textStr = await evaluateString(text, data);
     if (textStr == null) {
       return Watermark(
           child: await child?.buildWidget(data) ?? SizedBox(),
-          fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
+          fit: await evaluateBoxFit(fit, data) ?? BoxFit.contain,
           angle: await evaluateDouble(angle, data) ?? 0);
     }
     return Watermark.text(textStr,
-        style: style?.toPdf(data),
-        fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
+        style: await style?.toPdf(data),
+        fit: await evaluateBoxFit(fit, data) ?? BoxFit.contain,
         angle: await evaluateDouble(angle, data) ?? math.pi / 4);
   }
 }

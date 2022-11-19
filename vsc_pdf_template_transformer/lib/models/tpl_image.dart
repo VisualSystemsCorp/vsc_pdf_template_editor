@@ -32,15 +32,15 @@ class TplImage implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplImageToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
-    final imageProvider = evaluateImageProvider(image, data);
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    final imageProvider = await evaluateImageProvider(image, data);
     if (imageProvider == null) {
       throw Exception('"image" attribute is required');
     }
 
     return Image(imageProvider,
-        fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
-        alignment: alignment?.buildAlignment(data) ?? Alignment.center,
+        fit: await evaluateBoxFit(fit, data) ?? BoxFit.contain,
+        alignment: await alignment?.buildAlignment(data) ?? Alignment.center,
         width: await evaluateDouble(width, data),
         height: await evaluateDouble(height, data),
         dpi: await evaluateDouble(dpi, data));

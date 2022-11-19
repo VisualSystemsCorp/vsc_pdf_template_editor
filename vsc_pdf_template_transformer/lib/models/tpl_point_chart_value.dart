@@ -20,7 +20,10 @@ class TplPointChartValue {
 
   Map<String, dynamic> toJson() => _$TplPointChartValueToJson(this);
 
-  PointChartValue toPdf(Map<String, dynamic> data) {
-    return PointChartValue(await evaluateDouble(x, data)!, await evaluateDouble(y, data)!);
+  Future<PointChartValue> toPdf(Map<String, dynamic> data) async {
+    return PointChartValue(
+      (await evaluateDouble(x, data))!,
+      (await evaluateDouble(y, data))!,
+    );
   }
 }

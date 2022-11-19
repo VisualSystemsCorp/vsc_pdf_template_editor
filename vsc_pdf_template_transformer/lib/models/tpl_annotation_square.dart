@@ -29,11 +29,11 @@ class TplAnnotationSquare implements ab.AnnotationBuilder {
   Map<String, dynamic> toJson() => _$TplAnnotationSquareToJson(this);
 
   @override
-  AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
+  Future<AnnotationBuilder> buildAnnotation(Map<String, dynamic> data) async {
     return AnnotationSquare(
         color: await evaluateColor(color, data),
         interiorColor: await evaluateColor(interiorColor, data),
-        date: evaluateDateTime(date, data),
+        date: await evaluateDateTime(date, data),
         subject: await evaluateString(subject, data),
         author: await evaluateString(author, data),
         content: await evaluateString(content, data));

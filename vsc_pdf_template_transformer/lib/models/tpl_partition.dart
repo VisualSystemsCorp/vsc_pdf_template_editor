@@ -31,7 +31,7 @@ class TplPartition implements wb.WidgetBuilder {
   Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Partition(
         child: await child!.buildWidget(data) as SpanningWidget,
-        width: await await evaluateDouble(width, data),
-        flex: await await evaluateInt(flex, data) ?? 1);
+        width: await evaluateDouble(width, data),
+        flex: await evaluateInt(flex, data) ?? 1);
   }
 }

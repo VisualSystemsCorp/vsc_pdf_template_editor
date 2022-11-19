@@ -31,12 +31,12 @@ class TplChartLegend implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplChartLegendToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return ChartLegend(
-        textStyle: textStyle?.toPdf(data),
-        position: position?.buildAlignment(data) ?? Alignment.topRight,
-        direction: evaluateAxis(direction, data) ?? Axis.vertical,
-        decoration: decoration?.toPdf(data),
-        padding: padding?.toPdf(data) ?? EdgeInsets.all(5));
+        textStyle: await textStyle?.toPdf(data),
+        position: await position?.buildAlignment(data) ?? Alignment.topRight,
+        direction: await evaluateAxis(direction, data) ?? Axis.vertical,
+        decoration: await decoration?.toPdf(data),
+        padding: await padding?.toPdf(data) ?? EdgeInsets.all(5));
   }
 }

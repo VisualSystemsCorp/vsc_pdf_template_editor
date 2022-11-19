@@ -34,16 +34,16 @@ class TplRichText implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplRichTextToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return RichText(
-      text: text!.buildInlineSpan(data),
-      textAlign: evaluateTextAlign(textAlign, data),
-      textDirection: evaluateTextDirection(textDirection, data),
+      text: await text!.buildInlineSpan(data),
+      textAlign: await evaluateTextAlign(textAlign, data),
+      textDirection: await evaluateTextDirection(textDirection, data),
       softWrap: await evaluateBool(softWrap, data),
       tightBounds: await evaluateBool(tightBounds, data) ?? false,
       textScaleFactor: await evaluateDouble(textScaleFactor, data) ?? 1,
       maxLines: await evaluateInt(maxLines, data),
-      overflow: evaluateTextOverflow(overflow, data),
+      overflow: await evaluateTextOverflow(overflow, data),
     );
   }
 }

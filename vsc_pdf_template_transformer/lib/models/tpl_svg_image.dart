@@ -33,11 +33,11 @@ class TplSvgImage implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplSvgImageToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return SvgImage(
         svg: await evaluateText(svg, data),
-        fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
-        alignment: alignment?.buildAlignment(data) ?? Alignment.center,
+        fit: await evaluateBoxFit(fit, data) ?? BoxFit.contain,
+        alignment: await alignment?.buildAlignment(data) ?? Alignment.center,
         clip: await evaluateBool(clip, data) ?? true,
         width: await evaluateDouble(width, data),
         height: await evaluateDouble(height, data),

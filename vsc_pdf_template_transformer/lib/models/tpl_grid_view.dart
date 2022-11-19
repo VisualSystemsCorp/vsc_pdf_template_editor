@@ -34,16 +34,16 @@ class TplGridView implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplGridViewToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return GridView(
-      direction: evaluateAxis(direction, data) ?? Axis.vertical,
-      padding: padding?.toPdf(data) ?? EdgeInsets.zero,
+      direction: await evaluateAxis(direction, data) ?? Axis.vertical,
+      padding: await padding?.toPdf(data) ?? EdgeInsets.zero,
       crossAxisCount: await evaluateInt(crossAxisCount, data) ?? 1,
       mainAxisSpacing: await evaluateDouble(mainAxisSpacing, data) ?? 0,
       crossAxisSpacing: await evaluateDouble(crossAxisSpacing, data) ?? 0,
       childAspectRatio:
           await evaluateDouble(childAspectRatio, data) ?? double.infinity,
-      children: children == null ? [] : getChildren(children!, data),
+      children: children == null ? [] : await getChildren(children!, data),
     );
   }
 }

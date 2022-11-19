@@ -21,8 +21,9 @@ class TplIconData {
 
   Map<String, dynamic> toJson() => _$TplIconDataToJson(this);
 
-  IconData toPdf(Map<String, dynamic> data) {
-    return IconData(await evaluateInt(codePoint, data)!,
-        matchTextDirection: await evaluateBool(matchTextDirection, data) ?? false);
+  Future<IconData> toPdf(Map<String, dynamic> data) async {
+    return IconData((await evaluateInt(codePoint, data))!,
+        matchTextDirection:
+            await evaluateBool(matchTextDirection, data) ?? false);
   }
 }

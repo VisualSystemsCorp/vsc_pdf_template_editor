@@ -1,11 +1,5 @@
 {
   "className": "TplDocument",
-  "variables": [
-    {
-      "variable": "defaultTheme",
-      "expression": "getThemeFromGoogleFont('Spectral')"
-    }
-  ],
   "pageMode": "'none'",
   "children": [
     {
@@ -13,7 +7,7 @@
       "pageFormat": {
         "format": "'letter'"
       },
-      "theme": "newThemeWithFontSize(data.$defaultTheme, 18)",
+      "theme": "newThemeWithFontSize(getThemeFromGoogleFont('Spectral'), 18)",
       "children": [
         {
           "className": "TplText",

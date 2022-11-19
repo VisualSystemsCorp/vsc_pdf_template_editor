@@ -1,12 +1,6 @@
 {
   "comment": "To run this test on Flutter Web, you need an image from the same origin or from a CDN that supports CORS, otherwise you'll get a CORS error.",
   "className": "TplDocument",
-  "variables": [
-    {
-      "variable": "imageFromUrl",
-      "expression": "downloadImage('https://lh3.googleusercontent.com/a/ALm5wu0jaYRrkULYehiCw8jD5LfbpwrUgf5ZUus-mYy5EA=s288-p-rw-no')"
-    }
-  ],
   "pageMode": "'none'",
   "children": [
     {
@@ -16,12 +10,7 @@
       },
       "child": {
         "className": "TplImage",
-        "image": "data.$imageFromUrl",
-        "fit": null,
-        "alignment": null,
-        "width": null,
-        "height": null,
-        "dpi": null
+        "image": "downloadImage('https://lh3.googleusercontent.com/a/ALm5wu0jaYRrkULYehiCw8jD5LfbpwrUgf5ZUus-mYy5EA=s288-p-rw-no')"
       }
     }
   ]

@@ -30,8 +30,8 @@ class TplDecoratedBox implements wb.WidgetBuilder {
   @override
   Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return DecoratedBox(
-      decoration: decoration?.toPdf(data) ?? BoxDecoration(),
-      position: evaluateDecorationPosition(position, data) ??
+      decoration: await decoration?.toPdf(data) ?? BoxDecoration(),
+      position: await evaluateDecorationPosition(position, data) ??
           DecorationPosition.background,
       child: await child?.buildWidget(data),
     );

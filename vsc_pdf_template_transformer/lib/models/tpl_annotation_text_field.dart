@@ -36,11 +36,11 @@ class TplAnnotationTextField implements ab.AnnotationBuilder {
   Map<String, dynamic> toJson() => _$TplAnnotationTextFieldToJson(this);
 
   @override
-  AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
+  Future<AnnotationBuilder> buildAnnotation(Map<String, dynamic> data) async {
     return AnnotationTextField(
         name: await evaluateString(name, data),
         color: await evaluateColor(color, data),
-        date: evaluateDateTime(date, data),
+        date: await evaluateDateTime(date, data),
         backgroundColor: await evaluateColor(backgroundColor, data),
         maxLength: await evaluateInt(maxLength, data),
         alternateName: await evaluateString(alternateName, data),
@@ -49,6 +49,6 @@ class TplAnnotationTextField implements ab.AnnotationBuilder {
         author: await evaluateString(author, data),
         value: await evaluateString(value, data),
         defaultValue: await evaluateString(defaultValue, data),
-        textStyle: textStyle?.toPdf(data));
+        textStyle: await textStyle?.toPdf(data));
   }
 }

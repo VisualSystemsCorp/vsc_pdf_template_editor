@@ -9,14 +9,6 @@
     {
       "variable": "tz",
       "expression": "'America/Chicago'"
-    },
-    {
-      "variable": "defaultTheme",
-      "expression": "defaultTheme()"
-    },
-    {
-      "variable": "svgLogoFromUrl",
-      "expression": "downloadUtf8String('https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg')"
     }
   ],
   "children": [
@@ -25,7 +17,7 @@
       "pageFormat": {
         "format": "'letter'"
       },
-      "theme": "newThemeWithFontSize(data.$defaultTheme, 10)",
+      "theme": "newThemeWithFontSize(defaultTheme(), 10)",
       "margin": {
         "all": 0
       },
@@ -55,7 +47,7 @@
                     "children": [
                       {
                         "className": "TplSvgImage",
-                        "svg": "data.$svgLogoFromUrl",
+                        "svg": "downloadUtf8String('https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg')",
                         "width": 100,
                         "height": 100
                       }
@@ -707,6 +699,50 @@
                       }
                     }
                   ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "className": "TplNewPage"
+        },
+        {
+          "className": "TplContainer",
+          "padding": {
+            "left": 20,
+            "right": 20,
+            "top": 10
+          },
+          "child": {
+            "className": "TplColumn",
+            "mainAxisAlignment": "'start'",
+            "crossAxisAlignment": "'start'",
+            "children": [
+              {
+                "className": "TplText",
+                "text": "'Job Site Images'",
+                "style": {
+                  "fontWeight": "'bold'"
+                }
+              },
+              {
+                "className": "TplRepeater",
+                "array": "data.images",
+                "childTemplate": {
+                  "className": "TplPadding",
+                  "padding": {
+                    "top": 10
+                  },
+                  "child": {
+                    "className": "TplSizedBox",
+                    "width": 300,
+                    "height": 300,
+                    "child": {
+                      "className": "TplImage",
+                      "image": "downloadImage(data.item)"
+                    }
+                  }
                 }
               }
             ]

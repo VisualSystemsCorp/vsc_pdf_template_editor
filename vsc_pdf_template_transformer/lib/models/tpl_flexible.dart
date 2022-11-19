@@ -27,10 +27,10 @@ class TplFlexible implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplFlexibleToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Flexible(
         flex: await evaluateInt(flex, data) ?? 1,
-        fit: evaluateFlexFit(fit, data) ?? FlexFit.loose,
-        child: child != null ? child!.buildWidget(data) : SizedBox());
+        fit: await evaluateFlexFit(fit, data) ?? FlexFit.loose,
+        child: child != null ? await child!.buildWidget(data) : SizedBox());
   }
 }

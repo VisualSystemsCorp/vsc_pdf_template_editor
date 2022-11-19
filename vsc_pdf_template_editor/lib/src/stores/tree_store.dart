@@ -7,7 +7,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_highlight/themes/atom-one-dark-reasonable.dart';
 import 'package:highlight/languages/json.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
@@ -32,7 +31,7 @@ abstract class TreeStoreModel with Store {
   late final CodeController _templateController;
   late final CodeController _dataController;
 
-  pw.Document _doc = pw.Document();
+  transformer.AsyncDocument _doc = transformer.AsyncDocument();
 
   @observable
   String buildErrorText = '';

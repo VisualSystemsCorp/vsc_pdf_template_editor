@@ -24,7 +24,8 @@ class TplFractionColumnWidth implements tcw.TableColumnWidth {
   Map<String, dynamic> toJson() => _$TplFractionColumnWidthToJson(this);
 
   @override
-  TableColumnWidth buildTableColumnWidth(Map<String, dynamic> data) {
+  Future<TableColumnWidth> buildTableColumnWidth(
+      Map<String, dynamic> data) async {
     return FractionColumnWidth(await evaluateDouble(value, data) ?? 0);
   }
 }

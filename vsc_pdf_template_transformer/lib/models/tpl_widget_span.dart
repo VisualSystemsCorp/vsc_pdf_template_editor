@@ -37,8 +37,8 @@ class TplWidgetSpan implements ins.InlineSpan {
   Future<InlineSpan> buildInlineSpan(Map<String, dynamic> data) async {
     return WidgetSpan(
         child: await child!.buildWidget(data),
-        baseline: await await evaluateDouble(baseline, data) ?? 0,
-        style: style?.toPdf(data),
-        annotation: annotation?.buildAnnotation(data));
+        baseline: await evaluateDouble(baseline, data) ?? 0,
+        style: await style?.toPdf(data),
+        annotation: await annotation?.buildAnnotation(data));
   }
 }

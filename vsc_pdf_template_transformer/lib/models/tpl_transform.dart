@@ -43,8 +43,8 @@ class TplTransform implements wb.WidgetBuilder {
       case 'rotate':
         return Transform.rotate(
             angle: angle,
-            origin: origin?.toPdf(data),
-            alignment: alignment?.buildAlignment(data),
+            origin: await origin?.toPdf(data),
+            alignment: await alignment?.buildAlignment(data),
             child: await child?.buildWidget(data));
 
       case 'rotateBox':
@@ -55,13 +55,14 @@ class TplTransform implements wb.WidgetBuilder {
 
       case 'translate':
         return Transform.translate(
-            offset: offset!.toPdf(data), child: await child?.buildWidget(data));
+            offset: await offset!.toPdf(data),
+            child: await child?.buildWidget(data));
 
       case 'scale':
         return Transform.scale(
             scale: scale,
-            origin: origin?.toPdf(data),
-            alignment: alignment?.buildAlignment(data),
+            origin: await origin?.toPdf(data),
+            alignment: await alignment?.buildAlignment(data),
             child: await child?.buildWidget(data));
       default:
         throw Exception('Invalid transform: $transformStr');

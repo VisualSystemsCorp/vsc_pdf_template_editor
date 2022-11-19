@@ -31,13 +31,13 @@ class TplListView implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplListViewToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return ListView(
-      direction: evaluateAxis(direction, data) ?? Axis.vertical,
+      direction: await evaluateAxis(direction, data) ?? Axis.vertical,
       reverse: await evaluateBool(reverse, data) ?? false,
       spacing: await evaluateDouble(spacing, data) ?? 0,
-      padding: padding?.toPdf(data),
-      children: children == null ? [] : getChildren(children!, data),
+      padding: await padding?.toPdf(data),
+      children: children == null ? [] : await getChildren(children!, data),
     );
   }
 }

@@ -34,14 +34,14 @@ class TplRadialGradient implements g.Gradient {
   Map<String, dynamic> toJson() => _$TplRadialGradientToJson(this);
 
   @override
-  Gradient buildGradient(Map<String, dynamic> data) {
+  Future<Gradient> buildGradient(Map<String, dynamic> data) async {
     return RadialGradient(
-      center: center?.buildAlignment(data) ?? Alignment.center,
+      center: await center?.buildAlignment(data) ?? Alignment.center,
       radius: await evaluateDouble(radius, data) ?? 0.5,
-      colors: colors == null ? [] : getColors(colors!, data),
-      stops: evaluateList(stops, data),
-      tileMode: evaluateTileMode(tileMode, data) ?? TileMode.clamp,
-      focal: focal?.buildAlignment(data),
+      colors: colors == null ? [] : await getColors(colors!, data),
+      stops: await evaluateList(stops, data),
+      tileMode: await evaluateTileMode(tileMode, data) ?? TileMode.clamp,
+      focal: await focal?.buildAlignment(data),
       focalRadius: await evaluateDouble(focalRadius, data) ?? 0,
     );
   }

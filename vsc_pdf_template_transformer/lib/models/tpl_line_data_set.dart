@@ -39,9 +39,9 @@ class TplLineDataSet implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplLineDataSetToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return LineDataSet(
-        data: getPointChartValues(this.data!, data),
+        data: await getPointChartValues(this.data!, data),
         legend: await evaluateString(legend, data),
         pointColor: await evaluateColor(pointColor, data),
         pointSize: await evaluateDouble(pointSize, data) ?? 3,
@@ -50,8 +50,8 @@ class TplLineDataSet implements wb.WidgetBuilder {
         lineColor: await evaluateColor(lineColor, data),
         color: await evaluateColor(color, data) ?? PdfColors.blue,
         drawPoints: await evaluateBool(drawPoints, data) ?? true,
-        valuePosition:
-            evaluateValuePosition(valuePosition, data) ?? ValuePosition.auto,
+        valuePosition: await evaluateValuePosition(valuePosition, data) ??
+            ValuePosition.auto,
         drawSurface: await evaluateBool(drawSurface, data) ?? false,
         surfaceOpacity: await evaluateDouble(surfaceOpacity, data) ?? 0.2,
         surfaceColor: await evaluateColor(surfaceColor, data),

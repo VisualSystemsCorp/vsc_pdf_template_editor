@@ -23,10 +23,10 @@ class TplBorderSide {
 
   Map<String, dynamic> toJson() => _$TplBorderSideToJson(this);
 
-  ws.BorderSide toPdf(Map<String, dynamic> data) {
+  Future<ws.BorderSide> toPdf(Map<String, dynamic> data) async {
     return ws.BorderSide(
         width: await evaluateDouble(width, data) ?? 1.0,
         color: await evaluateColor(color, data) ?? PdfColors.black,
-        style: style?.toPdf(data) ?? const ws.BorderStyle());
+        style: await style?.toPdf(data) ?? const ws.BorderStyle());
   }
 }

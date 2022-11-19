@@ -40,9 +40,9 @@ class TplBarDataSet implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplBarDataSetToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return BarDataSet(
-        data: getPointChartValues(this.data!, data),
+        data: await getPointChartValues(this.data!, data),
         legend: await evaluateString(legend, data),
         color: await evaluateColor(color, data) ?? PdfColors.black,
         borderColor: await evaluateColor(borderColor, data),
@@ -52,11 +52,11 @@ class TplBarDataSet implements wb.WidgetBuilder {
         surfaceOpacity: await evaluateDouble(surfaceOpacity, data) ?? 1,
         width: await evaluateDouble(width, data) ?? 10,
         offset: await evaluateDouble(offset, data) ?? 0,
-        axis: evaluateAxis(axis, data) ?? Axis.horizontal,
+        axis: await evaluateAxis(axis, data) ?? Axis.horizontal,
         pointColor: await evaluateColor(pointColor, data),
         pointSize: await evaluateDouble(pointSize, data) ?? 3,
         drawPoints: await evaluateBool(drawPoints, data) ?? false,
-        valuePosition:
-            evaluateValuePosition(valuePosition, data) ?? ValuePosition.auto);
+        valuePosition: await evaluateValuePosition(valuePosition, data) ??
+            ValuePosition.auto);
   }
 }

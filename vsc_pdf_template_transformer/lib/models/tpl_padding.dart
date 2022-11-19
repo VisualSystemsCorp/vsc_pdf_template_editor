@@ -28,7 +28,7 @@ class TplPadding implements wb.WidgetBuilder {
   @override
   Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Padding(
-      padding: padding != null ? padding!.toPdf(data) : EdgeInsets.zero,
+      padding: padding != null ? await padding!.toPdf(data) : EdgeInsets.zero,
       child: await child?.buildWidget(data),
     );
   }

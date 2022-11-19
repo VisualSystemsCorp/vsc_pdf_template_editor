@@ -24,7 +24,8 @@ class TplIntrinsicColumnWidth implements tcw.TableColumnWidth {
   Map<String, dynamic> toJson() => _$TplIntrinsicColumnWidthToJson(this);
 
   @override
-  TableColumnWidth buildTableColumnWidth(Map<String, dynamic> data) {
+  Future<TableColumnWidth> buildTableColumnWidth(
+      Map<String, dynamic> data) async {
     return IntrinsicColumnWidth(flex: await evaluateDouble(flex, data));
   }
 }

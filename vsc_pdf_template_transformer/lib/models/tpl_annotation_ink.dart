@@ -30,10 +30,10 @@ class TplAnnotationInk implements ab.AnnotationBuilder {
   Map<String, dynamic> toJson() => _$TplAnnotationInkToJson(this);
 
   @override
-  AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
-    return AnnotationInk(getListOfPdfPoints(points!, data),
+  Future<AnnotationBuilder> buildAnnotation(Map<String, dynamic> data) async {
+    return AnnotationInk(await getListOfPdfPoints(points!, data),
         color: await evaluateColor(color, data),
-        date: evaluateDateTime(date, data),
+        date: await evaluateDateTime(date, data),
         subject: await evaluateString(subject, data),
         author: await evaluateString(author, data),
         content: await evaluateString(content, data));

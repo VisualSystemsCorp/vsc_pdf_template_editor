@@ -309,5 +309,11 @@
       "extended_price": 419.70,
       "taxable": true
     }
+  ],
+  "images": [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/FEMA_-_44364_-_Roof_repair_workers_in_Oklahoma.jpg/1024px-FEMA_-_44364_-_Roof_repair_workers_in_Oklahoma.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/UglyShinglesMichigan3.JPG/800px-UglyShinglesMichigan3.JPG",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Damaged_shingles.jpg/1024px-Damaged_shingles.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/US_Navy_090611-N-9712C-001_Aviation_Electronics_Technician_2nd_Class_Sonny_Abernathy_nails_shingles_to_the_roof_of_a_Habitat_for_Humanity_house.jpg/741px-US_Navy_090611-N-9712C-001_Aviation_Electronics_Technician_2nd_Class_Sonny_Abernathy_nails_shingles_to_the_roof_of_a_Habitat_for_Humanity_house.jpg"
   ]
 }

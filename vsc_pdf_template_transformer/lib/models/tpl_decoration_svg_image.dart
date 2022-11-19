@@ -29,11 +29,12 @@ class TplDecorationSvgImage implements dg.DecorationGraphic {
   Map<String, dynamic> toJson() => _$TplDecorationSvgImageToJson(this);
 
   @override
-  DecorationGraphic buildDecorationImage(Map<String, dynamic> data) {
+  Future<DecorationGraphic> buildDecorationImage(
+      Map<String, dynamic> data) async {
     return DecorationSvgImage(
       svg: await evaluateText(svg, data),
-      fit: evaluateBoxFit(fit, data) ?? BoxFit.cover,
-      alignment: alignment?.buildAlignment(data) ?? Alignment.center,
+      fit: await evaluateBoxFit(fit, data) ?? BoxFit.cover,
+      alignment: await alignment?.buildAlignment(data) ?? Alignment.center,
     );
   }
 }

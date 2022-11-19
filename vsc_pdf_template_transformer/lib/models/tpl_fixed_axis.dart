@@ -33,9 +33,9 @@ class TplFixedAxis {
 
   Map<String, dynamic> toJson() => _$TplFixedAxisToJson(this);
 
-  FixedAxis toPdf(Map<String, dynamic> data) {
-    return FixedAxis(evaluateList(values, data)!,
-        textStyle: textStyle?.toPdf(data),
+  Future<FixedAxis<num>> toPdf(Map<String, dynamic> data) async {
+    return FixedAxis((await evaluateList(values, data))!,
+        textStyle: await textStyle?.toPdf(data),
         margin: await evaluateDouble(margin, data),
         marginStart: await evaluateDouble(marginStart, data),
         marginEnd: await evaluateDouble(marginEnd, data),

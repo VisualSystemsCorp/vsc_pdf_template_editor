@@ -40,14 +40,14 @@ class TplText implements wb.WidgetBuilder {
   Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Text(
       await evaluateText(text, data),
-      style: style?.toPdf(data),
-      textAlign: evaluateTextAlign(textAlign, data),
-      textDirection: evaluateTextDirection(textDirection, data),
+      style: await style?.toPdf(data),
+      textAlign: await evaluateTextAlign(textAlign, data),
+      textDirection: await evaluateTextDirection(textDirection, data),
       softWrap: await evaluateBool(softWrap, data),
       tightBounds: await evaluateBool(tightBounds, data) ?? false,
       textScaleFactor: await evaluateDouble(textScaleFactor, data) ?? 1,
       maxLines: await evaluateInt(maxLines, data),
-      overflow: evaluateTextOverflow(overflow, data),
+      overflow: await evaluateTextOverflow(overflow, data),
     );
   }
 }

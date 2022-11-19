@@ -27,9 +27,9 @@ class TplAnnotationUrl implements ab.AnnotationBuilder {
   Map<String, dynamic> toJson() => _$TplAnnotationUrlToJson(this);
 
   @override
-  AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
+  Future<AnnotationBuilder> buildAnnotation(Map<String, dynamic> data) async {
     return AnnotationUrl(await evaluateString(destination, data) ?? '',
-        date: evaluateDateTime(date, data),
+        date: await evaluateDateTime(date, data),
         subject: await evaluateString(subject, data),
         author: await evaluateString(author, data));
   }

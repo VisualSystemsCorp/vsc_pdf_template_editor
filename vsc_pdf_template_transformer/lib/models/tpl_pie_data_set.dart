@@ -43,9 +43,9 @@ class TplPieDataSet implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplPieDataSetToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return PieDataSet(
-        value: evaluateNum(value, data) ?? 0,
+        value: await evaluateNum(value, data) ?? 0,
         legend: await evaluateString(legend, data),
         color: await evaluateColor(color, data) ?? PdfColors.black,
         borderColor: await evaluateColor(borderColor, data),
@@ -54,13 +54,13 @@ class TplPieDataSet implements wb.WidgetBuilder {
         drawSurface: await evaluateBool(drawSurface, data) ?? true,
         surfaceOpacity: await evaluateDouble(surfaceOpacity, data) ?? 1,
         offset: await evaluateDouble(offset, data) ?? 0,
-        legendStyle: legendStyle?.toPdf(data),
-        legendAlign: evaluateTextAlign(legendAlign, data),
-        legendPosition: evaluatePieLegendPosition(legendPosition, data) ??
+        legendStyle: await legendStyle?.toPdf(data),
+        legendAlign: await evaluateTextAlign(legendAlign, data),
+        legendPosition: await evaluatePieLegendPosition(legendPosition, data) ??
             PieLegendPosition.auto,
         legendLineWidth: await evaluateDouble(legendLineWidth, data) ?? 1,
         legendLineColor: await evaluateColor(legendLineColor, data),
-        legendWidget: legendWidget?.buildWidget(data),
+        legendWidget: await legendWidget?.buildWidget(data),
         legendOffset: await evaluateDouble(legendOffset, data) ?? 20,
         innerRadius: await evaluateDouble(innerRadius, data) ?? 0);
   }

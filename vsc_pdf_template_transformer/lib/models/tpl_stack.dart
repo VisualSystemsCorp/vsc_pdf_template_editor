@@ -32,12 +32,12 @@ class TplStack implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplStackToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Stack(
-      alignment: alignment?.buildAlignment(data) ?? Alignment.topLeft,
-      fit: evaluateStackFit(fit, data) ?? StackFit.loose,
-      overflow: evaluateOverflow(overflow, data) ?? Overflow.clip,
-      children: children == null ? [] : getChildren(children!, data),
+      alignment: await alignment?.buildAlignment(data) ?? Alignment.topLeft,
+      fit: await evaluateStackFit(fit, data) ?? StackFit.loose,
+      overflow: await evaluateOverflow(overflow, data) ?? Overflow.clip,
+      children: children == null ? [] : await getChildren(children!, data),
     );
   }
 }

@@ -26,7 +26,7 @@ class TplAlignment extends a.Alignment {
   Map<String, dynamic> toJson() => _$TplAlignmentToJson(this);
 
   @override
-  ws.Alignment buildAlignment(Map<String, dynamic> data) {
+  Future<ws.Alignment> buildAlignment(Map<String, dynamic> data) async {
     final alignmentStr = await evaluateString(alignment, data);
     if (alignmentStr == null) {
       return ws.Alignment(await evaluateDouble(x, data) ?? 0.0,

@@ -233,7 +233,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_highlight:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_highlight
       url: "https://pub.dartlang.org"
@@ -292,7 +292,7 @@ packages:
     source: hosted
     version: "2.1.0"
   highlight:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: highlight
       url: "https://pub.dartlang.org"
@@ -444,7 +444,7 @@ packages:
       name: pdf
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.8.3"
+    version: "3.8.4"
   petitparser:
     dependency: transitive
     description:

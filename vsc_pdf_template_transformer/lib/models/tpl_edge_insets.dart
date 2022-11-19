@@ -25,7 +25,7 @@ class TplEdgeInsets {
 
   Map<String, dynamic> toJson() => _$TplEdgeInsetsToJson(this);
 
-  ws.EdgeInsets toPdf(Map<String, dynamic> data) {
+  Future<ws.EdgeInsets> toPdf(Map<String, dynamic> data) async {
     if (all != null) {
       return ws.EdgeInsets.all(await evaluateDouble(all, data) ?? 0);
     }

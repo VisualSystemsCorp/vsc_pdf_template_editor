@@ -25,25 +25,25 @@ class TplBoxBorder {
 
   Map<String, dynamic> toJson() => _$TplBoxBorderToJson(this);
 
-  ws.BoxBorder toPdf(Map<String, dynamic> data) {
+  Future<ws.BoxBorder> toPdf(Map<String, dynamic> data) async {
     if (all != null) {
-      final border = all!.toPdf(data);
+      final border = await all!.toPdf(data);
       return ws.Border.all(
           color: border.color, width: border.width, style: border.style);
     }
 
     if (vertical != null || horizontal != null) {
       return ws.Border.symmetric(
-        vertical: vertical?.toPdf(data) ?? ws.BorderSide.none,
-        horizontal: horizontal?.toPdf(data) ?? ws.BorderSide.none,
+        vertical: await vertical?.toPdf(data) ?? ws.BorderSide.none,
+        horizontal: await horizontal?.toPdf(data) ?? ws.BorderSide.none,
       );
     }
 
     return ws.Border(
-      top: top?.toPdf(data) ?? ws.BorderSide.none,
-      bottom: bottom?.toPdf(data) ?? ws.BorderSide.none,
-      left: left?.toPdf(data) ?? ws.BorderSide.none,
-      right: right?.toPdf(data) ?? ws.BorderSide.none,
+      top: await top?.toPdf(data) ?? ws.BorderSide.none,
+      bottom: await bottom?.toPdf(data) ?? ws.BorderSide.none,
+      left: await left?.toPdf(data) ?? ws.BorderSide.none,
+      right: await right?.toPdf(data) ?? ws.BorderSide.none,
     );
   }
 }

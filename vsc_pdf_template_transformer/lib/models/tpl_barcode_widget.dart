@@ -40,25 +40,21 @@ class TplBarcodeWidget implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplBarcodeWidgetToJson(this);
 
   @override
-  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    final type = await evaluateBarcodeType(this.type, data);
     return BarcodeWidget(
         data: await evaluateText(this.data, data),
-        barcode: _buildBarcode(data),
+        barcode: Barcode.fromType(type!),
         color: await evaluateColor(color, data) ?? PdfColors.black,
         backgroundColor: await evaluateColor(backgroundColor, data),
-        decoration: decoration?.toPdf(data),
-        margin: margin?.toPdf(data) ??
+        decoration: await decoration?.toPdf(data),
+        margin: await margin?.toPdf(data) ??
             EdgeInsets.only(bottom: 2.0 * PdfPageFormat.mm),
-        padding: padding?.toPdf(data),
+        padding: await padding?.toPdf(data),
         width: await evaluateDouble(width, data),
         height: await evaluateDouble(height, data),
         drawText: await evaluateBool(drawText, data) ?? true,
-        textStyle: textStyle?.toPdf(data),
+        textStyle: await textStyle?.toPdf(data),
         textPadding: await evaluateDouble(textPadding, data) ?? 0);
-  }
-
-  Barcode _buildBarcode(Map<String, dynamic> data) {
-    final type = evaluateBarcodeType(this.type, data);
-    return Barcode.fromType(type!);
   }
 }

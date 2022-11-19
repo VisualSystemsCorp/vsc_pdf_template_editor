@@ -24,7 +24,8 @@ class TplFixedColumnWidth implements tcw.TableColumnWidth {
   Map<String, dynamic> toJson() => _$TplFixedColumnWidthToJson(this);
 
   @override
-  TableColumnWidth buildTableColumnWidth(Map<String, dynamic> data) {
+  Future<TableColumnWidth> buildTableColumnWidth(
+      Map<String, dynamic> data) async {
     return FixedColumnWidth(await evaluateDouble(width, data) ?? 0);
   }
 }
