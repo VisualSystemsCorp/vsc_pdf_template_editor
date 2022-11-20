@@ -736,8 +736,8 @@
                   },
                   "child": {
                     "className": "TplSizedBox",
-                    "width": 300,
-                    "height": 300,
+                    "width": 250,
+                    "height": 250,
                     "child": {
                       "className": "TplImage",
                       "image": "downloadImage(data.item)"
