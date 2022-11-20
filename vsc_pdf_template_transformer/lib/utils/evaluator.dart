@@ -41,7 +41,6 @@ Future<dynamic> evaluateDynamic(
     return expression;
   }
 
-  print('evaluateDynamic START buildCache=${Zone.current[#buildCache]}');
   final parsedExpr = Expression.parse(expression.trim());
   final Stream result = _createAsyncExpressionEvaluator().eval(parsedExpr, {
     'data': data,
@@ -81,7 +80,6 @@ Future<dynamic> evaluateDynamic(
   });
 
   final value = await result.single;
-  print('evaluateDynamic END buildCache=${Zone.current[#buildCache]}');
   return value;
 }
 

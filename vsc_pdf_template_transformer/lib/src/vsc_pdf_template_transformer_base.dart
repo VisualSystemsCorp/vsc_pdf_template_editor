@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:intl/date_symbol_data_local.dart' as intl_date_data;
 import 'package:timezone/data/latest.dart' as tz;
@@ -79,10 +80,11 @@ import 'network/cache.dart';
 var _tzInited = false;
 
 class Transformer {
-  static Future<AsyncDocument> buildPdf(Map<String, dynamic> template,
-      Map<String, dynamic> data, {
-        TplBaseCache? buildCache,
-      }) async {
+  static Future<Uint8List> buildPdf(
+    Map<String, dynamic> template,
+    Map<String, dynamic> data, {
+    TplBaseCache? buildCache,
+  }) async {
     if (!_tzInited) {
       tz.initializeTimeZones();
       await intl_date_data.initializeDateFormatting();
@@ -91,10 +93,8 @@ class Transformer {
 
     buildCache ??= TplMemoryCache();
     return runZoned(
-          () async {
-        print('Immediate buildCache=${Zone.current[#buildCache]}');
+      () async {
         final result = await _buildPdfInZone(template, data);
-        print('AFTER Immediate buildCache=${Zone.current[#buildCache]}');
         return result;
       },
       zoneValues: {
@@ -103,8 +103,8 @@ class Transformer {
     )!;
   }
 
-  static Future<AsyncDocument> _buildPdfInZone(Map<String, dynamic> template,
-      Map<String, dynamic> data) async {
+  static Future<Uint8List> _buildPdfInZone(
+      Map<String, dynamic> template, Map<String, dynamic> data) async {
     final tplDocument = TplDocument.fromJson(template);
     final document = await tplDocument.toPdf(data);
 
@@ -121,7 +121,7 @@ class Transformer {
             '${childJson['className']} is not a recognized Page type');
       }
     }
-    return document;
+    return document.save();
   }
 
   static WidgetBuilder getWidgetBuilder(Map<String, dynamic> valueMap) {
@@ -200,8 +200,6 @@ class Transformer {
 
     if (fromJson == null) throw Exception('No className or unknown className');
     result = fromJson(valueMap);
-
-    // print('------- generated widget $result -----');
     return result;
   }
 }

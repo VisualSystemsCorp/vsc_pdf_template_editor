@@ -22,8 +22,7 @@ void main(List<String> arguments) async {
 
   final data = json.decode(dataFile.readAsStringSync());
 
-  var document = await transformer.Transformer.buildPdf(template, data);
-  final bytes = await document.save();
+  var bytes = await transformer.Transformer.buildPdf(template, data);
   result.writeAsBytesSync(bytes, mode: FileMode.write);
   exit(0);
 }

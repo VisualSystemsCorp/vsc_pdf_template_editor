@@ -136,7 +136,6 @@ Future<Uint8List> _downloadBytesInBuildZone(
   TplBaseCache? pdfCache,
 }) async {
   final buildCache = Zone.current[#buildCache] as TplBaseCache?;
-  print('_downloadBytesInBuildZone buildCache=$buildCache');
   pdfCache ??= buildCache ?? TplBaseCache.defaultCache;
   return await pdfCache.resolve(
     uri: Uri.parse(url),

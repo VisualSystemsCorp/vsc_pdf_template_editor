@@ -33,8 +33,6 @@ abstract class TreeStoreModel with Store {
   late final CodeController _dataController;
   final _buildCache = TplMemoryCache();
 
-  transformer.AsyncDocument _doc = transformer.AsyncDocument();
-
   @observable
   String buildErrorText = '';
 
@@ -153,12 +151,11 @@ abstract class TreeStoreModel with Store {
   }
 
   Future<void> _buildPdf() async {
-    _doc = await transformer.Transformer.buildPdf(
+    _pdfBytes = await transformer.Transformer.buildPdf(
       _template,
       _data,
       buildCache: _buildCache,
     );
-    _pdfBytes = await _doc.save();
   }
 
   void _sortDialogItems() {
