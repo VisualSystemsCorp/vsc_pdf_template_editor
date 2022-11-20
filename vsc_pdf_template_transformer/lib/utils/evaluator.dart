@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -40,6 +41,7 @@ Future<dynamic> evaluateDynamic(
     return expression;
   }
 
+  print('evaluateDynamic START buildCache=${Zone.current[#buildCache]}');
   final parsedExpr = Expression.parse(expression.trim());
   final Stream result = _createAsyncExpressionEvaluator().eval(parsedExpr, {
     'data': data,
@@ -78,7 +80,9 @@ Future<dynamic> evaluateDynamic(
     },
   });
 
-  return result.single;
+  final value = await result.single;
+  print('evaluateDynamic END buildCache=${Zone.current[#buildCache]}');
+  return value;
 }
 
 /// Formats [value] into a date/time string using the given [pattern], and possibly

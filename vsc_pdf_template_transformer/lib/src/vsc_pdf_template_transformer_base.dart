@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:intl/date_symbol_data_local.dart' as intl_date_data;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
@@ -72,18 +74,37 @@ import 'package:vsc_pdf_template_transformer/src/async_pdf_widgets/async_documen
 
 import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
+import 'network/cache.dart';
 
 var _tzInited = false;
 
 class Transformer {
-  static Future<AsyncDocument> buildPdf(
-      Map<String, dynamic> template, Map<String, dynamic> data) async {
+  static Future<AsyncDocument> buildPdf(Map<String, dynamic> template,
+      Map<String, dynamic> data, {
+        TplBaseCache? buildCache,
+      }) async {
     if (!_tzInited) {
       tz.initializeTimeZones();
       await intl_date_data.initializeDateFormatting();
       _tzInited = true;
     }
 
+    buildCache ??= TplMemoryCache();
+    return runZoned(
+          () async {
+        print('Immediate buildCache=${Zone.current[#buildCache]}');
+        final result = await _buildPdfInZone(template, data);
+        print('AFTER Immediate buildCache=${Zone.current[#buildCache]}');
+        return result;
+      },
+      zoneValues: {
+        #buildCache: buildCache,
+      },
+    )!;
+  }
+
+  static Future<AsyncDocument> _buildPdfInZone(Map<String, dynamic> template,
+      Map<String, dynamic> data) async {
     final tplDocument = TplDocument.fromJson(template);
     final document = await tplDocument.toPdf(data);
 
@@ -91,7 +112,8 @@ class Transformer {
     for (int i = 0; i < documentChildren.length; i++) {
       final childJson = documentChildren[i];
       if (childJson['className'] == 'TplMultiPage') {
-        await document.addPage(await TplMultiPage.fromJson(childJson).toPdf(data));
+        await document
+            .addPage(await TplMultiPage.fromJson(childJson).toPdf(data));
       } else if (childJson['className'] == 'TplPage') {
         await document.addPage(await TplPage.fromJson(childJson).toPdf(data));
       } else {

@@ -13,6 +13,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
 
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
+import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart';
 
 part 'tree_store.g.dart';
 
@@ -30,6 +31,7 @@ abstract class TreeStoreModel with Store {
 
   late final CodeController _templateController;
   late final CodeController _dataController;
+  final _buildCache = TplMemoryCache();
 
   transformer.AsyncDocument _doc = transformer.AsyncDocument();
 
@@ -151,7 +153,11 @@ abstract class TreeStoreModel with Store {
   }
 
   Future<void> _buildPdf() async {
-    _doc = await transformer.Transformer.buildPdf(_template, _data);
+    _doc = await transformer.Transformer.buildPdf(
+      _template,
+      _data,
+      buildCache: _buildCache,
+    );
     _pdfBytes = await _doc.save();
   }
 
