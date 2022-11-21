@@ -1,14 +1,14 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplWrap",
+        "t": "Wrap",
         "direction": null,
         "alignment": null,
         "spacing": 20,
@@ -18,7 +18,7 @@
         "verticalDirection": null,
         "children": [
           {
-            "className": "TplContainer",
+            "t": "Container",
             "alignment": null,
             "padding": null,
             "color": "'#4287f5'",
@@ -31,7 +31,7 @@
             "child": null
           },
           {
-            "className": "TplContainer",
+            "t": "Container",
             "alignment": null,
             "padding": null,
             "color": "'#42f55d'",
@@ -44,7 +44,7 @@
             "child": null
           },
           {
-            "className": "TplContainer",
+            "t": "Container",
             "alignment": null,
             "padding": null,
             "color": "'#f542a7'",

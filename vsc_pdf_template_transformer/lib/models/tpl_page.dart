@@ -19,7 +19,7 @@ part 'tpl_page.g.dart';
 class TplPage {
   TplPage(this.child);
 
-  String className = 'TplPage';
+  String t = 'Page';
   TplPageTheme? pageTheme;
   dynamic theme;
   TplPdfPageFormat? pageFormat;

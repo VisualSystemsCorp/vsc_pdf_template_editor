@@ -1,34 +1,34 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplMultiPage",
+      "t": "MultiPage",
       "pageFormat": {
         "format": "'letter'"
       },
       "theme": "newThemeWithFontSize(defaultTheme(), 18)",
       "children": [
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of default theme - regular'"
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of default theme - bold'",
           "style": {
             "fontWeight": "'bold'"
           }
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of default theme - italic'",
           "style": {
             "fontStyle": "'italic'"
           }
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of default theme - bold-italic'",
           "style": {
             "fontWeight": "'bold'",
@@ -36,17 +36,17 @@
           }
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of default theme - emoji - \uD83D\uDC31\uD83D\uDC08 \uD83D\uDC83\uD83C\uDFC3'"
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Icon sample (person in circle):'"
         },
         {
-          "className": "TplIcon",
+          "t": "Icon",
           "iconData": {
-            "className": "TplIconData",
+            "t": "IconData",
             "codePoint": 59475
           },
           "size": 18,

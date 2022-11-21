@@ -15,7 +15,7 @@ part 'tpl_annotation_ink.g.dart';
 class TplAnnotationInk implements ab.AnnotationBuilder {
   TplAnnotationInk();
 
-  String className = 'TplAnnotationInk';
+  String t = 'AnnotationInk';
   List<List<TplPdfPoint>>? points;
   dynamic color;
   dynamic date;

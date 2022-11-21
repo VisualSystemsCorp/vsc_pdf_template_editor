@@ -14,7 +14,7 @@ part 'tpl_full_page.g.dart';
 class TplFullPage implements wb.WidgetBuilder {
   TplFullPage();
 
-  String className = 'TplFullPage';
+  String t = 'FullPage';
   dynamic ignoreMargins;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;

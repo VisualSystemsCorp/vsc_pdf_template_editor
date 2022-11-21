@@ -1,17 +1,17 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplStack",
+        "t": "Stack",
         "children": [
           {
-            "className": "TplContainer",
+            "t": "Container",
             "margin": {
               "top": 30,
               "left": 30
@@ -21,10 +21,10 @@
             "height": 200
           },
           {
-            "className": "TplOpacity",
+            "t": "Opacity",
             "opacity": 0.3,
             "child": {
-              "className": "TplContainer",
+              "t": "Container",
               "alignment": null,
               "padding": null,
               "color": "'#3455eb'",

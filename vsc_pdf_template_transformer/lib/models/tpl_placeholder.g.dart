@@ -12,7 +12,7 @@ TplPlaceholder _$TplPlaceholderFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplPlaceholder();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('color', (v) => val.color = v);
         $checkedConvert('strokeWidth', (v) => val.strokeWidth = v);
         $checkedConvert('fallbackWidth', (v) => val.fallbackWidth = v);
@@ -23,7 +23,7 @@ TplPlaceholder _$TplPlaceholderFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplPlaceholderToJson(TplPlaceholder instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'color': instance.color,
       'strokeWidth': instance.strokeWidth,
       'fallbackWidth': instance.fallbackWidth,

@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 
-/// This is main entry point for command line tool
 void main(List<String> arguments) async {
   if (arguments.length != 3) {
     stderr

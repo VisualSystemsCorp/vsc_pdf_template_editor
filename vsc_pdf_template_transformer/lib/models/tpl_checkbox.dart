@@ -15,7 +15,7 @@ part 'tpl_checkbox.g.dart';
 class TplCheckbox implements wb.WidgetBuilder {
   TplCheckbox();
 
-  String className = 'TplCheckbox';
+  String t = 'Checkbox';
   dynamic value;
   dynamic tristate;
   dynamic activeColor;

@@ -1,18 +1,18 @@
 
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplChart",
+        "t": "Chart",
         "datasets": [
           {
-            "className": "TplBarDataSet",
+            "t": "BarDataSet",
             "data": [
               {
                 "x": 4,
@@ -44,7 +44,7 @@
             "valuePosition": null
           },
           {
-            "className": "TplBarDataSet",
+            "t": "BarDataSet",
             "data": [
               {
                 "x": 14,
@@ -77,7 +77,7 @@
           }
         ],
         "grid": {
-          "className": "TplRadialGrid"
+          "t": "RadialGrid"
         },
         "overlay": null,
         "title": null,

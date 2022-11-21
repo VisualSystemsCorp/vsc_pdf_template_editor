@@ -17,7 +17,7 @@ part 'tpl_bullet.g.dart';
 class TplBullet implements wb.WidgetBuilder {
   TplBullet();
 
-  String className = 'TplBullet';
+  String t = 'Bullet';
 
   dynamic text;
   dynamic textAlign;

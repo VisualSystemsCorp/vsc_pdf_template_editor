@@ -12,7 +12,7 @@ TplAnnotationInk _$TplAnnotationInkFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplAnnotationInk();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'points',
             (v) => val.points = (v as List<dynamic>?)
@@ -31,7 +31,7 @@ TplAnnotationInk _$TplAnnotationInkFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplAnnotationInkToJson(TplAnnotationInk instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'points': instance.points
           ?.map((e) => e.map((e) => e.toJson()).toList())
           .toList(),

@@ -11,7 +11,7 @@ TplPolygon _$TplPolygonFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplPolygon();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'points',
             (v) => val.points = (v as List<dynamic>?)
@@ -27,7 +27,7 @@ TplPolygon _$TplPolygonFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplPolygonToJson(TplPolygon instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'points': instance.points?.map((e) => e.toJson()).toList(),
       'fillColor': instance.fillColor,
       'strokeColor': instance.strokeColor,

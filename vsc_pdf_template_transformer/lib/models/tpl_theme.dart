@@ -15,7 +15,7 @@ part 'tpl_theme.g.dart';
 class TplTheme implements wb.WidgetBuilder {
   TplTheme();
 
-  String className = 'TplTheme';
+  String t = 'Theme';
 
   dynamic data;
   @WidgetJsonConverter()

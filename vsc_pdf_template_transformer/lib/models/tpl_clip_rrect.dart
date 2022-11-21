@@ -14,7 +14,7 @@ part 'tpl_clip_rrect.g.dart';
 class TplClipRRect implements wb.WidgetBuilder {
   TplClipRRect();
 
-  String className = 'TplClipRRect';
+  String t = 'ClipRRect';
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
   dynamic horizontalRadius;

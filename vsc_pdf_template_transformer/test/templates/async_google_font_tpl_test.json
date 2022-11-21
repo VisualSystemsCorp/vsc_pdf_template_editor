@@ -1,15 +1,15 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplMultiPage",
+      "t": "MultiPage",
       "pageFormat": {
         "format": "'letter'"
       },
       "children": [
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of OoohBaby-Regular Font'",
           "style": {
             "font": "getGoogleFont('OoohBaby-Regular')",
@@ -17,7 +17,7 @@
           }
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of Bangers-Regular Font'",
           "style": {
             "font": "getGoogleFont('Bangers-Regular')",
@@ -25,7 +25,7 @@
           }
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of OpenSans-Regular Font - Αυτό είναι κείμενο άλλης γλώσσας - Бирләшмиш Милләтләрин халгларынын БМТ Низамнамәсиндә'",
           "style": {
             "font": "getGoogleFont('OpenSans-Regular')",

@@ -1,23 +1,23 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplAlign",
+        "t": "Align",
         "alignment": {
-          "className": "TplFractionalOffset",
+          "t": "FractionalOffset",
           "dx": 1,
           "dy": 1
         },
         "widthFactor": null,
         "heightFactor": null,
         "child": {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Hello world'",
           "style": null,
           "textAlign": null,

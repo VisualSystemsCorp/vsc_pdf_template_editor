@@ -14,7 +14,7 @@ part 'tpl_fractional_offset.g.dart';
 class TplFractionalOffset extends a.Alignment {
   TplFractionalOffset();
 
-  String className = 'TplFractionalOffset';
+  String t = 'FractionalOffset';
   dynamic dx;
   dynamic dy;
 

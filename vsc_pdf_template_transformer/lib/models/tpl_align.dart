@@ -17,7 +17,7 @@ part 'tpl_align.g.dart';
 class TplAlign implements wb.WidgetBuilder {
   TplAlign();
 
-  String className = 'TplAlign';
+  String t = 'Align';
   @AlignmentJsonConverter()
   a.Alignment? alignment;
   dynamic widthFactor;

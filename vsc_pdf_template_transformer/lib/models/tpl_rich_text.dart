@@ -16,7 +16,7 @@ part 'tpl_rich_text.g.dart';
 class TplRichText implements wb.WidgetBuilder {
   TplRichText();
 
-  String className = 'TplRichText';
+  String t = 'RichText';
   @InlineSpanJsonConverter()
   ins.InlineSpan? text;
   dynamic textAlign;

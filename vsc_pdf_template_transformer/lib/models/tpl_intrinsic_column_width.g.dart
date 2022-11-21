@@ -13,7 +13,7 @@ TplIntrinsicColumnWidth _$TplIntrinsicColumnWidthFromJson(
       json,
       ($checkedConvert) {
         final val = TplIntrinsicColumnWidth();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('flex', (v) => val.flex = v);
         return val;
       },
@@ -22,6 +22,6 @@ TplIntrinsicColumnWidth _$TplIntrinsicColumnWidthFromJson(
 Map<String, dynamic> _$TplIntrinsicColumnWidthToJson(
         TplIntrinsicColumnWidth instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'flex': instance.flex,
     };

@@ -13,7 +13,7 @@ part 'tpl_shape.g.dart';
 class TplShape implements wb.WidgetBuilder {
   TplShape();
 
-  String className = 'TplShape';
+  String t = 'Shape';
   dynamic shape;
   dynamic fillColor;
   dynamic strokeColor;

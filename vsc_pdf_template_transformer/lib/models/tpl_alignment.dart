@@ -14,7 +14,7 @@ part 'tpl_alignment.g.dart';
 class TplAlignment extends a.Alignment {
   TplAlignment();
 
-  String className = 'TplAlignment';
+  String t = 'Alignment';
   dynamic alignment;
   dynamic x;
   dynamic y;

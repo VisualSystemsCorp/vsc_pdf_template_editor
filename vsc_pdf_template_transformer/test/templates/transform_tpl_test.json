@@ -1,24 +1,24 @@
 
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplColumn",
+        "t": "Column",
         "mainAxisAlignment": null,
         "mainAxisSize": null,
         "crossAxisAlignment": null,
         "verticalDirection": null,
         "children": [
           {
-            "className": "TplClipRect",
+            "t": "ClipRect",
             "child": {
-              "className": "TplTransform",
+              "t": "Transform",
               "transform": "'rotate'",
               "origin": null,
               "alignment": null,
@@ -29,7 +29,7 @@
               "offset": null,
               "scale": null,
               "child": {
-                "className": "TplContainer",
+                "t": "Container",
                 "alignment": null,
                 "padding": null,
                 "color": "'#e834eb'",
@@ -44,9 +44,9 @@
             }
           },
           {
-            "className": "TplClipRect",
+            "t": "ClipRect",
             "child": {
-              "className": "TplTransform",
+              "t": "Transform",
               "transform": "'rotateBox'",
               "origin": null,
               "alignment": null,
@@ -57,7 +57,7 @@
               "offset": null,
               "scale": null,
               "child": {
-                "className": "TplContainer",
+                "t": "Container",
                 "alignment": null,
                 "padding": null,
                 "color": "'#e834eb'",
@@ -80,9 +80,9 @@
             }
           },
           {
-            "className": "TplClipRect",
+            "t": "ClipRect",
             "child": {
-              "className": "TplTransform",
+              "t": "Transform",
               "transform": "'translate'",
               "origin": null,
               "alignment": null,
@@ -96,7 +96,7 @@
               },
               "scale": null,
               "child": {
-                "className": "TplText",
+                "t": "Text",
                 "text": "'Hello world'",
                 "style": null,
                 "textAlign": null,
@@ -110,9 +110,9 @@
             }
           },
           {
-            "className": "TplClipRect",
+            "t": "ClipRect",
             "child": {
-              "className": "TplTransform",
+              "t": "Transform",
               "transform": "'scale'",
               "origin": null,
               "alignment": null,
@@ -123,7 +123,7 @@
               "offset": null,
               "scale": 0.5,
               "child": {
-                "className": "TplContainer",
+                "t": "Container",
                 "alignment": null,
                 "padding": null,
                 "color": "'#e834eb'",

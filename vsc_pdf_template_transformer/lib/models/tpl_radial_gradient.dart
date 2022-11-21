@@ -16,7 +16,7 @@ part 'tpl_radial_gradient.g.dart';
 class TplRadialGradient implements g.Gradient {
   TplRadialGradient();
 
-  String className = 'TplRadialGradient';
+  String t = 'RadialGradient';
   @AlignmentJsonConverter()
   a.Alignment? center;
   dynamic radius;

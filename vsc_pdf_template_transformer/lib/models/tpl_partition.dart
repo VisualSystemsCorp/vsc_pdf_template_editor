@@ -15,7 +15,7 @@ part 'tpl_partition.g.dart';
 class TplPartition implements wb.WidgetBuilder {
   TplPartition();
 
-  String className = 'TplPartition';
+  String t = 'Partition';
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
   dynamic width;

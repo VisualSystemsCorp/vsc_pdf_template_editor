@@ -11,13 +11,13 @@ class GradientJsonConverter
   @override
   g.Gradient? fromJson(Map<String, dynamic>? json) {
     if (json != null) {
-      switch (json['className']) {
-        case 'TplLinearGradient':
+      switch (json['t']) {
+        case 'LinearGradient':
           return TplLinearGradient.fromJson(json);
-        case 'TplRadialGradient':
+        case 'RadialGradient':
           return TplRadialGradient.fromJson(json);
       }
-      throw Exception('No gradient className or unknown gradient className');
+      throw Exception('No gradient type or unknown gradient type');
     }
     return null;
   }

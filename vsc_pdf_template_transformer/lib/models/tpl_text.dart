@@ -15,7 +15,7 @@ part 'tpl_text.g.dart';
 class TplText implements wb.WidgetBuilder {
   TplText();
 
-  String className = 'TplText';
+  String t = 'Text';
   dynamic text;
   TplTextStyle? style;
   dynamic textAlign;

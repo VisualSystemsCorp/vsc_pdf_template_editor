@@ -16,7 +16,7 @@ part 'tpl_paragraph.g.dart';
 class TplParagraph implements wb.WidgetBuilder {
   TplParagraph();
 
-  String className = 'TplParagraph';
+  String t = 'Paragraph';
   dynamic text;
   dynamic textAlign;
   TplTextStyle? style;

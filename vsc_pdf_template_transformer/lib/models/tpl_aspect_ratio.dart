@@ -14,7 +14,7 @@ part 'tpl_aspect_ratio.g.dart';
 class TplAspectRatio implements wb.WidgetBuilder {
   TplAspectRatio();
 
-  String className = 'TplAspectRatio';
+  String t = 'AspectRatio';
   dynamic aspectRatio;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;

@@ -1,14 +1,14 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplTextField",
+        "t": "TextField",
         "name": "'Text Field'",
         "child": null,
         "width": null,

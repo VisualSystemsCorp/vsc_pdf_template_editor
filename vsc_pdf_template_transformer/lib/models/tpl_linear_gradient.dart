@@ -16,7 +16,7 @@ part 'tpl_linear_gradient.g.dart';
 class TplLinearGradient implements g.Gradient {
   TplLinearGradient();
 
-  String className = 'TplLinearGradient';
+  String t = 'LinearGradient';
   @AlignmentJsonConverter()
   a.Alignment? begin;
   @AlignmentJsonConverter()

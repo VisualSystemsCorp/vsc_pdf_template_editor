@@ -14,7 +14,7 @@ part 'tpl_expanded.g.dart';
 class TplExpanded implements wb.WidgetBuilder {
   TplExpanded();
 
-  String className = 'TplExpanded';
+  String t = 'Expanded';
   dynamic flex;
   dynamic fit;
   @WidgetJsonConverter()

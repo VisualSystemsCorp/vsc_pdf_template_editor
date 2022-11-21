@@ -1,25 +1,25 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplColumn",
+        "t": "Column",
         "crossAxisAlignment": "'start'",
         "children": [
           {
-            "className": "TplRichText",
+            "t": "RichText",
             "text": {
-              "className": "TplTextSpan",
+              "t": "TextSpan",
               "children": [
                 {
-                  "className": "TplWidgetSpan",
+                  "t": "WidgetSpan",
                   "child": {
-                    "className": "TplContainer",
+                    "t": "Container",
                     "alignment": null,
                     "padding": null,
                     "color": "'#15d468'",
@@ -42,7 +42,7 @@
                   "baseline": null,
                   "style": null,
                   "annotation": {
-                    "className": "TplAnnotationTextField",
+                    "t": "AnnotationTextField",
                     "name": "'Test'",
                     "color": null,
                     "date": null,
@@ -58,12 +58,12 @@
                   }
                 },
                 {
-                  "className": "TplTextSpan",
+                  "t": "TextSpan",
                   "children": [],
                   "text": "'hey'",
                   "baseline": null,
                   "annotation": {
-                    "className": "TplAnnotationUrl",
+                    "t": "AnnotationUrl",
                     "destination": "'https://flutter.dev'",
                     "date": null,
                     "subject": null,
@@ -94,9 +94,9 @@
                   }
                 },
                 {
-                  "className": "TplWidgetSpan",
+                  "t": "WidgetSpan",
                   "child": {
-                    "className": "TplContainer",
+                    "t": "Container",
                     "alignment": null,
                     "padding": null,
                     "color": "'#d415bd'",
@@ -119,7 +119,7 @@
                   "baseline": null,
                   "style": null,
                   "annotation": {
-                    "className": "TplAnnotationCircle",
+                    "t": "AnnotationCircle",
                     "color": null,
                     "interiorColor": null,
                     "date": "'2022-12-12'",
@@ -133,7 +133,7 @@
               "baseline": null,
               "style": null,
               "annotation": {
-                "className": "TplAnnotationSquare",
+                "t": "AnnotationSquare",
                 "color": null,
                 "interiorColor": null,
                 "date": "'2012-02-27 13:27:00'",
@@ -151,14 +151,14 @@
             "overflow": null
           },
           {
-            "className": "TplRichText",
+            "t": "RichText",
             "text": {
-              "className": "TplTextSpan",
+              "t": "TextSpan",
               "children": null,
               "text": "'Hi again!'",
               "baseline": null,
               "annotation": {
-                "className": "TplAnnotationPolygon",
+                "t": "AnnotationPolygon",
                 "points": [
                   {
                     "x": 4,

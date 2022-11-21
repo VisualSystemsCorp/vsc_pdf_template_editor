@@ -14,7 +14,7 @@ part 'tpl_positioned.g.dart';
 class TplPositioned implements wb.WidgetBuilder {
   TplPositioned();
 
-  String className = 'TplPositioned';
+  String t = 'Positioned';
   dynamic left;
   dynamic top;
   dynamic right;

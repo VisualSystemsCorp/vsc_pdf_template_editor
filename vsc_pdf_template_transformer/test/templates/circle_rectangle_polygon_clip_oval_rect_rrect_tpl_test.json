@@ -1,35 +1,35 @@
 
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplColumn",
+        "t": "Column",
         "mainAxisAlignment": "'spaceBetween'",
         "mainAxisSize": null,
         "crossAxisAlignment": null,
         "verticalDirection": null,
         "children": [
           {
-            "className": "TplSizedBox",
+            "t": "SizedBox",
             "width": 100,
             "height": 100,
             "child": {
-              "className": "TplCircle",
+              "t": "Circle",
               "fillColor": "'#3498eb'",
               "strokeColor": "'#eb7434'",
               "strokeWidth": 2
             }
           },
           {
-            "className": "TplClipOval",
+            "t": "ClipOval",
             "child": {
-              "className": "TplContainer",
+              "t": "Container",
               "alignment": null,
               "padding": null,
               "color": "'#34eb49'",
@@ -43,11 +43,11 @@
             }
           },
           {
-            "className": "TplClipRect",
+            "t": "ClipRect",
             "child": {
-              "className": "TplAlign",
+              "t": "Align",
               "alignment": {
-                "className": "TplAlignment",
+                "t": "Alignment",
                 "alignment": "'topCenter'",
                 "x": null,
                 "y": null
@@ -55,7 +55,7 @@
               "widthFactor": 0.2,
               "heightFactor": 0.5,
               "child": {
-                "className": "TplContainer",
+                "t": "Container",
                 "alignment": null,
                 "padding": null,
                 "color": "'#34eb49'",
@@ -70,9 +70,9 @@
             }
           },
           {
-            "className": "TplClipRRect",
+            "t": "ClipRRect",
             "child": {
-              "className": "TplContainer",
+              "t": "Container",
               "alignment": null,
               "padding": null,
               "color": "'#e834eb'",
@@ -88,22 +88,22 @@
             "verticalRadius": 32
           },
           {
-            "className": "TplSizedBox",
+            "t": "SizedBox",
             "width": 150,
             "height": 100,
             "child": {
-              "className": "TplRectangle",
+              "t": "Rectangle",
               "fillColor": "'#3498eb'",
               "strokeColor": "'#eb7434'",
               "strokeWidth": 2
             }
           },
           {
-            "className": "TplSizedBox",
+            "t": "SizedBox",
             "width": 10,
             "height": 10,
             "child": {
-              "className": "TplPolygon",
+              "t": "Polygon",
               "points": [
                 {
                   "x": 3,

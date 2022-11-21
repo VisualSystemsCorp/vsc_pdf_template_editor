@@ -16,7 +16,7 @@ part 'tpl_decoration_svg_image.g.dart';
 class TplDecorationSvgImage implements dg.DecorationGraphic {
   TplDecorationSvgImage();
 
-  String className = 'TplDecorationSvgImage';
+  String t = 'DecorationSvgImage';
   dynamic svg;
   dynamic fit;
   @AlignmentJsonConverter()

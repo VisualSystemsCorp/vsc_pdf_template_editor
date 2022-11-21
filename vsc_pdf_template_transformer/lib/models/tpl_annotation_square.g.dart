@@ -12,7 +12,7 @@ TplAnnotationSquare _$TplAnnotationSquareFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplAnnotationSquare();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('color', (v) => val.color = v);
         $checkedConvert('interiorColor', (v) => val.interiorColor = v);
         $checkedConvert('date', (v) => val.date = v);
@@ -26,7 +26,7 @@ TplAnnotationSquare _$TplAnnotationSquareFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TplAnnotationSquareToJson(
         TplAnnotationSquare instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'color': instance.color,
       'interiorColor': instance.interiorColor,
       'date': instance.date,

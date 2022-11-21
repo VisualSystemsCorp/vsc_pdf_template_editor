@@ -13,7 +13,7 @@ TplAnnotationPolygon _$TplAnnotationPolygonFromJson(
       json,
       ($checkedConvert) {
         final val = TplAnnotationPolygon();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'points',
             (v) => val.points = (v as List<dynamic>?)
@@ -32,7 +32,7 @@ TplAnnotationPolygon _$TplAnnotationPolygonFromJson(
 Map<String, dynamic> _$TplAnnotationPolygonToJson(
         TplAnnotationPolygon instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'points': instance.points?.map((e) => e.toJson()).toList(),
       'color': instance.color,
       'interiorColor': instance.interiorColor,

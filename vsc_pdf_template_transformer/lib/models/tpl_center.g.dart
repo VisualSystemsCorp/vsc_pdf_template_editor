@@ -11,7 +11,7 @@ TplCenter _$TplCenterFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplCenter();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('widthFactor', (v) => val.widthFactor = v);
         $checkedConvert('heightFactor', (v) => val.heightFactor = v);
         $checkedConvert(
@@ -23,7 +23,7 @@ TplCenter _$TplCenterFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$TplCenterToJson(TplCenter instance) => <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'widthFactor': instance.widthFactor,
       'heightFactor': instance.heightFactor,
       'child': const WidgetJsonConverter().toJson(instance.child),

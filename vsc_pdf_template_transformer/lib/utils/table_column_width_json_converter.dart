@@ -13,18 +13,18 @@ class TableColumnWidthJsonConverter
   @override
   tcw.TableColumnWidth? fromJson(Map<String, dynamic>? json) {
     if (json != null) {
-      switch (json['className']) {
-        case 'TplIntrinsicColumnWidth':
+      switch (json['t']) {
+        case 'IntrinsicColumnWidth':
           return TplIntrinsicColumnWidth.fromJson(json);
-        case 'TplFixedColumnWidth':
+        case 'FixedColumnWidth':
           return TplFixedColumnWidth.fromJson(json);
-        case 'TplFlexColumnWidth':
+        case 'FlexColumnWidth':
           return TplFlexColumnWidth.fromJson(json);
-        case 'TplFractionColumnWidth':
+        case 'FractionColumnWidth':
           return TplFractionColumnWidth.fromJson(json);
       }
       throw Exception(
-          'No table column width className or unknown table column width className');
+          'No table column width type name or unknown table column width type name');
     }
     return null;
   }

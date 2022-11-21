@@ -14,7 +14,7 @@ part 'tpl_constrained_box.g.dart';
 class TplConstrainedBox implements wb.WidgetBuilder {
   TplConstrainedBox();
 
-  String className = 'TplConstrainedBox';
+  String t = 'ConstrainedBox';
   TplBoxConstraints? constraints;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;

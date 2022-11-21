@@ -1,14 +1,14 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplGridView",
+        "t": "GridView",
         "direction": null,
         "padding": null,
         "crossAxisCount": 5,
@@ -17,7 +17,7 @@
         "childAspectRatio": 0.5,
         "children": [
           {
-            "className": "TplText",
+            "t": "Text",
             "text": "'text1'",
             "style": null,
             "textAlign": null,
@@ -29,7 +29,7 @@
             "overflow": null
           },
           {
-            "className": "TplText",
+            "t": "Text",
             "text": "'text2'",
             "style": null,
             "textAlign": null,
@@ -41,7 +41,7 @@
             "overflow": null
           },
           {
-            "className": "TplText",
+            "t": "Text",
             "text": "'text3'",
             "style": null,
             "textAlign": null,

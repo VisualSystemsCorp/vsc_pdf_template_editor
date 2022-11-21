@@ -11,7 +11,7 @@ TplLink _$TplLinkFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplLink();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('destination', (v) => val.destination = v);
         $checkedConvert(
             'child',
@@ -22,7 +22,7 @@ TplLink _$TplLinkFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$TplLinkToJson(TplLink instance) => <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'destination': instance.destination,
       'child': const WidgetJsonConverter().toJson(instance.child),
     };

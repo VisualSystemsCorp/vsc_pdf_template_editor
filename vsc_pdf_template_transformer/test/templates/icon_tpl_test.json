@@ -1,16 +1,16 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplIcon",
+        "t": "Icon",
         "iconData": {
-          "className": "TplIconData",
+          "t": "IconData",
           "codePoint": 38,
           "matchTextDirection": null
         },

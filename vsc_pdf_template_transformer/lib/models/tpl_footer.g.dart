@@ -11,7 +11,7 @@ TplFooter _$TplFooterFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplFooter();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'leading',
             (v) => val.leading = const WidgetJsonConverter()
@@ -44,7 +44,7 @@ TplFooter _$TplFooterFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$TplFooterToJson(TplFooter instance) => <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'leading': const WidgetJsonConverter().toJson(instance.leading),
       'title': const WidgetJsonConverter().toJson(instance.title),
       'trailing': const WidgetJsonConverter().toJson(instance.trailing),

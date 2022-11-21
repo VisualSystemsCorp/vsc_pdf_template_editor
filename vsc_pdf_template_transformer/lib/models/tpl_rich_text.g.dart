@@ -11,7 +11,7 @@ TplRichText _$TplRichTextFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplRichText();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'text',
             (v) => val.text = const InlineSpanJsonConverter()
@@ -29,7 +29,7 @@ TplRichText _$TplRichTextFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplRichTextToJson(TplRichText instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'text': const InlineSpanJsonConverter().toJson(instance.text),
       'textAlign': instance.textAlign,
       'textDirection': instance.textDirection,

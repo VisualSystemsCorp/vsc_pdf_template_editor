@@ -1,11 +1,11 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageTheme": {
-        "className": "TplPageTheme",
+        "t": "PageTheme",
         "pageFormat": "'a3'",
         "orientation": "'landscape'",
         "margin": {
@@ -20,7 +20,7 @@
         "clip": null,
         "textDirection": null,
         "theme": {
-          "className": "TplThemeData",
+          "t": "ThemeData",
           "defaultTextStyle": {
             "inherit": null,
             "color": "'#9415d4'",
@@ -67,27 +67,27 @@
         }
       },
       "child": {
-        "className": "TplColumn",
+        "t": "Column",
         "mainAxisAlignment": null,
         "mainAxisSize": null,
         "crossAxisAlignment": null,
         "verticalDirection": null,
         "children": [
           {
-            "className": "TplText",
+            "t": "Text",
             "text": "'sample text'",
-            "textAlign": "left",
-            "textDirection": "ltr",
+            "textAlign": "'left'",
+            "textDirection": "'ltr'",
             "softWrap": true,
             "tightBounds": true,
             "textScaleFactor": 2,
             "maxLines": 3,
-            "overflow": "span"
+            "overflow": "'span'"
           },
           {
-            "className": "TplIcon",
+            "t": "Icon",
             "iconData": {
-              "className": "TplIconData",
+              "t": "IconData",
               "codePoint": 38,
               "matchTextDirection": null
             },

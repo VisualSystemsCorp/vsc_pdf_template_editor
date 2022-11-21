@@ -1,18 +1,18 @@
 
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplChart",
+        "t": "Chart",
         "datasets": [
           {
-            "className": "TplLineDataSet",
+            "t": "LineDataSet",
             "data": [
               {
                 "x": 4,
@@ -44,7 +44,7 @@
           }
         ],
         "grid": {
-          "className": "TplCartesianGrid",
+          "t": "CartesianGrid",
           "xAxis": {
             "values": [
               1,

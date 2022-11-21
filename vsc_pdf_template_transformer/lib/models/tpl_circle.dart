@@ -13,7 +13,7 @@ part 'tpl_circle.g.dart';
 class TplCircle implements wb.WidgetBuilder {
   TplCircle();
 
-  String className = 'TplCircle';
+  String t = 'Circle';
   dynamic fillColor;
   dynamic strokeColor;
   dynamic strokeWidth;

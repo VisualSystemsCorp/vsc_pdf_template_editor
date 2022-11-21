@@ -11,7 +11,7 @@ TplTable _$TplTableFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplTable();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'children',
             (v) => val.children = (v as List<dynamic>?)
@@ -41,7 +41,7 @@ TplTable _$TplTableFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$TplTableToJson(TplTable instance) => <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'children': instance.children?.map((e) => e.toJson()).toList(),
       'border': instance.border?.toJson(),
       'defaultVerticalAlignment': instance.defaultVerticalAlignment,

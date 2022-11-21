@@ -12,7 +12,7 @@ TplConstrainedBox _$TplConstrainedBoxFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplConstrainedBox();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'constraints',
             (v) => val.constraints = v == null
@@ -28,7 +28,7 @@ TplConstrainedBox _$TplConstrainedBoxFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplConstrainedBoxToJson(TplConstrainedBox instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'constraints': instance.constraints?.toJson(),
       'child': const WidgetJsonConverter().toJson(instance.child),
     };

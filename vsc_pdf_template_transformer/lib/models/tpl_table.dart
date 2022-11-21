@@ -18,7 +18,7 @@ part 'tpl_table.g.dart';
 class TplTable implements wb.WidgetBuilder {
   TplTable();
 
-  String className = 'TplTable';
+  String t = 'Table';
   List<TplTableRow>? children;
   TplTableBorder? border;
   dynamic defaultVerticalAlignment;

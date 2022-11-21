@@ -1,23 +1,23 @@
 
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplMultiPage",
+      "t": "MultiPage",
       "pageFormat": {
         "format": "'letter'"
       },
       "children": [
         {
-          "className": "TplColumn",
+          "t": "Column",
           "mainAxisAlignment": null,
           "mainAxisSize": null,
           "crossAxisAlignment": null,
           "verticalDirection": null,
           "children": [
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'CODE 39'",
               "type": "'Code39'",
               "color": null,
@@ -32,7 +32,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'CODE 93'",
               "type": "'Code93'",
               "color": null,
@@ -47,7 +47,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'CODE 128'",
               "type": "'Code128'",
               "color": null,
@@ -62,7 +62,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'GS 128'",
               "type": "'GS128'",
               "color": null,
@@ -77,7 +77,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'5786'",
               "type": "'Itf'",
               "color": null,
@@ -92,7 +92,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'2578639587234'",
               "type": "'CodeITF14'",
               "color": null,
@@ -107,7 +107,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'257863958723411'",
               "type": "'CodeITF16'",
               "color": null,
@@ -122,7 +122,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'590123412345'",
               "type": "'CodeEAN13'",
               "color": null,
@@ -137,7 +137,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'9638507'",
               "type": "'CodeEAN8'",
               "color": null,
@@ -152,7 +152,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'30897'",
               "type": "'CodeEAN5'",
               "color": null,
@@ -167,7 +167,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'44'",
               "type": "'CodeEAN2'",
               "color": null,
@@ -182,7 +182,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'978316148410'",
               "type": "'CodeISBN'",
               "color": null,
@@ -197,7 +197,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'98765432109'",
               "type": "'CodeUPCA'",
               "color": null,
@@ -212,7 +212,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'06510000432'",
               "type": "'CodeUPCE'",
               "color": null,
@@ -227,7 +227,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'Telepen'",
               "type": "'Telepen'",
               "color": null,
@@ -242,7 +242,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'1234-5678'",
               "type": "'Codabar'",
               "color": null,
@@ -257,7 +257,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'12345678'",
               "type": "'Rm4scc'",
               "color": null,
@@ -272,7 +272,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'qrCode'",
               "type": "'QrCode'",
               "color": null,
@@ -287,7 +287,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'pdf417'",
               "type": "'PDF417'",
               "color": null,
@@ -302,7 +302,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'dataMatrix'",
               "type": "'DataMatrix'",
               "color": null,
@@ -317,7 +317,7 @@
               "textPadding": null
             },
             {
-              "className": "TplBarcodeWidget",
+              "t": "BarcodeWidget",
               "data": "'aztec'",
               "type": "'Aztec'",
               "color": null,

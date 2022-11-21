@@ -14,7 +14,7 @@ part 'tpl_padding.g.dart';
 class TplPadding implements wb.WidgetBuilder {
   TplPadding();
 
-  String className = 'TplPadding';
+  String t = 'Padding';
   TplEdgeInsets? padding;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;

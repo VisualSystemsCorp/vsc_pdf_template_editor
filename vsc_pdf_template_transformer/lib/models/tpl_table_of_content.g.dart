@@ -8,16 +8,16 @@ part of 'tpl_table_of_content.dart';
 
 TplTableOfContent _$TplTableOfContentFromJson(Map<String, dynamic> json) =>
     $checkedCreate(
-      'TplTableOfContent',
+      'TableOfContent',
       json,
       ($checkedConvert) {
         final val = TplTableOfContent();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         return val;
       },
     );
 
 Map<String, dynamic> _$TplTableOfContentToJson(TplTableOfContent instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
     };

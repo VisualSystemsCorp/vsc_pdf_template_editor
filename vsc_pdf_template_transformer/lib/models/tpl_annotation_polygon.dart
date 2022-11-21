@@ -15,7 +15,7 @@ part 'tpl_annotation_polygon.g.dart';
 class TplAnnotationPolygon implements ab.AnnotationBuilder {
   TplAnnotationPolygon();
 
-  String className = 'TplAnnotationPolygon';
+  String t = 'AnnotationPolygon';
   List<TplPdfPoint>? points;
   dynamic color;
   dynamic interiorColor;

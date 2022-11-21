@@ -17,7 +17,7 @@ part 'tpl_fitted_box.g.dart';
 class TplFittedBox implements wb.WidgetBuilder {
   TplFittedBox();
 
-  String className = 'TplFittedBox';
+  String t = 'FittedBox';
   dynamic fit;
   @AlignmentJsonConverter()
   a.Alignment? alignment;

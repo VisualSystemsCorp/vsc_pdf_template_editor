@@ -1,18 +1,18 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplSizedBox",
+        "t": "SizedBox",
         "width": 300,
         "height": 200,
         "child": {
-          "className": "TplDecoratedBox",
+          "t": "DecoratedBox",
           "decoration": {
             "color": "'#fc03ca'",
             "border": null,

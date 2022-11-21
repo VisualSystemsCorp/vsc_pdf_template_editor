@@ -1,15 +1,16 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplAlign",
+        "t": "Align",
         "alignment": {
+          "t": "Alignment",
           "alignment": "'bottomCenter'",
           "x": null,
           "y": null
@@ -17,9 +18,9 @@
         "widthFactor": null,
         "heightFactor": null,
         "child": {
-          "className": "TplFooter",
+          "t": "Footer",
           "leading": {
-            "className": "TplCheckbox",
+            "t": "Checkbox",
             "value": true,
             "tristate": null,
             "activeColor": null,
@@ -30,7 +31,7 @@
             "decoration": null
           },
           "title": {
-            "className": "TplText",
+            "t": "Text",
             "text": "'title'",
             "style": null,
             "textAlign": null,

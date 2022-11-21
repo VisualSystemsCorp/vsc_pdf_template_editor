@@ -14,7 +14,7 @@ TplMultiPage _$TplMultiPageFromJson(Map<String, dynamic> json) =>
         final val = TplMultiPage(
           $checkedConvert('children', (v) => v as List<dynamic>?),
         );
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'pageTheme',
             (v) => val.pageTheme = v == null
@@ -52,7 +52,7 @@ TplMultiPage _$TplMultiPageFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplMultiPageToJson(TplMultiPage instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'pageTheme': instance.pageTheme?.toJson(),
       'theme': instance.theme,
       'pageFormat': instance.pageFormat?.toJson(),

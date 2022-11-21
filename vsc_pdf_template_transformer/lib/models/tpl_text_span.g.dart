@@ -11,7 +11,7 @@ TplTextSpan _$TplTextSpanFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplTextSpan();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'children',
             (v) => val.children = (v as List<dynamic>?)
@@ -35,7 +35,7 @@ TplTextSpan _$TplTextSpanFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplTextSpanToJson(TplTextSpan instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'children': instance.children
           ?.map(const InlineSpanJsonConverter().toJson)
           .toList(),

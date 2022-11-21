@@ -16,7 +16,7 @@ part 'tpl_memory_image.g.dart';
 class TplMemoryImage implements ip.ImageProvider {
   TplMemoryImage(this.imageData);
 
-  String className = 'TplMemoryImage';
+  String t = 'MemoryImage';
   dynamic imageData;
   dynamic orientation;
   dynamic dpi;

@@ -1,17 +1,17 @@
 
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplTheme",
+        "t": "Theme",
         "data": {
-          "className": "TplThemeData",
+          "t": "ThemeData",
           "defaultTextStyle": {
             "inherit": null,
             "color": "'#b342f5'",
@@ -52,7 +52,7 @@
           "iconTheme": null
         },
         "child": {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Hello world'",
           "style": null,
           "textAlign": null,

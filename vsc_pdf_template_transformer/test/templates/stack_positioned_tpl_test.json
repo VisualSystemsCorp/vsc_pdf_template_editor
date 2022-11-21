@@ -1,20 +1,20 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplStack",
+        "t": "Stack",
         "alignment": null,
         "fit": null,
         "overflow": null,
         "children": [
           {
-            "className": "TplPositioned",
+            "t": "Positioned",
             "left": null,
             "top": 15,
             "right": null,
@@ -24,7 +24,7 @@
             "start": 50,
             "end": 15,
             "child": {
-              "className": "TplContainer",
+              "t": "Container",
               "alignment": null,
               "padding": null,
               "color": "'#f542a7'",

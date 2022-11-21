@@ -17,7 +17,7 @@ part 'tpl_flat_button.g.dart';
 class TplFlatButton implements wb.WidgetBuilder {
   TplFlatButton();
 
-  String className = 'TplFlatButton';
+  String t = 'FlatButton';
   dynamic textColor;
   dynamic color;
   dynamic colorDown;

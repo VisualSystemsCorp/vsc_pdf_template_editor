@@ -1,14 +1,14 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplContainer",
+        "t": "Container",
         "alignment": null,
         "padding": null,
         "color": null,
@@ -17,9 +17,10 @@
           "border": null,
           "borderRadius": null,
           "gradient": {
-            "className": "TplLinearGradient",
+            "t": "LinearGradient",
             "begin": null,
             "end": {
+              "t": "Alignment",
               "alignment": null,
               "x": null,
               "y": null

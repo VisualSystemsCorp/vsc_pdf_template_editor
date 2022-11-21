@@ -13,7 +13,7 @@ part 'tpl_cartesian_grid.g.dart';
 class TplCartesianGrid implements wb.WidgetBuilder {
   TplCartesianGrid();
 
-  String className = 'TplCartesianGrid';
+  String t = 'CartesianGrid';
   TplFixedAxis? xAxis;
   TplFixedAxis? yAxis;
 

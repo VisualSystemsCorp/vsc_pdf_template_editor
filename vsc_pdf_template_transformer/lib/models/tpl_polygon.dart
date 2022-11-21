@@ -14,7 +14,7 @@ part 'tpl_polygon.g.dart';
 class TplPolygon implements wb.WidgetBuilder {
   TplPolygon();
 
-  String className = 'TplPolygon';
+  String t = 'Polygon';
   List<TplPdfPoint>? points;
   dynamic fillColor;
   dynamic strokeColor;

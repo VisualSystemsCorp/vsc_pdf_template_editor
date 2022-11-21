@@ -19,7 +19,7 @@ part 'tpl_widget_span.g.dart';
 class TplWidgetSpan implements ins.InlineSpan {
   TplWidgetSpan();
 
-  String className = 'TplWidgetSpan';
+  String t = 'WidgetSpan';
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
   dynamic baseline;

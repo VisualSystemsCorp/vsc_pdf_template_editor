@@ -16,7 +16,7 @@ part 'tpl_listview.g.dart';
 class TplListView implements wb.WidgetBuilder {
   TplListView();
 
-  String className = 'TplListView';
+  String t = 'ListView';
   dynamic direction;
   dynamic reverse;
   dynamic spacing;

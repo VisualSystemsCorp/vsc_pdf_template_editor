@@ -16,7 +16,7 @@ part 'tpl_pie_data_set.g.dart';
 class TplPieDataSet implements wb.WidgetBuilder {
   TplPieDataSet();
 
-  String className = 'TplPieDataSet';
+  String t = 'PieDataSet';
   dynamic value;
   dynamic legend;
   dynamic color;

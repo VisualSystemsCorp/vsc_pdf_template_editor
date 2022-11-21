@@ -11,7 +11,7 @@ TplChart _$TplChartFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplChart();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'datasets',
             (v) => val.datasets = (v as List<dynamic>?)
@@ -47,7 +47,7 @@ TplChart _$TplChartFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$TplChartToJson(TplChart instance) => <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'datasets':
           instance.datasets?.map(const WidgetJsonConverter().toJson).toList(),
       'grid': const WidgetJsonConverter().toJson(instance.grid),

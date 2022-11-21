@@ -14,7 +14,7 @@ part 'tpl_placeholder.g.dart';
 class TplPlaceholder implements wb.WidgetBuilder {
   TplPlaceholder();
 
-  String className = 'TplPlaceholder';
+  String t = 'Placeholder';
   dynamic color;
   dynamic strokeWidth;
   dynamic fallbackWidth;

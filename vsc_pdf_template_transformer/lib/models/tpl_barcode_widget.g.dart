@@ -12,7 +12,7 @@ TplBarcodeWidget _$TplBarcodeWidgetFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplBarcodeWidget();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('data', (v) => val.data = v);
         $checkedConvert('type', (v) => val.type = v);
         $checkedConvert('color', (v) => val.color = v);
@@ -47,7 +47,7 @@ TplBarcodeWidget _$TplBarcodeWidgetFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplBarcodeWidgetToJson(TplBarcodeWidget instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'data': instance.data,
       'type': instance.type,
       'color': instance.color,

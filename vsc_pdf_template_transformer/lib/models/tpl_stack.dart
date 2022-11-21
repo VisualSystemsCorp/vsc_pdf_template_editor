@@ -17,7 +17,7 @@ part 'tpl_stack.g.dart';
 class TplStack implements wb.WidgetBuilder {
   TplStack();
 
-  String className = 'TplStack';
+  String t = 'Stack';
   @AlignmentJsonConverter()
   a.Alignment? alignment;
   dynamic fit;

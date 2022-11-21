@@ -14,7 +14,7 @@ part 'tpl_vertical_divider.g.dart';
 class TplVerticalDivider implements wb.WidgetBuilder {
   TplVerticalDivider();
 
-  String className = 'TplVerticalDivider';
+  String t = 'VerticalDivider';
   dynamic width;
   dynamic thickness;
   dynamic indent;

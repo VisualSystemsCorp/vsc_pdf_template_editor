@@ -19,7 +19,7 @@ part 'tpl_multi_page.g.dart';
 class TplMultiPage {
   TplMultiPage(this.children);
 
-  String className = 'TplMultiPage';
+  String t = 'MultiPage';
   TplPageTheme? pageTheme;
   dynamic theme;
   TplPdfPageFormat? pageFormat;

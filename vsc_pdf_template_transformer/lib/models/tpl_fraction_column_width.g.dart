@@ -13,7 +13,7 @@ TplFractionColumnWidth _$TplFractionColumnWidthFromJson(
       json,
       ($checkedConvert) {
         final val = TplFractionColumnWidth();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('value', (v) => val.value = v);
         return val;
       },
@@ -22,6 +22,6 @@ TplFractionColumnWidth _$TplFractionColumnWidthFromJson(
 Map<String, dynamic> _$TplFractionColumnWidthToJson(
         TplFractionColumnWidth instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'value': instance.value,
     };

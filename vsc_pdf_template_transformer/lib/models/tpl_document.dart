@@ -14,7 +14,7 @@ part 'tpl_document.g.dart';
 class TplDocument {
   TplDocument();
 
-  String className = 'TplDocument';
+  String t = 'Document';
 
   @JsonKey(defaultValue: [])
   List<VariableInitialization> variables = [];

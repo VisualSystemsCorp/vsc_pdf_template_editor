@@ -17,7 +17,7 @@ part 'tpl_transform.g.dart';
 class TplTransform implements wb.WidgetBuilder {
   TplTransform();
 
-  String className = 'TplTransform';
+  String t = 'Transform';
   dynamic transform;
   TplPdfPoint? origin;
   TplAlignment? alignment;

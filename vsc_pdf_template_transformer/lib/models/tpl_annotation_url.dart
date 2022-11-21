@@ -14,7 +14,7 @@ part 'tpl_annotation_url.g.dart';
 class TplAnnotationUrl implements ab.AnnotationBuilder {
   TplAnnotationUrl();
 
-  String className = 'TplAnnotationUrl';
+  String t = 'AnnotationUrl';
   dynamic destination;
   dynamic date;
   dynamic subject;

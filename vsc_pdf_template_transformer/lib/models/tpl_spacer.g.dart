@@ -11,13 +11,13 @@ TplSpacer _$TplSpacerFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplSpacer();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('flex', (v) => val.flex = v);
         return val;
       },
     );
 
 Map<String, dynamic> _$TplSpacerToJson(TplSpacer instance) => <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'flex': instance.flex,
     };

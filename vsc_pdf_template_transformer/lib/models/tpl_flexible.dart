@@ -14,7 +14,7 @@ part 'tpl_flexible.g.dart';
 class TplFlexible implements wb.WidgetBuilder {
   TplFlexible();
 
-  String className = 'TplFlexible';
+  String t = 'Flexible';
   dynamic flex;
   dynamic fit;
   @WidgetJsonConverter()

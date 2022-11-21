@@ -14,7 +14,7 @@ part 'tpl_fraction_column_width.g.dart';
 class TplFractionColumnWidth implements tcw.TableColumnWidth {
   TplFractionColumnWidth();
 
-  String className = 'TplFractionColumnWidth';
+  String t = 'FractionColumnWidth';
   dynamic value;
 
   factory TplFractionColumnWidth.fromJson(Map<String, dynamic> json) =>

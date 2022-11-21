@@ -13,7 +13,7 @@ part 'tpl_pie_grid.g.dart';
 class TplPieGrid implements wb.WidgetBuilder {
   TplPieGrid();
 
-  String className = 'TplPieGrid';
+  String t = 'PieGrid';
   dynamic startAngle;
 
   factory TplPieGrid.fromJson(Map<String, dynamic> json) =>

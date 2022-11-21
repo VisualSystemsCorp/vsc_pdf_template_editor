@@ -15,7 +15,7 @@ part 'tpl_wrap.g.dart';
 class TplWrap implements wb.WidgetBuilder {
   TplWrap();
 
-  String className = 'TplWrap';
+  String t = 'Wrap';
   dynamic direction;
   dynamic alignment;
   dynamic spacing;

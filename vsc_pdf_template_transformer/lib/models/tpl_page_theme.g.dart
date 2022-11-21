@@ -12,7 +12,7 @@ TplPageTheme _$TplPageThemeFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplPageTheme();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('pageFormat', (v) => val.pageFormat = v);
         $checkedConvert('orientation', (v) => val.orientation = v);
         $checkedConvert(
@@ -29,7 +29,7 @@ TplPageTheme _$TplPageThemeFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplPageThemeToJson(TplPageTheme instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'pageFormat': instance.pageFormat,
       'orientation': instance.orientation,
       'margin': instance.margin?.toJson(),

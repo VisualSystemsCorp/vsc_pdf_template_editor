@@ -12,7 +12,7 @@ TplChartLegend _$TplChartLegendFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplChartLegend();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'textStyle',
             (v) => val.textStyle = v == null
@@ -40,7 +40,7 @@ TplChartLegend _$TplChartLegendFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplChartLegendToJson(TplChartLegend instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'textStyle': instance.textStyle?.toJson(),
       'position': instance.position?.toJson(),
       'direction': instance.direction,

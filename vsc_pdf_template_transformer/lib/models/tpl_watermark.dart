@@ -18,7 +18,7 @@ part 'tpl_watermark.g.dart';
 class TplWatermark implements wb.WidgetBuilder {
   TplWatermark();
 
-  String className = 'TplWatermark';
+  String t = 'Watermark';
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
   dynamic fit;

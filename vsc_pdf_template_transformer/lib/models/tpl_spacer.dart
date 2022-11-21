@@ -13,7 +13,7 @@ part 'tpl_spacer.g.dart';
 class TplSpacer implements wb.WidgetBuilder {
   TplSpacer();
 
-  String className = 'TplSpacer';
+  String t = 'Spacer';
   dynamic flex;
 
   factory TplSpacer.fromJson(Map<String, dynamic> json) =>

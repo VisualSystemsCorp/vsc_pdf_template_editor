@@ -14,7 +14,7 @@ part 'tpl_link.g.dart';
 class TplLink implements wb.WidgetBuilder {
   TplLink();
 
-  String className = 'TplLink';
+  String t = 'Link';
   dynamic destination;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;

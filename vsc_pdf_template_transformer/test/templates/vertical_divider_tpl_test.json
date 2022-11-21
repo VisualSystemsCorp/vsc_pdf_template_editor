@@ -1,21 +1,21 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplRow",
+        "t": "Row",
         "mainAxisAlignment": null,
         "mainAxisSize": null,
         "crossAxisAlignment": null,
         "verticalDirection": null,
         "children": [
           {
-            "className": "TplText",
+            "t": "Text",
             "text": "'text1'",
             "style": null,
             "textAlign": null,
@@ -27,7 +27,7 @@
             "overflow": null
           },
           {
-            "className": "TplVerticalDivider",
+            "t": "VerticalDivider",
             "width": null,
             "thickness": null,
             "indent": null,
@@ -36,7 +36,7 @@
             "borderStyle": null
           },
           {
-            "className": "TplText",
+            "t": "Text",
             "text": "'text2'",
             "style": null,
             "textAlign": null,

@@ -1,33 +1,33 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplColumn",
+        "t": "Column",
         "children": [
           {
-            "className": "TplText",
+            "t": "Text",
             "text": "'Table of Contents'"
           },
           {
-            "className": "TplTableOfContent"
+            "t": "TableOfContent"
           }
         ]
       }
     },
     {
-      "className": "TplMultiPage",
+      "t": "MultiPage",
       "pageFormat": {
         "format": "'letter'"
       },
       "children": [
         {
-          "className": "TplHeader",
+          "t": "Header",
           "text": "'Heading 1'",
           "child": null,
           "level": 0,
@@ -39,7 +39,7 @@
           "outlineStyle": null
         },
         {
-          "className": "TplHeader",
+          "t": "Header",
           "text": "'Heading 1.1'",
           "child": null,
           "level": 1,

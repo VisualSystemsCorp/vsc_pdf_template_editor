@@ -19,7 +19,7 @@ part 'tpl_header.g.dart';
 class TplHeader implements wb.WidgetBuilder {
   TplHeader();
 
-  String className = 'TplHeader';
+  String t = 'Header';
   dynamic title;
   dynamic text;
   @WidgetJsonConverter()

@@ -14,7 +14,7 @@ part 'tpl_center.g.dart';
 class TplCenter implements wb.WidgetBuilder {
   TplCenter();
 
-  String className = 'TplCenter';
+  String t = 'Center';
   dynamic widthFactor;
   dynamic heightFactor;
   @WidgetJsonConverter()

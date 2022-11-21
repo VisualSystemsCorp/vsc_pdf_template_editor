@@ -1,21 +1,21 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplListView",
+        "t": "ListView",
         "direction": null,
         "reverse": null,
         "spacing": null,
         "padding": null,
         "children": [
           {
-            "className": "TplText",
+            "t": "Text",
             "text": "'text1'",
             "style": null,
             "textAlign": null,
@@ -27,7 +27,7 @@
             "overflow": null
           },
           {
-            "className": "TplText",
+            "t": "Text",
             "text": "'text2'",
             "style": null,
             "textAlign": null,

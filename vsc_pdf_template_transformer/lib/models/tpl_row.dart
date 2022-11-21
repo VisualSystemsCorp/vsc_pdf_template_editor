@@ -15,7 +15,7 @@ part 'tpl_row.g.dart';
 class TplRow implements wb.WidgetBuilder {
   TplRow();
 
-  String className = 'TplRow';
+  String t = 'Row';
   dynamic mainAxisAlignment;
   dynamic mainAxisSize;
   dynamic crossAxisAlignment;

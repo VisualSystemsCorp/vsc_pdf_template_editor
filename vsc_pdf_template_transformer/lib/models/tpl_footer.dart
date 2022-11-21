@@ -15,7 +15,7 @@ part 'tpl_footer.g.dart';
 class TplFooter implements wb.WidgetBuilder {
   TplFooter();
 
-  String className = 'TplFooter';
+  String t = 'Footer';
   @WidgetJsonConverter()
   wb.WidgetBuilder? leading;
   @WidgetJsonConverter()

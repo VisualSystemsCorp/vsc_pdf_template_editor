@@ -11,7 +11,7 @@ TplDivider _$TplDividerFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplDivider();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('height', (v) => val.height = v);
         $checkedConvert('thickness', (v) => val.thickness = v);
         $checkedConvert('indent', (v) => val.indent = v);
@@ -28,7 +28,7 @@ TplDivider _$TplDividerFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplDividerToJson(TplDivider instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'height': instance.height,
       'thickness': instance.thickness,
       'indent': instance.indent,

@@ -1,49 +1,49 @@
 
 {
-  "className": "TplDocument",
+  "t": "Document",
   "children": [
     {
-      "className": "TplMultiPage",
+      "t": "MultiPage",
       "pageFormat": {
         "format": "'letter'"
       },
       "header": {
-        "className": "TplText",
+        "t": "Text",
         "text": "'The Heading'"
       },
       "children": [
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'text'",
           "textScaleFactor": 10
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'text'",
           "textScaleFactor": 10
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'text'",
           "textScaleFactor": 10
         },
         {
-          "className": "TplHeader",
+          "t": "Header",
           "text": "'A new heading'",
           "level": 1
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'text'",
           "textScaleFactor": 10
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'text'",
           "textScaleFactor": 10
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'text'",
           "textScaleFactor": 10
         }

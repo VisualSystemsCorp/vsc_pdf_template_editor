@@ -13,7 +13,7 @@ part 'tpl_clip_rect.g.dart';
 class TplClipRect implements wb.WidgetBuilder {
   TplClipRect();
 
-  String className = 'TplClipRect';
+  String t = 'ClipRect';
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
 

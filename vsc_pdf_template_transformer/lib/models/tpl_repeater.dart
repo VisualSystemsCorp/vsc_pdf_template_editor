@@ -13,7 +13,7 @@ part 'tpl_repeater.g.dart';
   explicitToJson: true,
 )
 class TplRepeater {
-  String className = 'TplRepeater';
+  String t = 'Repeater';
 
   dynamic array;
   @WidgetJsonConverter()

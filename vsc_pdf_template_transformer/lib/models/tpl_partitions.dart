@@ -16,7 +16,7 @@ part 'tpl_partitions.g.dart';
 class TplPartitions implements wb.WidgetBuilder {
   TplPartitions();
 
-  String className = 'TplPartitions';
+  String t = 'Partitions';
   @WidgetJsonConverter()
   List<TplPartition>? children;
   dynamic mainAxisSize;

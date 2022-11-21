@@ -14,7 +14,7 @@ part 'tpl_flex.g.dart';
 class TplFlex implements wb.WidgetBuilder {
   TplFlex();
 
-  String className = 'TplFlex';
+  String t = 'Flex';
   dynamic direction;
   dynamic mainAxisAlignment;
   dynamic mainAxisSize;

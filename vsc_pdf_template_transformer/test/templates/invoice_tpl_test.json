@@ -1,5 +1,5 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "variables": [
     {
@@ -13,7 +13,7 @@
   ],
   "children": [
     {
-      "className": "TplMultiPage",
+      "t": "MultiPage",
       "pageFormat": {
         "format": "'letter'"
       },
@@ -23,10 +23,10 @@
       },
       "maxPages": 200,
       "header": {
-        "className": "TplColumn",
+        "t": "Column",
         "children": [
           {
-            "className": "TplPadding",
+            "t": "Padding",
             "padding": {
               "left": 20,
               "right": 20,
@@ -34,19 +34,19 @@
               "bottom": 10
             },
             "child": {
-              "className": "TplRow",
+              "t": "Row",
               "crossAxisAlignment": "'start'",
               "children": [
                 {
-                  "className": "TplExpanded",
+                  "t": "Expanded",
                   "child": {
-                    "className": "TplColumn",
+                    "t": "Column",
                     "mainAxisSize": "'min'",
                     "mainAxisAlignment": "'start'",
                     "crossAxisAlignment": "'start'",
                     "children": [
                       {
-                        "className": "TplSvgImage",
+                        "t": "SvgImage",
                         "svg": "downloadUtf8String('https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg')",
                         "width": 100,
                         "height": 100
@@ -55,15 +55,15 @@
                   }
                 },
                 {
-                  "className": "TplExpanded",
+                  "t": "Expanded",
                   "child": {
-                    "className": "TplColumn",
+                    "t": "Column",
                     "mainAxisSize": "'min'",
                     "mainAxisAlignment": "'start'",
                     "crossAxisAlignment": "'end'",
                     "children": [
                       {
-                        "className": "TplText",
+                        "t": "Text",
                         "text": "data.heading",
                         "style": {
                           "fontSize": 30,
@@ -71,7 +71,7 @@
                         }
                       },
                       {
-                        "className": "TplText",
+                        "t": "Text",
                         "text": "data.invoice_summary",
                         "style": {
                           "color": "'#7f7f7f'",
@@ -79,42 +79,42 @@
                         }
                       },
                       {
-                        "className": "TplSizedBox",
+                        "t": "SizedBox",
                         "height": 10
                       },
                       {
-                        "className": "TplText",
+                        "t": "Text",
                         "text": "data.remit_to.company_name",
                         "style": {
                           "fontWeight": "'bold'"
                         }
                       },
                       {
-                        "className": "TplText",
+                        "t": "Text",
                         "text": "data.remit_to.street_address_1"
                       },
                       {
-                        "className": "TplText",
+                        "t": "Text",
                         "text": "data.remit_to.street_address_2"
                       },
                       {
-                        "className": "TplText",
+                        "t": "Text",
                         "text": "data.remit_to.city + ', ' + data.remit_to.state + ' ' + data.remit_to.postal_code"
                       },
                       {
-                        "className": "TplText",
+                        "t": "Text",
                         "text": "data.remit_to.country"
                       },
                       {
-                        "className": "TplSizedBox",
+                        "t": "SizedBox",
                         "height": 10
                       },
                       {
-                        "className": "TplText",
+                        "t": "Text",
                         "text": "data.remit_to.phone_numbers[0].phone"
                       },
                       {
-                        "className": "TplText",
+                        "t": "Text",
                         "text": "data.remit_to.email"
                       }
                     ]
@@ -124,13 +124,13 @@
             }
           },
           {
-            "className": "TplDivider",
+            "t": "Divider",
             "color": "'#bbbbbb'"
           }
         ]
       },
       "footer": {
-        "className": "TplPadding",
+        "t": "Padding",
         "padding": {
           "left": 20,
           "right": 20,
@@ -138,9 +138,9 @@
           "bottom": 20
         },
         "child": {
-          "className": "TplCenter",
+          "t": "Center",
           "child": {
-            "className": "TplText",
+            "t": "Text",
             "text": "'Page ' + data.$pageNumberString + ' of ' + data.$pageCountString + ' for invoice #' + data.invoice_number",
             "style": {
               "color": "'#000000'"
@@ -150,7 +150,7 @@
       },
       "children": [
         {
-          "className": "TplPadding",
+          "t": "Padding",
           "padding": {
             "left": 20,
             "right": 20,
@@ -158,63 +158,63 @@
             "bottom": 10
           },
           "child": {
-            "className": "TplRow",
+            "t": "Row",
             "crossAxisAlignment": "'start'",
             "children": [
               {
-                "className": "TplExpanded",
+                "t": "Expanded",
                 "child": {
-                  "className": "TplColumn",
+                  "t": "Column",
                   "mainAxisSize": "'min'",
                   "mainAxisAlignment": "'start'",
                   "crossAxisAlignment": "'start'",
                   "children": [
                     {
-                      "className": "TplColumn",
+                      "t": "Column",
                       "mainAxisSize": "'min'",
                       "mainAxisAlignment": "'start'",
                       "crossAxisAlignment": "'start'",
                       "children": [
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "'Bill To'",
                           "style": {
                             "color": "'#7f7f7f'"
                           }
                         },
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "data.bill_to.first_name + ' ' + data.bill_to.last_name",
                           "style": {
                             "fontWeight": "'bold'"
                           }
                         },
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "data.bill_to.street_address_1"
                         },
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "data.bill_to.street_address_2"
                         },
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "data.bill_to.city + ', ' + data.bill_to.state + ' ' + data.bill_to.postal_code"
                         },
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "data.bill_to.country"
                         },
                         {
-                          "className": "TplSizedBox",
+                          "t": "SizedBox",
                           "height": 10
                         },
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "data.bill_to.phone_numbers[0].phone"
                         },
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "data.bill_to.email"
                         }
                       ]
@@ -223,14 +223,14 @@
                 }
               },
               {
-                "className": "TplExpanded",
+                "t": "Expanded",
                 "child": {
-                  "className": "TplTable",
+                  "t": "Table",
                   "children": [
                     {
                       "children": [
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "'Invoice Number: '",
                           "style": {
                             "fontWeight": "'bold'"
@@ -238,7 +238,7 @@
                           "textAlign": "'right'"
                         },
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "data.invoice_number"
                         }
                       ]
@@ -246,7 +246,7 @@
                     {
                       "children": [
                         {
-                          "className": "TplSizedBox",
+                          "t": "SizedBox",
                           "height": 10
                         }
                       ]
@@ -254,7 +254,7 @@
                     {
                       "children": [
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "'Invoice Date: '",
                           "style": {
                             "fontWeight": "'bold'"
@@ -262,7 +262,7 @@
                           "textAlign": "'right'"
                         },
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "formatDateTime('yMMMMd', data.invoice_date)"
                         }
                       ]
@@ -270,7 +270,7 @@
                     {
                       "children": [
                         {
-                          "className": "TplSizedBox",
+                          "t": "SizedBox",
                           "height": 10
                         }
                       ]
@@ -278,7 +278,7 @@
                     {
                       "children": [
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "'Due Date: '",
                           "style": {
                             "fontWeight": "'bold'"
@@ -286,7 +286,7 @@
                           "textAlign": "'right'"
                         },
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "formatDateTime('yMMMMd', data.due_date)"
                         }
                       ]
@@ -294,7 +294,7 @@
                     {
                       "children": [
                         {
-                          "className": "TplSizedBox",
+                          "t": "SizedBox",
                           "height": 10
                         }
                       ]
@@ -302,7 +302,7 @@
                     {
                       "children": [
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "'Amount Due: '",
                           "style": {
                             "fontWeight": "'bold'"
@@ -310,7 +310,7 @@
                           "textAlign": "'right'"
                         },
                         {
-                          "className": "TplText",
+                          "t": "Text",
                           "text": "formatCurrency(data.total_price)"
                         }
                       ]
@@ -322,30 +322,30 @@
           }
         },
         {
-          "className": "TplTable",
+          "t": "Table",
           "columnWidths": [
             {
-              "className": "TplFixedColumnWidth",
+              "t": "FixedColumnWidth",
               "width": 20
             },
             {
-              "className": "TplFixedColumnWidth",
+              "t": "FixedColumnWidth",
               "width": 200
             },
             {
-              "className": "TplIntrinsicColumnWidth"
+              "t": "IntrinsicColumnWidth"
             },
             {
-              "className": "TplIntrinsicColumnWidth"
+              "t": "IntrinsicColumnWidth"
             },
             {
-              "className": "TplIntrinsicColumnWidth"
+              "t": "IntrinsicColumnWidth"
             },
             {
-              "className": "TplIntrinsicColumnWidth"
+              "t": "IntrinsicColumnWidth"
             },
             {
-              "className": "TplFixedColumnWidth",
+              "t": "FixedColumnWidth",
               "width": 20
             }
           ],
@@ -359,16 +359,16 @@
               "verticalAlignment": "'middle'",
               "children": [
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplContainer",
+                  "t": "Container",
                   "padding": {
                     "top": 8,
                     "bottom": 8
                   },
                   "child": {
-                    "className": "TplText",
+                    "t": "Text",
                     "text": "'Description'",
                     "style": {
                       "fontWeight": "'bold'",
@@ -378,7 +378,7 @@
                   }
                 },
                 {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "'Quantity'",
                   "style": {
                     "fontWeight": "'bold'",
@@ -387,7 +387,7 @@
                   "textAlign": "'right'"
                 },
                 {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "' / Units'",
                   "style": {
                     "fontWeight": "'bold'",
@@ -396,7 +396,7 @@
                   "textAlign": "'left'"
                 },
                 {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "'Unit Price'",
                   "style": {
                     "fontWeight": "'bold'",
@@ -405,7 +405,7 @@
                   "textAlign": "'right'"
                 },
                 {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "'Ext. Price'",
                   "style": {
                     "fontWeight": "'bold'",
@@ -414,7 +414,7 @@
                   "textAlign": "'right'"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 }
               ]
             },
@@ -424,20 +424,20 @@
               "verticalAlignment": "'middle'",
               "children": [
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplContainer",
+                  "t": "Container",
                   "padding": {
                     "top": 8,
                     "bottom": 0
                   },
                   "child": {
-                    "className": "TplColumn",
+                    "t": "Column",
                     "crossAxisAlignment": "'start'",
                     "children": [
                       {
-                        "className": "TplText",
+                        "t": "Text",
                         "text": "data.item_description",
                         "style": {
                           "fontWeight": "'bold'"
@@ -445,7 +445,7 @@
                         "textAlign": "'left'"
                       },
                       {
-                        "className": "TplText",
+                        "t": "Text",
                         "text": "data.trade",
                         "textAlign": "'left'"
                       }
@@ -453,26 +453,26 @@
                   }
                 },
                 {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "formatNumber('#,##0.###', data.quantity)",
                   "textAlign": "'right'"
                 },
                 {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "' / ' + data.uom_code"
                 },
                 {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "formatNumber('#,##0.00', data.unit_price)",
                   "textAlign": "'right'"
                 },
                 {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "formatNumber('#,##0.00', data.extended_price)",
                   "textAlign": "'right'"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 }
               ]
             },
@@ -480,31 +480,31 @@
               "comment": "Total rows start here",
               "children": [
                 {
-                  "className": "TplDivider",
+                  "t": "Divider",
                   "color": "'#bbbbbb'"
                 },
                 {
-                  "className": "TplDivider",
+                  "t": "Divider",
                   "color": "'#bbbbbb'"
                 },
                 {
-                  "className": "TplDivider",
+                  "t": "Divider",
                   "color": "'#bbbbbb'"
                 },
                 {
-                  "className": "TplDivider",
+                  "t": "Divider",
                   "color": "'#bbbbbb'"
                 },
                 {
-                  "className": "TplDivider",
+                  "t": "Divider",
                   "color": "'#bbbbbb'"
                 },
                 {
-                  "className": "TplDivider",
+                  "t": "Divider",
                   "color": "'#bbbbbb'"
                 },
                 {
-                  "className": "TplDivider",
+                  "t": "Divider",
                   "color": "'#bbbbbb'"
                 }
               ]
@@ -513,25 +513,25 @@
               "verticalAlignment": "'middle'",
               "children": [
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplContainer",
+                  "t": "Container",
                   "padding": {
                     "top": 8,
                     "bottom": 8
                   },
                   "child": {
-                    "className": "TplText",
+                    "t": "Text",
                     "text": "'Total:'",
                     "style": {
                       "fontWeight": "'bold'"
@@ -540,12 +540,12 @@
                   }
                 },
                 {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "formatCurrency(data.total_price)",
                   "textAlign": "'right'"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 }
               ]
             },
@@ -553,25 +553,25 @@
               "verticalAlignment": "'middle'",
               "children": [
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplContainer",
+                  "t": "Container",
                   "padding": {
                     "top": 8,
                     "bottom": 8
                   },
                   "child": {
-                    "className": "TplText",
+                    "t": "Text",
                     "text": "data.tax_rate + ':'",
                     "style": {
                       "fontWeight": "'bold'"
@@ -580,39 +580,39 @@
                   }
                 },
                 {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "formatCurrency(data.tax_amount)",
                   "textAlign": "'right'"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 }
               ]
             },
             {
               "children": [
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplDivider",
+                  "t": "Divider",
                   "color": "'#bbbbbb'"
                 },
                 {
-                  "className": "TplDivider",
+                  "t": "Divider",
                   "color": "'#bbbbbb'"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 }
               ]
             },
@@ -620,25 +620,25 @@
               "verticalAlignment": "'middle'",
               "children": [
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 },
                 {
-                  "className": "TplContainer",
+                  "t": "Container",
                   "padding": {
                     "top": 8,
                     "bottom": 8
                   },
                   "child": {
-                    "className": "TplText",
+                    "t": "Text",
                     "text": "'Amount Due:'",
                     "style": {
                       "fontWeight": "'bold'"
@@ -647,7 +647,7 @@
                   }
                 },
                 {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "formatCurrency(data.total_price)",
                   "style": {
                     "fontWeight": "'bold'"
@@ -655,14 +655,14 @@
                   "textAlign": "'right'"
                 },
                 {
-                  "className": "TplSizedBox"
+                  "t": "SizedBox"
                 }
               ]
             }
           ]
         },
         {
-          "className": "TplContainer",
+          "t": "Container",
           "padding": {
             "left": 20,
             "right": 20,
@@ -670,28 +670,28 @@
           },
           "child": {
             "comment": "This row forces the column not to split between pages",
-            "className": "TplRow",
+            "t": "Row",
             "children": [
               {
-                "className": "TplExpanded",
+                "t": "Expanded",
                 "child": {
-                  "className": "TplColumn",
+                  "t": "Column",
                   "mainAxisAlignment": "'start'",
                   "crossAxisAlignment": "'start'",
                   "children": [
                     {
-                      "className": "TplText",
+                      "t": "Text",
                       "text": "'Notes / Terms'",
                       "style": {
                         "fontWeight": "'bold'"
                       }
                     },
                     {
-                      "className": "TplSizedBox",
+                      "t": "SizedBox",
                       "height": 4
                     },
                     {
-                      "className": "TplText",
+                      "t": "Text",
                       "text": "data.notes + ' \nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec enim diam vulputate ut pharetra sit amet aliquam. Et magnis dis parturient montes nascetur ridiculus mus mauris vitae. Elit duis tristique sollicitudin nibh sit. Purus faucibus ornare suspendisse sed. Aliquam purus sit amet luctus venenatis lectus magna. Enim diam vulputate ut pharetra. Elementum tempus egestas sed sed risus pretium. Adipiscing diam donec adipiscing tristique. Sed tempus urna et pharetra pharetra massa massa ultricies mi. Senectus et netus et malesuada. Cursus vitae congue mauris rhoncus aenean vel elit scelerisque. Neque sodales ut etiam sit amet nisl purus in mollis. Lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis. Et odio pellentesque diam volutpat. Mauris vitae ultricies leo integer malesuada nunc. Rutrum quisque non tellus orci ac. Urna nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Lectus nulla at volutpat diam ut.'",
                       "maxLines": 30,
                       "style": {
@@ -705,41 +705,41 @@
           }
         },
         {
-          "className": "TplNewPage"
+          "t": "NewPage"
         },
         {
-          "className": "TplContainer",
+          "t": "Container",
           "padding": {
             "left": 20,
             "right": 20,
             "top": 10
           },
           "child": {
-            "className": "TplColumn",
+            "t": "Column",
             "mainAxisAlignment": "'start'",
             "crossAxisAlignment": "'start'",
             "children": [
               {
-                "className": "TplText",
+                "t": "Text",
                 "text": "'Job Site Images'",
                 "style": {
                   "fontWeight": "'bold'"
                 }
               },
               {
-                "className": "TplRepeater",
+                "t": "Repeater",
                 "array": "data.images",
                 "childTemplate": {
-                  "className": "TplPadding",
+                  "t": "Padding",
                   "padding": {
                     "top": 10
                   },
                   "child": {
-                    "className": "TplSizedBox",
+                    "t": "SizedBox",
                     "width": 250,
                     "height": 250,
                     "child": {
-                      "className": "TplImage",
+                      "t": "Image",
                       "image": "downloadImage(data.item)"
                     }
                   }

@@ -16,7 +16,7 @@ part 'tpl_decoration_image.g.dart';
 class TplDecorationImage implements dg.DecorationGraphic {
   TplDecorationImage();
 
-  String className = 'TplDecorationImage';
+  String t = 'DecorationImage';
   dynamic image;
   dynamic fit;
   @AlignmentJsonConverter()

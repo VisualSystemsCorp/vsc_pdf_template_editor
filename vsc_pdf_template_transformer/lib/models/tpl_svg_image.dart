@@ -16,7 +16,7 @@ part 'tpl_svg_image.g.dart';
 class TplSvgImage implements wb.WidgetBuilder {
   TplSvgImage();
 
-  String className = 'TplSvgImage';
+  String t = 'SvgImage';
   dynamic svg;
   dynamic fit;
   @AlignmentJsonConverter()

@@ -14,7 +14,7 @@ part 'tpl_page_theme.g.dart';
 class TplPageTheme {
   TplPageTheme();
 
-  String className = 'TplPageTheme';
+  String t = 'PageTheme';
   dynamic pageFormat;
   dynamic orientation;
   TplEdgeInsets? margin;

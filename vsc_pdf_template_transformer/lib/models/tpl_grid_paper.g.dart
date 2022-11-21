@@ -12,7 +12,7 @@ TplGridPaper _$TplGridPaperFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplGridPaper();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('color', (v) => val.color = v);
         $checkedConvert(
             'child',
@@ -30,7 +30,7 @@ TplGridPaper _$TplGridPaperFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplGridPaperToJson(TplGridPaper instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'color': instance.color,
       'child': const WidgetJsonConverter().toJson(instance.child),
       'margin': instance.margin?.toJson(),

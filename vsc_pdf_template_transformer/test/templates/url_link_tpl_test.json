@@ -1,28 +1,28 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplUrlLink",
+        "t": "UrlLink",
         "destination": "'https://flutter.dev'",
         "child": {
-          "className": "TplText",
+          "t": "Text",
           "text": "'sample text'",
           "style": {
             "color": "'00FF00'"
           },
-          "textAlign": "left",
-          "textDirection": "ltr",
+          "textAlign": "'left'",
+          "textDirection": "'ltr'",
           "softWrap": true,
           "tightBounds": true,
           "textScaleFactor": 2,
           "maxLines": 3,
-          "overflow": "span"
+          "overflow": "'span'"
         }
       }
     }

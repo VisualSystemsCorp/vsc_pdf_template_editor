@@ -12,7 +12,7 @@ TplParagraph _$TplParagraphFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplParagraph();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('text', (v) => val.text = v);
         $checkedConvert('textAlign', (v) => val.textAlign = v);
         $checkedConvert(
@@ -36,7 +36,7 @@ TplParagraph _$TplParagraphFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplParagraphToJson(TplParagraph instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'text': instance.text,
       'textAlign': instance.textAlign,
       'style': instance.style?.toJson(),

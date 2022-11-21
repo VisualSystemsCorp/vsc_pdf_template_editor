@@ -16,7 +16,7 @@ part 'tpl_raw_image.g.dart';
 class TplRawImage implements ip.ImageProvider {
   TplRawImage(this.imageData);
 
-  String className = 'TplRawImage';
+  String t = 'RawImage';
   dynamic imageData;
   dynamic width;
   dynamic height;

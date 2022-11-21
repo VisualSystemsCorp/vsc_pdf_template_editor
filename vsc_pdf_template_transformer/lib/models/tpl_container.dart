@@ -18,7 +18,7 @@ part 'tpl_container.g.dart';
   explicitToJson: true,
 )
 class TplContainer implements wb.WidgetBuilder {
-  String className = 'TplContainer';
+  String t = 'Container';
   @AlignmentJsonConverter()
   a.Alignment? alignment;
   TplEdgeInsets? padding;

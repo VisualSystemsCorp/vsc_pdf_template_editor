@@ -15,7 +15,7 @@ part 'tpl_column.g.dart';
 class TplColumn implements wb.WidgetBuilder {
   TplColumn();
 
-  String className = 'TplColumn';
+  String t = 'Column';
   dynamic mainAxisAlignment;
   dynamic mainAxisSize;
   dynamic crossAxisAlignment;

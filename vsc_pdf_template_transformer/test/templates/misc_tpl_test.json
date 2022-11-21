@@ -1,60 +1,60 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplColumn",
+        "t": "Column",
         "children": [
           {
-            "className": "TplRow",
+            "t": "Row",
             "children": [
               {
-                "className": "TplText",
+                "t": "Text",
                 "text": "'Spacer Test - start of row'"
               },
               {
-                "className": "TplSpacer",
+                "t": "Spacer",
                 "flex": 1
               },
               {
-                "className": "TplText",
+                "t": "Text",
                 "text": "'End of Row'"
               }
             ]
           },
           {
-            "className": "TplRow",
+            "t": "Row",
             "children": [
               {
-                "className": "TplText",
+                "t": "Text",
                 "text": "'Expanded Test '"
               },
               {
-                "className": "TplExpanded",
+                "t": "Expanded",
                 "flex": 1,
                 "fit": null,
                 "child": {
-                  "className": "TplText",
+                  "t": "Text",
                   "text": "'This is expanded'"
                 }
               },
               {
-                "className": "TplText",
+                "t": "Text",
                 "text": "'end of row'"
               }
             ]
           },
           {
-            "className": "TplText",
+            "t": "Text",
             "text": "'Divider test before'"
           },
           {
-            "className": "TplDivider",
+            "t": "Divider",
             "height": 40,
             "thickness": 5,
             "indent": 10,
@@ -62,65 +62,65 @@
             "color": "'#ff0000'"
           },
           {
-            "className": "TplText",
+            "t": "Text",
             "text": "'Divider test after'"
           }
         ]
       }
     },
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplCenter",
+        "t": "Center",
         "widthFactor": null,
         "heightFactor": null,
         "child": {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Center Test'"
         }
       }
     },
     {
-      "className": "TplMultiPage",
+      "t": "MultiPage",
       "pageFormat": {
         "format": "'letter'"
       },
       "children": [
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'New Page Test - MultiPage 1'"
         },
         {
-          "className": "TplNewPage"
+          "t": "NewPage"
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'New Page Test - Page 2'"
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'FullPage, Padding, and Placeholder test on next page'"
         }
       ]
     },
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplFullPage",
+        "t": "FullPage",
         "ignoreMargins": true,
         "child": {
-          "className": "TplPadding",
+          "t": "Padding",
           "padding": {
             "all": 20
           },
           "child": {
-            "className": "TplPlaceholder"
+            "t": "Placeholder"
           }
         }
       }

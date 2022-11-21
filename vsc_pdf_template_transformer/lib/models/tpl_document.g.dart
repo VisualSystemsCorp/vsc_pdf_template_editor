@@ -11,7 +11,7 @@ TplDocument _$TplDocumentFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplDocument();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'variables',
             (v) => val.variables = (v as List<dynamic>?)
@@ -35,7 +35,7 @@ TplDocument _$TplDocumentFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplDocumentToJson(TplDocument instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'variables': instance.variables.map((e) => e.toJson()).toList(),
       'pageMode': instance.pageMode,
       'compress': instance.compress,

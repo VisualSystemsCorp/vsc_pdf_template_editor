@@ -11,7 +11,7 @@ TplFlex _$TplFlexFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplFlex();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('direction', (v) => val.direction = v);
         $checkedConvert('mainAxisAlignment', (v) => val.mainAxisAlignment = v);
         $checkedConvert('mainAxisSize', (v) => val.mainAxisSize = v);
@@ -24,7 +24,7 @@ TplFlex _$TplFlexFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$TplFlexToJson(TplFlex instance) => <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'direction': instance.direction,
       'mainAxisAlignment': instance.mainAxisAlignment,
       'mainAxisSize': instance.mainAxisSize,

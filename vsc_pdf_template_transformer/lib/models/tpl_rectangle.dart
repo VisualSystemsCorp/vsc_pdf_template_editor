@@ -13,7 +13,7 @@ part 'tpl_rectangle.g.dart';
 class TplRectangle implements wb.WidgetBuilder {
   TplRectangle();
 
-  String className = 'TplRectangle';
+  String t = 'Rectangle';
   dynamic fillColor;
   dynamic strokeColor;
   dynamic strokeWidth;

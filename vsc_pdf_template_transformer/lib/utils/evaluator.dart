@@ -139,14 +139,28 @@ String _formatDateTime(
   final locale = _getLocale(data);
   final intl.DateFormat formatter;
   if (pattern is List) {
-    formatter = intl.DateFormat(pattern[0], locale);
+    // For some reason, the expressions package sends the elements of the array as
+    // Literal rather than String.
+    formatter = intl.DateFormat(_coerceLiteralToString(pattern[0]), locale);
     for (var i = 1; i < pattern.length; i++) {
-      formatter.addPattern(pattern[i]);
+      formatter.addPattern(_coerceLiteralToString(pattern[i]));
     }
   } else {
     formatter = intl.DateFormat(pattern, locale);
   }
   return formatter.format(value);
+}
+
+String? _coerceLiteralToString(dynamic value) {
+  if (value is Literal) {
+    value = value.value;
+  }
+
+  if (value == null || value is String) {
+    return value;
+  }
+
+  throw Exception('"$value" is not a literal or a string');
 }
 
 dynamic _maybeConvertStringToDecimal(dynamic value) {
@@ -606,14 +620,14 @@ Future<ImageProvider?> evaluateImageProvider(
   }
 
   if (expression is Map<String, dynamic>) {
-    final className = expression['className'];
-    switch (className) {
-      case 'TplMemoryImage':
+    final type = expression['t'];
+    switch (type) {
+      case 'MemoryImage':
         return TplMemoryImage.fromJson(expression).buildImage(data);
-      case 'TplRawImage':
+      case 'RawImage':
         return TplRawImage.fromJson(expression).buildImage(data);
     }
-    throw Exception('Unknown image provider className: $className');
+    throw Exception('Unknown image provider type name: $type');
   }
 
   final result = await evaluateDynamic(expression, data);
@@ -634,12 +648,12 @@ Future<ThemeData?> evaluateThemeData(
   }
 
   if (result is Map<String, dynamic>) {
-    final className = expression['className'];
-    if (className == 'TplThemeData') {
+    final type = expression['t'];
+    if (type == 'ThemeData') {
       return TplThemeData.fromJson(expression).toPdf(data);
     }
 
-    throw Exception('Unknown ThemeData className: $className');
+    throw Exception('Unknown ThemeData type: $type');
   }
 
   if (result is ThemeData) {
@@ -654,7 +668,7 @@ Future<List<Widget>> getChildren(
   final List<Widget> res = [];
 
   for (final child in children) {
-    if (child['className'] == 'TplRepeater') {
+    if (child['t'] == 'Repeater') {
       final arr = await TplRepeater.fromJson(child).toPdf(data);
       res.addAll(arr);
     } else {

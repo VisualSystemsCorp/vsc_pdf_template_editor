@@ -1,18 +1,18 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplSizedBox",
+        "t": "SizedBox",
         "width": null,
         "height": null,
         "child": {
-          "className": "TplFlatButton",
+          "t": "FlatButton",
           "textColor": null,
           "color": null,
           "colorDown": null,
@@ -36,7 +36,7 @@
           },
           "flags": [],
           "child": {
-            "className": "TplText",
+            "t": "Text",
             "text": "'flat button'",
             "style": null,
             "textAlign": null,

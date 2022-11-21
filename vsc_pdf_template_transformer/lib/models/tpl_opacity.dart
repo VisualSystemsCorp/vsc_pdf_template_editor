@@ -15,7 +15,7 @@ part 'tpl_opacity.g.dart';
 class TplOpacity implements wb.WidgetBuilder {
   TplOpacity();
 
-  String className = 'TplOpacity';
+  String t = 'Opacity';
 
   dynamic opacity;
   @WidgetJsonConverter()

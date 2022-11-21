@@ -14,7 +14,7 @@ part 'tpl_annotation_square.g.dart';
 class TplAnnotationSquare implements ab.AnnotationBuilder {
   TplAnnotationSquare();
 
-  String className = 'TplAnnotationSquare';
+  String t = 'AnnotationSquare';
   dynamic color;
   dynamic interiorColor;
   dynamic date;

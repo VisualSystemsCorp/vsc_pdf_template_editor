@@ -1,30 +1,30 @@
 
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplMultiPage",
+      "t": "MultiPage",
       "pageFormat": {
         "format": "'letter'"
       },
       "children": [
         {
-          "className": "TplColumn",
+          "t": "Column",
           "mainAxisAlignment": null,
           "mainAxisSize": null,
           "crossAxisAlignment": null,
           "verticalDirection": null,
           "children": [
             {
-              "className": "TplSizedBox",
+              "t": "SizedBox",
               "width": 500,
               "height": 600,
               "child": {
-                "className": "TplGridPaper",
+                "t": "GridPaper",
                 "color": "'#f542d7'",
                 "child": {
-                  "className": "TplContainer",
+                  "t": "Container",
                   "alignment": null,
                   "padding": null,
                   "color": "'#f59042'",
@@ -41,14 +41,14 @@
               }
             },
             {
-              "className": "TplSizedBox",
+              "t": "SizedBox",
               "width": 500,
               "height": 600,
               "child": {
-                "className": "TplGridPaper",
+                "t": "GridPaper",
                 "color": null,
                 "child": {
-                  "className": "TplContainer",
+                  "t": "Container",
                   "alignment": null,
                   "padding": null,
                   "color": "'#f59042'",
@@ -73,14 +73,14 @@
               }
             },
             {
-              "className": "TplSizedBox",
+              "t": "SizedBox",
               "width": 500,
               "height": 600,
               "child": {
-                "className": "TplGridPaper",
+                "t": "GridPaper",
                 "color": null,
                 "child": {
-                  "className": "TplContainer",
+                  "t": "Container",
                   "alignment": null,
                   "padding": null,
                   "color": "'#f59042'",
@@ -105,14 +105,14 @@
               }
             },
             {
-              "className": "TplSizedBox",
+              "t": "SizedBox",
               "width": 500,
               "height": 600,
               "child": {
-                "className": "TplGridPaper",
+                "t": "GridPaper",
                 "color": "'#f542d7'",
                 "child": {
-                  "className": "TplContainer",
+                  "t": "Container",
                   "alignment": null,
                   "padding": null,
                   "color": "'#f59042'",
@@ -129,14 +129,14 @@
               }
             },
             {
-              "className": "TplSizedBox",
+              "t": "SizedBox",
               "width": 500,
               "height": 600,
               "child": {
-                "className": "TplGridPaper",
+                "t": "GridPaper",
                 "color": "'#f542d7'",
                 "child": {
-                  "className": "TplContainer",
+                  "t": "Container",
                   "alignment": null,
                   "padding": null,
                   "color": "'#f59042'",

@@ -15,7 +15,7 @@ part 'tpl_bar_data_set.g.dart';
 class TplBarDataSet implements wb.WidgetBuilder {
   TplBarDataSet();
 
-  String className = 'TplBarDataSet';
+  String t = 'BarDataSet';
   List<TplPointChartValue>? data;
   dynamic value;
   dynamic legend;

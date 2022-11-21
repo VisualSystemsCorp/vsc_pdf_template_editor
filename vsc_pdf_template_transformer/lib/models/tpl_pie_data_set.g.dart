@@ -12,7 +12,7 @@ TplPieDataSet _$TplPieDataSetFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplPieDataSet();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('value', (v) => val.value = v);
         $checkedConvert('legend', (v) => val.legend = v);
         $checkedConvert('color', (v) => val.color = v);
@@ -43,7 +43,7 @@ TplPieDataSet _$TplPieDataSetFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplPieDataSetToJson(TplPieDataSet instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'value': instance.value,
       'legend': instance.legend,
       'color': instance.color,

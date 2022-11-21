@@ -15,7 +15,7 @@ part 'tpl_point_data_set.g.dart';
 class TplPointDataSet implements wb.WidgetBuilder {
   TplPointDataSet();
 
-  String className = 'TplPointDataSet';
+  String t = 'PointDataSet';
   List<TplPointChartValue>? data;
   dynamic legend;
   dynamic pointSize;

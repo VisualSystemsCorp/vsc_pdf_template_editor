@@ -14,7 +14,7 @@ part 'tpl_limited_box.g.dart';
 class TplLimitedBox implements wb.WidgetBuilder {
   TplLimitedBox();
 
-  String className = 'TplLimitedBox';
+  String t = 'LimitedBox';
   dynamic maxWidth;
   dynamic maxHeight;
   @WidgetJsonConverter()

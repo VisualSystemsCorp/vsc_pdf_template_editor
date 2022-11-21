@@ -18,7 +18,7 @@ part 'tpl_barcode_widget.g.dart';
 class TplBarcodeWidget implements wb.WidgetBuilder {
   TplBarcodeWidget();
 
-  String className = 'TplBarcodeWidget';
+  String t = 'BarcodeWidget';
 
   dynamic data;
   dynamic type;

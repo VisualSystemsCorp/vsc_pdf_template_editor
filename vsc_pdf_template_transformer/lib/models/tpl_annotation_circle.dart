@@ -14,7 +14,7 @@ part 'tpl_annotation_circle.g.dart';
 class TplAnnotationCircle implements ab.AnnotationBuilder {
   TplAnnotationCircle();
 
-  String className = 'TplAnnotationCircle';
+  String t = 'AnnotationCircle';
   dynamic color;
   dynamic interiorColor;
   dynamic date;

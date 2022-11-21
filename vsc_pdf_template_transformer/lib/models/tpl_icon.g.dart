@@ -11,7 +11,7 @@ TplIcon _$TplIconFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplIcon();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'iconData',
             (v) => val.iconData = v == null
@@ -26,7 +26,7 @@ TplIcon _$TplIconFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$TplIconToJson(TplIcon instance) => <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'iconData': instance.iconData?.toJson(),
       'size': instance.size,
       'color': instance.color,

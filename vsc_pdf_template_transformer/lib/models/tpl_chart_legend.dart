@@ -17,7 +17,7 @@ part 'tpl_chart_legend.g.dart';
 class TplChartLegend implements wb.WidgetBuilder {
   TplChartLegend();
 
-  String className = 'TplChartLegend';
+  String t = 'ChartLegend';
   TplTextStyle? textStyle;
   TplAlignment? position;
   dynamic direction;

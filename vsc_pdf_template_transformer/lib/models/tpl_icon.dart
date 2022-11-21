@@ -15,7 +15,7 @@ part 'tpl_icon.g.dart';
 class TplIcon implements wb.WidgetBuilder {
   TplIcon();
 
-  String className = 'TplIcon';
+  String t = 'Icon';
 
   TplIconData? iconData;
   dynamic size;

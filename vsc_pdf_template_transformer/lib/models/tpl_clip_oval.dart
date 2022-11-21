@@ -13,7 +13,7 @@ part 'tpl_clip_oval.g.dart';
 class TplClipOval implements wb.WidgetBuilder {
   TplClipOval();
 
-  String className = 'TplClipOval';
+  String t = 'ClipOval';
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
 

@@ -1,18 +1,18 @@
 
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplChart",
+        "t": "Chart",
         "datasets": [
           {
-            "className": "TplPieDataSet",
+            "t": "PieDataSet",
             "value": 3,
             "legend": "'Item 1'",
             "color": "'#343deb'",
@@ -32,7 +32,7 @@
             "innerRadius": null
           },
           {
-            "className": "TplPieDataSet",
+            "t": "PieDataSet",
             "value": 2,
             "legend": "'Item 2'",
             "color": "'#eb34ba'",
@@ -52,7 +52,7 @@
             "innerRadius": null
           },
           {
-            "className": "TplPieDataSet",
+            "t": "PieDataSet",
             "value": 1,
             "legend": "'Item 3'",
             "color": "'#eb9b34'",
@@ -73,12 +73,12 @@
           }
         ],
         "grid": {
-          "className": "TplPieGrid",
+          "t": "PieGrid",
           "startAngle": null
         },
         "overlay": null,
         "title": {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Test Pie Chart'",
           "style": null,
           "textAlign": null,
@@ -92,7 +92,7 @@
         "bottom": null,
         "left": null,
         "right": {
-          "className": "TplChartLegend",
+          "t": "ChartLegend",
           "textStyle": null,
           "position": null,
           "direction": null,

@@ -13,7 +13,7 @@ part 'tpl_sized_box.g.dart';
   explicitToJson: true,
 )
 class TplSizedBox implements wb.WidgetBuilder {
-  String className = 'TplSizedBox';
+  String t = 'SizedBox';
 
   @JsonKey()
   dynamic width;

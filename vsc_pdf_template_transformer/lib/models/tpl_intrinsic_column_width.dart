@@ -14,7 +14,7 @@ part 'tpl_intrinsic_column_width.g.dart';
 class TplIntrinsicColumnWidth implements tcw.TableColumnWidth {
   TplIntrinsicColumnWidth();
 
-  String className = 'TplIntrinsicColumnWidth';
+  String t = 'IntrinsicColumnWidth';
   dynamic flex;
 
   factory TplIntrinsicColumnWidth.fromJson(Map<String, dynamic> json) =>

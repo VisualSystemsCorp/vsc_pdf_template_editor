@@ -18,7 +18,7 @@ part 'tpl_text_span.g.dart';
 class TplTextSpan implements ins.InlineSpan {
   TplTextSpan();
 
-  String className = 'TplTextSpan';
+  String t = 'TextSpan';
   @InlineSpanJsonConverter()
   List<ins.InlineSpan?>? children;
   dynamic text;

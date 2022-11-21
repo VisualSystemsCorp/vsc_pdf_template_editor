@@ -1,21 +1,21 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplColumn",
+        "t": "Column",
         "mainAxisAlignment": null,
         "mainAxisSize": null,
         "crossAxisAlignment": null,
         "verticalDirection": null,
         "children": [
           {
-            "className": "TplContainer",
+            "t": "Container",
             "alignment": null,
             "padding": null,
             "color": "'#fc03ca'",
@@ -26,7 +26,7 @@
             "constraints": null,
             "margin": null,
             "child": {
-              "className": "TplText",
+              "t": "Text",
               "text": "'this is a test text'",
               "style": null,
               "textAlign": null,
@@ -39,13 +39,13 @@
             }
           },
           {
-            "className": "TplSizedBox",
+            "t": "SizedBox",
             "width": null,
             "height": 20,
             "child": null
           },
           {
-            "className": "TplContainer",
+            "t": "Container",
             "alignment": null,
             "padding": null,
             "color": "'#2dfc03'",
@@ -56,11 +56,11 @@
             "constraints": null,
             "margin": null,
             "child": {
-              "className": "TplFittedBox",
+              "t": "FittedBox",
               "fit": null,
               "alignment": null,
               "child": {
-                "className": "TplText",
+                "t": "Text",
                 "text": "'this is a test text'",
                 "style": null,
                 "textAlign": null,

@@ -15,7 +15,7 @@ part 'tpl_decorated_box.g.dart';
 class TplDecoratedBox implements wb.WidgetBuilder {
   TplDecoratedBox();
 
-  String className = 'TplDecoratedBox';
+  String t = 'DecoratedBox';
   TplBoxDecoration? decoration;
   dynamic position;
   @WidgetJsonConverter()

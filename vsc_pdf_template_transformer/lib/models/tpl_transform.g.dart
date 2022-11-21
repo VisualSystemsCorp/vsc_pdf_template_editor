@@ -12,7 +12,7 @@ TplTransform _$TplTransformFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplTransform();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('transform', (v) => val.transform = v);
         $checkedConvert(
             'origin',
@@ -44,7 +44,7 @@ TplTransform _$TplTransformFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplTransformToJson(TplTransform instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'transform': instance.transform,
       'origin': instance.origin?.toJson(),
       'alignment': instance.alignment?.toJson(),

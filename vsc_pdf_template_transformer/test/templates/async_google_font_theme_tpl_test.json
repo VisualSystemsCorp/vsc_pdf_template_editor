@@ -1,34 +1,34 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplMultiPage",
+      "t": "MultiPage",
       "pageFormat": {
         "format": "'letter'"
       },
       "theme": "newThemeWithFontSize(getThemeFromGoogleFont('Spectral'), 18)",
       "children": [
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of Spectral theme - regular'"
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of Spectral theme - bold'",
           "style": {
             "fontWeight": "'bold'"
           }
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of Spectral theme - italic'",
           "style": {
             "fontStyle": "'italic'"
           }
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of Spectral theme - bold-italic'",
           "style": {
             "fontWeight": "'bold'",
@@ -36,7 +36,7 @@
           }
         },
         {
-          "className": "TplText",
+          "t": "Text",
           "text": "'Sample of Spectral theme - emoji - \uD83D\uDC31\uD83D\uDC08 \uD83D\uDC83\uD83C\uDFC3'"
         }
       ]

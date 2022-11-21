@@ -11,7 +11,7 @@ TplGridView _$TplGridViewFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplGridView();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('direction', (v) => val.direction = v);
         $checkedConvert(
             'padding',
@@ -29,7 +29,7 @@ TplGridView _$TplGridViewFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplGridViewToJson(TplGridView instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'direction': instance.direction,
       'padding': instance.padding?.toJson(),
       'crossAxisCount': instance.crossAxisCount,

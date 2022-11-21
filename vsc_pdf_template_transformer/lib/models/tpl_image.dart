@@ -16,7 +16,7 @@ part 'tpl_image.g.dart';
 class TplImage implements wb.WidgetBuilder {
   TplImage();
 
-  String className = 'TplImage';
+  String t = 'Image';
   dynamic image;
   dynamic fit;
   @AlignmentJsonConverter()

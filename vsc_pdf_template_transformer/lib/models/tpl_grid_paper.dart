@@ -16,7 +16,7 @@ part 'tpl_grid_paper.g.dart';
 class TplGridPaper implements wb.WidgetBuilder {
   TplGridPaper();
 
-  String className = 'TplGridPaper';
+  String t = 'GridPaper';
 
   dynamic color;
   @WidgetJsonConverter()

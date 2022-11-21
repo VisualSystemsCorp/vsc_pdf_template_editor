@@ -15,7 +15,7 @@ part 'tpl_annotation_text_field.g.dart';
 class TplAnnotationTextField implements ab.AnnotationBuilder {
   TplAnnotationTextField();
 
-  String className = 'TplAnnotationTextField';
+  String t = 'AnnotationTextField';
   dynamic name;
   dynamic color;
   dynamic date;

@@ -12,7 +12,7 @@ part 'tpl_icon_data.g.dart';
 class TplIconData {
   TplIconData();
 
-  String className = 'TplIconData';
+  String t = 'IconData';
   dynamic codePoint;
   dynamic matchTextDirection;
 

@@ -16,7 +16,7 @@ part 'tpl_grid_view.g.dart';
 class TplGridView implements wb.WidgetBuilder {
   TplGridView();
 
-  String className = 'TplGridView';
+  String t = 'GridView';
 
   dynamic direction;
   TplEdgeInsets? padding;

@@ -14,7 +14,7 @@ part 'tpl_chart.g.dart';
 class TplChart implements wb.WidgetBuilder {
   TplChart();
 
-  String className = 'TplChart';
+  String t = 'Chart';
   @WidgetJsonConverter()
   List<wb.WidgetBuilder?>? datasets;
   @WidgetJsonConverter()

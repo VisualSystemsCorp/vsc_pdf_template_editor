@@ -1,19 +1,19 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplTable",
+        "t": "Table",
         "children": [
           {
             "children": [
               {
-                "className": "TplContainer",
+                "t": "Container",
                 "alignment": null,
                 "padding": null,
                 "color": "'#42f598'",
@@ -26,7 +26,7 @@
                 "child": null
               },
               {
-                "className": "TplText",
+                "t": "Text",
                 "text": "'Hello world'",
                 "style": null,
                 "textAlign": null,
@@ -38,7 +38,7 @@
                 "overflow": null
               },
               {
-                "className": "TplContainer",
+                "t": "Container",
                 "alignment": null,
                 "padding": null,
                 "color": "'#5742f5'",
@@ -51,7 +51,7 @@
                 "child": null
               },
               {
-                "className": "TplText",
+                "t": "Text",
                 "text": "'4th'"
               }
             ],
@@ -62,7 +62,7 @@
           {
             "children": [
               {
-                "className": "TplText",
+                "t": "Text",
                 "text": "'Hello world'",
                 "style": null,
                 "textAlign": null,
@@ -74,7 +74,7 @@
                 "overflow": null
               },
               {
-                "className": "TplContainer",
+                "t": "Container",
                 "alignment": null,
                 "padding": null,
                 "color": "'#5742f5'",
@@ -87,7 +87,7 @@
                 "child": null
               },
               {
-                "className": "TplContainer",
+                "t": "Container",
                 "alignment": null,
                 "padding": null,
                 "color": "'#42f598'",
@@ -100,7 +100,7 @@
                 "child": null
               },
               {
-                "className": "TplText",
+                "t": "Text",
                 "text": "'r2c4'"
               }
             ],
@@ -127,19 +127,19 @@
         "defaultVerticalAlignment": null,
         "columnWidths": [
           {
-            "className": "TplIntrinsicColumnWidth",
+            "t": "IntrinsicColumnWidth",
             "flex": 1
           },
           {
-            "className": "TplFlexColumnWidth",
+            "t": "FlexColumnWidth",
             "flex": 2
           },
           {
-            "className": "TplFixedColumnWidth",
+            "t": "FixedColumnWidth",
             "width": 50
           },
           {
-            "className": "TplFractionColumnWidth",
+            "t": "FractionColumnWidth",
             "value": 0.25
           }
         ],
