@@ -8,7 +8,7 @@ part of 'tpl_radial_grid.dart';
 
 TplRadialGrid _$TplRadialGridFromJson(Map<String, dynamic> json) =>
     $checkedCreate(
-      'RadialGrid',
+      'TplRadialGrid',
       json,
       ($checkedConvert) {
         final val = TplRadialGrid();

@@ -8,7 +8,7 @@ part of 'tpl_table_of_content.dart';
 
 TplTableOfContent _$TplTableOfContentFromJson(Map<String, dynamic> json) =>
     $checkedCreate(
-      'TableOfContent',
+      'TplTableOfContent',
       json,
       ($checkedConvert) {
         final val = TplTableOfContent();

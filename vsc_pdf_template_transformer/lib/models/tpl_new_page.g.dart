@@ -7,7 +7,7 @@ part of 'tpl_new_page.dart';
 // **************************************************************************
 
 TplNewPage _$TplNewPageFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'NewPage',
+      'TplNewPage',
       json,
       ($checkedConvert) {
         final val = TplNewPage();
