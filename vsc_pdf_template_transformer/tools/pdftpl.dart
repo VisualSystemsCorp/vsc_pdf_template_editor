@@ -18,11 +18,11 @@ void main(List<String> arguments) async {
   final dataFile = File(arguments[1]);
   final result = File(arguments[2]);
 
-  final template = json.decode(templateFile.readAsStringSync());
+  final template = jsonDecode(templateFile.readAsStringSync());
 
-  final data = json.decode(dataFile.readAsStringSync());
+  final data = jsonDecode(dataFile.readAsStringSync());
 
-  var bytes = await transformer.Transformer.buildPdf(template, data);
+  final bytes = await transformer.Transformer.buildPdf(template, data);
   result.writeAsBytesSync(bytes, mode: FileMode.write);
   exit(0);
 }

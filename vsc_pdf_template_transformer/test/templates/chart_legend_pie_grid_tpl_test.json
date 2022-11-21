@@ -1,0 +1,105 @@
+
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplChart",
+        "datasets": [
+          {
+            "className": "TplPieDataSet",
+            "value": 3,
+            "legend": "'Item 1'",
+            "color": "'#343deb'",
+            "borderColor": null,
+            "borderWidth": null,
+            "drawBorder": null,
+            "drawSurface": null,
+            "surfaceOpacity": null,
+            "offset": null,
+            "legendStyle": null,
+            "legendAlign": null,
+            "legendPosition": null,
+            "legendLineWidth": null,
+            "legendLineColor": null,
+            "legendWidget": null,
+            "legendOffset": null,
+            "innerRadius": null
+          },
+          {
+            "className": "TplPieDataSet",
+            "value": 2,
+            "legend": "'Item 2'",
+            "color": "'#eb34ba'",
+            "borderColor": null,
+            "borderWidth": null,
+            "drawBorder": null,
+            "drawSurface": null,
+            "surfaceOpacity": null,
+            "offset": null,
+            "legendStyle": null,
+            "legendAlign": null,
+            "legendPosition": null,
+            "legendLineWidth": null,
+            "legendLineColor": null,
+            "legendWidget": null,
+            "legendOffset": null,
+            "innerRadius": null
+          },
+          {
+            "className": "TplPieDataSet",
+            "value": 1,
+            "legend": "'Item 3'",
+            "color": "'#eb9b34'",
+            "borderColor": null,
+            "borderWidth": null,
+            "drawBorder": null,
+            "drawSurface": null,
+            "surfaceOpacity": null,
+            "offset": null,
+            "legendStyle": null,
+            "legendAlign": null,
+            "legendPosition": null,
+            "legendLineWidth": null,
+            "legendLineColor": null,
+            "legendWidget": null,
+            "legendOffset": null,
+            "innerRadius": null
+          }
+        ],
+        "grid": {
+          "className": "TplPieGrid",
+          "startAngle": null
+        },
+        "overlay": null,
+        "title": {
+          "className": "TplText",
+          "text": "'Test Pie Chart'",
+          "style": null,
+          "textAlign": null,
+          "textDirection": null,
+          "softWrap": true,
+          "tightBounds": false,
+          "textScaleFactor": null,
+          "maxLines": null,
+          "overflow": null
+        },
+        "bottom": null,
+        "left": null,
+        "right": {
+          "className": "TplChartLegend",
+          "textStyle": null,
+          "position": null,
+          "direction": null,
+          "decoration": null,
+          "padding": null
+        }
+      }
+    }
+  ]
+}

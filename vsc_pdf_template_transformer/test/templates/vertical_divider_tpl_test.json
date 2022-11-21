@@ -1,0 +1,54 @@
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplRow",
+        "mainAxisAlignment": null,
+        "mainAxisSize": null,
+        "crossAxisAlignment": null,
+        "verticalDirection": null,
+        "children": [
+          {
+            "className": "TplText",
+            "text": "'text1'",
+            "style": null,
+            "textAlign": null,
+            "textDirection": null,
+            "softWrap": true,
+            "tightBounds": false,
+            "textScaleFactor": null,
+            "maxLines": null,
+            "overflow": null
+          },
+          {
+            "className": "TplVerticalDivider",
+            "width": null,
+            "thickness": null,
+            "indent": null,
+            "endIndent": null,
+            "color": null,
+            "borderStyle": null
+          },
+          {
+            "className": "TplText",
+            "text": "'text2'",
+            "style": null,
+            "textAlign": null,
+            "textDirection": null,
+            "softWrap": true,
+            "tightBounds": false,
+            "textScaleFactor": null,
+            "maxLines": null,
+            "overflow": null
+          }
+        ]
+      }
+    }
+  ]
+}

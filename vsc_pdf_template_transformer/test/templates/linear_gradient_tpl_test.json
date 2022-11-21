@@ -1,0 +1,46 @@
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplContainer",
+        "alignment": null,
+        "padding": null,
+        "color": null,
+        "decoration": {
+          "color": null,
+          "border": null,
+          "borderRadius": null,
+          "gradient": {
+            "className": "TplLinearGradient",
+            "begin": null,
+            "end": {
+              "alignment": null,
+              "x": null,
+              "y": null
+            },
+            "colors": [
+              "'#ad2710'",
+              "'#8dd63a'",
+              "'#3a64d6'"
+            ],
+            "stops": null,
+            "tileMode": null
+          },
+          "image": null
+        },
+        "foregroundDecoration": null,
+        "width": 200,
+        "height": 150,
+        "constraints": null,
+        "margin": null,
+        "child": null
+      }
+    }
+  ]
+}

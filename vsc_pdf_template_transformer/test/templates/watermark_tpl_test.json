@@ -1,0 +1,20 @@
+{
+  "className": "TplDocument",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "className": "TplPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "className": "TplWatermark",
+        "child": null,
+        "fit": null,
+        "angle": null,
+        "text": "'Inc.'",
+        "style": null
+      }
+    }
+  ]
+}
