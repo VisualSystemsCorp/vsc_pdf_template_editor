@@ -1,5 +1,7 @@
+import 'dart:async';
+import 'dart:typed_data';
+
 import 'package:intl/date_symbol_data_local.dart' as intl_date_data;
-import 'package:pdf/widgets.dart' as pw;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:vsc_pdf_template_transformer/models/tpl_align.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_aspect_ratio.dart';
@@ -72,114 +74,130 @@ import 'package:vsc_pdf_template_transformer/models/tpl_wrap.dart';
 
 import '../models/tpl_text.dart';
 import '../utils/widget_builder.dart';
+import 'network/cache.dart';
 
 var _tzInited = false;
 
 class Transformer {
-  static Future<pw.Document> buildPdf(
-      Map<String, dynamic> template, Map<String, dynamic> data) async {
+  static Future<Uint8List> buildPdf(
+    Map<String, dynamic> template,
+    Map<String, dynamic> data, {
+    TplBaseCache? buildCache,
+  }) async {
     if (!_tzInited) {
       tz.initializeTimeZones();
       await intl_date_data.initializeDateFormatting();
       _tzInited = true;
     }
 
+    buildCache ??= TplMemoryCache();
+    return runZoned(
+      () async {
+        final result = await _buildPdfInZone(template, data);
+        return result;
+      },
+      zoneValues: {
+        #buildCache: buildCache,
+      },
+    )!;
+  }
+
+  static Future<Uint8List> _buildPdfInZone(
+      Map<String, dynamic> template, Map<String, dynamic> data) async {
     final tplDocument = TplDocument.fromJson(template);
     final document = await tplDocument.toPdf(data);
 
     final documentChildren = tplDocument.children ?? [];
     for (int i = 0; i < documentChildren.length; i++) {
       final childJson = documentChildren[i];
-      if (childJson['className'] == 'TplMultiPage') {
-        document.addPage(TplMultiPage.fromJson(childJson).toPdf(data));
-      } else if (childJson['className'] == 'TplPage') {
-        document.addPage(TplPage.fromJson(childJson).toPdf(data));
+      if (childJson['t'] == 'MultiPage') {
+        await document
+            .addPage(await TplMultiPage.fromJson(childJson).toPdf(data));
+      } else if (childJson['t'] == 'Page') {
+        await document.addPage(await TplPage.fromJson(childJson).toPdf(data));
       } else {
-        throw Exception(
-            '${childJson['className']} is not a recognized Page type');
+        throw Exception('${childJson['t']} is not a recognized Page type');
       }
     }
-    return document;
+    return document.save();
   }
 
   static WidgetBuilder getWidgetBuilder(Map<String, dynamic> valueMap) {
     WidgetBuilder result;
 
     const widgetClassFromJson = {
-      'TplText': TplText.fromJson,
-      'TplSizedBox': TplSizedBox.fromJson,
-      'TplContainer': TplContainer.fromJson,
-      'TplColumn': TplColumn.fromJson,
-      'TplRow': TplRow.fromJson,
-      'TplHeader': TplHeader.fromJson,
-      'TplNewPage': TplNewPage.fromJson,
-      'TplSpacer': TplSpacer.fromJson,
-      'TplExpanded': TplExpanded.fromJson,
-      'TplCenter': TplCenter.fromJson,
-      'TplDivider': TplDivider.fromJson,
-      'TplFullPage': TplFullPage.fromJson,
-      'TplPadding': TplPadding.fromJson,
-      'TplPlaceholder': TplPlaceholder.fromJson,
-      'TplAlign': TplAlign.fromJson,
-      'TplAspectRatio': TplAspectRatio.fromJson,
-      'TplCheckbox': TplCheckbox.fromJson,
-      'TplConstrainedBox': TplConstrainedBox.fromJson,
-      'TplDecoratedBox': TplDecoratedBox.fromJson,
-      'TplFittedBox': TplFittedBox.fromJson,
-      'TplFlex': TplFlex.fromJson,
-      'TplFlexible': TplFlexible.fromJson,
-      'TplFlatButton': TplFlatButton.fromJson,
-      'TplFooter': TplFooter.fromJson,
-      'TplGridView': TplGridView.fromJson,
-      'TplLimitedBox': TplLimitedBox.fromJson,
-      'TplImage': TplImage.fromJson,
-      'TplSvgImage': TplSvgImage.fromJson,
-      'TplStack': TplStack.fromJson,
-      'TplPositioned': TplPositioned.fromJson,
-      'TplListView': TplListView.fromJson,
-      'TplLink': TplLink.fromJson,
-      'TplUrlLink': TplUrlLink.fromJson,
-      'TplParagraph': TplParagraph.fromJson,
-      'TplVerticalDivider': TplVerticalDivider.fromJson,
-      'TplWatermark': TplWatermark.fromJson,
-      'TplWrap': TplWrap.fromJson,
-      'TplTable': TplTable.fromJson,
-      'TplBullet': TplBullet.fromJson,
-      'TplIcon': TplIcon.fromJson,
-      'TplOpacity': TplOpacity.fromJson,
-      'TplPartition': TplPartition.fromJson,
-      'TplPartitions': TplPartitions.fromJson,
-      'TplRichText': TplRichText.fromJson,
-      'TplTableOfContent': TplTableOfContent.fromJson,
-      'TplTextField': TplTextField.fromJson,
-      'TplChart': TplChart.fromJson,
-      'TplCartesianGrid': TplCartesianGrid.fromJson,
-      'TplPieGrid': TplPieGrid.fromJson,
-      'TplRadialGrid': TplRadialGrid.fromJson,
-      'TplPieDataSet': TplPieDataSet.fromJson,
-      'TplBarDataSet': TplBarDataSet.fromJson,
-      'TplPointDataSet': TplPointDataSet.fromJson,
-      'TplLineDataSet': TplLineDataSet.fromJson,
-      'TplChartLegend': TplChartLegend.fromJson,
-      'TplCircle': TplCircle.fromJson,
-      'TplClipOval': TplClipOval.fromJson,
-      'TplClipRect': TplClipRect.fromJson,
-      'TplClipRRect': TplClipRRect.fromJson,
-      'TplRectangle': TplRectangle.fromJson,
-      'TplPolygon': TplPolygon.fromJson,
-      'TplTransform': TplTransform.fromJson,
-      'TplBarcodeWidget': TplBarcodeWidget.fromJson,
-      'TplShape': TplShape.fromJson,
-      'TplGridPaper': TplGridPaper.fromJson,
-      'TplTheme': TplTheme.fromJson
+      'Text': TplText.fromJson,
+      'SizedBox': TplSizedBox.fromJson,
+      'Container': TplContainer.fromJson,
+      'Column': TplColumn.fromJson,
+      'Row': TplRow.fromJson,
+      'Header': TplHeader.fromJson,
+      'NewPage': TplNewPage.fromJson,
+      'Spacer': TplSpacer.fromJson,
+      'Expanded': TplExpanded.fromJson,
+      'Center': TplCenter.fromJson,
+      'Divider': TplDivider.fromJson,
+      'FullPage': TplFullPage.fromJson,
+      'Padding': TplPadding.fromJson,
+      'Placeholder': TplPlaceholder.fromJson,
+      'Align': TplAlign.fromJson,
+      'AspectRatio': TplAspectRatio.fromJson,
+      'Checkbox': TplCheckbox.fromJson,
+      'ConstrainedBox': TplConstrainedBox.fromJson,
+      'DecoratedBox': TplDecoratedBox.fromJson,
+      'FittedBox': TplFittedBox.fromJson,
+      'Flex': TplFlex.fromJson,
+      'Flexible': TplFlexible.fromJson,
+      'FlatButton': TplFlatButton.fromJson,
+      'Footer': TplFooter.fromJson,
+      'GridView': TplGridView.fromJson,
+      'LimitedBox': TplLimitedBox.fromJson,
+      'Image': TplImage.fromJson,
+      'SvgImage': TplSvgImage.fromJson,
+      'Stack': TplStack.fromJson,
+      'Positioned': TplPositioned.fromJson,
+      'ListView': TplListView.fromJson,
+      'Link': TplLink.fromJson,
+      'UrlLink': TplUrlLink.fromJson,
+      'Paragraph': TplParagraph.fromJson,
+      'VerticalDivider': TplVerticalDivider.fromJson,
+      'Watermark': TplWatermark.fromJson,
+      'Wrap': TplWrap.fromJson,
+      'Table': TplTable.fromJson,
+      'Bullet': TplBullet.fromJson,
+      'Icon': TplIcon.fromJson,
+      'Opacity': TplOpacity.fromJson,
+      'Partition': TplPartition.fromJson,
+      'Partitions': TplPartitions.fromJson,
+      'RichText': TplRichText.fromJson,
+      'TableOfContent': TplTableOfContent.fromJson,
+      'TextField': TplTextField.fromJson,
+      'Chart': TplChart.fromJson,
+      'CartesianGrid': TplCartesianGrid.fromJson,
+      'PieGrid': TplPieGrid.fromJson,
+      'RadialGrid': TplRadialGrid.fromJson,
+      'PieDataSet': TplPieDataSet.fromJson,
+      'BarDataSet': TplBarDataSet.fromJson,
+      'PointDataSet': TplPointDataSet.fromJson,
+      'LineDataSet': TplLineDataSet.fromJson,
+      'ChartLegend': TplChartLegend.fromJson,
+      'Circle': TplCircle.fromJson,
+      'ClipOval': TplClipOval.fromJson,
+      'ClipRect': TplClipRect.fromJson,
+      'ClipRRect': TplClipRRect.fromJson,
+      'Rectangle': TplRectangle.fromJson,
+      'Polygon': TplPolygon.fromJson,
+      'Transform': TplTransform.fromJson,
+      'BarcodeWidget': TplBarcodeWidget.fromJson,
+      'Shape': TplShape.fromJson,
+      'GridPaper': TplGridPaper.fromJson,
+      'Theme': TplTheme.fromJson
     };
 
-    final fromJson = widgetClassFromJson[valueMap['className']];
+    final fromJson = widgetClassFromJson[valueMap['t']];
 
-    if (fromJson == null) throw Exception('No className or unknown className');
+    if (fromJson == null) throw Exception('No type name or unknown type name');
     result = fromJson(valueMap);
-
-    // print('------- generated widget $result -----');
     return result;
   }
 }

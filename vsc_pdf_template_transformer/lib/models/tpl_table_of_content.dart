@@ -13,7 +13,7 @@ part 'tpl_table_of_content.g.dart';
 class TplTableOfContent implements wb.WidgetBuilder {
   TplTableOfContent();
 
-  String className = 'TplTableOfContent';
+  String t = 'TableOfContent';
 
   factory TplTableOfContent.fromJson(Map<String, dynamic> json) =>
       _$TplTableOfContentFromJson(json);
@@ -22,7 +22,7 @@ class TplTableOfContent implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplTableOfContentToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return TableOfContent();
   }
 }

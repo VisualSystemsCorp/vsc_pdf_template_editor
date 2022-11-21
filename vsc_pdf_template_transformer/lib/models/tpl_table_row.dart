@@ -30,12 +30,12 @@ class TplTableRow {
 
   Map<String, dynamic> toJson() => _$TplTableRowToJson(this);
 
-  TableRow buildRow(Map<String, dynamic> data) {
+  Future<TableRow> buildRow(Map<String, dynamic> data) async {
     return TableRow(
-        children: children == null ? [] : getChildren(children!, data),
-        repeat: evaluateBool(repeat, data) ?? false,
+        children: children == null ? [] : await getChildren(children!, data),
+        repeat: await evaluateBool(repeat, data) ?? false,
         verticalAlignment:
-            evaluateTableCellVerticalAlignment(verticalAlignment, data),
-        decoration: decoration?.toPdf(data));
+            await evaluateTableCellVerticalAlignment(verticalAlignment, data),
+        decoration: await decoration?.toPdf(data));
   }
 }

@@ -15,7 +15,7 @@ part 'tpl_opacity.g.dart';
 class TplOpacity implements wb.WidgetBuilder {
   TplOpacity();
 
-  String className = 'TplOpacity';
+  String t = 'Opacity';
 
   dynamic opacity;
   @WidgetJsonConverter()
@@ -28,9 +28,9 @@ class TplOpacity implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplOpacityToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Opacity(
-        opacity: evaluateDouble(opacity, data) ?? 1,
-        child: child?.buildWidget(data));
+        opacity: await evaluateDouble(opacity, data) ?? 1,
+        child: await child?.buildWidget(data));
   }
 }

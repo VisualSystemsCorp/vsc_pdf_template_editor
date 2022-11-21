@@ -15,7 +15,7 @@ part 'tpl_decorated_box.g.dart';
 class TplDecoratedBox implements wb.WidgetBuilder {
   TplDecoratedBox();
 
-  String className = 'TplDecoratedBox';
+  String t = 'DecoratedBox';
   TplBoxDecoration? decoration;
   dynamic position;
   @WidgetJsonConverter()
@@ -28,12 +28,12 @@ class TplDecoratedBox implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplDecoratedBoxToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return DecoratedBox(
-      decoration: decoration?.toPdf(data) ?? BoxDecoration(),
-      position: evaluateDecorationPosition(position, data) ??
+      decoration: await decoration?.toPdf(data) ?? BoxDecoration(),
+      position: await evaluateDecorationPosition(position, data) ??
           DecorationPosition.background,
-      child: child?.buildWidget(data),
+      child: await child?.buildWidget(data),
     );
   }
 }

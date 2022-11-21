@@ -12,7 +12,7 @@ part 'tpl_radial_grid.g.dart';
 class TplRadialGrid implements wb.WidgetBuilder {
   TplRadialGrid();
 
-  String className = 'TplRadialGrid';
+  String t = 'RadialGrid';
 
   factory TplRadialGrid.fromJson(Map<String, dynamic> json) =>
       _$TplRadialGridFromJson(json);
@@ -21,7 +21,7 @@ class TplRadialGrid implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplRadialGridToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return RadialGrid();
   }
 }

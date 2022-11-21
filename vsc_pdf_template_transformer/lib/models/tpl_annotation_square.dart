@@ -14,7 +14,7 @@ part 'tpl_annotation_square.g.dart';
 class TplAnnotationSquare implements ab.AnnotationBuilder {
   TplAnnotationSquare();
 
-  String className = 'TplAnnotationSquare';
+  String t = 'AnnotationSquare';
   dynamic color;
   dynamic interiorColor;
   dynamic date;
@@ -29,13 +29,13 @@ class TplAnnotationSquare implements ab.AnnotationBuilder {
   Map<String, dynamic> toJson() => _$TplAnnotationSquareToJson(this);
 
   @override
-  AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
+  Future<AnnotationBuilder> buildAnnotation(Map<String, dynamic> data) async {
     return AnnotationSquare(
-        color: evaluateColor(color, data),
-        interiorColor: evaluateColor(interiorColor, data),
-        date: evaluateDateTime(date, data),
-        subject: evaluateString(subject, data),
-        author: evaluateString(author, data),
-        content: evaluateString(content, data));
+        color: await evaluateColor(color, data),
+        interiorColor: await evaluateColor(interiorColor, data),
+        date: await evaluateDateTime(date, data),
+        subject: await evaluateString(subject, data),
+        author: await evaluateString(author, data),
+        content: await evaluateString(content, data));
   }
 }

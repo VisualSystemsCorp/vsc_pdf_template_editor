@@ -12,7 +12,7 @@ TplVerticalDivider _$TplVerticalDividerFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplVerticalDivider();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('width', (v) => val.width = v);
         $checkedConvert('thickness', (v) => val.thickness = v);
         $checkedConvert('indent', (v) => val.indent = v);
@@ -29,7 +29,7 @@ TplVerticalDivider _$TplVerticalDividerFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplVerticalDividerToJson(TplVerticalDivider instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'width': instance.width,
       'thickness': instance.thickness,
       'indent': instance.indent,

@@ -15,7 +15,7 @@ part 'tpl_line_data_set.g.dart';
 class TplLineDataSet implements wb.WidgetBuilder {
   TplLineDataSet();
 
-  String className = 'TplLineDataSet';
+  String t = 'LineDataSet';
   List<TplPointChartValue>? data;
   dynamic legend;
   dynamic pointColor;
@@ -39,23 +39,23 @@ class TplLineDataSet implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplLineDataSetToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return LineDataSet(
-        data: getPointChartValues(this.data!, data),
-        legend: evaluateString(legend, data),
-        pointColor: evaluateColor(pointColor, data),
-        pointSize: evaluateDouble(pointSize, data) ?? 3,
-        lineWidth: evaluateDouble(lineWidth, data) ?? 2,
-        drawLine: evaluateBool(drawLine, data) ?? true,
-        lineColor: evaluateColor(lineColor, data),
-        color: evaluateColor(color, data) ?? PdfColors.blue,
-        drawPoints: evaluateBool(drawPoints, data) ?? true,
-        valuePosition:
-            evaluateValuePosition(valuePosition, data) ?? ValuePosition.auto,
-        drawSurface: evaluateBool(drawSurface, data) ?? false,
-        surfaceOpacity: evaluateDouble(surfaceOpacity, data) ?? 0.2,
-        surfaceColor: evaluateColor(surfaceColor, data),
-        isCurved: evaluateBool(isCurved, data) ?? false,
-        smoothness: evaluateDouble(smoothness, data) ?? 0.35);
+        data: await getPointChartValues(this.data!, data),
+        legend: await evaluateString(legend, data),
+        pointColor: await evaluateColor(pointColor, data),
+        pointSize: await evaluateDouble(pointSize, data) ?? 3,
+        lineWidth: await evaluateDouble(lineWidth, data) ?? 2,
+        drawLine: await evaluateBool(drawLine, data) ?? true,
+        lineColor: await evaluateColor(lineColor, data),
+        color: await evaluateColor(color, data) ?? PdfColors.blue,
+        drawPoints: await evaluateBool(drawPoints, data) ?? true,
+        valuePosition: await evaluateValuePosition(valuePosition, data) ??
+            ValuePosition.auto,
+        drawSurface: await evaluateBool(drawSurface, data) ?? false,
+        surfaceOpacity: await evaluateDouble(surfaceOpacity, data) ?? 0.2,
+        surfaceColor: await evaluateColor(surfaceColor, data),
+        isCurved: await evaluateBool(isCurved, data) ?? false,
+        smoothness: await evaluateDouble(smoothness, data) ?? 0.35);
   }
 }

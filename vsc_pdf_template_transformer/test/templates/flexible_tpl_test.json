@@ -1,0 +1,75 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Column",
+        "mainAxisAlignment": null,
+        "mainAxisSize": null,
+        "crossAxisAlignment": null,
+        "verticalDirection": null,
+        "children": [
+          {
+            "t": "Flexible",
+            "flex": 3,
+            "fit": null,
+            "child": {
+              "t": "Container",
+              "alignment": null,
+              "padding": null,
+              "color": "'#2dfc03'",
+              "decoration": null,
+              "foregroundDecoration": null,
+              "width": null,
+              "height": null,
+              "constraints": null,
+              "margin": null,
+              "child": null
+            }
+          },
+          {
+            "t": "Flexible",
+            "flex": 1,
+            "fit": null,
+            "child": {
+              "t": "Container",
+              "alignment": null,
+              "padding": null,
+              "color": "'#0362fc'",
+              "decoration": null,
+              "foregroundDecoration": null,
+              "width": null,
+              "height": null,
+              "constraints": null,
+              "margin": null,
+              "child": null
+            }
+          },
+          {
+            "t": "Flexible",
+            "flex": 2,
+            "fit": null,
+            "child": {
+              "t": "Container",
+              "alignment": null,
+              "padding": null,
+              "color": "'#fc036b'",
+              "decoration": null,
+              "foregroundDecoration": null,
+              "width": null,
+              "height": null,
+              "constraints": null,
+              "margin": null,
+              "child": null
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

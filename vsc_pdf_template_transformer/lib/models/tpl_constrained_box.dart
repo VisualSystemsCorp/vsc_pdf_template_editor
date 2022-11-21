@@ -14,7 +14,7 @@ part 'tpl_constrained_box.g.dart';
 class TplConstrainedBox implements wb.WidgetBuilder {
   TplConstrainedBox();
 
-  String className = 'TplConstrainedBox';
+  String t = 'ConstrainedBox';
   TplBoxConstraints? constraints;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
@@ -26,10 +26,10 @@ class TplConstrainedBox implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplConstrainedBoxToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return ConstrainedBox(
-      constraints: constraints?.toPdf(data) ?? BoxConstraints(),
-      child: child?.buildWidget(data),
+      constraints: await constraints?.toPdf(data) ?? BoxConstraints(),
+      child: await child?.buildWidget(data),
     );
   }
 }

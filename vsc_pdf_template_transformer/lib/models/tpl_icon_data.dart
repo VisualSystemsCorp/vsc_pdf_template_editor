@@ -12,7 +12,7 @@ part 'tpl_icon_data.g.dart';
 class TplIconData {
   TplIconData();
 
-  String className = 'TplIconData';
+  String t = 'IconData';
   dynamic codePoint;
   dynamic matchTextDirection;
 
@@ -21,8 +21,9 @@ class TplIconData {
 
   Map<String, dynamic> toJson() => _$TplIconDataToJson(this);
 
-  IconData toPdf(Map<String, dynamic> data) {
-    return IconData(evaluateInt(codePoint, data)!,
-        matchTextDirection: evaluateBool(matchTextDirection, data) ?? false);
+  Future<IconData> toPdf(Map<String, dynamic> data) async {
+    return IconData((await evaluateInt(codePoint, data))!,
+        matchTextDirection:
+            await evaluateBool(matchTextDirection, data) ?? false);
   }
 }

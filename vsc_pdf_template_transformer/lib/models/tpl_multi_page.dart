@@ -3,6 +3,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_transformer/models/tpl_edge_insets.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_page_theme.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_pdf_page_format.dart';
+import 'package:vsc_pdf_template_transformer/src/async_pdf_widgets/async_multi_page.dart';
 import 'package:vsc_pdf_template_transformer/utils/evaluator.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_json_converter.dart';
 
@@ -18,7 +19,7 @@ part 'tpl_multi_page.g.dart';
 class TplMultiPage {
   TplMultiPage(this.children);
 
-  String className = 'TplMultiPage';
+  String t = 'MultiPage';
   TplPageTheme? pageTheme;
   dynamic theme;
   TplPdfPageFormat? pageFormat;
@@ -41,32 +42,33 @@ class TplMultiPage {
 
   Map<String, dynamic> toJson() => _$TplMultiPageToJson(this);
 
-  pw.Page toPdf(Map<String, dynamic> data) {
-    return pw.MultiPage(
-        pageTheme: pageTheme?.toPdf(data),
-        theme: evaluateThemeData(theme, data),
-        pageFormat: pageFormat?.toPdf(data),
-        orientation: evaluatePageOrientation(orientation, data),
-        margin: margin?.toPdf(data),
-        textDirection: evaluateTextDirection(textDirection, data),
-        maxPages: evaluateInt(maxPages, data) ?? 20,
-        mainAxisAlignment: evaluateMainAxisAlignment(mainAxisAlignment, data) ??
-            pw.MainAxisAlignment.start,
+  Future<AsyncMultiPage> toPdf(Map<String, dynamic> data) async {
+    return AsyncMultiPage(
+        pageTheme: await pageTheme?.toPdf(data),
+        theme: await evaluateThemeData(theme, data),
+        pageFormat: await pageFormat?.toPdf(data),
+        orientation: await evaluatePageOrientation(orientation, data),
+        margin: await margin?.toPdf(data),
+        textDirection: await evaluateTextDirection(textDirection, data),
+        maxPages: await evaluateInt(maxPages, data) ?? 20,
+        mainAxisAlignment:
+            await evaluateMainAxisAlignment(mainAxisAlignment, data) ??
+                pw.MainAxisAlignment.start,
         crossAxisAlignment:
-            evaluateCrossAxisAlignment(crossAxisAlignment, data) ??
+            await evaluateCrossAxisAlignment(crossAxisAlignment, data) ??
                 pw.CrossAxisAlignment.start,
         header: header != null
-            ? (pw.Context context) =>
+            ? (pw.Context context) async =>
                 header!.buildWidget(addPageInfoToData(context, data))
             : null,
         footer: footer != null
-            ? (pw.Context context) =>
+            ? (pw.Context context) async =>
                 footer!.buildWidget(addPageInfoToData(context, data))
             : null,
-        build: (pw.Context context) {
+        build: (pw.Context context) async {
           return children == null
               ? [pw.SizedBox()]
-              : getChildren(children!, data);
+              : await getChildren(children!, data);
         });
   }
 }

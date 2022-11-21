@@ -13,7 +13,7 @@ part 'tpl_circle.g.dart';
 class TplCircle implements wb.WidgetBuilder {
   TplCircle();
 
-  String className = 'TplCircle';
+  String t = 'Circle';
   dynamic fillColor;
   dynamic strokeColor;
   dynamic strokeWidth;
@@ -25,10 +25,10 @@ class TplCircle implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplCircleToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Circle(
-        fillColor: evaluateColor(fillColor, data),
-        strokeColor: evaluateColor(strokeColor, data),
-        strokeWidth: evaluateDouble(strokeWidth, data) ?? 1.0);
+        fillColor: await evaluateColor(fillColor, data),
+        strokeColor: await evaluateColor(strokeColor, data),
+        strokeWidth: await evaluateDouble(strokeWidth, data) ?? 1.0);
   }
 }

@@ -11,7 +11,7 @@ TplFullPage _$TplFullPageFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplFullPage();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('ignoreMargins', (v) => val.ignoreMargins = v);
         $checkedConvert(
             'child',
@@ -23,7 +23,7 @@ TplFullPage _$TplFullPageFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplFullPageToJson(TplFullPage instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'ignoreMargins': instance.ignoreMargins,
       'child': const WidgetJsonConverter().toJson(instance.child),
     };

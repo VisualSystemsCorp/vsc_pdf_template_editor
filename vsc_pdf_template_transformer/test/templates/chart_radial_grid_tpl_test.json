@@ -1,0 +1,90 @@
+
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Chart",
+        "datasets": [
+          {
+            "t": "BarDataSet",
+            "data": [
+              {
+                "x": 4,
+                "y": 3
+              },
+              {
+                "x": 2,
+                "y": 8
+              },
+              {
+                "x": 5,
+                "y": 8.5
+              }
+            ],
+            "value": null,
+            "legend": null,
+            "color": "'#eb9b34'",
+            "borderColor": null,
+            "borderWidth": null,
+            "drawBorder": null,
+            "drawSurface": null,
+            "surfaceOpacity": null,
+            "width": null,
+            "offset": null,
+            "axis": null,
+            "pointColor": null,
+            "pointSize": null,
+            "drawPoints": null,
+            "valuePosition": null
+          },
+          {
+            "t": "BarDataSet",
+            "data": [
+              {
+                "x": 14,
+                "y": 3
+              },
+              {
+                "x": 22,
+                "y": 8
+              },
+              {
+                "x": 35,
+                "y": 8.5
+              }
+            ],
+            "value": null,
+            "legend": null,
+            "color": "'#3498eb'",
+            "borderColor": null,
+            "borderWidth": null,
+            "drawBorder": null,
+            "drawSurface": null,
+            "surfaceOpacity": null,
+            "width": null,
+            "offset": null,
+            "axis": null,
+            "pointColor": null,
+            "pointSize": null,
+            "drawPoints": null,
+            "valuePosition": null
+          }
+        ],
+        "grid": {
+          "t": "RadialGrid"
+        },
+        "overlay": null,
+        "title": null,
+        "bottom": null,
+        "left": null,
+        "right": null
+      }
+    }
+  ]
+}

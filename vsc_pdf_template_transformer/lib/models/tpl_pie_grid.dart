@@ -13,7 +13,7 @@ part 'tpl_pie_grid.g.dart';
 class TplPieGrid implements wb.WidgetBuilder {
   TplPieGrid();
 
-  String className = 'TplPieGrid';
+  String t = 'PieGrid';
   dynamic startAngle;
 
   factory TplPieGrid.fromJson(Map<String, dynamic> json) =>
@@ -23,7 +23,7 @@ class TplPieGrid implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplPieGridToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    return PieGrid(startAngle: evaluateDouble(startAngle, data) ?? 0);
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+    return PieGrid(startAngle: await evaluateDouble(startAngle, data) ?? 0);
   }
 }

@@ -16,7 +16,7 @@ part 'tpl_svg_image.g.dart';
 class TplSvgImage implements wb.WidgetBuilder {
   TplSvgImage();
 
-  String className = 'TplSvgImage';
+  String t = 'SvgImage';
   dynamic svg;
   dynamic fit;
   @AlignmentJsonConverter()
@@ -33,14 +33,14 @@ class TplSvgImage implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplSvgImageToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return SvgImage(
-        svg: evaluateText(svg, data),
-        fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
-        alignment: alignment?.buildAlignment(data) ?? Alignment.center,
-        clip: evaluateBool(clip, data) ?? true,
-        width: evaluateDouble(width, data),
-        height: evaluateDouble(height, data),
-        colorFilter: evaluateColor(colorFilter, data));
+        svg: await evaluateText(svg, data),
+        fit: await evaluateBoxFit(fit, data) ?? BoxFit.contain,
+        alignment: await alignment?.buildAlignment(data) ?? Alignment.center,
+        clip: await evaluateBool(clip, data) ?? true,
+        width: await evaluateDouble(width, data),
+        height: await evaluateDouble(height, data),
+        colorFilter: await evaluateColor(colorFilter, data));
   }
 }

@@ -14,7 +14,7 @@ part 'tpl_annotation_circle.g.dart';
 class TplAnnotationCircle implements ab.AnnotationBuilder {
   TplAnnotationCircle();
 
-  String className = 'TplAnnotationCircle';
+  String t = 'AnnotationCircle';
   dynamic color;
   dynamic interiorColor;
   dynamic date;
@@ -29,13 +29,13 @@ class TplAnnotationCircle implements ab.AnnotationBuilder {
   Map<String, dynamic> toJson() => _$TplAnnotationCircleToJson(this);
 
   @override
-  AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
+  Future<AnnotationBuilder> buildAnnotation(Map<String, dynamic> data) async {
     return AnnotationCircle(
-        color: evaluateColor(color, data),
-        interiorColor: evaluateColor(interiorColor, data),
-        date: evaluateDateTime(date, data),
-        subject: evaluateString(subject, data),
-        author: evaluateString(author, data),
-        content: evaluateString(content, data));
+        color: await evaluateColor(color, data),
+        interiorColor: await evaluateColor(interiorColor, data),
+        date: await evaluateDateTime(date, data),
+        subject: await evaluateString(subject, data),
+        author: await evaluateString(author, data),
+        content: await evaluateString(content, data));
   }
 }

@@ -15,7 +15,7 @@ part 'tpl_bar_data_set.g.dart';
 class TplBarDataSet implements wb.WidgetBuilder {
   TplBarDataSet();
 
-  String className = 'TplBarDataSet';
+  String t = 'BarDataSet';
   List<TplPointChartValue>? data;
   dynamic value;
   dynamic legend;
@@ -40,23 +40,23 @@ class TplBarDataSet implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplBarDataSetToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return BarDataSet(
-        data: getPointChartValues(this.data!, data),
-        legend: evaluateString(legend, data),
-        color: evaluateColor(color, data) ?? PdfColors.black,
-        borderColor: evaluateColor(borderColor, data),
-        borderWidth: evaluateDouble(borderWidth, data) ?? 1.5,
-        drawBorder: evaluateBool(drawBorder, data),
-        drawSurface: evaluateBool(drawSurface, data) ?? true,
-        surfaceOpacity: evaluateDouble(surfaceOpacity, data) ?? 1,
-        width: evaluateDouble(width, data) ?? 10,
-        offset: evaluateDouble(offset, data) ?? 0,
-        axis: evaluateAxis(axis, data) ?? Axis.horizontal,
-        pointColor: evaluateColor(pointColor, data),
-        pointSize: evaluateDouble(pointSize, data) ?? 3,
-        drawPoints: evaluateBool(drawPoints, data) ?? false,
-        valuePosition:
-            evaluateValuePosition(valuePosition, data) ?? ValuePosition.auto);
+        data: await getPointChartValues(this.data!, data),
+        legend: await evaluateString(legend, data),
+        color: await evaluateColor(color, data) ?? PdfColors.black,
+        borderColor: await evaluateColor(borderColor, data),
+        borderWidth: await evaluateDouble(borderWidth, data) ?? 1.5,
+        drawBorder: await evaluateBool(drawBorder, data),
+        drawSurface: await evaluateBool(drawSurface, data) ?? true,
+        surfaceOpacity: await evaluateDouble(surfaceOpacity, data) ?? 1,
+        width: await evaluateDouble(width, data) ?? 10,
+        offset: await evaluateDouble(offset, data) ?? 0,
+        axis: await evaluateAxis(axis, data) ?? Axis.horizontal,
+        pointColor: await evaluateColor(pointColor, data),
+        pointSize: await evaluateDouble(pointSize, data) ?? 3,
+        drawPoints: await evaluateBool(drawPoints, data) ?? false,
+        valuePosition: await evaluateValuePosition(valuePosition, data) ??
+            ValuePosition.auto);
   }
 }

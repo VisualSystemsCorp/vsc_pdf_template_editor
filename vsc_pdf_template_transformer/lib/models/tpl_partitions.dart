@@ -16,7 +16,7 @@ part 'tpl_partitions.g.dart';
 class TplPartitions implements wb.WidgetBuilder {
   TplPartitions();
 
-  String className = 'TplPartitions';
+  String t = 'Partitions';
   @WidgetJsonConverter()
   List<TplPartition>? children;
   dynamic mainAxisSize;
@@ -28,10 +28,10 @@ class TplPartitions implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplPartitionsToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Partitions(
-        children: children == null ? [] : getPartitions(children!, data),
+        children: children == null ? [] : await getPartitions(children!, data),
         mainAxisSize:
-            evaluateMainAxisSize(mainAxisSize, data) ?? MainAxisSize.max);
+            await evaluateMainAxisSize(mainAxisSize, data) ?? MainAxisSize.max);
   }
 }

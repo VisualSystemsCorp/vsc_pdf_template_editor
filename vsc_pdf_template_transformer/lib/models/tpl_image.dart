@@ -16,7 +16,7 @@ part 'tpl_image.g.dart';
 class TplImage implements wb.WidgetBuilder {
   TplImage();
 
-  String className = 'TplImage';
+  String t = 'Image';
   dynamic image;
   dynamic fit;
   @AlignmentJsonConverter()
@@ -32,17 +32,17 @@ class TplImage implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplImageToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    final imageProvider = evaluateImageProvider(image, data);
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    final imageProvider = await evaluateImageProvider(image, data);
     if (imageProvider == null) {
       throw Exception('"image" attribute is required');
     }
 
     return Image(imageProvider,
-        fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
-        alignment: alignment?.buildAlignment(data) ?? Alignment.center,
-        width: evaluateDouble(width, data),
-        height: evaluateDouble(height, data),
-        dpi: evaluateDouble(dpi, data));
+        fit: await evaluateBoxFit(fit, data) ?? BoxFit.contain,
+        alignment: await alignment?.buildAlignment(data) ?? Alignment.center,
+        width: await evaluateDouble(width, data),
+        height: await evaluateDouble(height, data),
+        dpi: await evaluateDouble(dpi, data));
   }
 }

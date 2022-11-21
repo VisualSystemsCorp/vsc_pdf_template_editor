@@ -11,7 +11,7 @@ TplOpacity _$TplOpacityFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplOpacity();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('opacity', (v) => val.opacity = v);
         $checkedConvert(
             'child',
@@ -23,7 +23,7 @@ TplOpacity _$TplOpacityFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplOpacityToJson(TplOpacity instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'opacity': instance.opacity,
       'child': const WidgetJsonConverter().toJson(instance.child),
     };

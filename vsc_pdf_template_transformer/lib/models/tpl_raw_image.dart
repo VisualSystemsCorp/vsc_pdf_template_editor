@@ -16,7 +16,7 @@ part 'tpl_raw_image.g.dart';
 class TplRawImage implements ip.ImageProvider {
   TplRawImage(this.imageData);
 
-  String className = 'TplRawImage';
+  String t = 'RawImage';
   dynamic imageData;
   dynamic width;
   dynamic height;
@@ -30,13 +30,13 @@ class TplRawImage implements ip.ImageProvider {
   Map<String, dynamic> toJson() => _$TplRawImageToJson(this);
 
   @override
-  buildImage(Map<String, dynamic> data) {
+  Future<ImageProvider> buildImage(Map<String, dynamic> data) async {
     return RawImage(
-      bytes: evaluateBase64(imageData, data) ?? Uint8List(0),
-      width: evaluateInt(width, data) ?? 0,
-      height: evaluateInt(height, data) ?? 0,
-      orientation: evaluatePdfImageOrientation(orientation, data),
-      dpi: evaluateDouble(dpi, data),
+      bytes: await evaluateBase64(imageData, data) ?? Uint8List(0),
+      width: await evaluateInt(width, data) ?? 0,
+      height: await evaluateInt(height, data) ?? 0,
+      orientation: await evaluatePdfImageOrientation(orientation, data),
+      dpi: await evaluateDouble(dpi, data),
     );
   }
 }

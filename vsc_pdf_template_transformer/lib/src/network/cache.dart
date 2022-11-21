@@ -22,6 +22,7 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:pdf/widgets.dart';
 import 'package:pdf/pdf.dart';
+import 'package:vsc_pdf_template_transformer/src/vsc_pdf_template_transformer_base.dart';
 
 /// Store data in a cache
 abstract class TplBaseCache {
@@ -128,6 +129,21 @@ class TplMemoryCache extends TplBaseCache {
   }
 }
 
+Future<Uint8List> _downloadBytesInBuildZone(
+  String url, {
+  bool cache = true,
+  Map<String, String>? headers,
+  TplBaseCache? pdfCache,
+}) async {
+  final buildCache = Zone.current[#buildCache] as TplBaseCache?;
+  pdfCache ??= buildCache ?? TplBaseCache.defaultCache;
+  return await pdfCache.resolve(
+    uri: Uri.parse(url),
+    cache: cache,
+    headers: headers,
+  );
+}
+
 /// Download an image from the network.
 Future<ImageProvider> downloadImage(
   String url, {
@@ -137,11 +153,11 @@ Future<ImageProvider> downloadImage(
   double? dpi,
   TplBaseCache? pdfCache,
 }) async {
-  pdfCache ??= TplBaseCache.defaultCache;
-  final bytes = await pdfCache.resolve(
-    uri: Uri.parse(url),
+  final bytes = await _downloadBytesInBuildZone(
+    url,
     cache: cache,
     headers: headers,
+    pdfCache: pdfCache,
   );
 
   return MemoryImage(bytes, orientation: orientation, dpi: dpi);
@@ -154,11 +170,11 @@ Future<String> downloadUtf8String(
   Map<String, String>? headers,
   TplBaseCache? pdfCache,
 }) async {
-  pdfCache ??= TplBaseCache.defaultCache;
-  final bytes = await pdfCache.resolve(
-    uri: Uri.parse(url),
+  final bytes = await _downloadBytesInBuildZone(
+    url,
     cache: cache,
     headers: headers,
+    pdfCache: pdfCache,
   );
 
   return utf8.decode(bytes);

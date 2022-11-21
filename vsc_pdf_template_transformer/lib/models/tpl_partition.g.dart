@@ -12,7 +12,7 @@ TplPartition _$TplPartitionFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplPartition();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'child',
             (v) => val.child = const WidgetJsonConverter()
@@ -25,7 +25,7 @@ TplPartition _$TplPartitionFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplPartitionToJson(TplPartition instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'child': const WidgetJsonConverter().toJson(instance.child),
       'width': instance.width,
       'flex': instance.flex,

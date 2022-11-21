@@ -14,7 +14,7 @@ part 'tpl_page_theme.g.dart';
 class TplPageTheme {
   TplPageTheme();
 
-  String className = 'TplPageTheme';
+  String t = 'PageTheme';
   dynamic pageFormat;
   dynamic orientation;
   TplEdgeInsets? margin;
@@ -28,14 +28,14 @@ class TplPageTheme {
 
   Map<String, dynamic> toJson() => _$TplPageThemeToJson(this);
 
-  pw.PageTheme toPdf(Map<String, dynamic> data) {
+  Future<pw.PageTheme> toPdf(Map<String, dynamic> data) async {
     return pw.PageTheme(
-      pageFormat: evaluatePageFormat(pageFormat, data),
-      orientation: evaluatePageOrientation(orientation, data),
-      margin: margin?.toPdf(data),
-      textDirection: evaluateTextDirection(textDirection, data),
-      clip: evaluateBool(clip, data) ?? false,
-      theme: evaluateThemeData(theme, data),
+      pageFormat: await evaluatePageFormat(pageFormat, data),
+      orientation: await evaluatePageOrientation(orientation, data),
+      margin: await margin?.toPdf(data),
+      textDirection: await evaluateTextDirection(textDirection, data),
+      clip: await evaluateBool(clip, data) ?? false,
+      theme: await evaluateThemeData(theme, data),
     );
   }
 }

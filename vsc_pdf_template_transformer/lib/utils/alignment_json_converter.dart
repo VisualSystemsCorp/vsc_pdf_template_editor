@@ -11,13 +11,13 @@ class AlignmentJsonConverter
   @override
   a.Alignment? fromJson(Map<String, dynamic>? json) {
     if (json != null) {
-      switch (json['className']) {
-        case 'TplAlignment':
+      switch (json['t']) {
+        case 'Alignment':
           return TplAlignment.fromJson(json);
-        case 'TplFractionalOffset':
+        case 'FractionalOffset':
           return TplFractionalOffset.fromJson(json);
       }
-      throw Exception('No alignment className or unknown alignment className');
+      throw Exception('No alignment type name or unknown alignment type name');
     }
     return null;
   }

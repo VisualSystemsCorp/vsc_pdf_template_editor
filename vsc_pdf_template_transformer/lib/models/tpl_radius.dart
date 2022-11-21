@@ -21,14 +21,14 @@ class TplRadius {
 
   Map<String, dynamic> toJson() => _$TplRadiusToJson(this);
 
-  ws.Radius toPdf(Map<String, dynamic> data) {
+  Future<ws.Radius> toPdf(Map<String, dynamic> data) async {
     if (circular != null) {
-      return ws.Radius.circular(evaluateDouble(circular, data) ?? 0);
+      return ws.Radius.circular(await evaluateDouble(circular, data) ?? 0);
     }
 
     return ws.Radius.elliptical(
-      evaluateDouble(x, data) ?? 0,
-      evaluateDouble(y, data) ?? 0,
+      await evaluateDouble(x, data) ?? 0,
+      await evaluateDouble(y, data) ?? 0,
     );
   }
 }

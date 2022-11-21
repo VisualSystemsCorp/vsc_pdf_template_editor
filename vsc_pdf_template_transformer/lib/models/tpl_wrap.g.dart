@@ -11,7 +11,7 @@ TplWrap _$TplWrapFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplWrap();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('direction', (v) => val.direction = v);
         $checkedConvert('alignment', (v) => val.alignment = v);
         $checkedConvert('spacing', (v) => val.spacing = v);
@@ -26,7 +26,7 @@ TplWrap _$TplWrapFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$TplWrapToJson(TplWrap instance) => <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'direction': instance.direction,
       'alignment': instance.alignment,
       'spacing': instance.spacing,

@@ -16,7 +16,7 @@ part 'tpl_pie_data_set.g.dart';
 class TplPieDataSet implements wb.WidgetBuilder {
   TplPieDataSet();
 
-  String className = 'TplPieDataSet';
+  String t = 'PieDataSet';
   dynamic value;
   dynamic legend;
   dynamic color;
@@ -43,25 +43,25 @@ class TplPieDataSet implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplPieDataSetToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return PieDataSet(
-        value: evaluateNum(value, data) ?? 0,
-        legend: evaluateString(legend, data),
-        color: evaluateColor(color, data) ?? PdfColors.black,
-        borderColor: evaluateColor(borderColor, data),
-        borderWidth: evaluateDouble(borderWidth, data) ?? 1.5,
-        drawBorder: evaluateBool(drawBorder, data),
-        drawSurface: evaluateBool(drawSurface, data) ?? true,
-        surfaceOpacity: evaluateDouble(surfaceOpacity, data) ?? 1,
-        offset: evaluateDouble(offset, data) ?? 0,
-        legendStyle: legendStyle?.toPdf(data),
-        legendAlign: evaluateTextAlign(legendAlign, data),
-        legendPosition: evaluatePieLegendPosition(legendPosition, data) ??
+        value: await evaluateNum(value, data) ?? 0,
+        legend: await evaluateString(legend, data),
+        color: await evaluateColor(color, data) ?? PdfColors.black,
+        borderColor: await evaluateColor(borderColor, data),
+        borderWidth: await evaluateDouble(borderWidth, data) ?? 1.5,
+        drawBorder: await evaluateBool(drawBorder, data),
+        drawSurface: await evaluateBool(drawSurface, data) ?? true,
+        surfaceOpacity: await evaluateDouble(surfaceOpacity, data) ?? 1,
+        offset: await evaluateDouble(offset, data) ?? 0,
+        legendStyle: await legendStyle?.toPdf(data),
+        legendAlign: await evaluateTextAlign(legendAlign, data),
+        legendPosition: await evaluatePieLegendPosition(legendPosition, data) ??
             PieLegendPosition.auto,
-        legendLineWidth: evaluateDouble(legendLineWidth, data) ?? 1,
-        legendLineColor: evaluateColor(legendLineColor, data),
-        legendWidget: legendWidget?.buildWidget(data),
-        legendOffset: evaluateDouble(legendOffset, data) ?? 20,
-        innerRadius: evaluateDouble(innerRadius, data) ?? 0);
+        legendLineWidth: await evaluateDouble(legendLineWidth, data) ?? 1,
+        legendLineColor: await evaluateColor(legendLineColor, data),
+        legendWidget: await legendWidget?.buildWidget(data),
+        legendOffset: await evaluateDouble(legendOffset, data) ?? 20,
+        innerRadius: await evaluateDouble(innerRadius, data) ?? 0);
   }
 }

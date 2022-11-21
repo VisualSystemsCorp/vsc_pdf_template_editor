@@ -15,7 +15,7 @@ part 'tpl_footer.g.dart';
 class TplFooter implements wb.WidgetBuilder {
   TplFooter();
 
-  String className = 'TplFooter';
+  String t = 'Footer';
   @WidgetJsonConverter()
   wb.WidgetBuilder? leading;
   @WidgetJsonConverter()
@@ -33,13 +33,13 @@ class TplFooter implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplFooterToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Footer(
-        leading: leading?.buildWidget(data),
-        title: title?.buildWidget(data),
-        trailing: trailing?.buildWidget(data),
-        margin: margin?.toPdf(data),
-        padding: padding?.toPdf(data),
-        decoration: decoration?.toPdf(data));
+        leading: await leading?.buildWidget(data),
+        title: await title?.buildWidget(data),
+        trailing: await trailing?.buildWidget(data),
+        margin: await margin?.toPdf(data),
+        padding: await padding?.toPdf(data),
+        decoration: await decoration?.toPdf(data));
   }
 }

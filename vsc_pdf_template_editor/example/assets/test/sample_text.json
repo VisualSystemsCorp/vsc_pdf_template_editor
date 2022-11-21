@@ -1,14 +1,14 @@
 {
-  "className": "TplDocument",
+  "t": "Document",
   "pageMode": "'none'",
   "children": [
     {
-      "className": "TplPage",
+      "t": "Page",
       "pageFormat": {
         "format": "'letter'"
       },
       "child": {
-        "className": "TplText",
+        "t": "Text",
         "text": "'sample text'",
         "style": {
           "color": "'00FF00'"

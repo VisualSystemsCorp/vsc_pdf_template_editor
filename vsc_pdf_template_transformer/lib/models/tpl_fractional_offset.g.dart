@@ -12,7 +12,7 @@ TplFractionalOffset _$TplFractionalOffsetFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplFractionalOffset();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('dx', (v) => val.dx = v);
         $checkedConvert('dy', (v) => val.dy = v);
         return val;
@@ -22,7 +22,7 @@ TplFractionalOffset _$TplFractionalOffsetFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TplFractionalOffsetToJson(
         TplFractionalOffset instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'dx': instance.dx,
       'dy': instance.dy,
     };

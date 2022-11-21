@@ -16,7 +16,7 @@ part 'tpl_radial_gradient.g.dart';
 class TplRadialGradient implements g.Gradient {
   TplRadialGradient();
 
-  String className = 'TplRadialGradient';
+  String t = 'RadialGradient';
   @AlignmentJsonConverter()
   a.Alignment? center;
   dynamic radius;
@@ -34,15 +34,15 @@ class TplRadialGradient implements g.Gradient {
   Map<String, dynamic> toJson() => _$TplRadialGradientToJson(this);
 
   @override
-  Gradient buildGradient(Map<String, dynamic> data) {
+  Future<Gradient> buildGradient(Map<String, dynamic> data) async {
     return RadialGradient(
-      center: center?.buildAlignment(data) ?? Alignment.center,
-      radius: evaluateDouble(radius, data) ?? 0.5,
-      colors: colors == null ? [] : getColors(colors!, data),
-      stops: evaluateList(stops, data),
-      tileMode: evaluateTileMode(tileMode, data) ?? TileMode.clamp,
-      focal: focal?.buildAlignment(data),
-      focalRadius: evaluateDouble(focalRadius, data) ?? 0,
+      center: await center?.buildAlignment(data) ?? Alignment.center,
+      radius: await evaluateDouble(radius, data) ?? 0.5,
+      colors: colors == null ? [] : await getColors(colors!, data),
+      stops: await evaluateList(stops, data),
+      tileMode: await evaluateTileMode(tileMode, data) ?? TileMode.clamp,
+      focal: await focal?.buildAlignment(data),
+      focalRadius: await evaluateDouble(focalRadius, data) ?? 0,
     );
   }
 }

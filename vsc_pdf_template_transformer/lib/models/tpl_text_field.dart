@@ -16,7 +16,7 @@ part 'tpl_text_field.g.dart';
 class TplTextField implements wb.WidgetBuilder {
   TplTextField();
 
-  String className = 'TplTextField';
+  String t = 'TextField';
   dynamic name;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
@@ -42,24 +42,24 @@ class TplTextField implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplTextFieldToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return TextField(
-        name: evaluateText(name, data),
-        child: child?.buildWidget(data),
-        width: evaluateDouble(width, data) ?? 120,
-        height: evaluateDouble(height, data) ?? 13,
-        flags: flags != null ? getPdfAnnotFlags(flags!, data) : {},
-        date: evaluateDateTime(date, data),
-        color: evaluateColor(color, data),
-        backgroundColor: evaluateColor(backgroundColor, data),
-        highlighting: evaluatePdfAnnotHighlighting(highlighting, data),
-        maxLength: evaluateInt(maxLength, data),
-        alternateName: evaluateString(alternateName, data),
-        mappingName: evaluateString(mappingName, data),
+        name: await evaluateText(name, data),
+        child: await child?.buildWidget(data),
+        width: await evaluateDouble(width, data) ?? 120,
+        height: await evaluateDouble(height, data) ?? 13,
+        flags: flags != null ? await getPdfAnnotFlags(flags!, data) : {},
+        date: await evaluateDateTime(date, data),
+        color: await evaluateColor(color, data),
+        backgroundColor: await evaluateColor(backgroundColor, data),
+        highlighting: await evaluatePdfAnnotHighlighting(highlighting, data),
+        maxLength: await evaluateInt(maxLength, data),
+        alternateName: await evaluateString(alternateName, data),
+        mappingName: await evaluateString(mappingName, data),
         fieldFlags:
-            fieldFlags != null ? getPdfFieldFlags(fieldFlags!, data) : {},
-        value: evaluateString(value, data),
-        defaultValue: evaluateString(defaultValue, data),
-        textStyle: textStyle?.toPdf(data));
+            fieldFlags != null ? await getPdfFieldFlags(fieldFlags!, data) : {},
+        value: await evaluateString(value, data),
+        defaultValue: await evaluateString(defaultValue, data),
+        textStyle: await textStyle?.toPdf(data));
   }
 }

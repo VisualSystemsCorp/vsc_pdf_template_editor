@@ -16,7 +16,7 @@ part 'tpl_linear_gradient.g.dart';
 class TplLinearGradient implements g.Gradient {
   TplLinearGradient();
 
-  String className = 'TplLinearGradient';
+  String t = 'LinearGradient';
   @AlignmentJsonConverter()
   a.Alignment? begin;
   @AlignmentJsonConverter()
@@ -32,12 +32,12 @@ class TplLinearGradient implements g.Gradient {
   Map<String, dynamic> toJson() => _$TplLinearGradientToJson(this);
 
   @override
-  Gradient buildGradient(Map<String, dynamic> data) {
+  Future<Gradient> buildGradient(Map<String, dynamic> data) async {
     return LinearGradient(
-        begin: begin?.buildAlignment(data) ?? Alignment.centerLeft,
-        end: end?.buildAlignment(data) ?? Alignment.centerLeft,
-        colors: colors == null ? [] : getColors(colors!, data),
-        stops: evaluateList(stops, data),
-        tileMode: evaluateTileMode(tileMode, data) ?? TileMode.clamp);
+        begin: await begin?.buildAlignment(data) ?? Alignment.centerLeft,
+        end: await end?.buildAlignment(data) ?? Alignment.centerLeft,
+        colors: colors == null ? [] : await getColors(colors!, data),
+        stops: await evaluateList(stops, data),
+        tileMode: await evaluateTileMode(tileMode, data) ?? TileMode.clamp);
   }
 }

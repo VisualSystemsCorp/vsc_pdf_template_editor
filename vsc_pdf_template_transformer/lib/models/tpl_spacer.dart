@@ -13,7 +13,7 @@ part 'tpl_spacer.g.dart';
 class TplSpacer implements wb.WidgetBuilder {
   TplSpacer();
 
-  String className = 'TplSpacer';
+  String t = 'Spacer';
   dynamic flex;
 
   factory TplSpacer.fromJson(Map<String, dynamic> json) =>
@@ -23,7 +23,7 @@ class TplSpacer implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplSpacerToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    return Spacer(flex: evaluateInt(flex, data) ?? 1);
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
+    return Spacer(flex: await evaluateInt(flex, data) ?? 1);
   }
 }

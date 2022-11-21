@@ -13,7 +13,7 @@ TplAnnotationTextField _$TplAnnotationTextFieldFromJson(
       json,
       ($checkedConvert) {
         final val = TplAnnotationTextField();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('name', (v) => val.name = v);
         $checkedConvert('color', (v) => val.color = v);
         $checkedConvert('date', (v) => val.date = v);
@@ -37,7 +37,7 @@ TplAnnotationTextField _$TplAnnotationTextFieldFromJson(
 Map<String, dynamic> _$TplAnnotationTextFieldToJson(
         TplAnnotationTextField instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'name': instance.name,
       'color': instance.color,
       'date': instance.date,

@@ -20,7 +20,10 @@ class TplFittedSizes {
 
   Map<String, dynamic> toJson() => _$TplFittedSizesToJson(this);
 
-  FittedSizes toPdf(Map<String, dynamic> data) {
-    return FittedSizes(source?.toPdf(data), destination?.toPdf(data));
+  Future<FittedSizes> toPdf(Map<String, dynamic> data) async {
+    return FittedSizes(
+      await source?.toPdf(data),
+      await destination?.toPdf(data),
+    );
   }
 }

@@ -25,20 +25,21 @@ class TplBorderRadius {
 
   Map<String, dynamic> toJson() => _$TplBorderRadiusToJson(this);
 
-  ws.BorderRadius toPdf(Map<String, dynamic> data) {
+  Future<ws.BorderRadius> toPdf(Map<String, dynamic> data) async {
     if (all != null) {
-      return ws.BorderRadius.all(all!.toPdf(data));
+      return ws.BorderRadius.all(await all!.toPdf(data));
     }
 
     if (circular) {
-      return ws.BorderRadius.circular(evaluateDouble(circular, data) ?? 0);
+      return ws.BorderRadius.circular(
+          await evaluateDouble(circular, data) ?? 0);
     }
 
     return ws.BorderRadius.only(
-      topLeft: topLeft?.toPdf(data) ?? ws.Radius.zero,
-      topRight: topRight?.toPdf(data) ?? ws.Radius.zero,
-      bottomLeft: bottomLeft?.toPdf(data) ?? ws.Radius.zero,
-      bottomRight: bottomRight?.toPdf(data) ?? ws.Radius.zero,
+      topLeft: await topLeft?.toPdf(data) ?? ws.Radius.zero,
+      topRight: await topRight?.toPdf(data) ?? ws.Radius.zero,
+      bottomLeft: await bottomLeft?.toPdf(data) ?? ws.Radius.zero,
+      bottomRight: await bottomRight?.toPdf(data) ?? ws.Radius.zero,
     );
   }
 }

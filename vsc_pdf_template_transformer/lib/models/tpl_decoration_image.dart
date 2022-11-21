@@ -16,7 +16,7 @@ part 'tpl_decoration_image.g.dart';
 class TplDecorationImage implements dg.DecorationGraphic {
   TplDecorationImage();
 
-  String className = 'TplDecorationImage';
+  String t = 'DecorationImage';
   dynamic image;
   dynamic fit;
   @AlignmentJsonConverter()
@@ -30,16 +30,17 @@ class TplDecorationImage implements dg.DecorationGraphic {
   Map<String, dynamic> toJson() => _$TplDecorationImageToJson(this);
 
   @override
-  DecorationGraphic buildDecorationImage(Map<String, dynamic> data) {
-    final imageProvider = evaluateImageProvider(image, data);
+  Future<DecorationGraphic> buildDecorationImage(
+      Map<String, dynamic> data) async {
+    final imageProvider = await evaluateImageProvider(image, data);
     if (imageProvider == null) {
       throw Exception('"image" attribute is required');
     }
 
     return DecorationImage(
         image: imageProvider,
-        fit: evaluateBoxFit(fit, data) ?? BoxFit.cover,
-        alignment: alignment?.buildAlignment(data) ?? Alignment.center,
-        dpi: evaluateDouble(dpi, data));
+        fit: await evaluateBoxFit(fit, data) ?? BoxFit.cover,
+        alignment: await alignment?.buildAlignment(data) ?? Alignment.center,
+        dpi: await evaluateDouble(dpi, data));
   }
 }

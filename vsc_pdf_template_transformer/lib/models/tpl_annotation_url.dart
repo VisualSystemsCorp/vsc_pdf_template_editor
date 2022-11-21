@@ -14,7 +14,7 @@ part 'tpl_annotation_url.g.dart';
 class TplAnnotationUrl implements ab.AnnotationBuilder {
   TplAnnotationUrl();
 
-  String className = 'TplAnnotationUrl';
+  String t = 'AnnotationUrl';
   dynamic destination;
   dynamic date;
   dynamic subject;
@@ -27,10 +27,10 @@ class TplAnnotationUrl implements ab.AnnotationBuilder {
   Map<String, dynamic> toJson() => _$TplAnnotationUrlToJson(this);
 
   @override
-  AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
-    return AnnotationUrl(evaluateString(destination, data) ?? '',
-        date: evaluateDateTime(date, data),
-        subject: evaluateString(subject, data),
-        author: evaluateString(author, data));
+  Future<AnnotationBuilder> buildAnnotation(Map<String, dynamic> data) async {
+    return AnnotationUrl(await evaluateString(destination, data) ?? '',
+        date: await evaluateDateTime(date, data),
+        subject: await evaluateString(subject, data),
+        author: await evaluateString(author, data));
   }
 }

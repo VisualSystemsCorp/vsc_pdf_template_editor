@@ -15,7 +15,7 @@ part 'tpl_row.g.dart';
 class TplRow implements wb.WidgetBuilder {
   TplRow();
 
-  String className = 'TplRow';
+  String t = 'Row';
   dynamic mainAxisAlignment;
   dynamic mainAxisSize;
   dynamic crossAxisAlignment;
@@ -29,18 +29,20 @@ class TplRow implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplRowToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Row(
-      mainAxisAlignment: evaluateMainAxisAlignment(mainAxisAlignment, data) ??
-          MainAxisAlignment.start,
+      mainAxisAlignment:
+          await evaluateMainAxisAlignment(mainAxisAlignment, data) ??
+              MainAxisAlignment.start,
       mainAxisSize:
-          evaluateMainAxisSize(mainAxisSize, data) ?? MainAxisSize.max,
+          await evaluateMainAxisSize(mainAxisSize, data) ?? MainAxisSize.max,
       crossAxisAlignment:
-          evaluateCrossAxisAlignment(crossAxisAlignment, data) ??
+          await evaluateCrossAxisAlignment(crossAxisAlignment, data) ??
               CrossAxisAlignment.center,
-      verticalDirection: evaluateVerticalDirection(verticalDirection, data) ??
-          VerticalDirection.down,
-      children: children == null ? [] : getChildren(children!, data),
+      verticalDirection:
+          await evaluateVerticalDirection(verticalDirection, data) ??
+              VerticalDirection.down,
+      children: children == null ? [] : await getChildren(children!, data),
     );
   }
 }

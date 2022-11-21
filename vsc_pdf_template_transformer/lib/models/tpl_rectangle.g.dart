@@ -12,7 +12,7 @@ TplRectangle _$TplRectangleFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplRectangle();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('fillColor', (v) => val.fillColor = v);
         $checkedConvert('strokeColor', (v) => val.strokeColor = v);
         $checkedConvert('strokeWidth', (v) => val.strokeWidth = v);
@@ -22,7 +22,7 @@ TplRectangle _$TplRectangleFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplRectangleToJson(TplRectangle instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'fillColor': instance.fillColor,
       'strokeColor': instance.strokeColor,
       'strokeWidth': instance.strokeWidth,

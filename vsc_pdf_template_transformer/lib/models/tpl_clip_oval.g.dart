@@ -11,7 +11,7 @@ TplClipOval _$TplClipOvalFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplClipOval();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'child',
             (v) => val.child = const WidgetJsonConverter()
@@ -22,6 +22,6 @@ TplClipOval _$TplClipOvalFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplClipOvalToJson(TplClipOval instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'child': const WidgetJsonConverter().toJson(instance.child),
     };

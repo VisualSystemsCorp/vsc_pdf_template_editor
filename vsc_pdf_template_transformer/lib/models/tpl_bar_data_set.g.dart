@@ -12,7 +12,7 @@ TplBarDataSet _$TplBarDataSetFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplBarDataSet();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'data',
             (v) => val.data = (v as List<dynamic>?)
@@ -40,7 +40,7 @@ TplBarDataSet _$TplBarDataSetFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplBarDataSetToJson(TplBarDataSet instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'data': instance.data?.map((e) => e.toJson()).toList(),
       'value': instance.value,
       'legend': instance.legend,

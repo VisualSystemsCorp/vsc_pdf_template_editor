@@ -12,7 +12,7 @@ TplLimitedBox _$TplLimitedBoxFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplLimitedBox();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('maxWidth', (v) => val.maxWidth = v);
         $checkedConvert('maxHeight', (v) => val.maxHeight = v);
         $checkedConvert(
@@ -25,7 +25,7 @@ TplLimitedBox _$TplLimitedBoxFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplLimitedBoxToJson(TplLimitedBox instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'maxWidth': instance.maxWidth,
       'maxHeight': instance.maxHeight,
       'child': const WidgetJsonConverter().toJson(instance.child),

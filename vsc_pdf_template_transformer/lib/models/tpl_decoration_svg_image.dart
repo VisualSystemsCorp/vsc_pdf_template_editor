@@ -16,7 +16,7 @@ part 'tpl_decoration_svg_image.g.dart';
 class TplDecorationSvgImage implements dg.DecorationGraphic {
   TplDecorationSvgImage();
 
-  String className = 'TplDecorationSvgImage';
+  String t = 'DecorationSvgImage';
   dynamic svg;
   dynamic fit;
   @AlignmentJsonConverter()
@@ -29,11 +29,12 @@ class TplDecorationSvgImage implements dg.DecorationGraphic {
   Map<String, dynamic> toJson() => _$TplDecorationSvgImageToJson(this);
 
   @override
-  DecorationGraphic buildDecorationImage(Map<String, dynamic> data) {
+  Future<DecorationGraphic> buildDecorationImage(
+      Map<String, dynamic> data) async {
     return DecorationSvgImage(
-      svg: evaluateText(svg, data),
-      fit: evaluateBoxFit(fit, data) ?? BoxFit.cover,
-      alignment: alignment?.buildAlignment(data) ?? Alignment.center,
+      svg: await evaluateText(svg, data),
+      fit: await evaluateBoxFit(fit, data) ?? BoxFit.cover,
+      alignment: await alignment?.buildAlignment(data) ?? Alignment.center,
     );
   }
 }

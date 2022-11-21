@@ -14,7 +14,7 @@ part 'tpl_chart.g.dart';
 class TplChart implements wb.WidgetBuilder {
   TplChart();
 
-  String className = 'TplChart';
+  String t = 'Chart';
   @WidgetJsonConverter()
   List<wb.WidgetBuilder?>? datasets;
   @WidgetJsonConverter()
@@ -37,14 +37,14 @@ class TplChart implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplChartToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Chart(
-        grid: grid!.buildWidget(data) as ChartGrid,
-        datasets: getDatasets(datasets!, data),
-        overlay: overlay?.buildWidget(data),
-        title: title?.buildWidget(data),
-        bottom: bottom?.buildWidget(data),
-        left: left?.buildWidget(data),
-        right: right?.buildWidget(data));
+        grid: await grid!.buildWidget(data) as ChartGrid,
+        datasets: await getDatasets(datasets!, data),
+        overlay: await overlay?.buildWidget(data),
+        title: await title?.buildWidget(data),
+        bottom: await bottom?.buildWidget(data),
+        left: await left?.buildWidget(data),
+        right: await right?.buildWidget(data));
   }
 }

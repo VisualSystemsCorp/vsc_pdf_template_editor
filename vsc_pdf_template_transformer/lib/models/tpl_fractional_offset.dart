@@ -14,7 +14,7 @@ part 'tpl_fractional_offset.g.dart';
 class TplFractionalOffset extends a.Alignment {
   TplFractionalOffset();
 
-  String className = 'TplFractionalOffset';
+  String t = 'FractionalOffset';
   dynamic dx;
   dynamic dy;
 
@@ -25,8 +25,10 @@ class TplFractionalOffset extends a.Alignment {
   Map<String, dynamic> toJson() => _$TplFractionalOffsetToJson(this);
 
   @override
-  Alignment buildAlignment(Map<String, dynamic> data) {
+  Future<Alignment> buildAlignment(Map<String, dynamic> data) async {
     return FractionalOffset(
-        evaluateDouble(dx, data) ?? 0, evaluateDouble(dy, data) ?? 0);
+      await evaluateDouble(dx, data) ?? 0,
+      await evaluateDouble(dy, data) ?? 0,
+    );
   }
 }

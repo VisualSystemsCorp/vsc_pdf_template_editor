@@ -1,0 +1,58 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "MultiPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "theme": "newThemeWithFontSize(defaultTheme(), 18)",
+      "children": [
+        {
+          "t": "Text",
+          "text": "'Sample of default theme - regular'"
+        },
+        {
+          "t": "Text",
+          "text": "'Sample of default theme - bold'",
+          "style": {
+            "fontWeight": "'bold'"
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'Sample of default theme - italic'",
+          "style": {
+            "fontStyle": "'italic'"
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'Sample of default theme - bold-italic'",
+          "style": {
+            "fontWeight": "'bold'",
+            "fontStyle": "'italic'"
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'Sample of default theme - emoji - \uD83D\uDC31\uD83D\uDC08 \uD83D\uDC83\uD83C\uDFC3'"
+        },
+        {
+          "t": "Text",
+          "text": "'Icon sample (person in circle):'"
+        },
+        {
+          "t": "Icon",
+          "iconData": {
+            "t": "IconData",
+            "codePoint": 59475
+          },
+          "size": 18,
+          "color": "'#ebc034'"
+        }
+      ]
+    }
+  ]
+}

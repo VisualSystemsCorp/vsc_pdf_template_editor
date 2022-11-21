@@ -12,7 +12,7 @@ TplRadialGradient _$TplRadialGradientFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplRadialGradient();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'center',
             (v) => val.center = const AlignmentJsonConverter()
@@ -36,7 +36,7 @@ TplRadialGradient _$TplRadialGradientFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplRadialGradientToJson(TplRadialGradient instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'center': const AlignmentJsonConverter().toJson(instance.center),
       'radius': instance.radius,
       'colors': instance.colors,

@@ -15,7 +15,7 @@ part 'tpl_wrap.g.dart';
 class TplWrap implements wb.WidgetBuilder {
   TplWrap();
 
-  String className = 'TplWrap';
+  String t = 'Wrap';
   dynamic direction;
   dynamic alignment;
   dynamic spacing;
@@ -33,20 +33,22 @@ class TplWrap implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplWrapToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Wrap(
-      direction: evaluateAxis(direction, data) ?? Axis.horizontal,
-      alignment: evaluateWrapAlignment(alignment, data) ?? WrapAlignment.start,
-      spacing: evaluateDouble(spacing, data) ?? 0,
-      runAlignment:
-          evaluateWrapAlignment(runAlignment, data) ?? WrapAlignment.start,
-      runSpacing: evaluateDouble(runSpacing, data) ?? 0,
+      direction: await evaluateAxis(direction, data) ?? Axis.horizontal,
+      alignment:
+          await evaluateWrapAlignment(alignment, data) ?? WrapAlignment.start,
+      spacing: await evaluateDouble(spacing, data) ?? 0,
+      runAlignment: await evaluateWrapAlignment(runAlignment, data) ??
+          WrapAlignment.start,
+      runSpacing: await evaluateDouble(runSpacing, data) ?? 0,
       crossAxisAlignment:
-          evaluateWrapCrossAlignment(crossAxisAlignment, data) ??
+          await evaluateWrapCrossAlignment(crossAxisAlignment, data) ??
               WrapCrossAlignment.start,
-      verticalDirection: evaluateVerticalDirection(verticalDirection, data) ??
-          VerticalDirection.down,
-      children: children == null ? [] : getChildren(children!, data),
+      verticalDirection:
+          await evaluateVerticalDirection(verticalDirection, data) ??
+              VerticalDirection.down,
+      children: children == null ? [] : await getChildren(children!, data),
     );
   }
 }

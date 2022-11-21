@@ -22,12 +22,12 @@ class TplBoxConstraints {
 
   Map<String, dynamic> toJson() => _$TplBoxConstraintsToJson(this);
 
-  ws.BoxConstraints toPdf(Map<String, dynamic> data) {
+  Future<ws.BoxConstraints> toPdf(Map<String, dynamic> data) async {
     return ws.BoxConstraints(
-      minWidth: evaluateDouble(minWidth, data) ?? 0,
-      maxWidth: evaluateDouble(maxWidth, data) ?? 100000000000,
-      minHeight: evaluateDouble(minHeight, data) ?? 0,
-      maxHeight: evaluateDouble(maxHeight, data) ?? 100000000000,
+      minWidth: await evaluateDouble(minWidth, data) ?? 0,
+      maxWidth: await evaluateDouble(maxWidth, data) ?? 100000000000,
+      minHeight: await evaluateDouble(minHeight, data) ?? 0,
+      maxHeight: await evaluateDouble(maxHeight, data) ?? 100000000000,
     );
   }
 }

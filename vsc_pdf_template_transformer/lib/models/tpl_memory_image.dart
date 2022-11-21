@@ -16,7 +16,7 @@ part 'tpl_memory_image.g.dart';
 class TplMemoryImage implements ip.ImageProvider {
   TplMemoryImage(this.imageData);
 
-  String className = 'TplMemoryImage';
+  String t = 'MemoryImage';
   dynamic imageData;
   dynamic orientation;
   dynamic dpi;
@@ -28,9 +28,9 @@ class TplMemoryImage implements ip.ImageProvider {
   Map<String, dynamic> toJson() => _$TplMemoryImageToJson(this);
 
   @override
-  buildImage(Map<String, dynamic> data) {
-    return MemoryImage(evaluateBase64(imageData, data) ?? Uint8List(0),
-        orientation: evaluatePdfImageOrientation(orientation, data),
-        dpi: evaluateDouble(dpi, data));
+  Future<ImageProvider> buildImage(Map<String, dynamic> data) async {
+    return MemoryImage(await evaluateBase64(imageData, data) ?? Uint8List(0),
+        orientation: await evaluatePdfImageOrientation(orientation, data),
+        dpi: await evaluateDouble(dpi, data));
   }
 }

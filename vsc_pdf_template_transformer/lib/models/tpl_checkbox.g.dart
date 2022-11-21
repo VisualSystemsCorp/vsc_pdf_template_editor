@@ -11,7 +11,7 @@ TplCheckbox _$TplCheckboxFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplCheckbox();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('value', (v) => val.value = v);
         $checkedConvert('tristate', (v) => val.tristate = v);
         $checkedConvert('activeColor', (v) => val.activeColor = v);
@@ -30,7 +30,7 @@ TplCheckbox _$TplCheckboxFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplCheckboxToJson(TplCheckbox instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'value': instance.value,
       'tristate': instance.tristate,
       'activeColor': instance.activeColor,

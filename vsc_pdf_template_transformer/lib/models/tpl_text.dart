@@ -15,7 +15,7 @@ part 'tpl_text.g.dart';
 class TplText implements wb.WidgetBuilder {
   TplText();
 
-  String className = 'TplText';
+  String t = 'Text';
   dynamic text;
   TplTextStyle? style;
   dynamic textAlign;
@@ -37,17 +37,17 @@ class TplText implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplTextToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Text(
-      evaluateText(text, data),
-      style: style?.toPdf(data),
-      textAlign: evaluateTextAlign(textAlign, data),
-      textDirection: evaluateTextDirection(textDirection, data),
-      softWrap: evaluateBool(softWrap, data),
-      tightBounds: evaluateBool(tightBounds, data) ?? false,
-      textScaleFactor: evaluateDouble(textScaleFactor, data) ?? 1,
-      maxLines: evaluateInt(maxLines, data),
-      overflow: evaluateTextOverflow(overflow, data),
+      await evaluateText(text, data),
+      style: await style?.toPdf(data),
+      textAlign: await evaluateTextAlign(textAlign, data),
+      textDirection: await evaluateTextDirection(textDirection, data),
+      softWrap: await evaluateBool(softWrap, data),
+      tightBounds: await evaluateBool(tightBounds, data) ?? false,
+      textScaleFactor: await evaluateDouble(textScaleFactor, data) ?? 1,
+      maxLines: await evaluateInt(maxLines, data),
+      overflow: await evaluateTextOverflow(overflow, data),
     );
   }
 }

@@ -1,0 +1,29 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "AspectRatio",
+        "aspectRatio": 0.2,
+        "child": {
+          "t": "Container",
+          "alignment": null,
+          "padding": null,
+          "color": "'#fc03ca'",
+          "decoration": null,
+          "foregroundDecoration": null,
+          "width": null,
+          "height": null,
+          "constraints": null,
+          "margin": null,
+          "child": null
+        }
+      }
+    }
+  ]
+}

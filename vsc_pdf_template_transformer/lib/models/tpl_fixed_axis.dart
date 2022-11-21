@@ -33,20 +33,20 @@ class TplFixedAxis {
 
   Map<String, dynamic> toJson() => _$TplFixedAxisToJson(this);
 
-  FixedAxis toPdf(Map<String, dynamic> data) {
-    return FixedAxis(evaluateList(values, data)!,
-        textStyle: textStyle?.toPdf(data),
-        margin: evaluateDouble(margin, data),
-        marginStart: evaluateDouble(marginStart, data),
-        marginEnd: evaluateDouble(marginEnd, data),
-        color: evaluateColor(color, data),
-        width: evaluateDouble(width, data),
-        divisions: evaluateBool(divisions, data),
-        divisionsWidth: evaluateDouble(divisionsWidth, data),
-        divisionsColor: evaluateColor(divisionsColor, data),
-        divisionsDashed: evaluateBool(divisionsDashed, data),
-        ticks: evaluateBool(ticks, data),
-        axisTick: evaluateBool(axisTick, data),
-        angle: evaluateDouble(angle, data) ?? 0);
+  Future<FixedAxis<num>> toPdf(Map<String, dynamic> data) async {
+    return FixedAxis((await evaluateList(values, data))!,
+        textStyle: await textStyle?.toPdf(data),
+        margin: await evaluateDouble(margin, data),
+        marginStart: await evaluateDouble(marginStart, data),
+        marginEnd: await evaluateDouble(marginEnd, data),
+        color: await evaluateColor(color, data),
+        width: await evaluateDouble(width, data),
+        divisions: await evaluateBool(divisions, data),
+        divisionsWidth: await evaluateDouble(divisionsWidth, data),
+        divisionsColor: await evaluateColor(divisionsColor, data),
+        divisionsDashed: await evaluateBool(divisionsDashed, data),
+        ticks: await evaluateBool(ticks, data),
+        axisTick: await evaluateBool(axisTick, data),
+        angle: await evaluateDouble(angle, data) ?? 0);
   }
 }

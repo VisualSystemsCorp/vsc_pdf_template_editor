@@ -15,22 +15,22 @@ class AnnotationBuilderJsonConverter
   @override
   ab.AnnotationBuilder? fromJson(Map<String, dynamic>? json) {
     if (json != null) {
-      switch (json['className']) {
-        case 'TplAnnotationUrl':
+      switch (json['t']) {
+        case 'AnnotationUrl':
           return TplAnnotationUrl.fromJson(json);
-        case 'TplAnnotationSquare':
+        case 'AnnotationSquare':
           return TplAnnotationSquare.fromJson(json);
-        case 'TplAnnotationCircle':
+        case 'AnnotationCircle':
           return TplAnnotationCircle.fromJson(json);
-        case 'TplAnnotationPolygon':
+        case 'AnnotationPolygon':
           return TplAnnotationPolygon.fromJson(json);
-        case 'TplAnnotationInk':
+        case 'AnnotationInk':
           return TplAnnotationInk.fromJson(json);
-        case 'TplAnnotationTextField':
+        case 'AnnotationTextField':
           return TplAnnotationTextField.fromJson(json);
       }
       throw Exception(
-          'No annotation builder className or unknown annotation builder className');
+          'No annotation builder type name or unknown annotation builder type name');
     }
     return null;
   }

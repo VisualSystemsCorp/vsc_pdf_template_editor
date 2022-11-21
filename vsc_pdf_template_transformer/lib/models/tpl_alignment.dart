@@ -14,7 +14,7 @@ part 'tpl_alignment.g.dart';
 class TplAlignment extends a.Alignment {
   TplAlignment();
 
-  String className = 'TplAlignment';
+  String t = 'Alignment';
   dynamic alignment;
   dynamic x;
   dynamic y;
@@ -26,11 +26,11 @@ class TplAlignment extends a.Alignment {
   Map<String, dynamic> toJson() => _$TplAlignmentToJson(this);
 
   @override
-  ws.Alignment buildAlignment(Map<String, dynamic> data) {
-    final alignmentStr = evaluateString(alignment, data);
+  Future<ws.Alignment> buildAlignment(Map<String, dynamic> data) async {
+    final alignmentStr = await evaluateString(alignment, data);
     if (alignmentStr == null) {
-      return ws.Alignment(
-          evaluateDouble(x, data) ?? 0.0, evaluateDouble(y, data) ?? 0.0);
+      return ws.Alignment(await evaluateDouble(x, data) ?? 0.0,
+          await evaluateDouble(y, data) ?? 0.0);
     }
 
     switch (alignmentStr) {

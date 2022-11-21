@@ -1,0 +1,44 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Stack",
+        "children": [
+          {
+            "t": "Container",
+            "margin": {
+              "top": 30,
+              "left": 30
+            },
+            "color": "'#777'",
+            "width": 200,
+            "height": 200
+          },
+          {
+            "t": "Opacity",
+            "opacity": 0.3,
+            "child": {
+              "t": "Container",
+              "alignment": null,
+              "padding": null,
+              "color": "'#3455eb'",
+              "decoration": null,
+              "foregroundDecoration": null,
+              "width": 200,
+              "height": 200,
+              "constraints": null,
+              "margin": null,
+              "child": null
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

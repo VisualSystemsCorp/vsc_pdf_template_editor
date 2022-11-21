@@ -1,0 +1,45 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "MultiPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "theme": "newThemeWithFontSize(getThemeFromGoogleFont('Spectral'), 18)",
+      "children": [
+        {
+          "t": "Text",
+          "text": "'Sample of Spectral theme - regular'"
+        },
+        {
+          "t": "Text",
+          "text": "'Sample of Spectral theme - bold'",
+          "style": {
+            "fontWeight": "'bold'"
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'Sample of Spectral theme - italic'",
+          "style": {
+            "fontStyle": "'italic'"
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'Sample of Spectral theme - bold-italic'",
+          "style": {
+            "fontWeight": "'bold'",
+            "fontStyle": "'italic'"
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'Sample of Spectral theme - emoji - \uD83D\uDC31\uD83D\uDC08 \uD83D\uDC83\uD83C\uDFC3'"
+        }
+      ]
+    }
+  ]
+}

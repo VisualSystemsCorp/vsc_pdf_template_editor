@@ -16,7 +16,7 @@ TplPage _$TplPageFromJson(Map<String, dynamic> json) => $checkedCreate(
               (v) => const WidgetJsonConverter()
                   .fromJson(v as Map<String, dynamic>?)),
         );
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'pageTheme',
             (v) => val.pageTheme = v == null
@@ -41,7 +41,7 @@ TplPage _$TplPageFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$TplPageToJson(TplPage instance) => <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'pageTheme': instance.pageTheme?.toJson(),
       'theme': instance.theme,
       'pageFormat': instance.pageFormat?.toJson(),

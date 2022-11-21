@@ -1,0 +1,105 @@
+
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Chart",
+        "datasets": [
+          {
+            "t": "PieDataSet",
+            "value": 3,
+            "legend": "'Item 1'",
+            "color": "'#343deb'",
+            "borderColor": null,
+            "borderWidth": null,
+            "drawBorder": null,
+            "drawSurface": null,
+            "surfaceOpacity": null,
+            "offset": null,
+            "legendStyle": null,
+            "legendAlign": null,
+            "legendPosition": null,
+            "legendLineWidth": null,
+            "legendLineColor": null,
+            "legendWidget": null,
+            "legendOffset": null,
+            "innerRadius": null
+          },
+          {
+            "t": "PieDataSet",
+            "value": 2,
+            "legend": "'Item 2'",
+            "color": "'#eb34ba'",
+            "borderColor": null,
+            "borderWidth": null,
+            "drawBorder": null,
+            "drawSurface": null,
+            "surfaceOpacity": null,
+            "offset": null,
+            "legendStyle": null,
+            "legendAlign": null,
+            "legendPosition": null,
+            "legendLineWidth": null,
+            "legendLineColor": null,
+            "legendWidget": null,
+            "legendOffset": null,
+            "innerRadius": null
+          },
+          {
+            "t": "PieDataSet",
+            "value": 1,
+            "legend": "'Item 3'",
+            "color": "'#eb9b34'",
+            "borderColor": null,
+            "borderWidth": null,
+            "drawBorder": null,
+            "drawSurface": null,
+            "surfaceOpacity": null,
+            "offset": null,
+            "legendStyle": null,
+            "legendAlign": null,
+            "legendPosition": null,
+            "legendLineWidth": null,
+            "legendLineColor": null,
+            "legendWidget": null,
+            "legendOffset": null,
+            "innerRadius": null
+          }
+        ],
+        "grid": {
+          "t": "PieGrid",
+          "startAngle": null
+        },
+        "overlay": null,
+        "title": {
+          "t": "Text",
+          "text": "'Test Pie Chart'",
+          "style": null,
+          "textAlign": null,
+          "textDirection": null,
+          "softWrap": true,
+          "tightBounds": false,
+          "textScaleFactor": null,
+          "maxLines": null,
+          "overflow": null
+        },
+        "bottom": null,
+        "left": null,
+        "right": {
+          "t": "ChartLegend",
+          "textStyle": null,
+          "position": null,
+          "direction": null,
+          "decoration": null,
+          "padding": null
+        }
+      }
+    }
+  ]
+}

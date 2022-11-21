@@ -15,7 +15,7 @@ part 'tpl_annotation_polygon.g.dart';
 class TplAnnotationPolygon implements ab.AnnotationBuilder {
   TplAnnotationPolygon();
 
-  String className = 'TplAnnotationPolygon';
+  String t = 'AnnotationPolygon';
   List<TplPdfPoint>? points;
   dynamic color;
   dynamic interiorColor;
@@ -31,13 +31,13 @@ class TplAnnotationPolygon implements ab.AnnotationBuilder {
   Map<String, dynamic> toJson() => _$TplAnnotationPolygonToJson(this);
 
   @override
-  AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
-    return AnnotationPolygon(getPdfPoints(points!, data),
-        color: evaluateColor(color, data),
-        interiorColor: evaluateColor(interiorColor, data),
-        date: evaluateDateTime(date, data),
-        subject: evaluateString(subject, data),
-        author: evaluateString(author, data),
-        content: evaluateString(content, data));
+  Future<AnnotationBuilder> buildAnnotation(Map<String, dynamic> data) async {
+    return AnnotationPolygon(await getPdfPoints(points!, data),
+        color: await evaluateColor(color, data),
+        interiorColor: await evaluateColor(interiorColor, data),
+        date: await evaluateDateTime(date, data),
+        subject: await evaluateString(subject, data),
+        author: await evaluateString(author, data),
+        content: await evaluateString(content, data));
   }
 }

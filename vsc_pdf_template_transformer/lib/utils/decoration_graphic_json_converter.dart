@@ -11,14 +11,14 @@ class DecorationGraphicJsonConverter
   @override
   dg.DecorationGraphic? fromJson(Map<String, dynamic>? json) {
     if (json != null) {
-      switch (json['className']) {
-        case 'TplDecorationImage':
+      switch (json['t']) {
+        case 'DecorationImage':
           return TplDecorationImage.fromJson(json);
-        case 'TplDecorationSvgImage':
+        case 'DecorationSvgImage':
           return TplDecorationSvgImage.fromJson(json);
       }
       throw Exception(
-          'No decoration className or unknown decoration className');
+          'No decoration type name or unknown decoration type name');
     }
     return null;
   }

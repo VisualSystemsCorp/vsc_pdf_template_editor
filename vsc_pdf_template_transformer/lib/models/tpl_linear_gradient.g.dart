@@ -12,7 +12,7 @@ TplLinearGradient _$TplLinearGradientFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplLinearGradient();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'begin',
             (v) => val.begin = const AlignmentJsonConverter()
@@ -34,7 +34,7 @@ TplLinearGradient _$TplLinearGradientFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplLinearGradientToJson(TplLinearGradient instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'begin': const AlignmentJsonConverter().toJson(instance.begin),
       'end': const AlignmentJsonConverter().toJson(instance.end),
       'colors': instance.colors,

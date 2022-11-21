@@ -14,7 +14,7 @@ part 'tpl_full_page.g.dart';
 class TplFullPage implements wb.WidgetBuilder {
   TplFullPage();
 
-  String className = 'TplFullPage';
+  String t = 'FullPage';
   dynamic ignoreMargins;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
@@ -26,10 +26,10 @@ class TplFullPage implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplFullPageToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return FullPage(
-      ignoreMargins: evaluateBool(ignoreMargins, data) ?? true,
-      child: child?.buildWidget(data),
+      ignoreMargins: await evaluateBool(ignoreMargins, data) ?? true,
+      child: await child?.buildWidget(data),
     );
   }
 }

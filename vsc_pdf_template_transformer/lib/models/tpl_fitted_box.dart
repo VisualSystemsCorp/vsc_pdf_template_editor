@@ -17,7 +17,7 @@ part 'tpl_fitted_box.g.dart';
 class TplFittedBox implements wb.WidgetBuilder {
   TplFittedBox();
 
-  String className = 'TplFittedBox';
+  String t = 'FittedBox';
   dynamic fit;
   @AlignmentJsonConverter()
   a.Alignment? alignment;
@@ -31,11 +31,11 @@ class TplFittedBox implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplFittedBoxToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return FittedBox(
-      fit: evaluateBoxFit(fit, data) ?? BoxFit.contain,
-      alignment: alignment?.buildAlignment(data) ?? Alignment.center,
-      child: child?.buildWidget(data),
+      fit: await evaluateBoxFit(fit, data) ?? BoxFit.contain,
+      alignment: await alignment?.buildAlignment(data) ?? Alignment.center,
+      child: await child?.buildWidget(data),
     );
   }
 }

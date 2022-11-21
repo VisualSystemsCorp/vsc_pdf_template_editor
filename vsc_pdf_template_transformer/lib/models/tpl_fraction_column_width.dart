@@ -14,7 +14,7 @@ part 'tpl_fraction_column_width.g.dart';
 class TplFractionColumnWidth implements tcw.TableColumnWidth {
   TplFractionColumnWidth();
 
-  String className = 'TplFractionColumnWidth';
+  String t = 'FractionColumnWidth';
   dynamic value;
 
   factory TplFractionColumnWidth.fromJson(Map<String, dynamic> json) =>
@@ -24,7 +24,8 @@ class TplFractionColumnWidth implements tcw.TableColumnWidth {
   Map<String, dynamic> toJson() => _$TplFractionColumnWidthToJson(this);
 
   @override
-  TableColumnWidth buildTableColumnWidth(Map<String, dynamic> data) {
-    return FractionColumnWidth(evaluateDouble(value, data) ?? 0);
+  Future<TableColumnWidth> buildTableColumnWidth(
+      Map<String, dynamic> data) async {
+    return FractionColumnWidth(await evaluateDouble(value, data) ?? 0);
   }
 }

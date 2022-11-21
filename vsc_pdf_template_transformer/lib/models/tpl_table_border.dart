@@ -27,27 +27,28 @@ class TplTableBorder {
 
   Map<String, dynamic> toJson() => _$TplTableBorderToJson(this);
 
-  ws.TableBorder toPdf(Map<String, dynamic> data) {
+  Future<ws.TableBorder> toPdf(Map<String, dynamic> data) async {
     if (all != null) {
-      final border = all!.toPdf(data);
+      final border = await all!.toPdf(data);
       return ws.TableBorder.all(
           color: border.color, width: border.width, style: border.style);
     }
 
     if (inside != null || outside != null) {
       return ws.TableBorder.symmetric(
-        inside: inside?.toPdf(data) ?? ws.BorderSide.none,
-        outside: outside?.toPdf(data) ?? ws.BorderSide.none,
+        inside: await inside?.toPdf(data) ?? ws.BorderSide.none,
+        outside: await outside?.toPdf(data) ?? ws.BorderSide.none,
       );
     }
 
     return ws.TableBorder(
-      top: top?.toPdf(data) ?? ws.BorderSide.none,
-      bottom: bottom?.toPdf(data) ?? ws.BorderSide.none,
-      left: left?.toPdf(data) ?? ws.BorderSide.none,
-      right: right?.toPdf(data) ?? ws.BorderSide.none,
-      horizontalInside: horizontalInside?.toPdf(data) ?? ws.BorderSide.none,
-      verticalInside: verticalInside?.toPdf(data) ?? ws.BorderSide.none,
+      top: await top?.toPdf(data) ?? ws.BorderSide.none,
+      bottom: await bottom?.toPdf(data) ?? ws.BorderSide.none,
+      left: await left?.toPdf(data) ?? ws.BorderSide.none,
+      right: await right?.toPdf(data) ?? ws.BorderSide.none,
+      horizontalInside:
+          await horizontalInside?.toPdf(data) ?? ws.BorderSide.none,
+      verticalInside: await verticalInside?.toPdf(data) ?? ws.BorderSide.none,
     );
   }
 }

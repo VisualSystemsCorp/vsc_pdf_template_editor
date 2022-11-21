@@ -18,7 +18,7 @@ part 'tpl_table.g.dart';
 class TplTable implements wb.WidgetBuilder {
   TplTable();
 
-  String className = 'TplTable';
+  String t = 'Table';
   List<TplTableRow>? children;
   TplTableBorder? border;
   dynamic defaultVerticalAlignment;
@@ -35,44 +35,46 @@ class TplTable implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplTableToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Table(
-      children: _getTableRows(data),
-      border: border?.toPdf(data),
-      defaultVerticalAlignment:
-          evaluateTableCellVerticalAlignment(defaultVerticalAlignment, data) ??
-              TableCellVerticalAlignment.top,
+      children: await _getTableRows(data),
+      border: await border?.toPdf(data),
+      defaultVerticalAlignment: await evaluateTableCellVerticalAlignment(
+              defaultVerticalAlignment, data) ??
+          TableCellVerticalAlignment.top,
       columnWidths: columnWidths == null
           ? {}
-          : getTableColumnWidths(columnWidths!, data).asMap(),
-      defaultColumnWidth: defaultColumnWidth?.buildTableColumnWidth(data) ??
-          IntrinsicColumnWidth(),
-      tableWidth: evaluateTableWidth(tableWidth, data) ?? TableWidth.max,
+          : (await getTableColumnWidths(columnWidths!, data)).asMap(),
+      defaultColumnWidth:
+          await defaultColumnWidth?.buildTableColumnWidth(data) ??
+              IntrinsicColumnWidth(),
+      tableWidth: await evaluateTableWidth(tableWidth, data) ?? TableWidth.max,
     );
   }
 
-  List<TableRow> _getTableRows(Map<String, dynamic> data) {
+  Future<List<TableRow>> _getTableRows(Map<String, dynamic> data) async {
     final List<TableRow> res = [];
 
     for (final row in children ?? []) {
       if (row.array != null) {
         // This is a repeating row. Treat it similar to TplRepeater.
-        res.addAll(_getRepeatingRows(row, data));
+        res.addAll(await _getRepeatingRows(row, data));
       } else {
-        res.add(row.buildRow(data));
+        res.add(await (row as TplTableRow).buildRow(data));
       }
     }
     return res;
   }
 
-  List<TableRow> _getRepeatingRows(TplTableRow row, Map<String, dynamic> data) {
-    final resultArray = evaluateList(row.array, data);
+  Future<List<TableRow>> _getRepeatingRows(
+      TplTableRow row, Map<String, dynamic> data) async {
+    final resultArray = await evaluateList(row.array, data);
     if (resultArray == null) return [];
     final List<TableRow> rows = [];
     for (int i = 0; i < resultArray.length; i++) {
       final dataForChildRow = createDataForRepeatedItem(
           itemData: resultArray[i], parentData: data, index: i);
-      rows.add(row.buildRow(dataForChildRow));
+      rows.add(await row.buildRow(dataForChildRow));
     }
 
     return rows;

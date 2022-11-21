@@ -28,10 +28,7 @@ TplTextStyle _$TplTextStyleFromJson(Map<String, dynamic> json) =>
                 : TplBoxDecoration.fromJson(v as Map<String, dynamic>));
         $checkedConvert('decoration', (v) => val.decoration = v);
         $checkedConvert('decorationColor', (v) => val.decorationColor = v);
-        $checkedConvert(
-            'decorationStyle',
-            (v) => val.decorationStyle =
-                $enumDecodeNullable(_$TextDecorationStyleEnumMap, v));
+        $checkedConvert('decorationStyle', (v) => val.decorationStyle = v);
         $checkedConvert(
             'decorationThickness', (v) => val.decorationThickness = v);
         $checkedConvert('renderingMode', (v) => val.renderingMode = v);
@@ -60,7 +57,7 @@ Map<String, dynamic> _$TplTextStyleToJson(TplTextStyle instance) =>
       'background': instance.background?.toJson(),
       'decoration': instance.decoration,
       'decorationColor': instance.decorationColor,
-      'decorationStyle': _$TextDecorationStyleEnumMap[instance.decorationStyle],
+      'decorationStyle': instance.decorationStyle,
       'decorationThickness': instance.decorationThickness,
       'renderingMode': instance.renderingMode,
       'font': instance.font,
@@ -70,8 +67,3 @@ Map<String, dynamic> _$TplTextStyleToJson(TplTextStyle instance) =>
       'fontBoldItalic': instance.fontBoldItalic,
       'fontFallback': instance.fontFallback,
     };
-
-const _$TextDecorationStyleEnumMap = {
-  TextDecorationStyle.solid: 'solid',
-  TextDecorationStyle.double: 'double',
-};

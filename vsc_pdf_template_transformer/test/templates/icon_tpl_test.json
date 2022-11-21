@@ -1,0 +1,24 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Icon",
+        "iconData": {
+          "t": "IconData",
+          "codePoint": 38,
+          "matchTextDirection": null
+        },
+        "size": 32,
+        "color": "'#ebc034'",
+        "textDirection": null,
+        "font": null
+      }
+    }
+  ]
+}

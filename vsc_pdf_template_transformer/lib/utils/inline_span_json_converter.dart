@@ -11,14 +11,14 @@ class InlineSpanJsonConverter
   @override
   ins.InlineSpan? fromJson(Map<String, dynamic>? json) {
     if (json != null) {
-      switch (json['className']) {
-        case 'TplWidgetSpan':
+      switch (json['t']) {
+        case 'WidgetSpan':
           return TplWidgetSpan.fromJson(json);
-        case 'TplTextSpan':
+        case 'TextSpan':
           return TplTextSpan.fromJson(json);
       }
       throw Exception(
-          'No inline span className or unknown inline span className');
+          'No inline span type name or unknown inline span type name');
     }
     return null;
   }

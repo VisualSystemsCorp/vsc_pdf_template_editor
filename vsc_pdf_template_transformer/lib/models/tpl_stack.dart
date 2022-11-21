@@ -17,7 +17,7 @@ part 'tpl_stack.g.dart';
 class TplStack implements wb.WidgetBuilder {
   TplStack();
 
-  String className = 'TplStack';
+  String t = 'Stack';
   @AlignmentJsonConverter()
   a.Alignment? alignment;
   dynamic fit;
@@ -32,12 +32,12 @@ class TplStack implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplStackToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Stack(
-      alignment: alignment?.buildAlignment(data) ?? Alignment.topLeft,
-      fit: evaluateStackFit(fit, data) ?? StackFit.loose,
-      overflow: evaluateOverflow(overflow, data) ?? Overflow.clip,
-      children: children == null ? [] : getChildren(children!, data),
+      alignment: await alignment?.buildAlignment(data) ?? Alignment.topLeft,
+      fit: await evaluateStackFit(fit, data) ?? StackFit.loose,
+      overflow: await evaluateOverflow(overflow, data) ?? Overflow.clip,
+      children: children == null ? [] : await getChildren(children!, data),
     );
   }
 }

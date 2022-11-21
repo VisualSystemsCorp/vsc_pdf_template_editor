@@ -12,7 +12,7 @@ TplPointDataSet _$TplPointDataSetFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplPointDataSet();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'data',
             (v) => val.data = (v as List<dynamic>?)
@@ -30,7 +30,7 @@ TplPointDataSet _$TplPointDataSetFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplPointDataSetToJson(TplPointDataSet instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'data': instance.data?.map((e) => e.toJson()).toList(),
       'legend': instance.legend,
       'pointSize': instance.pointSize,

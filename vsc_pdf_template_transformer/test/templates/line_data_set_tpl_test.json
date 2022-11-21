@@ -1,0 +1,111 @@
+
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Chart",
+        "datasets": [
+          {
+            "t": "LineDataSet",
+            "data": [
+              {
+                "x": 4,
+                "y": 3
+              },
+              {
+                "x": 2,
+                "y": 8
+              },
+              {
+                "x": 5,
+                "y": 8.5
+              }
+            ],
+            "legend": null,
+            "pointColor": null,
+            "pointSize": null,
+            "lineWidth": null,
+            "drawLine": null,
+            "lineColor": null,
+            "color": null,
+            "drawPoints": null,
+            "valuePosition": null,
+            "drawSurface": null,
+            "surfaceOpacity": null,
+            "surfaceColor": null,
+            "isCurved": null,
+            "smoothness": null
+          }
+        ],
+        "grid": {
+          "t": "CartesianGrid",
+          "xAxis": {
+            "values": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "textStyle": null,
+            "margin": null,
+            "marginStart": null,
+            "marginEnd": null,
+            "color": "'#343deb'",
+            "width": null,
+            "divisions": null,
+            "divisionsWidth": null,
+            "divisionsColor": null,
+            "divisionsDashed": null,
+            "ticks": null,
+            "axisTick": null,
+            "angle": null
+          },
+          "yAxis": {
+            "values": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "textStyle": null,
+            "margin": null,
+            "marginStart": null,
+            "marginEnd": null,
+            "color": "'#343deb'",
+            "width": null,
+            "divisions": null,
+            "divisionsWidth": null,
+            "divisionsColor": null,
+            "divisionsDashed": null,
+            "ticks": null,
+            "axisTick": null,
+            "angle": null
+          }
+        },
+        "overlay": null,
+        "title": null,
+        "bottom": null,
+        "left": null,
+        "right": null
+      }
+    }
+  ]
+}

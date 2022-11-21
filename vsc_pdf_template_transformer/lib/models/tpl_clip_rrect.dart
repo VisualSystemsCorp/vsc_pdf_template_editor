@@ -14,7 +14,7 @@ part 'tpl_clip_rrect.g.dart';
 class TplClipRRect implements wb.WidgetBuilder {
   TplClipRRect();
 
-  String className = 'TplClipRRect';
+  String t = 'ClipRRect';
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
   dynamic horizontalRadius;
@@ -27,10 +27,10 @@ class TplClipRRect implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplClipRRectToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return ClipRRect(
-        child: child?.buildWidget(data),
-        horizontalRadius: evaluateDouble(horizontalRadius, data) ?? 0,
-        verticalRadius: evaluateDouble(verticalRadius, data) ?? 0);
+        child: await child?.buildWidget(data),
+        horizontalRadius: await evaluateDouble(horizontalRadius, data) ?? 0,
+        verticalRadius: await evaluateDouble(verticalRadius, data) ?? 0);
   }
 }

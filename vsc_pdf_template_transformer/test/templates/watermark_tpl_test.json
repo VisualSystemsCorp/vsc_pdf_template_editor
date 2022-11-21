@@ -1,0 +1,20 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Watermark",
+        "child": null,
+        "fit": null,
+        "angle": null,
+        "text": "'Inc.'",
+        "style": null
+      }
+    }
+  ]
+}

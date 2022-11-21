@@ -1,0 +1,80 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Column",
+        "mainAxisAlignment": null,
+        "mainAxisSize": null,
+        "crossAxisAlignment": null,
+        "verticalDirection": null,
+        "children": [
+          {
+            "t": "Container",
+            "alignment": null,
+            "padding": null,
+            "color": "'#fc03ca'",
+            "decoration": null,
+            "foregroundDecoration": null,
+            "width": 80,
+            "height": 20,
+            "constraints": null,
+            "margin": null,
+            "child": {
+              "t": "Text",
+              "text": "'this is a test text'",
+              "style": null,
+              "textAlign": null,
+              "textDirection": null,
+              "softWrap": true,
+              "tightBounds": false,
+              "textScaleFactor": null,
+              "maxLines": null,
+              "overflow": null
+            }
+          },
+          {
+            "t": "SizedBox",
+            "width": null,
+            "height": 20,
+            "child": null
+          },
+          {
+            "t": "Container",
+            "alignment": null,
+            "padding": null,
+            "color": "'#2dfc03'",
+            "decoration": null,
+            "foregroundDecoration": null,
+            "width": 80,
+            "height": 20,
+            "constraints": null,
+            "margin": null,
+            "child": {
+              "t": "FittedBox",
+              "fit": null,
+              "alignment": null,
+              "child": {
+                "t": "Text",
+                "text": "'this is a test text'",
+                "style": null,
+                "textAlign": null,
+                "textDirection": null,
+                "softWrap": true,
+                "tightBounds": false,
+                "textScaleFactor": null,
+                "maxLines": null,
+                "overflow": null
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -12,7 +12,7 @@ TplTextField _$TplTextFieldFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplTextField();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('name', (v) => val.name = v);
         $checkedConvert(
             'child',
@@ -43,7 +43,7 @@ TplTextField _$TplTextFieldFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplTextFieldToJson(TplTextField instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'name': instance.name,
       'child': const WidgetJsonConverter().toJson(instance.child),
       'width': instance.width,

@@ -1,0 +1,56 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Column",
+        "children": [
+          {
+            "t": "Text",
+            "text": "'Table of Contents'"
+          },
+          {
+            "t": "TableOfContent"
+          }
+        ]
+      }
+    },
+    {
+      "t": "MultiPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "children": [
+        {
+          "t": "Header",
+          "text": "'Heading 1'",
+          "child": null,
+          "level": 0,
+          "decoration": null,
+          "margin": null,
+          "padding": null,
+          "style": null,
+          "color": null,
+          "outlineStyle": null
+        },
+        {
+          "t": "Header",
+          "text": "'Heading 1.1'",
+          "child": null,
+          "level": 1,
+          "decoration": null,
+          "margin": null,
+          "padding": null,
+          "style": null,
+          "color": null,
+          "outlineStyle": null
+        }
+      ]
+    }
+  ]
+}

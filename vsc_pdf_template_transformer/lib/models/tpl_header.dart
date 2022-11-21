@@ -19,7 +19,7 @@ part 'tpl_header.g.dart';
 class TplHeader implements wb.WidgetBuilder {
   TplHeader();
 
-  String className = 'TplHeader';
+  String t = 'Header';
   dynamic title;
   dynamic text;
   @WidgetJsonConverter()
@@ -39,18 +39,18 @@ class TplHeader implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplHeaderToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Header(
-        title: evaluateString(title, data),
-        text: evaluateString(text, data),
-        child: child?.buildWidget(data),
-        level: evaluateInt(level, data) ?? 1,
-        decoration: decoration?.toPdf(data),
-        margin: margin?.toPdf(data),
-        padding: padding?.toPdf(data),
-        textStyle: style?.toPdf(data),
-        outlineColor: evaluateColor(color, data),
-        outlineStyle:
-            evaluateOutlineStyle(outlineStyle, data) ?? PdfOutlineStyle.normal);
+        title: await evaluateString(title, data),
+        text: await evaluateString(text, data),
+        child: await child?.buildWidget(data),
+        level: await evaluateInt(level, data) ?? 1,
+        decoration: await decoration?.toPdf(data),
+        margin: await margin?.toPdf(data),
+        padding: await padding?.toPdf(data),
+        textStyle: await style?.toPdf(data),
+        outlineColor: await evaluateColor(color, data),
+        outlineStyle: await evaluateOutlineStyle(outlineStyle, data) ??
+            PdfOutlineStyle.normal);
   }
 }

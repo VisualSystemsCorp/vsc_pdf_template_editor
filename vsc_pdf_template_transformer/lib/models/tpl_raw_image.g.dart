@@ -13,7 +13,7 @@ TplRawImage _$TplRawImageFromJson(Map<String, dynamic> json) => $checkedCreate(
         final val = TplRawImage(
           $checkedConvert('imageData', (v) => v),
         );
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('width', (v) => val.width = v);
         $checkedConvert('height', (v) => val.height = v);
         $checkedConvert('orientation', (v) => val.orientation = v);
@@ -24,7 +24,7 @@ TplRawImage _$TplRawImageFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TplRawImageToJson(TplRawImage instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'imageData': instance.imageData,
       'width': instance.width,
       'height': instance.height,

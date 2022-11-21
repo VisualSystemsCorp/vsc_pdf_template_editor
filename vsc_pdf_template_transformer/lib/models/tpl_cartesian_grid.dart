@@ -13,7 +13,7 @@ part 'tpl_cartesian_grid.g.dart';
 class TplCartesianGrid implements wb.WidgetBuilder {
   TplCartesianGrid();
 
-  String className = 'TplCartesianGrid';
+  String t = 'CartesianGrid';
   TplFixedAxis? xAxis;
   TplFixedAxis? yAxis;
 
@@ -24,7 +24,10 @@ class TplCartesianGrid implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplCartesianGridToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    return CartesianGrid(xAxis: xAxis!.toPdf(data), yAxis: yAxis!.toPdf(data));
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    return CartesianGrid(
+      xAxis: await xAxis!.toPdf(data),
+      yAxis: await yAxis!.toPdf(data),
+    );
   }
 }

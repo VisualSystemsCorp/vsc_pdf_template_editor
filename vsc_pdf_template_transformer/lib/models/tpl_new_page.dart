@@ -12,7 +12,7 @@ part 'tpl_new_page.g.dart';
 class TplNewPage implements wb.WidgetBuilder {
   TplNewPage();
 
-  String className = 'TplNewPage';
+  String t = 'NewPage';
 
   factory TplNewPage.fromJson(Map<String, dynamic> json) =>
       _$TplNewPageFromJson(json);
@@ -21,7 +21,7 @@ class TplNewPage implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplNewPageToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return NewPage();
   }
 }

@@ -1,0 +1,55 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "ListView",
+        "direction": null,
+        "reverse": null,
+        "spacing": 20,
+        "padding": null,
+        "children": [
+          {
+            "t": "LimitedBox",
+            "maxWidth": 20,
+            "maxHeight": 20,
+            "child": {
+              "t": "Container",
+              "color": "'#bc3ad6'",
+              "width": 500,
+              "height": 500
+            }
+          },
+          {
+            "t": "SizedBox",
+            "width": 100,
+            "height": 100,
+            "child": {
+              "t": "LimitedBox",
+              "maxWidth": 20,
+              "maxHeight": 20,
+              "child": {
+                "t": "Container",
+                "alignment": null,
+                "padding": null,
+                "color": "'#bc3ad6'",
+                "decoration": null,
+                "foregroundDecoration": null,
+                "width": 500,
+                "height": 500,
+                "constraints": null,
+                "margin": null,
+                "child": null
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

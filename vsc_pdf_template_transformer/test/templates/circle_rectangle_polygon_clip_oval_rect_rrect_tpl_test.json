@@ -1,0 +1,131 @@
+
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Column",
+        "mainAxisAlignment": "'spaceBetween'",
+        "mainAxisSize": null,
+        "crossAxisAlignment": null,
+        "verticalDirection": null,
+        "children": [
+          {
+            "t": "SizedBox",
+            "width": 100,
+            "height": 100,
+            "child": {
+              "t": "Circle",
+              "fillColor": "'#3498eb'",
+              "strokeColor": "'#eb7434'",
+              "strokeWidth": 2
+            }
+          },
+          {
+            "t": "ClipOval",
+            "child": {
+              "t": "Container",
+              "alignment": null,
+              "padding": null,
+              "color": "'#34eb49'",
+              "decoration": null,
+              "foregroundDecoration": null,
+              "width": 100,
+              "height": 100,
+              "constraints": null,
+              "margin": null,
+              "child": null
+            }
+          },
+          {
+            "t": "ClipRect",
+            "child": {
+              "t": "Align",
+              "alignment": {
+                "t": "Alignment",
+                "alignment": "'topCenter'",
+                "x": null,
+                "y": null
+              },
+              "widthFactor": 0.2,
+              "heightFactor": 0.5,
+              "child": {
+                "t": "Container",
+                "alignment": null,
+                "padding": null,
+                "color": "'#34eb49'",
+                "decoration": null,
+                "foregroundDecoration": null,
+                "width": 200,
+                "height": 120,
+                "constraints": null,
+                "margin": null,
+                "child": null
+              }
+            }
+          },
+          {
+            "t": "ClipRRect",
+            "child": {
+              "t": "Container",
+              "alignment": null,
+              "padding": null,
+              "color": "'#e834eb'",
+              "decoration": null,
+              "foregroundDecoration": null,
+              "width": 200,
+              "height": 120,
+              "constraints": null,
+              "margin": null,
+              "child": null
+            },
+            "horizontalRadius": 30,
+            "verticalRadius": 32
+          },
+          {
+            "t": "SizedBox",
+            "width": 150,
+            "height": 100,
+            "child": {
+              "t": "Rectangle",
+              "fillColor": "'#3498eb'",
+              "strokeColor": "'#eb7434'",
+              "strokeWidth": 2
+            }
+          },
+          {
+            "t": "SizedBox",
+            "width": 10,
+            "height": 10,
+            "child": {
+              "t": "Polygon",
+              "points": [
+                {
+                  "x": 3,
+                  "y": 15
+                },
+                {
+                  "x": 30,
+                  "y": 50
+                },
+                {
+                  "x": 50,
+                  "y": 50
+                }
+              ],
+              "fillColor": "'#3498eb'",
+              "strokeColor": "'#eb7434'",
+              "strokeWidth": 2,
+              "close": null
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

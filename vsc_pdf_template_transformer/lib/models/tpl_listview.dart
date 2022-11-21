@@ -16,7 +16,7 @@ part 'tpl_listview.g.dart';
 class TplListView implements wb.WidgetBuilder {
   TplListView();
 
-  String className = 'TplListView';
+  String t = 'ListView';
   dynamic direction;
   dynamic reverse;
   dynamic spacing;
@@ -31,13 +31,13 @@ class TplListView implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplListViewToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return ListView(
-      direction: evaluateAxis(direction, data) ?? Axis.vertical,
-      reverse: evaluateBool(reverse, data) ?? false,
-      spacing: evaluateDouble(spacing, data) ?? 0,
-      padding: padding?.toPdf(data),
-      children: children == null ? [] : getChildren(children!, data),
+      direction: await evaluateAxis(direction, data) ?? Axis.vertical,
+      reverse: await evaluateBool(reverse, data) ?? false,
+      spacing: await evaluateDouble(spacing, data) ?? 0,
+      padding: await padding?.toPdf(data),
+      children: children == null ? [] : await getChildren(children!, data),
     );
   }
 }

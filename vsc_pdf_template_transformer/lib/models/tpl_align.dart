@@ -17,7 +17,7 @@ part 'tpl_align.g.dart';
 class TplAlign implements wb.WidgetBuilder {
   TplAlign();
 
-  String className = 'TplAlign';
+  String t = 'Align';
   @AlignmentJsonConverter()
   a.Alignment? alignment;
   dynamic widthFactor;
@@ -32,11 +32,11 @@ class TplAlign implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplAlignToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Align(
-        alignment: alignment?.buildAlignment(data) ?? Alignment.center,
-        widthFactor: evaluateDouble(widthFactor, data),
-        heightFactor: evaluateDouble(heightFactor, data),
-        child: child?.buildWidget(data));
+        alignment: await alignment?.buildAlignment(data) ?? Alignment.center,
+        widthFactor: await evaluateDouble(widthFactor, data),
+        heightFactor: await evaluateDouble(heightFactor, data),
+        child: await child?.buildWidget(data));
   }
 }

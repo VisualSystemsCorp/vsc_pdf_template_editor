@@ -17,7 +17,7 @@ part 'tpl_flat_button.g.dart';
 class TplFlatButton implements wb.WidgetBuilder {
   TplFlatButton();
 
-  String className = 'TplFlatButton';
+  String t = 'FlatButton';
   dynamic textColor;
   dynamic color;
   dynamic colorDown;
@@ -37,17 +37,17 @@ class TplFlatButton implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplFlatButtonToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return FlatButton(
-      textColor: evaluateColor(color, data) ?? PdfColors.white,
-      color: evaluateColor(color, data) ?? PdfColors.blue,
-      colorDown: evaluateColor(color, data) ?? PdfColors.red,
-      colorRollover: evaluateColor(color, data) ?? PdfColors.blueAccent,
-      padding: padding?.toPdf(data),
-      decoration: decoration?.toPdf(data),
+      textColor: await evaluateColor(color, data) ?? PdfColors.white,
+      color: await evaluateColor(color, data) ?? PdfColors.blue,
+      colorDown: await evaluateColor(color, data) ?? PdfColors.red,
+      colorRollover: await evaluateColor(color, data) ?? PdfColors.blueAccent,
+      padding: await padding?.toPdf(data),
+      decoration: await decoration?.toPdf(data),
       flags: flags,
-      child: child != null ? child!.buildWidget(data) : SizedBox(),
-      name: evaluateText(name, data),
+      child: child != null ? await child!.buildWidget(data) : SizedBox(),
+      name: await evaluateText(name, data),
     );
   }
 }

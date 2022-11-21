@@ -12,7 +12,7 @@ TplDecoratedBox _$TplDecoratedBoxFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplDecoratedBox();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'decoration',
             (v) => val.decoration = v == null
@@ -29,7 +29,7 @@ TplDecoratedBox _$TplDecoratedBoxFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplDecoratedBoxToJson(TplDecoratedBox instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'decoration': instance.decoration?.toJson(),
       'position': instance.position,
       'child': const WidgetJsonConverter().toJson(instance.child),

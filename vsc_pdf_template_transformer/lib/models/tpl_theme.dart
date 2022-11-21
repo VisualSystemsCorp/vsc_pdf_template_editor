@@ -15,7 +15,7 @@ part 'tpl_theme.g.dart';
 class TplTheme implements wb.WidgetBuilder {
   TplTheme();
 
-  String className = 'TplTheme';
+  String t = 'Theme';
 
   dynamic data;
   @WidgetJsonConverter()
@@ -28,10 +28,10 @@ class TplTheme implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplThemeToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Theme(
-      data: evaluateThemeData(this.data, data)!,
-      child: child!.buildWidget(data),
+      data: (await evaluateThemeData(this.data, data))!,
+      child: await child!.buildWidget(data),
     );
   }
 }

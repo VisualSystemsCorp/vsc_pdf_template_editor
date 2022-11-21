@@ -14,7 +14,7 @@ part 'tpl_url_link.g.dart';
 class TplUrlLink implements wb.WidgetBuilder {
   TplUrlLink();
 
-  String className = 'TplUrlLink';
+  String t = 'UrlLink';
   dynamic destination;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
@@ -26,9 +26,9 @@ class TplUrlLink implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplUrlLinkToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return UrlLink(
-        destination: evaluateText(destination, data),
-        child: child?.buildWidget(data) ?? SizedBox());
+        destination: await evaluateText(destination, data),
+        child: await child?.buildWidget(data) ?? SizedBox());
   }
 }

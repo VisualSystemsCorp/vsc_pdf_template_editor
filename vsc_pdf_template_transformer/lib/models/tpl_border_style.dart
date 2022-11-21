@@ -21,10 +21,10 @@ class TplBorderStyle {
 
   Map<String, dynamic> toJson() => _$TplBorderStyleToJson(this);
 
-  ws.BorderStyle toPdf(Map<String, dynamic> data) {
+  Future<ws.BorderStyle> toPdf(Map<String, dynamic> data) async {
     return ws.BorderStyle(
-        paint: evaluateBool(paint, data) ?? true,
-        pattern: evaluateList(pattern, data),
-        phase: evaluateInt(phase, data) ?? 0);
+        paint: await evaluateBool(paint, data) ?? true,
+        pattern: await evaluateList(pattern, data),
+        phase: await evaluateInt(phase, data) ?? 0);
   }
 }

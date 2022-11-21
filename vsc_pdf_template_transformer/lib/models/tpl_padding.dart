@@ -14,7 +14,7 @@ part 'tpl_padding.g.dart';
 class TplPadding implements wb.WidgetBuilder {
   TplPadding();
 
-  String className = 'TplPadding';
+  String t = 'Padding';
   TplEdgeInsets? padding;
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
@@ -26,10 +26,10 @@ class TplPadding implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplPaddingToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Padding(
-      padding: padding != null ? padding!.toPdf(data) : EdgeInsets.zero,
-      child: child?.buildWidget(data),
+      padding: padding != null ? await padding!.toPdf(data) : EdgeInsets.zero,
+      child: await child?.buildWidget(data),
     );
   }
 }

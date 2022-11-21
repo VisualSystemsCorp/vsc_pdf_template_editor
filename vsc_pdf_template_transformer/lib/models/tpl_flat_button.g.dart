@@ -12,7 +12,7 @@ TplFlatButton _$TplFlatButtonFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplFlatButton();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('textColor', (v) => val.textColor = v);
         $checkedConvert('color', (v) => val.color = v);
         $checkedConvert('colorDown', (v) => val.colorDown = v);
@@ -44,7 +44,7 @@ TplFlatButton _$TplFlatButtonFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplFlatButtonToJson(TplFlatButton instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'textColor': instance.textColor,
       'color': instance.color,
       'colorDown': instance.colorDown,

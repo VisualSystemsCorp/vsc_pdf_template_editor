@@ -15,7 +15,7 @@ part 'tpl_icon.g.dart';
 class TplIcon implements wb.WidgetBuilder {
   TplIcon();
 
-  String className = 'TplIcon';
+  String t = 'Icon';
 
   TplIconData? iconData;
   dynamic size;
@@ -30,11 +30,11 @@ class TplIcon implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplIconToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    return Icon(iconData!.toPdf(data),
-        size: evaluateDouble(size, data),
-        color: evaluateColor(color, data),
-        textDirection: evaluateTextDirection(textDirection, data),
-        font: evaluateFont(font, data));
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    return Icon(await iconData!.toPdf(data),
+        size: await evaluateDouble(size, data),
+        color: await evaluateColor(color, data),
+        textDirection: await evaluateTextDirection(textDirection, data),
+        font: await evaluateFont(font, data));
   }
 }

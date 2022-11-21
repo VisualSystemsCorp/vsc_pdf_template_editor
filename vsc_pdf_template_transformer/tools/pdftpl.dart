@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
 
-/// This is main entry point for command line tool
 void main(List<String> arguments) async {
   if (arguments.length != 3) {
     stderr
@@ -18,12 +17,11 @@ void main(List<String> arguments) async {
   final dataFile = File(arguments[1]);
   final result = File(arguments[2]);
 
-  final template = json.decode(templateFile.readAsStringSync());
+  final template = jsonDecode(templateFile.readAsStringSync());
 
-  final data = json.decode(dataFile.readAsStringSync());
+  final data = jsonDecode(dataFile.readAsStringSync());
 
-  var document = await transformer.Transformer.buildPdf(template, data);
-  final bytes = await document.save();
+  final bytes = await transformer.Transformer.buildPdf(template, data);
   result.writeAsBytesSync(bytes, mode: FileMode.write);
   exit(0);
 }

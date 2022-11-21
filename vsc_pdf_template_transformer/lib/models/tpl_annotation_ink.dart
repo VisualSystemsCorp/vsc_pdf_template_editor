@@ -15,7 +15,7 @@ part 'tpl_annotation_ink.g.dart';
 class TplAnnotationInk implements ab.AnnotationBuilder {
   TplAnnotationInk();
 
-  String className = 'TplAnnotationInk';
+  String t = 'AnnotationInk';
   List<List<TplPdfPoint>>? points;
   dynamic color;
   dynamic date;
@@ -30,12 +30,12 @@ class TplAnnotationInk implements ab.AnnotationBuilder {
   Map<String, dynamic> toJson() => _$TplAnnotationInkToJson(this);
 
   @override
-  AnnotationBuilder buildAnnotation(Map<String, dynamic> data) {
-    return AnnotationInk(getListOfPdfPoints(points!, data),
-        color: evaluateColor(color, data),
-        date: evaluateDateTime(date, data),
-        subject: evaluateString(subject, data),
-        author: evaluateString(author, data),
-        content: evaluateString(content, data));
+  Future<AnnotationBuilder> buildAnnotation(Map<String, dynamic> data) async {
+    return AnnotationInk(await getListOfPdfPoints(points!, data),
+        color: await evaluateColor(color, data),
+        date: await evaluateDateTime(date, data),
+        subject: await evaluateString(subject, data),
+        author: await evaluateString(author, data),
+        content: await evaluateString(content, data));
   }
 }

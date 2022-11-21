@@ -40,23 +40,23 @@ class TplThemeData {
 
   Map<String, dynamic> toJson() => _$TplThemeDataToJson(this);
 
-  pw.ThemeData toPdf(Map<String, dynamic> data) {
+  Future<pw.ThemeData> toPdf(Map<String, dynamic> data) async {
     return pw.ThemeData(
-        defaultTextStyle: defaultTextStyle?.toPdf(data),
-        paragraphStyle: paragraphStyle?.toPdf(data),
-        header0: header0?.toPdf(data),
-        header1: header1?.toPdf(data),
-        header2: header2?.toPdf(data),
-        header3: header3?.toPdf(data),
-        header4: header4?.toPdf(data),
-        header5: header5?.toPdf(data),
-        bulletStyle: bulletStyle?.toPdf(data),
-        tableHeader: tableHeader?.toPdf(data),
-        tableCell: tableCell?.toPdf(data),
-        softWrap: evaluateBool(softWrap, data),
-        textAlign: evaluateTextAlign(textAlign, data),
-        maxLines: evaluateInt(maxLines, data),
-        overflow: evaluateTextOverflow(overflow, data),
-        iconTheme: iconTheme?.toPdf(data));
+        defaultTextStyle: await defaultTextStyle?.toPdf(data),
+        paragraphStyle: await paragraphStyle?.toPdf(data),
+        header0: await header0?.toPdf(data),
+        header1: await header1?.toPdf(data),
+        header2: await header2?.toPdf(data),
+        header3: await header3?.toPdf(data),
+        header4: await header4?.toPdf(data),
+        header5: await header5?.toPdf(data),
+        bulletStyle: await bulletStyle?.toPdf(data),
+        tableHeader: await tableHeader?.toPdf(data),
+        tableCell: await tableCell?.toPdf(data),
+        softWrap: await evaluateBool(softWrap, data),
+        textAlign: await evaluateTextAlign(textAlign, data),
+        maxLines: await evaluateInt(maxLines, data),
+        overflow: await evaluateTextOverflow(overflow, data),
+        iconTheme: await iconTheme?.toPdf(data));
   }
 }

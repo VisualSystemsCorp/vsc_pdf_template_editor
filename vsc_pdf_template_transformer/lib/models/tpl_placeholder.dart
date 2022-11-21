@@ -14,7 +14,7 @@ part 'tpl_placeholder.g.dart';
 class TplPlaceholder implements wb.WidgetBuilder {
   TplPlaceholder();
 
-  String className = 'TplPlaceholder';
+  String t = 'Placeholder';
   dynamic color;
   dynamic strokeWidth;
   dynamic fallbackWidth;
@@ -27,12 +27,12 @@ class TplPlaceholder implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplPlaceholderToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Placeholder(
-      color: evaluateColor(color, data) ?? PdfColor.fromInt(0xFF455A64),
-      strokeWidth: evaluateDouble(strokeWidth, data) ?? 2.0,
-      fallbackWidth: evaluateDouble(fallbackWidth, data) ?? 400.0,
-      fallbackHeight: evaluateDouble(fallbackHeight, data) ?? 400.0,
+      color: await evaluateColor(color, data) ?? PdfColor.fromInt(0xFF455A64),
+      strokeWidth: await evaluateDouble(strokeWidth, data) ?? 2.0,
+      fallbackWidth: await evaluateDouble(fallbackWidth, data) ?? 400.0,
+      fallbackHeight: await evaluateDouble(fallbackHeight, data) ?? 400.0,
     );
   }
 }

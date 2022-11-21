@@ -19,8 +19,8 @@ class TplTextDecoration {
 
   Map<String, dynamic> toJson() => _$TplTextDecorationToJson(this);
 
-  ws.TextDecoration toPdf(Map<String, dynamic> data) {
-    final decorationStr = evaluateString(decoration, data);
+  Future<ws.TextDecoration> toPdf(Map<String, dynamic> data) async {
+    final decorationStr = await evaluateString(decoration, data);
     switch (decoration) {
       case 'none':
         return ws.TextDecoration.none;

@@ -12,7 +12,7 @@ TplFlexColumnWidth _$TplFlexColumnWidthFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplFlexColumnWidth();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('flex', (v) => val.flex = v);
         return val;
       },
@@ -20,6 +20,6 @@ TplFlexColumnWidth _$TplFlexColumnWidthFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplFlexColumnWidthToJson(TplFlexColumnWidth instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'flex': instance.flex,
     };

@@ -1,0 +1,57 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Align",
+        "alignment": {
+          "t": "Alignment",
+          "alignment": "'bottomCenter'",
+          "x": null,
+          "y": null
+        },
+        "widthFactor": null,
+        "heightFactor": null,
+        "child": {
+          "t": "Footer",
+          "leading": {
+            "t": "Checkbox",
+            "value": true,
+            "tristate": null,
+            "activeColor": null,
+            "checkColor": null,
+            "name": null,
+            "width": null,
+            "height": null,
+            "decoration": null
+          },
+          "title": {
+            "t": "Text",
+            "text": "'title'",
+            "style": null,
+            "textAlign": null,
+            "textDirection": null,
+            "softWrap": true,
+            "tightBounds": false,
+            "textScaleFactor": null,
+            "maxLines": null,
+            "overflow": null
+          },
+          "trailing": null,
+          "margin": null,
+          "padding": null,
+          "decoration": {
+            "color": "'#fc03ca'",
+            "border": null,
+            "borderRadius": null
+          }
+        }
+      }
+    }
+  ]
+}

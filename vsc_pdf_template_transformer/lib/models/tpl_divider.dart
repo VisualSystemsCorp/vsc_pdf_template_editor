@@ -14,7 +14,7 @@ part 'tpl_divider.g.dart';
 class TplDivider implements wb.WidgetBuilder {
   TplDivider();
 
-  String className = 'TplDivider';
+  String t = 'Divider';
   dynamic height;
   dynamic thickness;
   dynamic indent;
@@ -29,13 +29,13 @@ class TplDivider implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplDividerToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Divider(
-        height: evaluateDouble(height, data),
-        thickness: evaluateDouble(thickness, data),
-        indent: evaluateDouble(indent, data),
-        endIndent: evaluateDouble(endIndent, data),
-        color: evaluateColor(color, data),
-        borderStyle: borderStyle?.toPdf(data));
+        height: await evaluateDouble(height, data),
+        thickness: await evaluateDouble(thickness, data),
+        indent: await evaluateDouble(indent, data),
+        endIndent: await evaluateDouble(endIndent, data),
+        color: await evaluateColor(color, data),
+        borderStyle: await borderStyle?.toPdf(data));
   }
 }

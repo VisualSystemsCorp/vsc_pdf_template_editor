@@ -14,7 +14,7 @@ part 'tpl_flex_column_width.g.dart';
 class TplFlexColumnWidth implements tcw.TableColumnWidth {
   TplFlexColumnWidth();
 
-  String className = 'TplFlexColumnWidth';
+  String t = 'FlexColumnWidth';
   dynamic flex;
 
   factory TplFlexColumnWidth.fromJson(Map<String, dynamic> json) =>
@@ -24,7 +24,8 @@ class TplFlexColumnWidth implements tcw.TableColumnWidth {
   Map<String, dynamic> toJson() => _$TplFlexColumnWidthToJson(this);
 
   @override
-  TableColumnWidth buildTableColumnWidth(Map<String, dynamic> data) {
-    return FlexColumnWidth(evaluateDouble(flex, data) ?? 1);
+  Future<TableColumnWidth> buildTableColumnWidth(
+      Map<String, dynamic> data) async {
+    return FlexColumnWidth(await evaluateDouble(flex, data) ?? 1);
   }
 }

@@ -1,0 +1,44 @@
+{
+  "t": "Document",
+  "variables": [
+    {
+      "variable": "locale",
+      "expression": "'en-US'"
+    },
+    {
+      "variable": "tz",
+      "expression": "'America/Chicago'"
+    }
+  ],
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Column",
+        "crossAxisAlignment": "'start'",
+        "children": [
+          {
+            "t": "Text",
+            "text": "'formatLongCurrency: ' + formatLongCurrency(data.total_price)"
+          },
+          {
+            "t": "Text",
+            "text": "'formatCurrency: ' + formatCurrency(data.total_price)"
+          },
+          {
+            "t": "Text",
+            "text": "'formatNumber: ' + formatNumber('#,##0.000', '12345678.9139')"
+          },
+          {
+            "t": "Text",
+            "text": "'formatPercent: ' + formatPercent('.3278', 2)"
+          }
+        ]
+      }
+    }
+  ]
+}

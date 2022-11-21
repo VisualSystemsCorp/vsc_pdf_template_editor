@@ -1,0 +1,54 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Row",
+        "mainAxisAlignment": null,
+        "mainAxisSize": null,
+        "crossAxisAlignment": null,
+        "verticalDirection": null,
+        "children": [
+          {
+            "t": "Text",
+            "text": "'text1'",
+            "style": null,
+            "textAlign": null,
+            "textDirection": null,
+            "softWrap": true,
+            "tightBounds": false,
+            "textScaleFactor": null,
+            "maxLines": null,
+            "overflow": null
+          },
+          {
+            "t": "VerticalDivider",
+            "width": null,
+            "thickness": null,
+            "indent": null,
+            "endIndent": null,
+            "color": null,
+            "borderStyle": null
+          },
+          {
+            "t": "Text",
+            "text": "'text2'",
+            "style": null,
+            "textAlign": null,
+            "textDirection": null,
+            "softWrap": true,
+            "tightBounds": false,
+            "textScaleFactor": null,
+            "maxLines": null,
+            "overflow": null
+          }
+        ]
+      }
+    }
+  ]
+}

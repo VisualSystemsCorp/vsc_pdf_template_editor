@@ -1,0 +1,129 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Column",
+        "children": [
+          {
+            "t": "Row",
+            "children": [
+              {
+                "t": "Text",
+                "text": "'Spacer Test - start of row'"
+              },
+              {
+                "t": "Spacer",
+                "flex": 1
+              },
+              {
+                "t": "Text",
+                "text": "'End of Row'"
+              }
+            ]
+          },
+          {
+            "t": "Row",
+            "children": [
+              {
+                "t": "Text",
+                "text": "'Expanded Test '"
+              },
+              {
+                "t": "Expanded",
+                "flex": 1,
+                "fit": null,
+                "child": {
+                  "t": "Text",
+                  "text": "'This is expanded'"
+                }
+              },
+              {
+                "t": "Text",
+                "text": "'end of row'"
+              }
+            ]
+          },
+          {
+            "t": "Text",
+            "text": "'Divider test before'"
+          },
+          {
+            "t": "Divider",
+            "height": 40,
+            "thickness": 5,
+            "indent": 10,
+            "endIndent": 30,
+            "color": "'#ff0000'"
+          },
+          {
+            "t": "Text",
+            "text": "'Divider test after'"
+          }
+        ]
+      }
+    },
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Center",
+        "widthFactor": null,
+        "heightFactor": null,
+        "child": {
+          "t": "Text",
+          "text": "'Center Test'"
+        }
+      }
+    },
+    {
+      "t": "MultiPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "children": [
+        {
+          "t": "Text",
+          "text": "'New Page Test - MultiPage 1'"
+        },
+        {
+          "t": "NewPage"
+        },
+        {
+          "t": "Text",
+          "text": "'New Page Test - Page 2'"
+        },
+        {
+          "t": "Text",
+          "text": "'FullPage, Padding, and Placeholder test on next page'"
+        }
+      ]
+    },
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "FullPage",
+        "ignoreMargins": true,
+        "child": {
+          "t": "Padding",
+          "padding": {
+            "all": 20
+          },
+          "child": {
+            "t": "Placeholder"
+          }
+        }
+      }
+    }
+  ]
+}

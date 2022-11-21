@@ -18,7 +18,7 @@ part 'tpl_text_span.g.dart';
 class TplTextSpan implements ins.InlineSpan {
   TplTextSpan();
 
-  String className = 'TplTextSpan';
+  String t = 'TextSpan';
   @InlineSpanJsonConverter()
   List<ins.InlineSpan?>? children;
   dynamic text;
@@ -34,13 +34,14 @@ class TplTextSpan implements ins.InlineSpan {
   Map<String, dynamic> toJson() => _$TplTextSpanToJson(this);
 
   @override
-  InlineSpan buildInlineSpan(Map<String, dynamic> data) {
+  Future<InlineSpan> buildInlineSpan(Map<String, dynamic> data) async {
     return TextSpan(
-        children:
-            children == null ? [] : getInlineSpanChildren(children!, data),
-        baseline: evaluateDouble(baseline, data) ?? 0,
-        text: evaluateString(text, data),
-        style: style?.toPdf(data),
-        annotation: annotation?.buildAnnotation(data));
+        children: children == null
+            ? []
+            : await getInlineSpanChildren(children!, data),
+        baseline: await evaluateDouble(baseline, data) ?? 0,
+        text: await evaluateString(text, data),
+        style: await style?.toPdf(data),
+        annotation: await annotation?.buildAnnotation(data));
   }
 }

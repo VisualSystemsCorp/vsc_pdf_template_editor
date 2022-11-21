@@ -13,7 +13,7 @@ part 'tpl_shape.g.dart';
 class TplShape implements wb.WidgetBuilder {
   TplShape();
 
-  String className = 'TplShape';
+  String t = 'Shape';
   dynamic shape;
   dynamic fillColor;
   dynamic strokeColor;
@@ -28,12 +28,12 @@ class TplShape implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplShapeToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
-    return Shape(evaluateText(shape, data),
-        fillColor: evaluateColor(fillColor, data),
-        strokeColor: evaluateColor(strokeColor, data),
-        width: evaluateDouble(width, data),
-        height: evaluateDouble(height, data),
-        fit: evaluateBoxFit(fit, data) ?? BoxFit.contain);
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    return Shape(await evaluateText(shape, data),
+        fillColor: await evaluateColor(fillColor, data),
+        strokeColor: await evaluateColor(strokeColor, data),
+        width: await evaluateDouble(width, data),
+        height: await evaluateDouble(height, data),
+        fit: await evaluateBoxFit(fit, data) ?? BoxFit.contain);
   }
 }

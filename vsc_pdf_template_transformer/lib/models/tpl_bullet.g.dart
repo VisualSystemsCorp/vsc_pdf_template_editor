@@ -11,7 +11,7 @@ TplBullet _$TplBulletFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = TplBullet();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('text', (v) => val.text = v);
         $checkedConvert('textAlign', (v) => val.textAlign = v);
         $checkedConvert(
@@ -42,7 +42,7 @@ TplBullet _$TplBulletFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$TplBulletToJson(TplBullet instance) => <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'text': instance.text,
       'textAlign': instance.textAlign,
       'style': instance.style?.toJson(),

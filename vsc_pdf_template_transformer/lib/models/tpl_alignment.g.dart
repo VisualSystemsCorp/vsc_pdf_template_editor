@@ -12,7 +12,7 @@ TplAlignment _$TplAlignmentFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplAlignment();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert('alignment', (v) => val.alignment = v);
         $checkedConvert('x', (v) => val.x = v);
         $checkedConvert('y', (v) => val.y = v);
@@ -22,7 +22,7 @@ TplAlignment _$TplAlignmentFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplAlignmentToJson(TplAlignment instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'alignment': instance.alignment,
       'x': instance.x,
       'y': instance.y,

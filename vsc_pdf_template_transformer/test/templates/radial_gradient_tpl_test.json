@@ -1,0 +1,44 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Container",
+        "alignment": null,
+        "padding": null,
+        "color": null,
+        "decoration": {
+          "color": null,
+          "border": null,
+          "borderRadius": null,
+          "gradient": {
+            "t": "RadialGradient",
+            "center": null,
+            "radius": null,
+            "colors": [
+              "'#ad2710'",
+              "'#8dd63a'",
+              "'#3a64d6'"
+            ],
+            "stops": null,
+            "tileMode": null,
+            "focal": null,
+            "focalRadius": null
+          },
+          "image": null
+        },
+        "foregroundDecoration": null,
+        "width": 200,
+        "height": 150,
+        "constraints": null,
+        "margin": null,
+        "child": null
+      }
+    }
+  ]
+}

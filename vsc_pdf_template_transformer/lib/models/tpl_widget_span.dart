@@ -19,7 +19,7 @@ part 'tpl_widget_span.g.dart';
 class TplWidgetSpan implements ins.InlineSpan {
   TplWidgetSpan();
 
-  String className = 'TplWidgetSpan';
+  String t = 'WidgetSpan';
   @WidgetJsonConverter()
   wb.WidgetBuilder? child;
   dynamic baseline;
@@ -34,11 +34,11 @@ class TplWidgetSpan implements ins.InlineSpan {
   Map<String, dynamic> toJson() => _$TplWidgetSpanToJson(this);
 
   @override
-  InlineSpan buildInlineSpan(Map<String, dynamic> data) {
+  Future<InlineSpan> buildInlineSpan(Map<String, dynamic> data) async {
     return WidgetSpan(
-        child: child!.buildWidget(data),
-        baseline: evaluateDouble(baseline, data) ?? 0,
-        style: style?.toPdf(data),
-        annotation: annotation?.buildAnnotation(data));
+        child: await child!.buildWidget(data),
+        baseline: await evaluateDouble(baseline, data) ?? 0,
+        style: await style?.toPdf(data),
+        annotation: await annotation?.buildAnnotation(data));
   }
 }

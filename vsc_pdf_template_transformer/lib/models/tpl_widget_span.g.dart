@@ -12,7 +12,7 @@ TplWidgetSpan _$TplWidgetSpanFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplWidgetSpan();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'child',
             (v) => val.child = const WidgetJsonConverter()
@@ -33,7 +33,7 @@ TplWidgetSpan _$TplWidgetSpanFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplWidgetSpanToJson(TplWidgetSpan instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'child': const WidgetJsonConverter().toJson(instance.child),
       'baseline': instance.baseline,
       'style': instance.style?.toJson(),

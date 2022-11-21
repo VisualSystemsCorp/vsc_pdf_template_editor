@@ -18,7 +18,7 @@ part 'tpl_container.g.dart';
   explicitToJson: true,
 )
 class TplContainer implements wb.WidgetBuilder {
-  String className = 'TplContainer';
+  String t = 'Container';
   @AlignmentJsonConverter()
   a.Alignment? alignment;
   TplEdgeInsets? padding;
@@ -41,17 +41,17 @@ class TplContainer implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplContainerToJson(this);
 
   @override
-  pw.Widget buildWidget(Map<String, dynamic> data) {
+  Future<pw.Widget> buildWidget(Map<String, dynamic> data) async {
     return pw.Container(
-        alignment: alignment?.buildAlignment(data),
-        padding: padding?.toPdf(data),
-        color: evaluateColor(color, data),
-        decoration: decoration?.toPdf(data),
-        foregroundDecoration: foregroundDecoration?.toPdf(data),
-        width: evaluateDouble(width, data),
-        height: evaluateDouble(height, data),
-        constraints: constraints?.toPdf(data),
-        margin: margin?.toPdf(data),
-        child: child?.buildWidget(data));
+        alignment: await alignment?.buildAlignment(data),
+        padding: await padding?.toPdf(data),
+        color: await evaluateColor(color, data),
+        decoration: await decoration?.toPdf(data),
+        foregroundDecoration: await foregroundDecoration?.toPdf(data),
+        width: await evaluateDouble(width, data),
+        height: await evaluateDouble(height, data),
+        constraints: await constraints?.toPdf(data),
+        margin: await margin?.toPdf(data),
+        child: await child?.buildWidget(data));
   }
 }

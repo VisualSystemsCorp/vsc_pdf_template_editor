@@ -18,7 +18,7 @@ part 'tpl_barcode_widget.g.dart';
 class TplBarcodeWidget implements wb.WidgetBuilder {
   TplBarcodeWidget();
 
-  String className = 'TplBarcodeWidget';
+  String t = 'BarcodeWidget';
 
   dynamic data;
   dynamic type;
@@ -40,25 +40,21 @@ class TplBarcodeWidget implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplBarcodeWidgetToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
+    final type = await evaluateBarcodeType(this.type, data);
     return BarcodeWidget(
-        data: evaluateText(this.data, data),
-        barcode: _buildBarcode(data),
-        color: evaluateColor(color, data) ?? PdfColors.black,
-        backgroundColor: evaluateColor(backgroundColor, data),
-        decoration: decoration?.toPdf(data),
-        margin: margin?.toPdf(data) ??
+        data: await evaluateText(this.data, data),
+        barcode: Barcode.fromType(type!),
+        color: await evaluateColor(color, data) ?? PdfColors.black,
+        backgroundColor: await evaluateColor(backgroundColor, data),
+        decoration: await decoration?.toPdf(data),
+        margin: await margin?.toPdf(data) ??
             EdgeInsets.only(bottom: 2.0 * PdfPageFormat.mm),
-        padding: padding?.toPdf(data),
-        width: evaluateDouble(width, data),
-        height: evaluateDouble(height, data),
-        drawText: evaluateBool(drawText, data) ?? true,
-        textStyle: textStyle?.toPdf(data),
-        textPadding: evaluateDouble(textPadding, data) ?? 0);
-  }
-
-  Barcode _buildBarcode(Map<String, dynamic> data) {
-    final type = evaluateBarcodeType(this.type, data);
-    return Barcode.fromType(type!);
+        padding: await padding?.toPdf(data),
+        width: await evaluateDouble(width, data),
+        height: await evaluateDouble(height, data),
+        drawText: await evaluateBool(drawText, data) ?? true,
+        textStyle: await textStyle?.toPdf(data),
+        textPadding: await evaluateDouble(textPadding, data) ?? 0);
   }
 }

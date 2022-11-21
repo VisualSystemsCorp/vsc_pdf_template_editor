@@ -7,13 +7,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_highlight/themes/atom-one-dark-reasonable.dart';
 import 'package:highlight/languages/json.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pdf/widgets.dart' as pw;
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
 
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
     as transformer;
+import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart';
 
 part 'tree_store.g.dart';
 
@@ -31,8 +31,7 @@ abstract class TreeStoreModel with Store {
 
   late final CodeController _templateController;
   late final CodeController _dataController;
-
-  pw.Document _doc = pw.Document();
+  final _buildCache = TplMemoryCache();
 
   @observable
   String buildErrorText = '';
@@ -152,8 +151,11 @@ abstract class TreeStoreModel with Store {
   }
 
   Future<void> _buildPdf() async {
-    _doc = await transformer.Transformer.buildPdf(_template, _data);
-    _pdfBytes = await _doc.save();
+    _pdfBytes = await transformer.Transformer.buildPdf(
+      _template,
+      _data,
+      buildCache: _buildCache,
+    );
   }
 
   void _sortDialogItems() {

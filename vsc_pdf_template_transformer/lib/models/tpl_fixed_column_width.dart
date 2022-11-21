@@ -14,7 +14,7 @@ part 'tpl_fixed_column_width.g.dart';
 class TplFixedColumnWidth implements tcw.TableColumnWidth {
   TplFixedColumnWidth();
 
-  String className = 'TplFixedColumnWidth';
+  String t = 'FixedColumnWidth';
   dynamic width;
 
   factory TplFixedColumnWidth.fromJson(Map<String, dynamic> json) =>
@@ -24,7 +24,8 @@ class TplFixedColumnWidth implements tcw.TableColumnWidth {
   Map<String, dynamic> toJson() => _$TplFixedColumnWidthToJson(this);
 
   @override
-  TableColumnWidth buildTableColumnWidth(Map<String, dynamic> data) {
-    return FixedColumnWidth(evaluateDouble(width, data) ?? 0);
+  Future<TableColumnWidth> buildTableColumnWidth(
+      Map<String, dynamic> data) async {
+    return FixedColumnWidth(await evaluateDouble(width, data) ?? 0);
   }
 }

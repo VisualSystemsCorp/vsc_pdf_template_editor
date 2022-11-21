@@ -18,14 +18,14 @@ TplSizedBox _$TplSizedBoxFromJson(Map<String, dynamic> json) => $checkedCreate(
               (v) => const WidgetJsonConverter()
                   .fromJson(v as Map<String, dynamic>?)),
         );
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         return val;
       },
     );
 
 Map<String, dynamic> _$TplSizedBoxToJson(TplSizedBox instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'width': instance.width,
       'height': instance.height,
       'child': const WidgetJsonConverter().toJson(instance.child),

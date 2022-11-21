@@ -1,0 +1,53 @@
+
+{
+  "t": "Document",
+  "children": [
+    {
+      "t": "MultiPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "header": {
+        "t": "Text",
+        "text": "'The Heading'"
+      },
+      "children": [
+        {
+          "t": "Text",
+          "text": "'text'",
+          "textScaleFactor": 10
+        },
+        {
+          "t": "Text",
+          "text": "'text'",
+          "textScaleFactor": 10
+        },
+        {
+          "t": "Text",
+          "text": "'text'",
+          "textScaleFactor": 10
+        },
+        {
+          "t": "Header",
+          "text": "'A new heading'",
+          "level": 1
+        },
+        {
+          "t": "Text",
+          "text": "'text'",
+          "textScaleFactor": 10
+        },
+        {
+          "t": "Text",
+          "text": "'text'",
+          "textScaleFactor": 10
+        },
+        {
+          "t": "Text",
+          "text": "'text'",
+          "textScaleFactor": 10
+        }
+      ]
+    }
+  ]
+}

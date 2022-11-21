@@ -7,16 +7,16 @@ part of 'tpl_new_page.dart';
 // **************************************************************************
 
 TplNewPage _$TplNewPageFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'TplNewPage',
+      'NewPage',
       json,
       ($checkedConvert) {
         final val = TplNewPage();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         return val;
       },
     );
 
 Map<String, dynamic> _$TplNewPageToJson(TplNewPage instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
     };

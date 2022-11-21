@@ -1,0 +1,32 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Bullet",
+        "text": "'Hello world'",
+        "textAlign": null,
+        "style": null,
+        "margin": null,
+        "padding": null,
+        "bulletMargin": {
+          "left": null,
+          "top": 3,
+          "right": 10,
+          "bottom": null,
+          "all": null,
+          "vertical": null,
+          "horizontal": null
+        },
+        "bulletSize": 8,
+        "bulletShape": null,
+        "bulletColor": "'#eb4034'"
+      }
+    }
+  ]
+}

@@ -12,7 +12,7 @@ TplLineDataSet _$TplLineDataSetFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplLineDataSet();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'data',
             (v) => val.data = (v as List<dynamic>?)
@@ -39,7 +39,7 @@ TplLineDataSet _$TplLineDataSetFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplLineDataSetToJson(TplLineDataSet instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'data': instance.data?.map((e) => e.toJson()).toList(),
       'legend': instance.legend,
       'pointColor': instance.pointColor,

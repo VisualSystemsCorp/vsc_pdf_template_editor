@@ -17,7 +17,7 @@ part 'tpl_bullet.g.dart';
 class TplBullet implements wb.WidgetBuilder {
   TplBullet();
 
-  String className = 'TplBullet';
+  String t = 'Bullet';
 
   dynamic text;
   dynamic textAlign;
@@ -36,22 +36,24 @@ class TplBullet implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplBulletToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Bullet(
-        text: evaluateString(text, data),
-        textAlign: evaluateTextAlign(textAlign, data) ?? TextAlign.left,
-        style: style?.toPdf(data),
-        margin: margin?.toPdf(data) ??
+        text: await evaluateString(text, data),
+        textAlign: await evaluateTextAlign(textAlign, data) ?? TextAlign.left,
+        style: await style?.toPdf(data),
+        margin: await margin?.toPdf(data) ??
             EdgeInsets.only(bottom: 2.0 * PdfPageFormat.mm),
-        padding: padding?.toPdf(data),
-        bulletMargin: bulletMargin?.toPdf(data) ??
+        padding: await padding?.toPdf(data),
+        bulletMargin: await bulletMargin?.toPdf(data) ??
             EdgeInsets.only(
               top: 1.5 * PdfPageFormat.mm,
               left: 5.0 * PdfPageFormat.mm,
               right: 2.0 * PdfPageFormat.mm,
             ),
-        bulletSize: evaluateDouble(bulletSize, data) ?? 2.0 * PdfPageFormat.mm,
-        bulletShape: evaluateBoxShape(bulletShape, data) ?? BoxShape.circle,
-        bulletColor: evaluateColor(bulletColor, data) ?? PdfColors.black);
+        bulletSize:
+            await evaluateDouble(bulletSize, data) ?? 2.0 * PdfPageFormat.mm,
+        bulletShape:
+            await evaluateBoxShape(bulletShape, data) ?? BoxShape.circle,
+        bulletColor: await evaluateColor(bulletColor, data) ?? PdfColors.black);
   }
 }

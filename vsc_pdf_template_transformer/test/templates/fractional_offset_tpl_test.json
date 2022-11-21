@@ -1,0 +1,34 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "Page",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "child": {
+        "t": "Align",
+        "alignment": {
+          "t": "FractionalOffset",
+          "dx": 1,
+          "dy": 1
+        },
+        "widthFactor": null,
+        "heightFactor": null,
+        "child": {
+          "t": "Text",
+          "text": "'Hello world'",
+          "style": null,
+          "textAlign": null,
+          "textDirection": null,
+          "softWrap": true,
+          "tightBounds": false,
+          "textScaleFactor": null,
+          "maxLines": null,
+          "overflow": null
+        }
+      }
+    }
+  ]
+}

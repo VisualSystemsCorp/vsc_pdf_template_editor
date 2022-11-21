@@ -12,7 +12,7 @@ TplContainer _$TplContainerFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = TplContainer();
-        $checkedConvert('className', (v) => val.className = v as String);
+        $checkedConvert('t', (v) => val.t = v as String);
         $checkedConvert(
             'alignment',
             (v) => val.alignment = const AlignmentJsonConverter()
@@ -55,7 +55,7 @@ TplContainer _$TplContainerFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TplContainerToJson(TplContainer instance) =>
     <String, dynamic>{
-      'className': instance.className,
+      't': instance.t,
       'alignment': const AlignmentJsonConverter().toJson(instance.alignment),
       'padding': instance.padding?.toJson(),
       'color': instance.color,

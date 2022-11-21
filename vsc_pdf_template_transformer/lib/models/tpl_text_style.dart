@@ -25,7 +25,7 @@ class TplTextStyle {
   TplBoxDecoration? background;
   dynamic decoration;
   dynamic decorationColor;
-  TextDecorationStyle? decorationStyle;
+  dynamic decorationStyle;
   dynamic decorationThickness;
   dynamic renderingMode;
   dynamic font;
@@ -40,29 +40,29 @@ class TplTextStyle {
 
   Map<String, dynamic> toJson() => _$TplTextStyleToJson(this);
 
-  TextStyle toPdf(Map<String, dynamic> data) {
+  Future<TextStyle> toPdf(Map<String, dynamic> data) async {
     return TextStyle(
-      inherit: evaluateBool(inherit, data) ?? true,
-      color: evaluateColor(color, data),
-      fontSize: evaluateDouble(fontSize, data),
-      font: evaluateFont(font, data),
-      fontNormal: evaluateFont(fontNormal, data),
-      fontBold: evaluateFont(fontBold, data),
-      fontItalic: evaluateFont(fontItalic, data),
-      fontBoldItalic: evaluateFont(fontBoldItalic, data),
-      fontWeight: evaluateFontWeight(fontWeight, data),
-      fontStyle: evaluateFontStyle(fontStyle, data),
-      fontFallback: evaluateFontList(fontFallback, data),
-      letterSpacing: evaluateDouble(letterSpacing, data),
-      wordSpacing: evaluateDouble(wordSpacing, data),
-      lineSpacing: evaluateDouble(lineSpacing, data),
-      height: evaluateDouble(height, data),
-      background: background?.toPdf(data),
-      decoration: evaluateTextDecoration(decoration, data),
-      decorationColor: evaluateColor(decorationColor, data),
-      decorationStyle: decorationStyle,
-      decorationThickness: evaluateDouble(decorationThickness, data),
-      renderingMode: evaluatePdfTextRenderingMode(renderingMode, data),
+      inherit: await evaluateBool(inherit, data) ?? true,
+      color: await evaluateColor(color, data),
+      fontSize: await evaluateDouble(fontSize, data),
+      font: await evaluateFont(font, data),
+      fontNormal: await evaluateFont(fontNormal, data),
+      fontBold: await evaluateFont(fontBold, data),
+      fontItalic: await evaluateFont(fontItalic, data),
+      fontBoldItalic: await evaluateFont(fontBoldItalic, data),
+      fontWeight: await evaluateFontWeight(fontWeight, data),
+      fontStyle: await evaluateFontStyle(fontStyle, data),
+      fontFallback: await evaluateFontList(fontFallback, data),
+      letterSpacing: await evaluateDouble(letterSpacing, data),
+      wordSpacing: await evaluateDouble(wordSpacing, data),
+      lineSpacing: await evaluateDouble(lineSpacing, data),
+      height: await evaluateDouble(height, data),
+      background: await background?.toPdf(data),
+      decoration: await evaluateTextDecoration(decoration, data),
+      decorationColor: await evaluateColor(decorationColor, data),
+      decorationStyle: await evaluateTextDecorationStyle(decorationStyle, data),
+      decorationThickness: await evaluateDouble(decorationThickness, data),
+      renderingMode: await evaluatePdfTextRenderingMode(renderingMode, data),
     );
   }
 }

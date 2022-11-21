@@ -1,8 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart';
-import 'package:vsc_pdf_template_transformer/src/fonts/gfonts.dart';
-import 'package:vsc_pdf_template_transformer/src/network/cache.dart';
+import 'package:vsc_pdf_template_transformer/src/async_pdf_widgets/async_document.dart';
 
 import '../utils/evaluator.dart';
 
@@ -16,7 +14,7 @@ part 'tpl_document.g.dart';
 class TplDocument {
   TplDocument();
 
-  String className = 'TplDocument';
+  String t = 'Document';
 
   @JsonKey(defaultValue: [])
   List<VariableInitialization> variables = [];
@@ -37,23 +35,22 @@ class TplDocument {
 
   Map<String, dynamic> toJson() => _$TplDocumentToJson(this);
 
-  Future<Document> toPdf(Map<String, dynamic> data) async {
+  Future<AsyncDocument> toPdf(Map<String, dynamic> data) async {
     await _initializeVariables(data);
-    return Document(
-      pageMode: evaluatePdfPageMode(pageMode, data) ?? PdfPageMode.none,
-      compress: evaluateBool(compress, data) ?? true,
-      verbose: evaluateBool(verbose, data) ?? false,
-      title: evaluateString(title, data),
-      author: evaluateString(author, data),
-      creator: evaluateString(creator, data),
-      subject: evaluateString(subject, data),
-      keywords: evaluateString(keywords, data),
-      producer: evaluateString(producer, data),
+    return AsyncDocument(
+      pageMode: await evaluatePdfPageMode(pageMode, data) ?? PdfPageMode.none,
+      compress: await evaluateBool(compress, data) ?? true,
+      verbose: await evaluateBool(verbose, data) ?? false,
+      title: await evaluateString(title, data),
+      author: await evaluateString(author, data),
+      creator: await evaluateString(creator, data),
+      subject: await evaluateString(subject, data),
+      keywords: await evaluateString(keywords, data),
+      producer: await evaluateString(producer, data),
     );
   }
 
-  /// Initializes the given variables into [data].  A variable expression may return a Future, in
-  /// which case it is awaited to get its final value.
+  /// Initializes the given variables into [data].
   /// Variables may be referenced in later expressions with the expression syntax `data.$varName`.
   Future<void> _initializeVariables(Map<String, dynamic> data) async {
     for (final varInit in variables) {
@@ -62,31 +59,7 @@ class TplDocument {
         throw Exception('variableName was null in variables');
       }
 
-      var result = evaluateDynamic(varInit.expression, data, addlContext: {
-        'downloadImage': (url) => downloadImage(url),
-        'downloadUtf8String': (url) => downloadUtf8String(url),
-        'getGoogleFont': (fontName) async {
-          final googleFontFunction = googleFonts[fontName];
-          if (googleFontFunction == null) {
-            throw Exception('Unrecognized font name $fontName');
-          }
-          return googleFontFunction();
-        },
-        'defaultTheme': () => defaultTheme(),
-        'getThemeFromGoogleFont': (fontFamilyName) async {
-          final themeFunction = googleFontThemes[fontFamilyName];
-          if (themeFunction == null) {
-            throw Exception(
-                'Unrecognized theme font family name $fontFamilyName');
-          }
-          return themeFunction();
-        },
-      });
-
-      // Await the result, if necessary.
-      while (result is Future) {
-        result = await result;
-      }
+      var result = await evaluateDynamic(varInit.expression, data);
 
       data[r'$' + varName] = result;
     }

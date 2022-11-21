@@ -14,7 +14,7 @@ part 'tpl_expanded.g.dart';
 class TplExpanded implements wb.WidgetBuilder {
   TplExpanded();
 
-  String className = 'TplExpanded';
+  String t = 'Expanded';
   dynamic flex;
   dynamic fit;
   @WidgetJsonConverter()
@@ -27,10 +27,10 @@ class TplExpanded implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplExpandedToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async {
     return Expanded(
-        flex: evaluateInt(flex, data) ?? 1,
-        fit: evaluateFlexFit(fit, data) ?? FlexFit.tight,
-        child: child != null ? child!.buildWidget(data) : SizedBox());
+        flex: await evaluateInt(flex, data) ?? 1,
+        fit: await evaluateFlexFit(fit, data) ?? FlexFit.tight,
+        child: child != null ? await child!.buildWidget(data) : SizedBox());
   }
 }

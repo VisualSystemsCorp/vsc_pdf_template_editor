@@ -22,11 +22,11 @@ class TplIconThemeData {
 
   Map<String, dynamic> toJson() => _$TplIconThemeDataToJson(this);
 
-  pw.IconThemeData toPdf(Map<String, dynamic> data) {
+  Future<pw.IconThemeData> toPdf(Map<String, dynamic> data) async {
     return pw.IconThemeData(
-        color: evaluateColor(color, data),
-        opacity: evaluateDouble(opacity, data),
-        size: evaluateDouble(size, data),
-        font: evaluateFont(font, data));
+        color: await evaluateColor(color, data),
+        opacity: await evaluateDouble(opacity, data),
+        size: await evaluateDouble(size, data),
+        font: await evaluateFont(font, data));
   }
 }

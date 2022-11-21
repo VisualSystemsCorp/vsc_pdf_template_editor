@@ -13,7 +13,7 @@ part 'tpl_rectangle.g.dart';
 class TplRectangle implements wb.WidgetBuilder {
   TplRectangle();
 
-  String className = 'TplRectangle';
+  String t = 'Rectangle';
   dynamic fillColor;
   dynamic strokeColor;
   dynamic strokeWidth;
@@ -25,10 +25,10 @@ class TplRectangle implements wb.WidgetBuilder {
   Map<String, dynamic> toJson() => _$TplRectangleToJson(this);
 
   @override
-  Widget buildWidget(Map<String, dynamic> data) {
+  Future<Widget> buildWidget(Map<String, dynamic> data) async { 
     return Rectangle(
-        fillColor: evaluateColor(fillColor, data),
-        strokeColor: evaluateColor(strokeColor, data),
-        strokeWidth: evaluateDouble(strokeWidth, data) ?? 1.0);
+        fillColor: await evaluateColor(fillColor, data),
+        strokeColor: await evaluateColor(strokeColor, data),
+        strokeWidth: await evaluateDouble(strokeWidth, data) ?? 1.0);
   }
 }
