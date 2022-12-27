@@ -135,12 +135,7 @@ abstract class BaseViewModel with Store {
 
   String _prettyPrint(dynamic object) {
     const JsonEncoder encoder = JsonEncoder.withIndent('  ');
-    final dynamic prettyString = encoder.convert(object);
-    final sb = StringBuffer();
-    prettyString
-        .split('\n')
-        .forEach((dynamic element) => sb.write('\n$element'));
-    return sb.toString();
+    return encoder.convert(object);
   }
 
   @action
