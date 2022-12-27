@@ -8,8 +8,7 @@ environment:
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
-  expressions:
-    git: https://github.com/VisualSystemsCorp/expressions.git
+  expressions: ^0.2.5
   path: ^1.8.2
   pdf: ^3.8.4
   json_annotation: ^4.7.0
