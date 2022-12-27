@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
-import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 import 'package:code_text_field/code_text_field.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_highlight/themes/atom-one-dark-reasonable.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:vsc_pdf_template_editor/src/stores/view_model.dart';
+import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 
 class JsonEditorWidget extends StatefulWidget {
   const JsonEditorWidget({
@@ -12,7 +13,7 @@ class JsonEditorWidget extends StatefulWidget {
     this.codeFieldTextStyle,
   }) : super(key: key);
 
-  final TreeStore viewModel;
+  final ViewModel viewModel;
   final String data;
   final TextStyle? codeFieldTextStyle;
 
@@ -37,51 +38,60 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (context) {
-      return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            title: TabBar(
+    return Observer(
+      builder: (context) {
+        return CodeTheme(
+          data: const CodeThemeData(styles: atomOneDarkReasonableTheme),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              TabBar(
                 controller: _tabController,
-                indicatorColor: Theme.of(context).primaryColor,
+                labelColor: Theme.of(context).colorScheme.onSurface,
                 tabs: const [
-                  TextButton(onPressed: null, child: Text(AppStrings.template)),
-                  TextButton(onPressed: null, child: Text(AppStrings.data))
-                ])),
-        body: Column(
-          children: [
-            Flexible(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    child: CodeField(
-                      controller: widget.viewModel.templateController,
-                      expands: true,
-                      textStyle: widget.codeFieldTextStyle,
-                    ),
-                  ),
-                  Container(
-                      padding: const EdgeInsets.all(20),
-                      child: CodeField(
-                        controller: widget.viewModel.dataController,
-                        expands: true,
-                        textStyle: widget.codeFieldTextStyle,
-                      )),
+                  Tab(text: AppStrings.template),
+                  Tab(text: AppStrings.data),
                 ],
               ),
-            ),
-            Container(
-                padding: const EdgeInsets.all(20),
-                height: MediaQuery.of(context).size.height * 0.2,
-                child: SingleChildScrollView(
-                    child: Text(widget.viewModel.buildErrorText)))
-          ],
-        ),
-      );
-    });
+              Expanded(
+                child: Column(
+                  children: [
+                    Flexible(
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(20),
+                            child: CodeField(
+                              controller: widget.viewModel.templateController,
+                              expands: true,
+                              textStyle: widget.codeFieldTextStyle,
+                            ),
+                          ),
+                          Container(
+                              padding: const EdgeInsets.all(20),
+                              child: CodeField(
+                                controller: widget.viewModel.dataController,
+                                expands: true,
+                                textStyle: widget.codeFieldTextStyle,
+                              )),
+                        ],
+                      ),
+                    ),
+                    Container(
+                        padding: const EdgeInsets.all(20),
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        child: SingleChildScrollView(
+                            child: Text(widget.viewModel.buildErrorText)))
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override

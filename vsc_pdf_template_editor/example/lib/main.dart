@@ -21,7 +21,6 @@ class _EditorAppState extends State<EditorApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: AppStrings.appName,
-        theme: ThemeData(colorSchemeSeed: const Color(0xFF6200EE)),
         home: Scaffold(
             appBar: AppBar(
               title: const Text(AppStrings.testAppName),

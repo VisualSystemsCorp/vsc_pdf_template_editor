@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tree_store.dart';
+part of 'view_model.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'tree_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$TreeStore on TreeStoreModel, Store {
+mixin _$ViewModel on BaseViewModel, Store {
   late final _$buildErrorTextAtom =
-      Atom(name: 'TreeStoreModel.buildErrorText', context: context);
+      Atom(name: 'BaseViewModel.buildErrorText', context: context);
 
   @override
   String get buildErrorText {
@@ -26,7 +26,7 @@ mixin _$TreeStore on TreeStoreModel, Store {
   }
 
   late final _$activeTabAtom =
-      Atom(name: 'TreeStoreModel.activeTab', context: context);
+      Atom(name: 'BaseViewModel.activeTab', context: context);
 
   @override
   int get activeTab {
@@ -42,7 +42,7 @@ mixin _$TreeStore on TreeStoreModel, Store {
   }
 
   late final _$_templateAtom =
-      Atom(name: 'TreeStoreModel._template', context: context);
+      Atom(name: 'BaseViewModel._template', context: context);
 
   Map<String, dynamic> get template {
     _$_templateAtom.reportRead();
@@ -59,7 +59,7 @@ mixin _$TreeStore on TreeStoreModel, Store {
     });
   }
 
-  late final _$_dataAtom = Atom(name: 'TreeStoreModel._data', context: context);
+  late final _$_dataAtom = Atom(name: 'BaseViewModel._data', context: context);
 
   Map<String, dynamic> get data {
     _$_dataAtom.reportRead();
@@ -77,7 +77,7 @@ mixin _$TreeStore on TreeStoreModel, Store {
   }
 
   late final _$_pdfBytesAtom =
-      Atom(name: 'TreeStoreModel._pdfBytes', context: context);
+      Atom(name: 'BaseViewModel._pdfBytes', context: context);
 
   Uint8List? get pdfBytes {
     _$_pdfBytesAtom.reportRead();
@@ -95,7 +95,7 @@ mixin _$TreeStore on TreeStoreModel, Store {
   }
 
   late final _$_supportedWidgetsAtom =
-      Atom(name: 'TreeStoreModel._supportedWidgets', context: context);
+      Atom(name: 'BaseViewModel._supportedWidgets', context: context);
 
   List<String> get supportedWidgets {
     _$_supportedWidgetsAtom.reportRead();
@@ -113,7 +113,7 @@ mixin _$TreeStore on TreeStoreModel, Store {
   }
 
   late final _$_supportedPropertiesAtom =
-      Atom(name: 'TreeStoreModel._supportedProperties', context: context);
+      Atom(name: 'BaseViewModel._supportedProperties', context: context);
 
   List<String> get supportedProperties {
     _$_supportedPropertiesAtom.reportRead();
@@ -131,52 +131,64 @@ mixin _$TreeStore on TreeStoreModel, Store {
     });
   }
 
-  late final _$onInputChangedAsyncAction =
-      AsyncAction('TreeStoreModel.onInputChanged', context: context);
+  late final _$_onTemplateChangedAsyncAction =
+      AsyncAction('BaseViewModel._onTemplateChanged', context: context);
 
   @override
-  Future<void> onInputChanged() {
-    return _$onInputChangedAsyncAction.run(() => super.onInputChanged());
+  Future<void> _onTemplateChanged() {
+    return _$_onTemplateChangedAsyncAction
+        .run(() => super._onTemplateChanged());
   }
 
-  late final _$onDataChangedAsyncAction =
-      AsyncAction('TreeStoreModel.onDataChanged', context: context);
+  late final _$_onDataChangedAsyncAction =
+      AsyncAction('BaseViewModel._onDataChanged', context: context);
 
   @override
-  Future<void> onDataChanged() {
-    return _$onDataChangedAsyncAction.run(() => super.onDataChanged());
+  Future<void> _onDataChanged() {
+    return _$_onDataChangedAsyncAction.run(() => super._onDataChanged());
   }
 
   late final _$addObjectAsyncAction =
-      AsyncAction('TreeStoreModel.addObject', context: context);
+      AsyncAction('BaseViewModel.addObject', context: context);
 
   @override
   Future<void> addObject(Map<String, dynamic> map) {
     return _$addObjectAsyncAction.run(() => super.addObject(map));
   }
 
-  late final _$TreeStoreModelActionController =
-      ActionController(name: 'TreeStoreModel', context: context);
+  late final _$BaseViewModelActionController =
+      ActionController(name: 'BaseViewModel', context: context);
+
+  @override
+  void setBuildErrorText(String text) {
+    final _$actionInfo = _$BaseViewModelActionController.startAction(
+        name: 'BaseViewModel.setBuildErrorText');
+    try {
+      return super.setBuildErrorText(text);
+    } finally {
+      _$BaseViewModelActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic reformat(CodeController controller) {
-    final _$actionInfo = _$TreeStoreModelActionController.startAction(
-        name: 'TreeStoreModel.reformat');
+    final _$actionInfo = _$BaseViewModelActionController.startAction(
+        name: 'BaseViewModel.reformat');
     try {
       return super.reformat(controller);
     } finally {
-      _$TreeStoreModelActionController.endAction(_$actionInfo);
+      _$BaseViewModelActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String _reformatNewWidget(String text) {
-    final _$actionInfo = _$TreeStoreModelActionController.startAction(
-        name: 'TreeStoreModel._reformatNewWidget');
+    final _$actionInfo = _$BaseViewModelActionController.startAction(
+        name: 'BaseViewModel._reformatNewWidget');
     try {
       return super._reformatNewWidget(text);
     } finally {
-      _$TreeStoreModelActionController.endAction(_$actionInfo);
+      _$BaseViewModelActionController.endAction(_$actionInfo);
     }
   }
 

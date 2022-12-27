@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
-import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
+import 'package:vsc_pdf_template_editor/src/stores/view_model.dart';
+import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 
 class PdfViewWidget extends StatelessWidget {
   const PdfViewWidget({
@@ -11,7 +11,7 @@ class PdfViewWidget extends StatelessWidget {
     required this.viewModel,
   }) : super(key: key);
 
-  final TreeStore viewModel;
+  final ViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {

@@ -9,8 +9,8 @@ class AppStrings {
   static const search = 'Search';
 
   static const cancel = 'Cancel';
-  static const ok = 'Ok';
+  static const ok = 'OK';
 
   static const template = 'Template';
-  static const data = 'Data';
+  static const data = 'Sample Data';
 }

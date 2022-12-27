@@ -1,30 +1,56 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:vsc_pdf_template_editor/src/stores/tree_store.dart';
+import 'package:vsc_pdf_template_editor/src/stores/view_model.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 import 'package:vsc_pdf_template_editor/src/widgets/json_editor_widget.dart';
+
 import 'add_widget_dialog.dart';
 import 'pdf_view_widget.dart';
-import 'package:file_picker/file_picker.dart';
 
-class VscPdfTemplateEditor extends StatelessWidget {
-  VscPdfTemplateEditor({
+class VscPdfTemplateEditor extends StatefulWidget {
+  const VscPdfTemplateEditor({
     super.key,
     required this.template,
     required this.data,
     this.codeFieldTextStyle,
-  }) {
-    viewModel = TreeStore(
-      template,
-      data,
-    );
-  }
+    this.onTemplateChanged,
+    this.onDataChanged,
+    this.onErrorStateChanged,
+  });
 
   final Map<String, dynamic> template;
   final Map<String, dynamic> data;
   final TextStyle? codeFieldTextStyle;
-  late final TreeStore viewModel;
+  final void Function(Map<String, dynamic> template)? onTemplateChanged;
+  final void Function(Map<String, dynamic> data)? onDataChanged;
+  final void Function(bool hasError)? onErrorStateChanged;
+
+  @override
+  State<VscPdfTemplateEditor> createState() => _VscPdfTemplateEditorState();
+}
+
+class _VscPdfTemplateEditorState extends State<VscPdfTemplateEditor> {
+  late final ViewModel viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = ViewModel(
+      widget.template,
+      widget.data,
+      widget.onTemplateChanged,
+      widget.onDataChanged,
+      widget.onErrorStateChanged,
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    viewModel.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,8 +115,8 @@ class VscPdfTemplateEditor extends StatelessWidget {
                 Expanded(
                   child: JsonEditorWidget(
                     viewModel: viewModel,
-                    data: data.toString(),
-                    codeFieldTextStyle: codeFieldTextStyle,
+                    data: widget.data.toString(),
+                    codeFieldTextStyle: widget.codeFieldTextStyle,
                   ),
                 ),
                 const VerticalDivider(thickness: 1, width: 1),
