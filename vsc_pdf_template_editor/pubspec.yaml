@@ -13,8 +13,8 @@ dependencies:
     sdk: flutter
   flutter_mobx: ^2.0.6+1
   mobx: ^2.0.7+5
-  pdf: ^3.8.3
-  printing: ^5.9.2
+  pdf: ^3.8.4
+  printing: ^5.9.3
   vsc_pdf_template_transformer:
     # For local development working on the transformer and the editor, you may need to uncomment this, but don't check it in.
     #path: ../vsc_pdf_template_transformer
