@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:code_text_field/code_text_field.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:highlight/languages/json.dart';
 import 'package:mobx/mobx.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';

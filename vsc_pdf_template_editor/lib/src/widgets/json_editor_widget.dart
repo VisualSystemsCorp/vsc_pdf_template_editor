@@ -1,5 +1,5 @@
-import 'package:code_text_field/code_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:flutter_highlight/themes/atom-one-dark-reasonable.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/stores/view_model.dart';
@@ -37,11 +37,17 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Observer(
       builder: (context) {
         return CodeTheme(
-          data: const CodeThemeData(styles: atomOneDarkReasonableTheme),
+          data: CodeThemeData(styles: atomOneDarkReasonableTheme),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
@@ -63,18 +69,20 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
                         children: [
                           Container(
                             padding: const EdgeInsets.all(20),
-                            child: CodeField(
-                              controller: widget.viewModel.templateController,
-                              expands: true,
-                              textStyle: widget.codeFieldTextStyle,
+                            child: SingleChildScrollView(
+                              child: CodeField(
+                                controller: widget.viewModel.templateController,
+                                textStyle: widget.codeFieldTextStyle,
+                              ),
                             ),
                           ),
                           Container(
                               padding: const EdgeInsets.all(20),
-                              child: CodeField(
-                                controller: widget.viewModel.dataController,
-                                expands: true,
-                                textStyle: widget.codeFieldTextStyle,
+                              child: SingleChildScrollView(
+                                child: CodeField(
+                                  controller: widget.viewModel.dataController,
+                                  textStyle: widget.codeFieldTextStyle,
+                                ),
                               )),
                         ],
                       ),
@@ -92,11 +100,5 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
         );
       },
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _tabController.dispose();
   }
 }
