@@ -22,7 +22,7 @@ dependencies:
       url: https://github.com/VisualSystemsCorp/vsc_pdf_template_editor.git
       path: vsc_pdf_template_transformer
   easy_debounce: ^2.0.2+1
-  file_picker: ^5.2.2
+  file_picker: ^5.2.4
   flutter_code_editor: ^0.2.4
   highlight: ^0.7.0
   flutter_highlight: ^0.7.0
