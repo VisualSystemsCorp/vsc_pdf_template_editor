@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:highlight/languages/json.dart';
@@ -81,11 +82,10 @@ abstract class BaseViewModel with Store {
     try {
       _template = jsonDecode(newText);
       _buildPdfDebounced();
-      setBuildErrorText('');
+      _setBuildErrorText('');
       onTemplateChanged?.call(_template);
     } catch (e, s) {
-      setBuildErrorText('$e \n $s');
-      debugPrint('$e\n$s');
+      _setBuildErrorText(e, s);
     }
   }
 
@@ -97,11 +97,10 @@ abstract class BaseViewModel with Store {
     try {
       _data = jsonDecode(newText);
       _buildPdfDebounced();
-      setBuildErrorText('');
+      _setBuildErrorText('');
       onDataChanged?.call(_data);
     } catch (e, s) {
-      setBuildErrorText('$e \n $s');
-      debugPrint('$e\n$s');
+      _setBuildErrorText(e, s);
     }
   }
 
@@ -116,20 +115,23 @@ abstract class BaseViewModel with Store {
       // result in a parsing error that is displayed.
       _templateController.text = newTemplate;
       _buildPdfDebounced();
-      setBuildErrorText('');
+      _setBuildErrorText('');
     } catch (e, s) {
-      setBuildErrorText('$e \n $s');
-      debugPrint('$e\n$s');
+      _setBuildErrorText(e, s);
     }
   }
 
   @action
-  void setBuildErrorText(String text) {
+  void _setBuildErrorText(Object e, [StackTrace? st]) {
+    final text = kDebugMode ? '$e${st == null ? '' : '\n$st'}' : e.toString();
     final prevInError = buildErrorText.isNotEmpty;
     buildErrorText = text;
     final isInErrorState = buildErrorText.isNotEmpty;
     if (prevInError != isInErrorState) {
       onErrorStateChanged?.call(isInErrorState);
+    }
+    if (kDebugMode && isInErrorState) {
+      debugPrint(text);
     }
   }
 
@@ -173,11 +175,16 @@ abstract class BaseViewModel with Store {
   }
 
   Future<void> _buildPdf() async {
-    _pdfBytes = await transformer.Transformer.buildPdf(
-      _template,
-      _data,
-      buildCache: _buildCache,
-    );
+    try {
+      _pdfBytes = await transformer.Transformer.buildPdf(
+        _template,
+        _data,
+        buildCache: _buildCache,
+      );
+      _setBuildErrorText('');
+    } catch (e, st) {
+      _setBuildErrorText(e, st);
+    }
   }
 
   void _sortDialogItems() {

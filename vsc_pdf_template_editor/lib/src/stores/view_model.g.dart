@@ -160,11 +160,11 @@ mixin _$ViewModel on BaseViewModel, Store {
       ActionController(name: 'BaseViewModel', context: context);
 
   @override
-  void setBuildErrorText(String text) {
+  void _setBuildErrorText(Object e, [StackTrace? st]) {
     final _$actionInfo = _$BaseViewModelActionController.startAction(
-        name: 'BaseViewModel.setBuildErrorText');
+        name: 'BaseViewModel._setBuildErrorText');
     try {
-      return super.setBuildErrorText(text);
+      return super._setBuildErrorText(e, st);
     } finally {
       _$BaseViewModelActionController.endAction(_$actionInfo);
     }

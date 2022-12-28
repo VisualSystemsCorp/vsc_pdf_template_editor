@@ -342,7 +342,12 @@ Future<T?> evaluateEnum<T extends Enum>(
     return null;
   }
 
-  return values.byName(result.toString());
+  try {
+    return values.byName(result.toString());
+  } catch (_) {
+    throw Exception(
+        'Unknown enum value for $expression. Valid values are $values');
+  }
 }
 
 Future<Font?> evaluateFont(

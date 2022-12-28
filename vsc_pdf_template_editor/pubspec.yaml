@@ -16,8 +16,6 @@ dependencies:
   pdf: ^3.8.4
   printing: ^5.9.3
   vsc_pdf_template_transformer:
-    # For local development working on the transformer and the editor, you may need to uncomment this, but don't check it in.
-    #path: ../vsc_pdf_template_transformer
     git:
       url: https://github.com/VisualSystemsCorp/vsc_pdf_template_editor.git
       path: vsc_pdf_template_transformer
@@ -26,6 +24,12 @@ dependencies:
   flutter_code_editor: ^0.2.4
   highlight: ^0.7.0
   flutter_highlight: ^0.7.0
+
+dependency_overrides:
+  # For local development working on the transformer and the editor, you may need to uncomment this, but don't check it in.
+  vsc_pdf_template_transformer:
+    path: ../vsc_pdf_template_transformer
+
 
 dev_dependencies:
   flutter_test:

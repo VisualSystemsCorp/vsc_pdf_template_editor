@@ -50,7 +50,6 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
           data: CodeThemeData(styles: atomOneDarkReasonableTheme),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
             children: [
               TabBar(
                 controller: _tabController,
@@ -62,6 +61,7 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
               ),
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Flexible(
                       child: TabBarView(

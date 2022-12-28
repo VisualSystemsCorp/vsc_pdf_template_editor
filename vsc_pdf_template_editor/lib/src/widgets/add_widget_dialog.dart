@@ -22,19 +22,12 @@ class _AddWidgetDialogState extends State<AddWidgetDialog> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          height: 50,
-          margin: const EdgeInsets.all(10),
-          padding: const EdgeInsets.all(10),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: Colors.blueGrey.withOpacity(0.3),
-              borderRadius: const BorderRadius.all(Radius.circular(12))),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
           child: TextField(
             autofocus: true,
             controller: controller,
-            decoration:
-                const InputDecoration.collapsed(hintText: AppStrings.search),
+            decoration: const InputDecoration(hintText: AppStrings.search),
             onChanged: (v) => _searchItems(),
           ),
         ),
