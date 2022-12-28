@@ -75,7 +75,7 @@ abstract class BaseViewModel with Store {
 
   @action
   Future<void> _onTemplateChanged() async {
-    final newText = _templateController.text;
+    final newText = _templateController.code.text;
     if (newText == _lastTemplateText) return;
     _lastTemplateText = newText;
     try {
@@ -91,7 +91,7 @@ abstract class BaseViewModel with Store {
 
   @action
   Future<void> _onDataChanged() async {
-    final newText = _dataController.text;
+    final newText = _dataController.code.text;
     if (newText == _lastDataText) return;
     _lastDataText = newText;
     try {
