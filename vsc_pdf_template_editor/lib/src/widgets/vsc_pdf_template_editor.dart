@@ -55,52 +55,61 @@ class _VscPdfTemplateEditorState extends State<VscPdfTemplateEditor> {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
+      final activeTab = viewModel.activeTab;
+      final templateTabActive = activeTab == 0;
       return Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             child: Row(
               children: [
                 ElevatedButton(
-                    onPressed: () async {
-                      final res = await _onAddWidgetPressed(context);
-                      if (res != null) {
-                        print(res);
-                        viewModel.onWidgetSelected(res);
-                      }
-                    },
+                    onPressed: templateTabActive
+                        ? () async {
+                            final res = await _onAddWidgetPressed(context);
+                            if (res != null) {
+                              print(res);
+                              viewModel.onWidgetSelected(res);
+                            }
+                          }
+                        : null,
                     child: const Text(AppStrings.addWidget)),
                 const SizedBox(
-                  width: 50,
+                  width: 12,
                 ),
                 ElevatedButton(
-                    onPressed: () async {
-                      final res = await _onAddPropertyPressed(context);
-                      if (res != null) {
-                        viewModel.onPropertySelected(res);
-                      }
-                    },
+                    onPressed: templateTabActive
+                        ? () async {
+                            final res = await _onAddPropertyPressed(context);
+                            if (res != null) {
+                              viewModel.onPropertySelected(res);
+                            }
+                          }
+                        : null,
                     child: const Text(AppStrings.addProperty)),
                 const SizedBox(
-                  width: 50,
+                  width: 12,
                 ),
                 ElevatedButton(
-                    onPressed: () async {
-                      final type = await _onAddImagePressed(context);
-                      if (type != null) {
-                        final res = await _pickImage() as FilePickerResult?;
-                        if (res != null) {
-                          final file = res.files.first.bytes!;
-                          viewModel.insertImage(file, type);
-                        }
-                      }
-                    },
+                    onPressed: templateTabActive
+                        ? () async {
+                            final type = await _onAddImagePressed(context);
+                            if (type != null) {
+                              final res =
+                                  await _pickImage() as FilePickerResult?;
+                              if (res != null) {
+                                final file = res.files.first.bytes!;
+                                viewModel.insertImage(file, type);
+                              }
+                            }
+                          }
+                        : null,
                     child: const Text(AppStrings.addImage)),
                 const SizedBox(
-                  width: 50,
+                  width: 12,
                 ),
                 ElevatedButton(
-                    onPressed: () => viewModel.activeTab == 0
+                    onPressed: () => templateTabActive
                         ? viewModel.reformat(viewModel.templateController)
                         : viewModel.reformat(viewModel.dataController),
                     child: const Text(AppStrings.reformat)),
