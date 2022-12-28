@@ -68,7 +68,7 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
                         controller: _tabController,
                         children: [
                           Container(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(8),
                             child: SingleChildScrollView(
                               child: CodeField(
                                 controller: widget.viewModel.templateController,
@@ -77,7 +77,7 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
                             ),
                           ),
                           Container(
-                              padding: const EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(8),
                               child: SingleChildScrollView(
                                 child: CodeField(
                                   controller: widget.viewModel.dataController,
@@ -88,7 +88,7 @@ class _JsonEditorWidgetState extends State<JsonEditorWidget>
                       ),
                     ),
                     Container(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                         height: MediaQuery.of(context).size.height * 0.2,
                         child: SingleChildScrollView(
                             child: Text(widget.viewModel.buildErrorText)))
