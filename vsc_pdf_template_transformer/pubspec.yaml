@@ -10,7 +10,7 @@ environment:
 dependencies:
   expressions: ^0.2.5
   path: ^1.8.2
-  pdf: ^3.8.4
+  pdf: ^3.9.0
   json_annotation: ^4.7.0
   timezone: ^0.9.0
   intl: ^0.17.0
