@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:highlight/languages/json.dart';
 import 'package:mobx/mobx.dart';
 import 'package:queue/queue.dart' as q;
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
+import 'package:vsc_pdf_template_editor/src/utils/debouncer.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
 import 'package:vsc_pdf_template_transformer/vsc_pdf_template_transformer.dart'
@@ -25,6 +25,7 @@ abstract class BaseViewModel with Store {
     this.onDataChanged,
     this.onErrorStateChanged,
   ) {
+    _buildPdfDebouncer = Debouncer(() => _buildPdf());
     _sortDialogItems();
     _initControllers();
     _buildPdfDebounced();
@@ -68,6 +69,7 @@ abstract class BaseViewModel with Store {
   String? _lastTemplateText;
   String? _lastDataText;
   final _buildQueue = q.Queue();
+  late final Debouncer _buildPdfDebouncer;
 
   void dispose() {
     _templateController.dispose();
@@ -170,8 +172,7 @@ abstract class BaseViewModel with Store {
   }
 
   void _buildPdfDebounced() {
-    EasyDebounce.debounce(
-        '', const Duration(milliseconds: 500), () => _buildPdf());
+    _buildPdfDebouncer.trigger(const Duration(milliseconds: 500));
   }
 
   Future<void> _buildPdf() async {
@@ -210,6 +211,10 @@ abstract class BaseViewModel with Store {
       text: _prettyPrint(_data),
     );
     _dataController.addListener(_onDataChanged);
+
+    // Fire them the first time
+    _onTemplateChanged();
+    _onDataChanged();
   }
 
   dynamic insertImage(Uint8List file, String name) {
