@@ -1,12 +1,11 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:highlight/languages/json.dart';
 import 'package:mobx/mobx.dart';
+import 'package:queue/queue.dart' as q;
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
@@ -68,6 +67,7 @@ abstract class BaseViewModel with Store {
 
   String? _lastTemplateText;
   String? _lastDataText;
+  final _buildQueue = q.Queue();
 
   void dispose() {
     _templateController.dispose();
@@ -175,6 +175,11 @@ abstract class BaseViewModel with Store {
   }
 
   Future<void> _buildPdf() async {
+    // Ensure that the build is completed in the order it was requested.
+    await _buildQueue.add(_buildPdfWorker);
+  }
+
+  Future<void> _buildPdfWorker() async {
     try {
       _pdfBytes = await transformer.Transformer.buildPdf(
         _template,
