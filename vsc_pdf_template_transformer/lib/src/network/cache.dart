@@ -20,9 +20,8 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
-import 'package:pdf/widgets.dart';
 import 'package:pdf/pdf.dart';
-import 'package:vsc_pdf_template_transformer/src/vsc_pdf_template_transformer_base.dart';
+import 'package:pdf/widgets.dart';
 
 /// Store data in a cache
 abstract class TplBaseCache {
@@ -144,15 +143,19 @@ Future<Uint8List> _downloadBytesInBuildZone(
   );
 }
 
-/// Download an image from the network.
+/// Download an image from [url] over the network. If [url] is null, a zero-pixel image provider is returned.
 Future<ImageProvider> downloadImage(
-  String url, {
+  String? url, {
   bool cache = true,
   Map<String, String>? headers,
   PdfImageOrientation? orientation,
   double? dpi,
   TplBaseCache? pdfCache,
 }) async {
+  if (url == null) {
+    return RawImage(bytes: Uint8List(0), width: 0, height: 0);
+  }
+
   final bytes = await _downloadBytesInBuildZone(
     url,
     cache: cache,

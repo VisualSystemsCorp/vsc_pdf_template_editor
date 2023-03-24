@@ -17,12 +17,14 @@ import 'package:vsc_pdf_template_transformer/models/tpl_raw_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_repeater.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_theme_data.dart';
 import 'package:vsc_pdf_template_transformer/src/fonts/gfonts.dart';
-import 'package:vsc_pdf_template_transformer/src/network/cache.dart';
 import 'package:vsc_pdf_template_transformer/utils/widget_builder.dart' as wb;
 
 import '../utils/inline_span.dart' as ins;
 import '../utils/table_column_width.dart' as tcw;
 import '../vsc_pdf_template_transformer.dart';
+
+/// Available to other packages to extend the evaluator's context and add more functions, etc.
+final extendedEvaluatorContext = <String, dynamic>{};
 
 ExpressionEvaluator _createAsyncExpressionEvaluator() {
   return ExpressionEvaluator.async(memberAccessors: [
@@ -45,6 +47,7 @@ Future<dynamic> evaluateDynamic(
   final Stream result = _createAsyncExpressionEvaluator().eval(parsedExpr, {
     'data': data,
     ...addlContext,
+    ...extendedEvaluatorContext,
     'formatLongCurrency': (dynamic value) => _formatLongCurrency(value, data),
     'formatCurrency': (dynamic value) => _formatCurrency(value, data),
     'formatPercent': (dynamic value, dynamic scale) =>
@@ -53,12 +56,14 @@ Future<dynamic> evaluateDynamic(
         _formatNumber(pattern, value, data),
     'formatDateTime': (dynamic pattern, dynamic value, [bool useTz = false]) =>
         _formatDateTime(pattern, value, useTz, data),
+    'now': () => DateTime.now(),
     'newThemeWithFontSize': (ThemeData themeData, num fontSize) {
       return themeData.copyWith(
         defaultTextStyle:
             themeData.defaultTextStyle.copyWith(fontSize: fontSize.toDouble()),
       );
     },
+    'coalesce': (dynamic value1, dynamic value2) => value1 ?? value2,
     'toString': (dynamic value) => value.toString(),
     'downloadImage': (url) => downloadImage(url),
     'downloadUtf8String': (url) => downloadUtf8String(url),
