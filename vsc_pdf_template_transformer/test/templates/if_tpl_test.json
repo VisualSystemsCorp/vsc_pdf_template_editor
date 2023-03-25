@@ -67,6 +67,14 @@
         {
           "t": "If",
           "expression": "true"
+        },
+        {
+          "t": "If",
+          "expression": "firstOf2(true, setData('$sd', 'value'))",
+          "thenChild": {
+            "t": "Text",
+            "text": "'firstOf2(...setData()) expression - expected - $sd=' + coalesce(data.$sd, 'NOT SET')"
+          }
         }
       ]
     }
