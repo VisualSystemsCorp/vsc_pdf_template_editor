@@ -38,6 +38,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   vsc_pdf_template_editor:
     path: ../
+dependency_overrides:
+
+  # For local development working on the transformer and the editor.
+  vsc_pdf_template_transformer:
+    path: ../../vsc_pdf_template_transformer
 
 dev_dependencies:
   flutter_test:

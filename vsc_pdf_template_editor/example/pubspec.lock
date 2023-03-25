@@ -517,13 +517,11 @@ packages:
     source: path
     version: "0.0.1"
   vsc_pdf_template_transformer:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      path: vsc_pdf_template_transformer
-      ref: HEAD
-      resolved-ref: f60ec09be74b1a3292ed4c5257478775237713b1
-      url: "https://github.com/VisualSystemsCorp/vsc_pdf_template_editor.git"
-    source: git
+      path: "../../vsc_pdf_template_transformer"
+      relative: true
+    source: path
     version: "0.0.1"
   win32:
     dependency: transitive

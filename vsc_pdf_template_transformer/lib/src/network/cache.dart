@@ -153,7 +153,9 @@ Future<ImageProvider> downloadImage(
   TplBaseCache? pdfCache,
 }) async {
   if (url == null) {
-    return RawImage(bytes: Uint8List(0), width: 0, height: 0);
+    // Transparent 1-pixel image
+    return RawImage(
+        bytes: Uint8List.fromList([0, 0, 0, 0]), width: 1, height: 1);
   }
 
   final bytes = await _downloadBytesInBuildZone(

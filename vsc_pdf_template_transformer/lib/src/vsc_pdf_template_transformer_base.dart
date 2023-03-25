@@ -34,6 +34,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_grid_paper.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_grid_view.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_icon.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_if.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_line_data_set.dart';
@@ -191,7 +192,8 @@ class Transformer {
       'BarcodeWidget': TplBarcodeWidget.fromJson,
       'Shape': TplShape.fromJson,
       'GridPaper': TplGridPaper.fromJson,
-      'Theme': TplTheme.fromJson
+      'Theme': TplTheme.fromJson,
+      'If': TplIf.fromJson,
     };
 
     final fromJson = widgetClassFromJson[valueMap['t']];

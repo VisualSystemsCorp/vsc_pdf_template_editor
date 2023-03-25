@@ -1,0 +1,74 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "MultiPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "children": [
+        {
+          "t": "If",
+          "expression": "true",
+          "thenChild": {
+            "t": "Text",
+            "text": "'True expression - expected'"
+          },
+          "elseChild": {
+            "t": "Text",
+            "text": "'True expression - UNEXPECTED'"
+          }
+        },
+        {
+          "t": "If",
+          "expression": "false",
+          "thenChild": {
+            "t": "Text",
+            "text": "'False expression - UNEXPECTED'"
+          },
+          "elseChild": {
+            "t": "Text",
+            "text": "'False expression - expected'"
+          }
+        },
+        {
+          "t": "If",
+          "expression": "null",
+          "thenChild": {
+            "t": "Text",
+            "text": "'null expression - UNEXPECTED'"
+          },
+          "elseChild": {
+            "t": "Text",
+            "text": "'null expression - expected'"
+          }
+        },
+        {
+          "t": "If",
+          "expression": "false",
+          "elseChild": {
+            "t": "Text",
+            "text": "'false expression without thenChild - expected'"
+          }
+        },
+        {
+          "t": "If",
+          "expression": "false"
+        },
+        {
+          "t": "If",
+          "expression": "true",
+          "thenChild": {
+            "t": "Text",
+            "text": "'true expression without elseChild - expected'"
+          }
+        },
+        {
+          "t": "If",
+          "expression": "true"
+        }
+      ]
+    }
+  ]
+}

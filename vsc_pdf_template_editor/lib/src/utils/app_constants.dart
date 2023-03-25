@@ -52,6 +52,7 @@ import 'package:vsc_pdf_template_transformer/models/tpl_header.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_icon.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_icon_data.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_icon_theme_data.dart';
+import 'package:vsc_pdf_template_transformer/models/tpl_if.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_intrinsic_column_width.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_limited_box.dart';
@@ -114,6 +115,7 @@ class AppConstants {
     'Column': TplColumn().toJson(),
     'Row': TplRow().toJson(),
     'Repeater': TplRepeater().toJson(),
+    'If': TplIf().toJson(),
     'Header': TplHeader().toJson(),
     'New Page': TplNewPage().toJson(),
     'Spacer': TplSpacer().toJson(),

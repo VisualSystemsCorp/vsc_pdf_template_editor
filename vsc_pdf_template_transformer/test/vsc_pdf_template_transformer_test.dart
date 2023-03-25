@@ -48,6 +48,7 @@ void main() {
     'grid_paper_tpl_test',
     'grid_view_tpl_test',
     'icon_tpl_test',
+    'if_tpl_test',
     'image_memory_image_tpl_test',
     'inline_span_tpl_test',
     'invoice_tpl_test',
