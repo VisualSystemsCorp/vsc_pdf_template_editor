@@ -65,20 +65,21 @@ Future<dynamic> evaluateDynamic(
     },
     'coalesce': (dynamic value1, dynamic value2) => value1 ?? value2,
     'toString': (dynamic value) => value.toString(),
-    // Sets value under attrName in data
-    'setData': (String attrName, dynamic value) => data[attrName] = value,
+    // Sets value on data.attrName1[.attrName2.attrName3.attrName4]
+    'set': (dynamic value, String attrName1,
+        [String? attrName2, String? attrName3]) {
+      if (attrName3 != null) {
+        data[attrName1]?[attrName2]?[attrName3] = value;
+      } else if (attrName2 != null) {
+        data[attrName1]?[attrName2] = value;
+      } else {
+        data[attrName1] = value;
+      }
+    },
     // Returns the first argument in the given list of arguments. This can be used to evaluate a sequence of expressions,
     // and then return the first value, e.g.,
-    //   firstOf2(true, setData('foo', 5), setData('bar', 42))
-    /// This will return true after evaluating thr first and second arguments.
-    'firstOf2': (a1, a2) => a1,
-    'firstOf3': (a1, a2, a3) => a1,
-    'firstOf4': (a1, a2, a3, a4) => a1,
-    'firstOf5': (a1, a2, a3, a4, a5) => a1,
-    'firstOf6': (a1, a2, a3, a4, a5, a6) => a1,
-    'firstOf7': (a1, a2, a3, a4, a5, a6) => a1,
-    'firstOf8': (a1, a2, a3, a4, a5, a6, a7) => a1,
-    'firstOf9': (a1, a2, a3, a4, a5, a6, a7, a8) => a1,
+    //   first(true, set(5, 'foo'), set(42, 'bar'))
+    'first': (a1, a2, [a3, a4, a5, a6, a7, a8, a9]) => a1,
     'downloadImage': (url) => downloadImage(url),
     'downloadUtf8String': (url) => downloadUtf8String(url),
     'getGoogleFont': (fontName) async {

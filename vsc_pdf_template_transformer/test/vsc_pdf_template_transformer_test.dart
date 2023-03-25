@@ -10,6 +10,7 @@ void main() {
   setUpAll(() {
     final dataFile = File('test/data/sample_invoice.json');
     _invoiceData = jsonDecode(dataFile.readAsStringSync());
+    _invoiceData['p'] = {};
 
     final outDir = Directory('test/outputs');
     if (!outDir.existsSync()) {
