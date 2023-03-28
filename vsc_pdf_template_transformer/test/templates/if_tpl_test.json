@@ -74,6 +74,22 @@
           "thenChild": {
             "t": "Text",
             "text": "'first(...set()) expression - expected - $sd=' + coalesce(data.p.$sd, 'NOT SET')"
+          },
+          "elseChild": {
+            "t": "Text",
+            "text": "'first expression - UNEXPECTED'"
+          }
+        },
+        {
+          "t": "If",
+          "expression": "last(set('value', 'foo'), set('test', 'bar'), data.bar) == 'test'",
+          "thenChild": {
+            "t": "Text",
+            "text": "'last(...set()) expression - expected - bar=' + coalesce(data.bar, 'NOT SET')"
+          },
+          "elseChild": {
+            "t": "Text",
+            "text": "'last expression - UNEXPECTED - bar=' + coalesce(data.bar, 'NOT SET')"
           }
         }
       ]

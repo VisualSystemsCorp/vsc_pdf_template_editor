@@ -65,7 +65,7 @@ Future<dynamic> evaluateDynamic(
     },
     'coalesce': (dynamic value1, dynamic value2) => value1 ?? value2,
     'toString': (dynamic value) => value.toString(),
-    // Sets value on data.attrName1[.attrName2.attrName3.attrName4]
+    // Sets value on data.attrName1[.attrName2.attrName3.attrName4].
     'set': (dynamic value, String attrName1,
         [String? attrName2, String? attrName3]) {
       if (attrName3 != null) {
@@ -79,7 +79,12 @@ Future<dynamic> evaluateDynamic(
     // Returns the first argument in the given list of arguments. This can be used to evaluate a sequence of expressions,
     // and then return the first value, e.g.,
     //   first(true, set(5, 'foo'), set(42, 'bar'))
-    'first': (a1, a2, [a3, a4, a5, a6, a7, a8, a9]) => a1,
+    'first': (a1, [a2, a3, a4, a5, a6, a7, a8, a9]) => a1,
+    // Returns the last argument in the given list of arguments. This can be used to evaluate a sequence of expressions,
+    // and then return the last value, e.g.,
+    //   first(set(5, 'foo'), set(42, 'bar'), data.bar)
+    'last': (a1, [a2, a3, a4, a5, a6, a7, a8, a9]) =>
+        a9 ?? a8 ?? a7 ?? a6 ?? a5 ?? a4 ?? a3 ?? a2 ?? a1,
     'downloadImage': (url) => downloadImage(url),
     'downloadUtf8String': (url) => downloadUtf8String(url),
     'getGoogleFont': (fontName) async {
