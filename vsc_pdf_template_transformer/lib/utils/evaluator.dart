@@ -65,7 +65,7 @@ Future<dynamic> evaluateDynamic(
     },
     'coalesce': (dynamic value1, dynamic value2) => value1 ?? value2,
     'toString': (dynamic value) => value.toString(),
-    // Sets value on data.attrName1[.attrName2.attrName3.attrName4].
+    // Sets value on data.attrName1[.attrName2.attrName3.attrName4]. Returns value.
     'set': (dynamic value, String attrName1,
         [String? attrName2, String? attrName3]) {
       if (attrName3 != null) {
@@ -75,6 +75,8 @@ Future<dynamic> evaluateDynamic(
       } else {
         data[attrName1] = value;
       }
+
+      return value;
     },
     // Returns the first argument in the given list of arguments. This can be used to evaluate a sequence of expressions,
     // and then return the first value, e.g.,

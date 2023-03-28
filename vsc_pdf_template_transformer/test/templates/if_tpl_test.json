@@ -91,6 +91,18 @@
             "t": "Text",
             "text": "'last expression - UNEXPECTED - bar=' + coalesce(data.bar, 'NOT SET')"
           }
+        },
+        {
+          "t": "If",
+          "expression": "set('test', 'foo') == 'test'",
+          "thenChild": {
+            "t": "Text",
+            "text": "'set() returns value expression - expected - foo=' + coalesce(data.foo, 'NOT SET')"
+          },
+          "elseChild": {
+            "t": "Text",
+            "text": "'set() returns value expression - UNEXPECTED - foo=' + coalesce(data.foo, 'NOT SET')"
+          }
         }
       ]
     }
