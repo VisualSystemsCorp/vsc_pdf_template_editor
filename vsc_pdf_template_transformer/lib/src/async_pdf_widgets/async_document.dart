@@ -80,7 +80,6 @@ class AsyncDocument {
     String? producer,
   }) : document = PdfDocument.load(
           parser,
-          pageMode: pageMode,
           deflate: deflate,
           compress: compress,
           verbose: verbose,

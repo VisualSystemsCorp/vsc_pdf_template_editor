@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   flutter_mobx: ^2.0.6+1
   mobx: ^2.0.7+5
-  pdf: ^3.9.0
+  pdf: ^3.10.1
   printing: ^5.10.1
   vsc_pdf_template_transformer:
     git:
