@@ -117,7 +117,7 @@ Future<dynamic> evaluateDynamic(
 /// with a space separator. The patterns must match https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html.
 /// If you use multiple "skeleton" patterns, you must use an array. Because of
 /// limitations with the intl package, you cannot say `'yMd jm'`. Instead you must
-/// say `['ymd', 'jm']`.
+/// say `['yMd', 'jm']`.
 String _formatDateTime(
     dynamic pattern, value, bool useTz, Map<String, dynamic> data) {
   if (value == null ||
