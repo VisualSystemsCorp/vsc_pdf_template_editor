@@ -8,6 +8,7 @@ import 'package:expressions/expressions.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:rational/rational.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:vsc_pdf_template_transformer/models/tpl_memory_image.dart';
 import 'package:vsc_pdf_template_transformer/models/tpl_partition.dart';
@@ -65,6 +66,8 @@ Future<dynamic> evaluateDynamic(
     },
     'coalesce': (dynamic value1, dynamic value2) => value1 ?? value2,
     'toString': (dynamic value) => value.toString(),
+    'toDecimal': _toDecimal,
+    'toBigInt': _toBigInt,
     // Sets value on data.attrName1[.attrName2.attrName3.attrName4]. Returns value.
     'set': (dynamic value, String attrName1,
         [String? attrName2, String? attrName3]) {
@@ -194,10 +197,48 @@ dynamic _maybeConvertStringToDecimal(dynamic value) {
   return value is String ? DecimalIntl(Decimal.parse(value)) : value;
 }
 
+dynamic _maybeConvertStringToDecimalIntl(dynamic value) {
+  value = _maybeConvertStringToDecimal(value);
+  return value is Decimal ? DecimalIntl(value) : value;
+}
+
+/// Converts [value] to a [Decimal]. If [value] is null or not parsable to a [Decimal], null is
+/// returned. If [value] is not a [String], it is converted to one prior to parsing.
+/// If [value] is a [Rational], you must supply [scale] to specify the
+/// number of decimal places to scale to.
+Decimal? _toDecimal(Object? value, [int? scale]) {
+  if (value == null) return null;
+  if (value is Decimal) {
+    if (scale != null) {
+      return value.round(scale: scale);
+    }
+    return value;
+  }
+  if (value is int) return value.toDecimal();
+  if (value is BigInt) return value.toDecimal();
+  if (value is Rational) {
+    return value.toDecimal(
+        scaleOnInfinitePrecision: scale, toBigInt: (value) => value.round());
+  }
+
+  return Decimal.tryParse(value.toString());
+}
+
+/// Converts [value] to a [BigInt]. If [value] is null or not parsable to a [BigInt], null is
+/// returned. If [value] is not a [String], it is converted to one prior to parsing.
+BigInt? _toBigInt(Object? value) {
+  if (value == null) return null;
+  if (value is BigInt) return value;
+  if (value is num) return BigInt.from(value);
+  if (value is Decimal) return value.toBigInt();
+  if (value is Rational) return value.toBigInt();
+  return BigInt.tryParse(value.toString());
+}
+
 String _formatLongCurrency(dynamic value, Map<String, dynamic> data) {
   if (value == null) return '';
 
-  value = _maybeConvertStringToDecimal(value);
+  value = _maybeConvertStringToDecimalIntl(value);
   final formatter = intl.NumberFormat.currency(locale: _getLocale(data));
   return formatter.format(value);
 }
@@ -205,7 +246,7 @@ String _formatLongCurrency(dynamic value, Map<String, dynamic> data) {
 String _formatCurrency(dynamic value, Map<String, dynamic> data) {
   if (value == null) return '';
 
-  value = _maybeConvertStringToDecimal(value);
+  value = _maybeConvertStringToDecimalIntl(value);
   final formatter = intl.NumberFormat.simpleCurrency(locale: _getLocale(data));
   return formatter.format(value);
 }
@@ -213,7 +254,7 @@ String _formatCurrency(dynamic value, Map<String, dynamic> data) {
 String _formatPercent(dynamic value, dynamic scale, Map<String, dynamic> data) {
   if (value == null) return '';
 
-  value = _maybeConvertStringToDecimal(value);
+  value = _maybeConvertStringToDecimalIntl(value);
   if (scale is num) scale = scale.toInt();
   final formatter = intl.NumberFormat.decimalPercentPattern(
       locale: _getLocale(data), decimalDigits: scale ?? 0);
@@ -224,7 +265,7 @@ String _formatNumber(
     String? pattern, dynamic value, Map<String, dynamic> data) {
   if (value == null) return '';
 
-  value = _maybeConvertStringToDecimal(value);
+  value = _maybeConvertStringToDecimalIntl(value);
   final formatter = intl.NumberFormat(pattern, _getLocale(data));
   return formatter.format(value);
 }

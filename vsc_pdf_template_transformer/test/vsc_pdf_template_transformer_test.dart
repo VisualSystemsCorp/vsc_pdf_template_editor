@@ -41,6 +41,7 @@ void main() {
     'decorated_box_tpl_test',
     'decoration_image_tpl_test',
     'decoration_svg_image_tpl_test',
+    'expressions_tpl_test',
     'fitted_box_tpl_test',
     'flat_button_tpl_test',
     'flex_tpl_test',

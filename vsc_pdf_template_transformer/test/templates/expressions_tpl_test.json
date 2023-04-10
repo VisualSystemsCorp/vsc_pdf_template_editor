@@ -1,0 +1,77 @@
+{
+  "t": "Document",
+  "pageMode": "'none'",
+  "children": [
+    {
+      "t": "MultiPage",
+      "pageFormat": {
+        "format": "'letter'"
+      },
+      "children": [
+        {
+          "t": "Text",
+          "text": "'toDecimal(123456789.123456789)=' + toString(toDecimal('123456789.123456789'))",
+          "style": {
+            "fontSize": 9
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'toDecimal(123456789.123456789, 2)=' + toString(toDecimal('123456789.123456789', 2))",
+          "style": {
+            "fontSize": 9
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'toDecimal(toDecimal(44) / toDecimal(3), 3)=' + toString(toDecimal(toDecimal('44') / toDecimal('3'), 3))",
+          "style": {
+            "fontSize": 9
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'toDecimal(null)=' + toString(toDecimal(null))",
+          "style": {
+            "fontSize": 9
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'toDecimal(123456)=' + toString(toDecimal(123456))",
+          "style": {
+            "fontSize": 9
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'toDecimal(toBigInt(123456789012345678901234567890))=' + toString(toDecimal(toBigInt('123456789012345678901234567890')))",
+          "style": {
+            "fontSize": 9
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'toBigInt(123456789012345678901234567890)=' + toString(toBigInt('123456789012345678901234567890'))",
+          "style": {
+            "fontSize": 9
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'toBigInt(null)=' + toString(toBigInt(null))",
+          "style": {
+            "fontSize": 9
+          }
+        },
+        {
+          "t": "Text",
+          "text": "'toBigInt(toDecimal(123456789.987))=' + toString(toBigInt(toDecimal('123456789.987')))",
+          "style": {
+            "fontSize": 9
+          }
+        }
+      ]
+    }
+  ]
+}
