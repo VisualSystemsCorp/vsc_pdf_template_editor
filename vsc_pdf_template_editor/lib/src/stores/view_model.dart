@@ -203,13 +203,13 @@ abstract class BaseViewModel with Store {
     _templateController = CodeController(
       language: json,
       text: _prettyPrint(_template),
-    );
+    )..popupController.enabled = false;
     _templateController.addListener(_onTemplateChanged);
 
     _dataController = CodeController(
       language: json,
       text: _prettyPrint(_data),
-    );
+    )..popupController.enabled = false;
     _dataController.addListener(_onDataChanged);
 
     // Fire them the first time
