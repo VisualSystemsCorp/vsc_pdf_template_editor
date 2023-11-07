@@ -70,7 +70,7 @@ class AsyncPage {
 
   PdfPage? _pdfPage;
 
-  EdgeInsets? get margin => pageTheme.margin;
+  EdgeInsets? get margin => pageTheme.margin as EdgeInsets?;
 
   @protected
   void debugPaint(Context context) {
