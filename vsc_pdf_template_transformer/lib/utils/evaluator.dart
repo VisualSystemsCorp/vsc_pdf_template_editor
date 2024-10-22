@@ -194,12 +194,7 @@ String? _coerceLiteralToString(dynamic value) {
 }
 
 dynamic _maybeConvertStringToDecimal(dynamic value) {
-  return value is String ? DecimalIntl(Decimal.parse(value)) : value;
-}
-
-dynamic _maybeConvertStringToDecimalIntl(dynamic value) {
-  value = _maybeConvertStringToDecimal(value);
-  return value is Decimal ? DecimalIntl(value) : value;
+  return value is String ? Decimal.parse(value) : value;
 }
 
 /// Converts [value] to a [Decimal]. If [value] is null or not parsable to a [Decimal], null is
@@ -235,39 +230,48 @@ BigInt? _toBigInt(Object? value) {
   return BigInt.tryParse(value.toString());
 }
 
+String _formatNumberMaybeDecimal(
+  intl.NumberFormat numberFormatter,
+  dynamic value,
+) {
+  return value is Decimal
+      ? DecimalFormatter(numberFormatter).format(value)
+      : numberFormatter.format(value);
+}
+
 String _formatLongCurrency(dynamic value, Map<String, dynamic> data) {
   if (value == null) return '';
 
-  value = _maybeConvertStringToDecimalIntl(value);
+  value = _maybeConvertStringToDecimal(value);
   final formatter = intl.NumberFormat.currency(locale: _getLocale(data));
-  return formatter.format(value);
+  return _formatNumberMaybeDecimal(formatter, value);
 }
 
 String _formatCurrency(dynamic value, Map<String, dynamic> data) {
   if (value == null) return '';
 
-  value = _maybeConvertStringToDecimalIntl(value);
+  value = _maybeConvertStringToDecimal(value);
   final formatter = intl.NumberFormat.simpleCurrency(locale: _getLocale(data));
-  return formatter.format(value);
+  return _formatNumberMaybeDecimal(formatter, value);
 }
 
 String _formatPercent(dynamic value, dynamic scale, Map<String, dynamic> data) {
   if (value == null) return '';
 
-  value = _maybeConvertStringToDecimalIntl(value);
+  value = _maybeConvertStringToDecimal(value);
   if (scale is num) scale = scale.toInt();
   final formatter = intl.NumberFormat.decimalPercentPattern(
       locale: _getLocale(data), decimalDigits: scale ?? 0);
-  return formatter.format(value);
+  return _formatNumberMaybeDecimal(formatter, value);
 }
 
 String _formatNumber(
     String? pattern, dynamic value, Map<String, dynamic> data) {
   if (value == null) return '';
 
-  value = _maybeConvertStringToDecimalIntl(value);
+  value = _maybeConvertStringToDecimal(value);
   final formatter = intl.NumberFormat(pattern, _getLocale(data));
-  return formatter.format(value);
+  return _formatNumberMaybeDecimal(formatter, value);
 }
 
 String _getLocale(Map<String, dynamic> data) {
