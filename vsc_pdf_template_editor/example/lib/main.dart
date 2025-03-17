@@ -54,8 +54,7 @@ class _EditorAppState extends State<EditorApp> {
   }
 
   Future<Map<String, dynamic>> _getSampleTemplate() async {
-    final res =
-        await rootBundle.loadString('assets/test/invoice_tpl_test.json');
+    final res = await rootBundle.loadString('assets/test/sample_text.json');
     final result = Map<String, dynamic>.from(json.decode(res));
     return result;
   }

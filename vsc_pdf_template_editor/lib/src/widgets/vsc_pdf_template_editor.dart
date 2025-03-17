@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:vsc_pdf_template_editor/src/stores/view_model.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
+import 'package:vsc_pdf_template_editor/src/widgets/designer_widget.dart';
 import 'package:vsc_pdf_template_editor/src/widgets/json_editor_widget.dart';
 
 import 'add_widget_dialog.dart';
@@ -33,6 +34,11 @@ class VscPdfTemplateEditor extends StatefulWidget {
 
 class _VscPdfTemplateEditorState extends State<VscPdfTemplateEditor> {
   late final ViewModel viewModel;
+  bool _useDesignerMode = true;
+  
+  // Splitter control properties
+  double _leftPaneWidth = 0.5; // Represents 50% of available width
+  bool _isResizing = false;
 
   @override
   void initState() {
@@ -113,29 +119,102 @@ class _VscPdfTemplateEditorState extends State<VscPdfTemplateEditor> {
                         ? viewModel.reformat(viewModel.templateController)
                         : viewModel.reformat(viewModel.dataController),
                     child: const Text(AppStrings.reformat)),
+                const SizedBox(
+                  width: 12,
+                ),
+                ElevatedButton(
+                    onPressed: templateTabActive 
+                        ? () {
+                            setState(() {
+                              _useDesignerMode = !_useDesignerMode;
+                            });
+                          }
+                        : null,
+                    child: Text(_useDesignerMode 
+                        ? 'Switch to JSON Editor' 
+                        : 'Switch to Designer')),
               ],
             ),
           ),
           const Divider(),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Expanded(
-                  child: JsonEditorWidget(
-                    viewModel: viewModel,
-                    data: widget.data.toString(),
-                    codeFieldTextStyle: widget.codeFieldTextStyle,
-                  ),
-                ),
-                const VerticalDivider(thickness: 1, width: 1),
-                // This is the main content.
-                Expanded(
-                  child: PdfViewWidget(
-                    viewModel: viewModel,
-                  ),
-                ),
-              ],
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                // Calculate actual widths based on the constraint width and ratio
+                final availableWidth = constraints.maxWidth;
+                final leftWidth = availableWidth * _leftPaneWidth;
+                final rightWidth = availableWidth - leftWidth - 10; // 10px for splitter
+                
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    // Left pane (designer or JSON editor)
+                    SizedBox(
+                      width: leftWidth,
+                      child: templateTabActive && _useDesignerMode
+                          ? DesignerWidget(
+                              viewModel: viewModel,
+                            )
+                          : JsonEditorWidget(
+                              viewModel: viewModel,
+                              data: widget.data.toString(),
+                              codeFieldTextStyle: widget.codeFieldTextStyle,
+                            ),
+                    ),
+                    
+                    // Splitter control
+                    GestureDetector(
+                      onHorizontalDragStart: (details) {
+                        setState(() {
+                          _isResizing = true;
+                        });
+                      },
+                      onHorizontalDragUpdate: (details) {
+                        setState(() {
+                          // Calculate new ratio based on drag
+                          _leftPaneWidth += details.delta.dx / availableWidth;
+                          
+                          // Clamp values to prevent extremes
+                          if (_leftPaneWidth < 0.2) _leftPaneWidth = 0.2; // Minimum 20%
+                          if (_leftPaneWidth > 0.8) _leftPaneWidth = 0.8; // Maximum 80%
+                        });
+                      },
+                      onHorizontalDragEnd: (details) {
+                        setState(() {
+                          _isResizing = false;
+                        });
+                      },
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.resizeLeftRight,
+                        child: Container(
+                          width: 10,
+                          height: double.infinity,
+                          color: _isResizing ? Colors.blue : Colors.grey[300],
+                          child: Center(
+                            child: Container(
+                              width: 3,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: _isResizing ? Colors.blue[700] : Colors.grey[400],
+                                borderRadius: BorderRadius.circular(2),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    
+                    // Right pane (PDF preview)
+                    SizedBox(
+                      width: rightWidth,
+                      child: PdfViewWidget(
+                        viewModel: viewModel,
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ],

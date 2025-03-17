@@ -193,6 +193,17 @@ mixin _$ViewModel on BaseViewModel, Store {
   }
 
   @override
+  void updateTemplateFromDesigner(Map<String, dynamic> documentStructure) {
+    final _$actionInfo = _$BaseViewModelActionController.startAction(
+        name: 'BaseViewModel.updateTemplateFromDesigner');
+    try {
+      return super.updateTemplateFromDesigner(documentStructure);
+    } finally {
+      _$BaseViewModelActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 buildErrorText: ${buildErrorText},

@@ -141,6 +141,36 @@ abstract class BaseViewModel with Store {
     const JsonEncoder encoder = JsonEncoder.withIndent('  ');
     return encoder.convert(object);
   }
+  
+  // Public method to get pretty printed JSON from a string
+  String getPrettyPrintedJson(String jsonText) {
+    try {
+      return _prettyPrint(jsonDecode(jsonText));
+    } catch (e) {
+      print('Error formatting JSON: $e');
+      return jsonText; // Return original if formatting fails
+    }
+  }
+  
+  // Get the template as a JSON string
+  String getTemplateJson() {
+    return jsonEncode(_template);
+  }
+  
+  // Direct method to update the template controller text
+  void setTemplateControllerTextDirectly(String text) {
+    print('⚡ DIRECT TEXT UPDATE TO CONTROLLER');
+    _templateController.text = text;
+    _lastTemplateText = text; // Prevent rebinding
+    
+    // Force an update of the template object
+    try {
+      _template = jsonDecode(text);
+      onTemplateChanged?.call(_template);
+    } catch (e) {
+      print('Error parsing JSON from direct text update: $e');
+    }
+  }
 
   @action
   reformat(CodeController controller) {
@@ -174,21 +204,44 @@ abstract class BaseViewModel with Store {
   void _buildPdfDebounced() {
     _buildPdfDebouncer.trigger(const Duration(milliseconds: 500));
   }
+  
+  // Public method to force an immediate build without debouncing
+  void forceTemplateBuild() {
+    print('⚡ ViewModel: Forcing immediate template build');
+    _buildPdf();
+  }
 
   Future<void> _buildPdf() async {
     // Ensure that the build is completed in the order it was requested.
+    print('🔄 ViewModel: Queueing build job');
     await _buildQueue.add(_buildPdfWorker);
   }
 
   Future<void> _buildPdfWorker() async {
     try {
+      print('🔄 Building PDF with template: ${_template.keys}');
+      
+      // Ensure we have the latest template data
+      try {
+        final currentText = _templateController.text;
+        final currentTemplate = jsonDecode(currentText);
+        if (currentTemplate != _template) {
+          print('📝 Template mismatch detected, using controller text');
+          _template = currentTemplate;
+        }
+      } catch (e) {
+        print('⚠️ Error parsing template from controller: $e');
+      }
+      
       _pdfBytes = await transformer.Transformer.buildPdf(
         _template,
         _data,
         buildCache: _buildCache,
       );
       _setBuildErrorText('');
+      print('✅ PDF built successfully');
     } catch (e, st) {
+      print('❌ Error building PDF: $e');
       _setBuildErrorText(e, st);
     }
   }
@@ -229,5 +282,91 @@ abstract class BaseViewModel with Store {
         break;
     }
     addObject(map);
+  }
+  
+  @action
+  void updateTemplateFromDesigner(Map<String, dynamic> documentStructure) {
+    try {
+      print("Updating template from designer...");
+      
+      // Clean up design-specific properties that shouldn't be part of the final PDF
+      final cleanedStructure = _cleanupDesignProperties(documentStructure);
+      
+      // Update the template with the cleaned structure
+      _template = cleanedStructure;
+      
+      // Update the template controller text with the pretty printed version
+      final prettyText = _prettyPrint(_template);
+      
+      // Only update if it has actually changed to avoid cursor issues
+      if (_templateController.text != prettyText) {
+        // Store current selection
+        final selection = _templateController.selection;
+        
+        // Update the text
+        _templateController.text = prettyText;
+        
+        // Try to restore cursor position if possible
+        if (selection.baseOffset < prettyText.length) {
+          _templateController.selection = selection;
+        }
+      }
+      
+      // Set last template text to prevent rebinding
+      _lastTemplateText = prettyText;
+      
+      // Rebuild the PDF
+      _buildPdfDebounced();
+      
+      // Notify listeners
+      onTemplateChanged?.call(_template);
+      
+      print("Template update complete");
+    } catch (e, s) {
+      print("Error updating template: $e");
+      _setBuildErrorText(e, s);
+    }
+  }
+  
+  // Recursively remove design-specific properties from the template
+  Map<String, dynamic> _cleanupDesignProperties(Map<String, dynamic> structure) {
+    final Map<String, dynamic> result = {};
+    
+    // Copy all properties except design-specific ones
+    structure.forEach((key, value) {
+      if (key != 'designPosition' && key != 'designSize' && key != 'supportedWidgets') {
+        if (value is Map<String, dynamic>) {
+          // Recursively clean nested maps
+          result[key] = _cleanupDesignProperties(value);
+        } else if (value is List) {
+          // Handle lists (especially children arrays)
+          result[key] = _cleanupDesignPropertiesInList(value);
+        } else {
+          // Copy primitive values as is
+          result[key] = value;
+        }
+      }
+    });
+    
+    return result;
+  }
+  
+  List _cleanupDesignPropertiesInList(List list) {
+    final List result = [];
+    
+    for (var item in list) {
+      if (item is Map<String, dynamic>) {
+        // Clean each map in the list
+        result.add(_cleanupDesignProperties(item));
+      } else if (item is List) {
+        // Handle nested lists
+        result.add(_cleanupDesignPropertiesInList(item));
+      } else {
+        // Copy primitive values as is
+        result.add(item);
+      }
+    }
+    
+    return result;
   }
 }
