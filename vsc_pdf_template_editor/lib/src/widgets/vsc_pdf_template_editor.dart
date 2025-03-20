@@ -1,10 +1,12 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:multi_split_view/multi_split_view.dart';
 import 'package:vsc_pdf_template_editor/src/stores/view_model.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_constants.dart';
 import 'package:vsc_pdf_template_editor/src/utils/app_strings.dart';
 import 'package:vsc_pdf_template_editor/src/widgets/json_editor_widget.dart';
+import 'package:vsc_pdf_template_editor/src/widgets/template_tree_view.dart';
 
 import 'add_widget_dialog.dart';
 import 'pdf_view_widget.dart';
@@ -48,8 +50,8 @@ class _VscPdfTemplateEditorState extends State<VscPdfTemplateEditor> {
 
   @override
   void dispose() {
-    super.dispose();
     viewModel.dispose();
+    super.dispose();
   }
 
   @override
@@ -118,24 +120,42 @@ class _VscPdfTemplateEditorState extends State<VscPdfTemplateEditor> {
           ),
           const Divider(),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Expanded(
-                  child: JsonEditorWidget(
+            child: MultiSplitView(
+              axis: Axis.horizontal,
+              initialAreas: [
+                Area(
+                  builder: (context, area) => TemplateTreeView(
+                    viewModel: viewModel,
+                  ),
+                ),
+                Area(
+                  builder: (context, area) => JsonEditorWidget(
                     viewModel: viewModel,
                     data: widget.data.toString(),
                     codeFieldTextStyle: widget.codeFieldTextStyle,
                   ),
                 ),
-                const VerticalDivider(thickness: 1, width: 1),
-                // This is the main content.
-                Expanded(
-                  child: PdfViewWidget(
+                Area(
+                  builder: (context, area) => PdfViewWidget(
                     viewModel: viewModel,
                   ),
                 ),
               ],
+              dividerBuilder:
+                  (axis, index, resizable, dragging, highlighted, themeData) {
+                return Container(
+                  width: 8,
+                  color: highlighted
+                      ? Theme.of(context).dividerColor.withOpacity(0.3)
+                      : Theme.of(context).dividerColor.withOpacity(0.1),
+                  child: Center(
+                    child: Container(
+                      width: 1,
+                      color: Theme.of(context).dividerColor,
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ],
