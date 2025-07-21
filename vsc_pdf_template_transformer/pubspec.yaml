@@ -13,7 +13,7 @@ dependencies:
   pdf: ^3.11.1
   json_annotation: ^4.7.0
   timezone: ^0.10.0
-  intl: ^0.19.0
+  intl: ^0.20.2
   decimal: ^3.0.2
   rational: ^2.2.2
   http: ^1.1.0

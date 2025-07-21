@@ -19,3 +19,6 @@
 .pub-cache/
 .pub/
 build/
+/vsc_pdf_template_editor/example/devtools_options.yaml
+/vsc_pdf_template_editor/devtools_options.yaml
+/vsc_pdf_template_editor/example/assets/form.pdf
